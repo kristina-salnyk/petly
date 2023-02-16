@@ -1,21 +1,18 @@
+/* eslint-disable no-undef */
 module.exports = {
-  'env': {
-    'browser': true,
-    'es2021': true,
+  env: {
+    browser: true,
+    es2021: true,
   },
-  'extends': [
-    'plugin:react/recommended',
-    'google',
-  ],
-  'overrides': [
-  ],
-  'parserOptions': {
-    'ecmaVersion': 'latest',
-    'sourceType': 'module',
+  extends: ['eslint:recommended', 'plugin:react/recommended'],
+  overrides: [],
+  parserOptions: {
+    ecmaVersion: 'latest',
+    sourceType: 'module',
   },
-  'plugins': [
-    'react',
-  ],
-  'rules': {
+  plugins: ['react'],
+  rules: {
+    indent: ['error', 2],
+    quotes: ['error', 'single'],
   },
 };
