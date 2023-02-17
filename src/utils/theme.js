@@ -8,6 +8,7 @@ const theme = Object.freeze({
     dark: 'rgba(17, 17, 17, 0.6)',
     light: 'rgba(255, 255, 255, 0.6)',
     border: 'rgba(245, 146, 86, 0.5)',
+    burgerBlack: '#212121',
     background: {
       primary: '#FDF7F2',
       card: '#D9D9D9',
