@@ -1,14 +1,13 @@
+import { Wrapper } from './UserPage.styled';
 import { UserData } from '../../components/UserData/UserData';
-import { Logout } from '../../components/Logout/Logout';
 import { PetsData } from '../../components/PetsData/PetsData';
 
 const UserPage = () => {
   return (
-    <div>
+    <Wrapper>
       <UserData />
-      <Logout />
       <PetsData />
-    </div>
+    </Wrapper>
   );
 };
 
