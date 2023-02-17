@@ -1,0 +1,1 @@
+export { NoticesSearch } from './NoticesSearch';

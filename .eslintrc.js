@@ -12,6 +12,7 @@ module.exports = {
   },
   plugins: ['react'],
   rules: {
+    'react/react-in-jsx-scope': 'off',
     indent: ['error', 2],
     quotes: ['error', 'single'],
   },

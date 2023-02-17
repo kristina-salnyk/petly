@@ -1,0 +1,1 @@
+export { NoticeCategoriesList } from './NoticeCategoriesList';
