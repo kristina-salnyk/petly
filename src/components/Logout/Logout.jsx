@@ -1,3 +1,7 @@
 export const Logout = () => {
-  return <div>Logout</div>;
+  return (
+    <>
+      <button type="button">Log Out</button>
+    </>
+  );
 };
