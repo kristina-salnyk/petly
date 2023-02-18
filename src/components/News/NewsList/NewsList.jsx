@@ -10,45 +10,45 @@ import {
   ListNews,
   ItemNews,
   ConteinerNews,
-//   SearchNewsForm,
-//   SearchNewsInput,
-//   SearchNewsButton,
+  //   SearchNewsForm,
+  //   SearchNewsInput,
+  //   SearchNewsButton,
   Title,
 } from './NewsList.styled'
 
 const handleNewsSearch = (news, filter) => {
-    if (filter) {
+  if (filter) {
     return news.filter(news =>
       news.title.toLowerCase().includes(filter.toLowerCase())
     );
   }
-return news;
+  return news;
 }
 
 const NewsList = () => {
-    const dispatch = useDispatch();
-    const isLoading = useSelector(selectIsLoading);
-    const news = useSelector(selectNews);
+  const dispatch = useDispatch();
+  const isLoading = useSelector(selectIsLoading);
+  const news = useSelector(selectNews);
 
-    console.log('FetchNews',news);
-    const searchQuery = useSelector(selectNewsSearchString);
-    const searchNews = handleNewsSearch(news, searchQuery.searchQuery);
+  console.log('FetchNews',news);
+  const searchQuery = useSelector(selectNewsSearchString);
+  const searchNews = handleNewsSearch(news, searchQuery.searchQuery);
 
-    // const handleClearInput = evt => {
-    //     evt.preventDefault();
-    //     searchQuery = '';
-    // };
+  // const handleClearInput = evt => {
+  //     evt.preventDefault();
+  //     searchQuery = '';
+  // };
     
 
 
-    useEffect(() => {
-        dispatch(fetchNews());
-    }, [dispatch]);
+  useEffect(() => {
+    dispatch(fetchNews());
+  }, [dispatch]);
 
-    return (
-        <ConteinerNews>
-            <Title>News</Title>
-            {/* <SearchNewsForm>
+  return (
+    <ConteinerNews>
+      <Title>News</Title>
+      {/* <SearchNewsForm>
                 <SearchNewsInput
                     type="text"
                     autoComplete="off"
@@ -68,23 +68,23 @@ const NewsList = () => {
                 }
                 
             </SearchNewsForm> */}
-            <ListNews>
-                {isLoading &&
+      <ListNews>
+        {isLoading &&
                     searchNews.map(({ _id, title, description, date, url }) => (
-                    <ItemNews key={_id}>
+                      <ItemNews key={_id}>
                         <NewsItem
-                            title={title}
-                            description={description}
-                            date={date}
-                            url={url}
+                          title={title}
+                          description={description}
+                          date={date}
+                          url={url}
                         />
-                    </ItemNews>
-                ))
-                }
-            </ListNews>
+                      </ItemNews>
+                    ))
+        }
+      </ListNews>
 
-        </ConteinerNews>
-    );
+    </ConteinerNews>
+  );
 
 }
 
