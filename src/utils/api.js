@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export const api = axios.create({
-  baseURL: 'https://pet-support.onrender.com/',
+  baseURL: 'https://pet-support.onrender.com/api',
 });
 
 export const setAuthHeader = token => {

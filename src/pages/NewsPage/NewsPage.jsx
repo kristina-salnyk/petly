@@ -1,5 +1,7 @@
+import NewsList from '../../components/News/NewsList/NewsList'
+
 const NewsPage = () => {
-  return <div>NewsPage</div>;
+  return <NewsList/>;
 };
 
 export default NewsPage;
