@@ -1,7 +1,8 @@
 import axios from 'axios';
+import { API_BASE_URL } from '../redux/constants';
 
 export const api = axios.create({
-  baseURL: 'https://pet-support.onrender.com/api',
+  baseURL: API_BASE_URL,
 });
 
 export const setAuthHeader = token => {
