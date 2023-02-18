@@ -3,16 +3,16 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectNews,  selectIsLoading, selectNewsSearchString} from '../../../redux/news/selectors';
 import { fetchNews } from '../../../redux/news/operations';
-import { ReactComponent as SearchBtn } from './../../../icons/SearchBtn.svg';
-import { ReactComponent as CancelBtn } from './../../../icons/CancelBtn.svg';
+// import { ReactComponent as SearchBtn } from './../../../icons/SearchBtn.svg';
+// import { ReactComponent as CancelBtn } from './../../../icons/CancelBtn.svg';
 
 import {
   ListNews,
   ItemNews,
   ConteinerNews,
-  SearchNewsForm,
-  SearchNewsInput,
-  SearchNewsButton,
+//   SearchNewsForm,
+//   SearchNewsInput,
+//   SearchNewsButton,
   Title,
 } from './NewsList.styled'
 
@@ -48,14 +48,14 @@ const NewsList = () => {
     return (
         <ConteinerNews>
             <Title>News</Title>
-            <SearchNewsForm>
+            {/* <SearchNewsForm>
                 <SearchNewsInput
                     type="text"
                     autoComplete="off"
                     autoFocus
                     value={searchQuery}
                     placeholder="Search"
-                    onChange={searchNews}
+                    onChange={searchQuery}
                 />
                 {searchQuery === '' ? (
                     <SearchNewsButton type="submit" onClick={searchNews}>
@@ -67,7 +67,7 @@ const NewsList = () => {
                     </SearchNewsButton>)
                 }
                 
-            </SearchNewsForm>
+            </SearchNewsForm> */}
             <ListNews>
                 {isLoading &&
                     searchNews.map(({ _id, title, description, date, url }) => (

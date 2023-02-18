@@ -32,7 +32,7 @@ const NewsItem = ({title, description, date, url}) => {
 
 export default NewsItem;
 
-NewsItem.PropTypes = {
+NewsItem.propTypes = {
     title: PropTypes.string,
     description: PropTypes.string,
     date: PropTypes.string,
