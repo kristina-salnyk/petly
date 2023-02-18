@@ -12,11 +12,11 @@ import {
 
 const NewsItem = ({title, description, date, url}) => {
     
-    return (
+  return (
     <CardNews >
       <TopLineCard></TopLineCard>
       
-        <TitleCardNews>{title}</TitleCardNews>
+      <TitleCardNews>{title}</TitleCardNews>
       
 
       <DescriptionCardNews>{description}</DescriptionCardNews>
@@ -33,8 +33,8 @@ const NewsItem = ({title, description, date, url}) => {
 export default NewsItem;
 
 NewsItem.propTypes = {
-    title: PropTypes.string,
-    description: PropTypes.string,
-    date: PropTypes.string,
-    url: PropTypes.string,
+  title: PropTypes.string,
+  description: PropTypes.string,
+  date: PropTypes.string,
+  url: PropTypes.string,
 };
