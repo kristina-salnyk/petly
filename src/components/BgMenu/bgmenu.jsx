@@ -1,30 +1,13 @@
-import React, {useState}  from 'react';
+// import React, {useState}  from 'react';
 import { Link } from 'react-router-dom';
 import  './bgmenu.css'
+import PropTypes from 'prop-types';
 
-const BgMenu = ()=> {
+const BgMenu = ({burger_class, menu_class, updateMenu})=> {
 
-  
-  const [burger_class, setBurgerClass] = useState('burger-bar unclicked')
-  const [menu_class, setMenuClass] = useState('menu hidden')
-  const [isMenuClicked, setIsMenuClicked] = useState(false)
-
-   
-  const updateMenu = () => {
-    if(!isMenuClicked) {
-      setBurgerClass('burger-bar clicked')
-      setMenuClass('menu visible')
-    }
-    else {
-      setBurgerClass('burger-bar unclicked')
-      setMenuClass('menu hidden')
-    }
-    setIsMenuClicked(!isMenuClicked)
-  } 
-   
   return (
 
-    <div style={{width: '100%', height: '100 hv'}}>
+    <div className='Wrapper' style={{width: '100%', height: '100 hv'}}>
       <nav className='BG'>
         <div className="burger-menu" onClick = {updateMenu}>
 
@@ -35,26 +18,37 @@ const BgMenu = ()=> {
         </div>
       </nav>
       <div className={menu_class}>
-        <ul className="auth">
-          <li className="login">Login</li>
-          <li className="register">Registration</li>
+        
+        <ul className="auth" >
+          <li className="login">
+            <Link to="/login" 
+              className='linkLogin'>
+                Login 
+            </Link>
+          </li>
+          <li className="register">
+            <Link to="/register"
+              className='linkRegister'>
+               Registration
+            </Link>
+          </li>
         </ul>
         <div className="div">
           <ul className="bgNews">
-            <li className='news'>
+            <li className='news' onClick = {updateMenu}>
               <Link to="/news" 
                 className='linkNews'>
                   News 
               </Link>
             </li>
-            <li className='find'>
+            <li className='find' onClick = {updateMenu}>
               <Link to="/notices"
                 className="linkNotices">
                
              Find pet
               </Link>
             </li>
-            <li>
+            <li onClick = {updateMenu}>
               <Link to="/friends"
                 className='linkFriends'>
               Our friends
@@ -71,6 +65,12 @@ const BgMenu = ()=> {
     </div>
   )
 
+};
+
+BgMenu.propTypes = {
+  updateMenu: PropTypes.func.isRequired,
+  burger_class:PropTypes.string.isRequired,
+  menu_class:PropTypes.string.isRequired
 };
 
 export default BgMenu;

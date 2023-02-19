@@ -1,30 +1,27 @@
-import {Ul, Find, News, Friends} from './Nav.styled';
-import { Link } from 'react-router-dom';
+import {Ul, Find, News, Friends, StyledNews, StyledFind, StyledFriends} from './Nav.styled';
+// import { NavLink } from 'react-router-dom';
 
 export const Nav = () => {
 
   return (
     <>
-      
       <Ul>
         <News>
-          <Link to="/news">
-                News 
-          </Link>
+          <StyledNews to="/news">
+              News
+          </StyledNews>
         </News>
         <Find>
-          <Link to="/notices">
-             Find pet
-          </Link>
+          <StyledFind to="/notices">
+              Find pet
+          </StyledFind>
         </Find>
         <Friends>
-          <Link to="/friends">
-             Our friends
-          </Link>
+          <StyledFriends to="/friends">
+              Our friends
+          </StyledFriends>
         </Friends>
       </Ul>
-      
-
     </>
 
   )

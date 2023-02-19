@@ -2,13 +2,15 @@
     margin: 0;
     box-sizing: border-box;
 }
-nav {
+.BG {
     width: 105%;
     height: 5em;
     /* background-color: rgb(37, 39, 53); */
     display: flex;
     justify-content: flex-end;
+    align-items: center;
     /* padding: 1em; */
+    
 }
 
 .burger-menu {
@@ -20,13 +22,28 @@ nav {
     justify-content: space-between;
     cursor: pointer;
 }
-@media screen and (min-width: 400px) {
+@media screen and (min-width: 320px) {
+    .burger-menu {
+        width: 3em;
+    }
+}
+@media screen and (min-width: 500px) {
     .burger-menu {
         width: 5em;
     }
 }
-@media screen and (min-width: 1280px) {
+@media screen and (min-width: 700px) {
     .burger-menu {
+        width: 5em;
+    }
+}
+@media screen and (min-width: 1000px) {
+    .burger-menu {
+        width: 4em;
+    }
+}
+@media screen and (min-width: 1280px) {
+    .Wrapper {
       display: none;
     }
 }
@@ -54,7 +71,7 @@ nav {
         height: 444vh;
         background-color: #FDF7F2;;
         position: absolute;
-        top: 70px;
+        top: 141px;
         left: 0;
         z-index: 1;
     }
@@ -121,6 +138,12 @@ nav {
     margin-bottom: 40px;
     color: #181C27;
 }
+@media screen and (min-width: 768px) {
+    .news {
+        margin-left: 55px
+    }
+}
+
 .linkNotices {
     font-family: 'Manrope';
     font-style: normal;
@@ -210,6 +233,7 @@ nav {
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
+    
 
 }
 
@@ -217,7 +241,7 @@ nav {
 
 @media screen and (min-width: 768px) {
     .auth {
-     opacity: 0;
+     display: none;
     }
 }
 
@@ -231,6 +255,7 @@ nav {
 .login:hover{
     color:#FFFFFF;
     background-color: #F59256;
+    
 }
 .register {
     font-family: 'Manrope';
@@ -249,10 +274,21 @@ nav {
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
-
-   
-
-
+}
+.linkRegister{
+    text-decoration: none;
+    color:#111111
+}
+.linkRegister:hover{
+    color:#FFFFFF;
+}
+.linkLogin {
+    text-decoration: none;
+    color:#111111
+    
+}
+.linkLogin:hover{
+    color:#FFFFFF;
 }
 
 .register:hover {

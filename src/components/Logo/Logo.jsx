@@ -6,13 +6,8 @@ export const Logo = () => {
   return (
 
     <div>
-      
       <LogoImg src={logo} alt="Logo"/>
-
     </div>
-  
-     
-      
   )
     
 };

@@ -1,17 +1,32 @@
-import {Login, Register, Div, Auth} from './AuthNav.styled';
+import {Login, Register, Div, Auth, StyledLogin, StyledRegister } from './AuthNav.styled';
+import PropTypes from 'prop-types';
 
-export const AuthNav = () => {
-
+export const AuthNav = ({isMenuClicked}) => {
+  console.log(isMenuClicked)
   return (
-
-    <Div>
-      <Auth>
-        <Login>Login</Login>
-        <Register>Registration</Register>
-      </Auth>
+    <>
+      {!isMenuClicked &&
+      <Div>
+        <Auth>
+          <Login>
+            <StyledLogin to="/login">
+              Login
+            </StyledLogin>
+          </Login>
+          <Register>
+            <StyledRegister to="/register">
+            Registration
+            </StyledRegister>
+          </Register>
+        </Auth>
         
-    </Div>
-
+      </Div>}
+    </>
   )
+};
+
+AuthNav.propTypes = {
+  isMenuClicked: PropTypes.bool.isRequired,
+  
 };
 export default AuthNav;
