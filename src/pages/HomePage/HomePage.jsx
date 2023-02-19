@@ -1,3 +1,4 @@
+
 import WaveMob from '../../components/Header/images/wavesMob.svg';
 import WaveDesk from '../../components/Header/images/waveDesk.svg';
 import UnionDesk from '../../components/Header/images/UnionDesk.svg';
@@ -20,6 +21,7 @@ const HomePage = () => {
     </>
 
   ) 
+
 };
 
 export default HomePage;
