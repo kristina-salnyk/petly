@@ -1,4 +1,10 @@
 const theme = Object.freeze({
+  breakpoints: {
+    phoneMax: '767px',
+    tabletMin: '768px',
+    tabletMax: '1280',
+    desktopMin: '1281px',
+  },
   colors: {
     accent: '#F59256',
     brightAccent: '#FF6101',

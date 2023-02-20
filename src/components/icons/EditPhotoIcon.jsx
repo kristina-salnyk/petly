@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import theme from '../../utils/theme';
 
 export const EditPhotoIcon = ({
-  width = 18,
-  heigth = 19,
+  width = 20,
+  heigth = 20,
   color = theme.colors.accent,
   ...props
 }) => (

@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+// import { format } from 'date-fns';
 import {
   CardNews,
   DescriptionCardNews,
@@ -11,7 +12,10 @@ import {
 } from './NewsItem.styled';
 
 const NewsItem = ({title, description, date, url}) => {
-    
+  // const formatDate = date => {
+  //   return format(new Date(date), 'yyyy/MM/dd');
+  // };
+  
   return (
     <CardNews >
       <TopLineCard></TopLineCard>

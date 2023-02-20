@@ -1,65 +1,34 @@
 import { Logout } from '../../components/Logout/Logout';
+import { UserDataItem } from '../UserDataItem/UserDataItem';
 import {
   MyInformation,
   InformationBackgroundBlock,
   ProfileImgWrapper,
+  ProfileImgBtn,
   ProfileImg,
+  PhotoEditButton,
+  PhotoEditSpan,
 } from './UserData.styled';
-import { ReactComponent as CameraIcon } from '../../icons/cameraIcon.svg';
-import defaultImage from '../../images/ellipse.png';
+import { EditPhotoIcon } from '../../components/icons/EditPhotoIcon';
+import defaultImage from '../../images/addAvatarMockUp.png';
 
 export const UserData = () => {
   const imageUrl = defaultImage;
 
   return (
-    <div>
+    <div style={{ position: 'relative' }}>
       <MyInformation>My information:</MyInformation>
       <InformationBackgroundBlock>
         <ProfileImgWrapper>
-          <ProfileImg src={imageUrl} alt="User avatar" />
+          <ProfileImgBtn type="button">
+            <ProfileImg src={imageUrl} alt="User avatar" />
+          </ProfileImgBtn>
         </ProfileImgWrapper>
-
-        <button type="button">
-          <CameraIcon />
-          <span>Edit photo</span>
-        </button>
-        <ul>
-          <li>
-            <label>
-              Name:
-              <input type="text" />
-            </label>
-            <button type="button"></button>
-          </li>
-          <li>
-            <label>
-              Email:
-              <input type="text" />
-            </label>
-            <button type="button"></button>
-          </li>
-          <li>
-            <label>
-              Birthday:
-              <input type="text" />
-            </label>
-            <button type="button"></button>
-          </li>
-          <li>
-            <label>
-              Phone:
-              <input type="text" />
-            </label>
-            <button type="button"></button>
-          </li>
-          <li>
-            <label>
-              City:
-              <input type="text" />
-            </label>
-            <button type="button"></button>
-          </li>
-        </ul>
+        <PhotoEditButton type="button">
+          <EditPhotoIcon />
+          <PhotoEditSpan>Edit photo</PhotoEditSpan>
+        </PhotoEditButton>
+        <UserDataItem />
         <Logout />
       </InformationBackgroundBlock>
     </div>
