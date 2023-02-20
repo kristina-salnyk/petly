@@ -1,7 +1,7 @@
-import React from 'react';
-import { Route, Routes, Navigate } from 'react-router-dom';
-import { lazy } from 'react';
+import React, { lazy } from 'react';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import { SharedLayout } from './SharedLayout';
+import { NoticeCategoriesList } from './NoticesCategoriesList/NoticesCategoriesList';
 
 const LoginPage = lazy(() => import('../pages/LoginPage/LoginPage'));
 const HomePage = lazy(() => import('../pages/HomePage/HomePage'));
@@ -19,10 +19,12 @@ export function App() {
         <Route path="/news" element={<NewsPage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/login" element={<LoginPage />} />
-        <Route path="/notices" element={<NoticesPage />} />
         <Route path="/friends" element={<OurFriendsPage />} />
         <Route path="/user" element={<UserPage />} />
-        <Route path="/notices/:categoryName" element={<NoticesPage />} />
+        <Route path="/notices" element={<NoticesPage />}>
+          <Route path="" element={<Navigate to="sell" replace />} />
+          <Route path=":categoryName" element={<NoticeCategoriesList />} />
+        </Route>
         <Route path="*" element={<Navigate to="/" replace />} />
       </Route>
     </Routes>
