@@ -26,6 +26,7 @@ export const CategoryLabel = styled.div`
   background: ${props => props.theme.colors.light};
   backdrop-filter: blur(2px);
   cursor: default;
+  border-radius: 0px 40px 40px 0px;
 `;
 
 export const FavoriteLabel = styled.div`
