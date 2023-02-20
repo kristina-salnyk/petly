@@ -1,7 +1,7 @@
 const theme = Object.freeze({
   breakpoints: {
-    phoneMax: '768px',
-    tabletMin: '769px',
+    phoneMax: '767px',
+    tabletMin: '768px',
     tabletMax: '1280',
     desktopMin: '1281px',
   },

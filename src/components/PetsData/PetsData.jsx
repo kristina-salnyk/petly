@@ -19,7 +19,7 @@ import defaultImage from '../../images/cat.png';
 export const PetsData = () => {
   const imageUrl = defaultImage;
   return (
-    <PetsDataWrapper>
+    <PetsDataWrapper >
       <TitleWrapper>
         <MyPetsTitle>My pets:</MyPetsTitle>
         <AddPetWrapper>
