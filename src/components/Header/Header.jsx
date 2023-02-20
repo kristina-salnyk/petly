@@ -5,6 +5,8 @@ import Nav from '../Nav/Nav';
 import BgMenu from '../BgMenu/bgmenu';
 import AuthNav from '../AuthNav/AuthNav';
 import UserMenu from '../../components/UserNav/UserNav';
+import { selectIsLoggedIn } from '../../redux/auth/selectors';
+import { useSelector } from 'react-redux'
 
 
 
@@ -13,9 +15,11 @@ export const Header = () => {
   const [burger_class, setBurgerClass] = useState('burger-bar unclicked')
   const [menu_class, setMenuClass] = useState('menu hidden')
   const [isMenuClicked, setIsMenuClicked] = useState(false)
-  // const [isLoggedIn, setIsLoggedIn] = useState(false)
-  let isLoggedIn =false
-
+  const  isLoggedIn  =  useSelector(selectIsLoggedIn);
+  
+  
+ 
+ 
   const updateMenu = () => {
     if(!isMenuClicked) {
       setBurgerClass('burger-bar clicked')
@@ -36,7 +40,7 @@ export const Header = () => {
           <Logo/>
           <Nav/> 
         </Wrapper>
-        {isLoggedIn ? <UserMenu /> :<AuthNav isMenuClicked = {isMenuClicked}/>}
+        {!isLoggedIn ? <AuthNav isMenuClicked = {isMenuClicked}/> : <UserMenu isMenuClicked = {isMenuClicked} />}
         
         <BgMenu burger_class={burger_class} menu_class={menu_class} updateMenu={updateMenu}/>
       </HederWrapper>
