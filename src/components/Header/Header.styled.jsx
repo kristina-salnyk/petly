@@ -128,8 +128,7 @@ export const Union = styled.img`
     position: absolute;
     right: 579px;
     top: 295px;
-}
-}
+
 @media screen and (max-width: 1279px) {
     display: none;
     
