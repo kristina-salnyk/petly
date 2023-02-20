@@ -22,6 +22,7 @@ export const ListNews = styled.ul`
 `;
 
 export const ItemNews = styled.li`
+    
     flex-basis: calc(100% / 3 - 30px);
     margin-left: 30px;
     margin-bottom: 60px;
@@ -52,7 +53,7 @@ export const SearchNewsForm = styled.form`
 
 export const SearchNewsInput = styled.input`
   display: inline-block;
-  width: 100%;
+  width: 608px;
   height: 100%;
   padding: 8px 52px 8px 20px;
   border-radius: 44px;
@@ -69,11 +70,12 @@ export const SearchNewsInput = styled.input`
     outline-color: white;
   }
   ::placeholder {
-    font-weight: 600;
-    font-size: 16px;
-    line-height: 0.75;
-    color: #535353;
+    font-family: 'Inter';
+    font-weight: 500;
     font-size: 20px;
+    line-height: 1.2;
+    color: #535353;
+    
     }
 `;
 
@@ -82,7 +84,7 @@ export const SearchNewsButton = styled.button`
   top: 8px;
   right: 20px;
   width: 32px;
-  height: 45px;
+  height: 35px;
   border-radius: 32px;
   border: none;
   outline: none;
