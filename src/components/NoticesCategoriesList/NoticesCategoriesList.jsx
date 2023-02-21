@@ -1,7 +1,15 @@
-import { useParams } from 'react-router-dom';
+import { useOutletContext } from 'react-router-dom';
+import { NoticeCategoryItem } from '../NoticeCategoryItem';
+import { List } from './NoticesCategoriesList.styled';
 
 export const NoticeCategoriesList = () => {
-  const { categoryName } = useParams();
+  const [notices] = useOutletContext();
 
-  return <h1>{categoryName}</h1>;
+  return (
+    <List>
+      {notices.map(item => (
+        <NoticeCategoryItem key={item._id} {...item} />
+      ))}
+    </List>
+  );
 };
