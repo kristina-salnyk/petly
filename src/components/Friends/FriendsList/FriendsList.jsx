@@ -7,7 +7,7 @@ import { fetchFriends } from '../../../redux/friends/operations';
 import FriendsItem from '../FriendsItem/FriendsItem';
 
 
-export const FriendsList = () => {
+const FriendsList = () => {
   const dispatch = useDispatch();
   const isLoading = useSelector(selectIsLoading);
   const friends = useSelector(selectFriends);
@@ -39,3 +39,5 @@ export const FriendsList = () => {
         
   );
 }
+
+export default FriendsList;
