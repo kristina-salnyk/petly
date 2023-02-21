@@ -14,7 +14,8 @@ export const Button = styled.button`
     position: fixed;
     bottom: ${({ theme }) => theme.spacing[6]}px;
     right: ${({ theme }) => theme.spacing[6]}px;
-    transform: translateY(-200%);
+    transform: translateY(-150%);
+    z-index: 1;
   }
 
   @media (min-width: ${({ theme }) => theme.breakpoints.tablet[0]}) {
@@ -24,6 +25,7 @@ export const Button = styled.button`
 
     &:hover {
       border-color: ${({ theme }) => theme.colors.hoverAccent};
+      background-color: ${({ theme }) => theme.colors.white};
     }
   }
 `;
