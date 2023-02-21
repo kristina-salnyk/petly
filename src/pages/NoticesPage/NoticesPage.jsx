@@ -4,6 +4,7 @@ import { NoticeCategoryItem } from '../../components/NoticeCategoryItem/NoticeCa
 import { ModalNotice } from '../../components/ModalNotice';
 import { selectModal } from '../../redux/modal/selectors';
 
+
 const NoticesPage = () => {
   const isModalOpen = useSelector(selectModal);
 
@@ -11,7 +12,6 @@ const NoticesPage = () => {
     <>
       {/* // <div>NoticesPage</div> */}
 
-      {/* рендер тут */}
       <NoticeCategoryItem />
       {isModalOpen && <ModalNotice />}
     </>

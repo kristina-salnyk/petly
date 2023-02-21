@@ -17,6 +17,12 @@ export const ButtonLearnMore = styled.button`
   border: 2px solid ${props => props.theme.colors.accent};
   border-radius: 40px;
   cursor: pointer;
+  &:hover {
+    background: ${props => props.theme.colors.accent};
+  }
+  &:hover > span {
+    color: ${props => props.theme.colors.white};
+  }
 `;
 
 export const ButtonText = styled.span`
@@ -27,6 +33,7 @@ export const ButtonText = styled.span`
   line-height: 22px;
   letter-spacing: 0.04em;
   color: ${props => props.theme.colors.accent};
+ 
 `;
 
 export const ButtonDelete = styled.button`
@@ -41,6 +48,14 @@ export const ButtonDelete = styled.button`
   margin-top: 12px;
   color: ${props => props.theme.colors.brightAccent};
   cursor: pointer;
+  &:hover {
+    background: ${props => props.theme.colors.background.primary};
+    border: 2px solid red;
+    transform: scale(1.02) rotateX(0deg) translateZ(25px);
+  }
+  &:hover > span {
+    color: red;
+  }
 `;
 
 export const ButtonTextDelete = styled.span`
