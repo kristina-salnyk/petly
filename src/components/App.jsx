@@ -17,8 +17,8 @@ export function App() {
       <Route path="/" element={<SharedLayout />}>
         <Route index element={<HomePage />} />
         <Route path="/news" element={<NewsPage />} />
-        <Route path="/register" element={<RegisterPage />} />
-        <Route path="/login" element={<LoginPage />} />
+        <Route path="/register" element={<RegisterPage />} redirectTo="/user"/>
+        <Route path="/login" element={<LoginPage />} redirectTo="/user" />
         <Route path="/notices" element={<NoticesPage />} />
         <Route path="/friends" element={<OurFriendsPage />} />
         <Route path="/user" element={<UserPage />} />
