@@ -23,11 +23,10 @@ export const AuthNav = ({isMenuClicked}) => {
         
       }
     </>
-  )
+  );
 };
 
 AuthNav.propTypes = {
   isMenuClicked: PropTypes.bool.isRequired,
-  
 };
 export default AuthNav;
