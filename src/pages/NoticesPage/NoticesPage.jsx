@@ -3,7 +3,7 @@ import { Outlet, useSearchParams } from 'react-router-dom';
 import { NoticesSearch } from '../../components/NoticesSearch';
 import { NoticeCategoriesNav } from '../../components/NoticesCategoriesNav/NoticesCategoriesNav';
 import { AddNoticeButton } from '../../components/AddNoticeButton';
-import { Container, Content, PageTitle, TopPanel } from './NoticesPage.styled';
+import { Container, ContentWrap, PageTitle, TopPanel } from './NoticesPage.styled';
 
 const initNotices = [
   {
@@ -29,7 +29,7 @@ const initNotices = [
     name: 'Ralf',
     birthday: '2018-10-09T22:00:00.000+00:00',
     breed: 'Pomeranian',
-    sex: 'male',
+    gender: 'male',
     location: 'Lviv',
     price: '800$',
     image:
@@ -112,8 +112,8 @@ const NoticesPage = () => {
   };
 
   return (
-    <Content>
-      <Container>
+    <Container>
+      <ContentWrap>
         <PageTitle>Find your favorite pet</PageTitle>
         <NoticesSearch defaultValue={searchQuery} onSubmit={setSearchQuery} />
         <TopPanel>
@@ -121,10 +121,10 @@ const NoticesPage = () => {
           <AddNoticeButton />
         </TopPanel>
         <Suspense fallback={<div>Loading...</div>}>
-          <Outlet notices={notices} />
+          <Outlet context={[notices]} />
         </Suspense>
-      </Container>
-    </Content>
+      </ContentWrap>
+    </Container>
   );
 };
 

@@ -1,13 +1,5 @@
 import styled from 'styled-components';
 
-export const Content = styled.div`
-  padding: ${({ theme }) => theme.spacing[7]}px;
-
-  @media (min-width: ${({ theme }) => theme.breakpoints.tablet[0]}) {
-    padding: ${({ theme }) => theme.spacing[9]}px;
-  }
-`;
-
 export const Container = styled.div`
   padding: 0 ${({ theme }) => theme.spacing[5]}px;
   margin: auto;
@@ -24,6 +16,18 @@ export const Container = styled.div`
   @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
     padding: 0 ${({ theme }) => theme.spacing[4]}px;
     width: ${({ theme }) => theme.breakpoints.desktop};
+  }
+`;
+
+export const ContentWrap = styled.div`
+  padding: ${({ theme }) => theme.spacing[7]}px 0 100px;
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.tablet[0]}) {
+    padding: ${({ theme }) => theme.spacing[9]}px 0 100px;
+  }
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    padding-bottom: 200px;
   }
 `;
 
