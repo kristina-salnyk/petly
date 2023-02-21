@@ -1,7 +1,15 @@
-import NewsList from '../../components/News/NewsList/NewsList'
+import NewsList from '../../components/News/NewsList/NewsList';
+import { Container } from './NewsPage.styled';
 
 const NewsPage = () => {
-  return <NewsList/>;
+  return (
+    <Container>
+      <NewsList />
+    </Container>
+  
+
+  )
+ 
 };
 
 export default NewsPage;

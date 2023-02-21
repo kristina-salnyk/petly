@@ -15,6 +15,7 @@ import {  friendsReducer} from './friends/slice';
 import { petsReducer } from './pets/slice';
 import { noticesReducer } from './notices/slice';
 import { newsReducer } from './news/slice';
+import { filterReducer } from './news/filterSlice';
 
 
 const middleware = [
@@ -36,6 +37,7 @@ export const store = configureStore({
     auth: persistReducer(authPersistConfig, authReducer),
     notices: noticesReducer,
     news: newsReducer,
+    filter: filterReducer,
     pets: petsReducer,
     friends: friendsReducer
   },

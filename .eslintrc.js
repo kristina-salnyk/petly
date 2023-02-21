@@ -1,5 +1,9 @@
 /* eslint-disable no-undef */
 module.exports = {
+  settings: {
+    'react': {
+      version: 'detect'
+    }},
   env: {
     browser: true,
     es2021: true,
@@ -16,4 +20,4 @@ module.exports = {
     indent: ['error', 2],
     quotes: ['error', 'single'],
   },
-};
+}
