@@ -13,19 +13,19 @@ import {
 import { CloseModalIcon } from '../../icons/CloseModalIcon';
 import theme from '../../../utils/theme';
 import { useDispatch } from 'react-redux';
-import { showModal } from '../../../redux/notices/modalSlice';
+import { changeModal } from '../../../redux/modal/slice';
 
 export const Modal = () => {
   const dispatch = useDispatch();
 
-  const handleShowModal = () => {
-    dispatch(showModal());
+  const handleModalChange = () => {
+    dispatch(changeModal());
   };
 
   return (
     <>
       <ModalThumb>
-        <CloseModalButton onClick={handleShowModal}>
+        <CloseModalButton onClick={handleModalChange}>
           <CloseModalIcon width={30} fill={theme.colors.black} />
         </CloseModalButton>
 

@@ -11,12 +11,12 @@ import {
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import { authReducer } from './auth/slice';
-import {  friendsReducer} from './friends/slice';
+import { friendsReducer } from './friends/slice';
 import { petsReducer } from './pets/slice';
 import { noticesReducer } from './notices/slice';
 import { newsReducer } from './news/slice';
 import { filterReducer } from './news/filterSlice';
-import { modalReducer } from './notices/modalSlice';
+import { modalReducer } from './modal/slice';
 
 const middleware = [
   ...getDefaultMiddleware({
@@ -40,7 +40,7 @@ export const store = configureStore({
     filter: filterReducer,
     pets: petsReducer,
     friends: friendsReducer,
-    modalNotices: modalReducer
+    modal: modalReducer,
   },
   middleware,
 });

@@ -1,19 +1,19 @@
 import React from 'react';
-import { NoticeCategoryItem } from '../../components/NoticeCategoryItem/NoticeCategoryItem';
-import { ModalNotice } from '../../components/ModalNotice/ModalNotice';
 import { useSelector } from 'react-redux';
+import { NoticeCategoryItem } from '../../components/NoticeCategoryItem/NoticeCategoryItem';
+import { ModalNotice } from '../../components/ModalNotice';
+import { selectModal } from '../../redux/modal/selectors';
 
 const NoticesPage = () => {
-  const isShowModal = useSelector(state => state.modalNotices);
-
+  const isModalOpen = useSelector(selectModal);
 
   return (
     <>
       {/* // <div>NoticesPage</div> */}
-      
+
       {/* рендер тут */}
       <NoticeCategoryItem />
-      {isShowModal && <ModalNotice/> }
+      {isModalOpen && <ModalNotice />}
     </>
   );
 };

@@ -8,20 +8,20 @@ import {
   ButtonTextDelete,
 } from './NoticeButtons.styled';
 import { DeleteNoticeIcon } from '../../icons/DeleteNoticeIcon';
-import { showModal } from '../../../redux/notices/modalSlice';
+import { changeModal } from '../../../redux/modal/slice';
 import { useDispatch } from 'react-redux';
 
 export const NoticeButtons = () => {
   const dispatch = useDispatch();
- 
-  const handleShowModal = () => {
-    dispatch(showModal());
+
+  const handleModalChange = () => {
+    dispatch(changeModal());
   };
 
   return (
     <>
       <ButtonWrapper>
-        <ButtonLearnMore onClick={handleShowModal}>
+        <ButtonLearnMore onClick={handleModalChange}>
           <ButtonText>Learn More</ButtonText>
         </ButtonLearnMore>
 
