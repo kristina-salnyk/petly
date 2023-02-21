@@ -1,1 +1,1 @@
-export { HaveToLoginModal } from './HaveToLoginModal';
+export { CeantrModal } from './CeantrModal';
