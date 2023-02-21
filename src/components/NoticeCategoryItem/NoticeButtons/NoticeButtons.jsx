@@ -7,19 +7,21 @@ import {
   ButtonDelete,
   ButtonTextDelete,
 } from './NoticeButtons.styled';
-import {DeleteNoticeIcon} from '../../icons/DeleteNoticeIcon';
+import { DeleteNoticeIcon } from '../../icons/DeleteNoticeIcon';
+import { showModal } from '../../../redux/notices/modalSlice';
+import { useDispatch } from 'react-redux';
 
 export const NoticeButtons = () => {
-  // const [isOpen, setIsOpen] = useState(false);
-  // const modalOpen = () => {
-  //   setIsOpen(true);
-  // };
-
+  const dispatch = useDispatch();
+ 
+  const handleShowModal = () => {
+    dispatch(showModal());
+  };
 
   return (
     <>
       <ButtonWrapper>
-        <ButtonLearnMore>
+        <ButtonLearnMore onClick={handleShowModal}>
           <ButtonText>Learn More</ButtonText>
         </ButtonLearnMore>
 

@@ -14,8 +14,5 @@ export const ModalWrapper = styled.div`
   top: 50%;
   left: 50%;
   transform: translateX(-50%) translateY(-50%);
-  /* display: flex;
-  justify-content: center;
-  align-items: center; */
   z-index: 9999;
 `;

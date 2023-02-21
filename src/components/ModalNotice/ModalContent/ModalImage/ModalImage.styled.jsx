@@ -6,6 +6,12 @@ export const ImageThumb = styled.div`
   margin-top: 40px;
   background-color: ${props => props.theme.colors.accent};
   border-radius: 0px 0px 40px 40px;
+
+  @media (min-width: 768px) {
+    width: 288px;
+  height: 328px;
+    margin-top: 20px;
+  }
 `;
 
 export const LableWrapper = styled.div`

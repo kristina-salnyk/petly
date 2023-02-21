@@ -43,12 +43,7 @@ export const ModalInfo = () => {
             <ModalInfoName>Phone:</ModalInfoName>
             <ModalInfoValue>+380971234567</ModalInfoValue>
           </ModalInfoField>
-          <ModalInfoField>
-            <ModalInfoName>Comments:</ModalInfoName>
-            <ModalInfoValue>
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nostrum, culpa.
-            </ModalInfoValue>
-          </ModalInfoField>
+
         </ModalInfoList>
       </ModalInfoWrapper>
     </>

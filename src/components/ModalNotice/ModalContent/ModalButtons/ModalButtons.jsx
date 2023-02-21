@@ -8,7 +8,7 @@ import {
   ModalButtonTextAdd,
 } from './ModalButtons.styled';
 import { FavoriteHeartIcon } from '../../../icons/FavoriteInModalHeartIcon';
-// import theme from '../../../utils/theme';
+
 
 export const ModalButtons = () => {
   return (

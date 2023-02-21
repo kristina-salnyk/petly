@@ -16,7 +16,7 @@ import { petsReducer } from './pets/slice';
 import { noticesReducer } from './notices/slice';
 import { newsReducer } from './news/slice';
 import { filterReducer } from './news/filterSlice';
-
+import { modalReducer } from './notices/modalSlice';
 
 const middleware = [
   ...getDefaultMiddleware({
@@ -39,7 +39,8 @@ export const store = configureStore({
     news: newsReducer,
     filter: filterReducer,
     pets: petsReducer,
-    friends: friendsReducer
+    friends: friendsReducer,
+    modalNotices: modalReducer
   },
   middleware,
 });

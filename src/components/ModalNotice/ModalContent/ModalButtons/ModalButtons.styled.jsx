@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 export const ModalButtonWrapper = styled.div`
   display: flex;
@@ -6,6 +6,15 @@ export const ModalButtonWrapper = styled.div`
   align-items: center;
   justify-content: center;
   margin-top: 40px;
+  @media (min-width: 768px) {
+    display: flex;
+    flex-direction: row;
+    flex-direction: row-reverse;
+    align-items: baseline;
+    justify-content: flex-start;
+    gap: 12px;
+    margin-top: 32px;
+  }
 `;
 
 export const ModalButtonContact = styled.button`
@@ -15,7 +24,20 @@ export const ModalButtonContact = styled.button`
   border: 2px solid ${props => props.theme.colors.accent};
   border-radius: 40px;
   cursor: pointer;
-  
+  transition: transform ${props => props.theme.animation.cubicBezier};
+
+  &:hover {
+    background-color: ${props => props.theme.colors.white};
+    /* transition: background-color ${props => props.theme.animation.cubicBezier}; */
+    transform: scale(1.07) rotateX(0deg) translateZ(25px);
+  }
+  &:hover > span {
+    color: ${props => props.theme.colors.black};
+  }
+
+  @media (min-width: 768px) {
+    width: 160px;
+  }
 `;
 
 export const ModalButtonText = styled.span`
@@ -39,6 +61,15 @@ export const ModalButtonAdd = styled.button`
   border-radius: 40px;
   margin-top: 12px;
   cursor: pointer;
+  transition: transform ${props => props.theme.animation.cubicBezier};
+  @media (min-width: 768px) {
+    width: 160px;
+    margin: 0;
+  }
+
+  &:hover {
+    transform: scale(1.07) rotateX(0deg) translateZ(25px);
+  }
 `;
 
 export const ModalButtonTextAdd = styled.span`

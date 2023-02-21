@@ -38,8 +38,29 @@ export const ModalInfoField = styled.li`
 `;
 
 export const ModalInfoName = styled.span`
+  font-family: ${props => props.theme.typography.font.primary};
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 19px;
   margin-right: 40px;
+  color: ${props => props.theme.colors.text.primary};
+
+  @media (min-width: 768px) {
+    font-size: 16px;
+    line-height: 22px;
+  }
 `;
 export const ModalInfoValue = styled.span`
-  display: inline-block;
+ font-family: ${props => props.theme.typography.font.primary};
+  font-style: normal;
+  font-weight: 500;
+
+  @media (min-width: 768px) {
+    
+    font-size: 16px;
+    line-height: 22px;
+  }
 `;
+
+
