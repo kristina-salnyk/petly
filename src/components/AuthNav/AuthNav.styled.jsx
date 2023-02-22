@@ -22,7 +22,7 @@ display: block;
 } 
  @media (min-width: 768px) {
     display: flex;
-    margin-left: 255px;
+    
     
   } 
   
@@ -32,14 +32,15 @@ display: block;
 export const Login = styled.li`
     border-radius: 40px;
     border: 2px solid #F59256;
-    background: #FDF7F2;
     color: #111111;
-    padding: 8px 28px;
+    padding: 5px 28px;
     text-align: center;
     text-decoration: none;
-    display: inline-block;
+    display: inline-flex;
     font-size: 16px;
     text-decoration: none;
+    justify-content: center;
+    align-items: center;
     cursor: pointer;
 
     @media (min-width: 320px) {
@@ -50,21 +51,19 @@ export const Login = styled.li`
      }
 
     @media (min-width: 768px) {
-       margin-left: 155px;
        :hover{
         color:#FFFFFF;
-        background-color: #F59256;
         cursor: pointer;
-      }
-
         
-        margin-right: 12px;
+    }
+        
         font-family: 'Manrope';
         font-style: normal;
         font-weight: 500;
         font-size: 20px;
         line-height: 27px;
         text-decoration: none;
+        margin-right: 20px;
         
     } 
     

@@ -1,13 +1,15 @@
 import logo from '../Header/images/petly.svg'
 import {LogoImg} from './Logo.styled';
+import { Link } from 'react-router-dom';
 
 export const Logo = () => {
 
   return (
 
-    <div>
-      <LogoImg src={logo} alt="Logo"/>
-    </div>
+    <Link to="/">
+      <LogoImg src={logo} alt="Logo"
+      ></LogoImg>
+    </Link>
   )
     
 };
