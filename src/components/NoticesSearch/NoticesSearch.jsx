@@ -1,25 +1,13 @@
 import PropTypes from 'prop-types';
-import { useEffect, useState } from 'react';
-import { useTheme } from 'styled-components';
+import { useState } from 'react';
 import { Form, Input, InputSearchControl, InputWrap } from './NoticesSearch.styled';
 import { SearchIcon } from '../icons/SearchIcon';
 import { CloseSearchCross } from '../icons/CloseSearchCross';
+import { useIconSize } from '../../hooks/useIconSize';
 
 export const NoticesSearch = ({ defaultValue, onSubmit }) => {
-  const [iconSize, setIconSize] = useState(0);
+  const [iconSize] = useIconSize();
   const [searchQuery, setSearchQuery] = useState(defaultValue);
-
-  const theme = useTheme();
-
-  useEffect(() => {
-    const media = window.matchMedia(`(min-width: ${theme.breakpoints.tablet[0]})`);
-
-    const onWindowResize = () => setIconSize(media.matches ? 24 : 20);
-    onWindowResize();
-
-    window.addEventListener('resize', onWindowResize);
-    return () => window.removeEventListener('resize', onWindowResize);
-  }, [iconSize, screen]);
 
   const onSubmitSearchQuery = event => {
     event.preventDefault();
@@ -40,9 +28,12 @@ export const NoticesSearch = ({ defaultValue, onSubmit }) => {
         />
         <InputSearchControl>
           {searchQuery ? (
-            <CloseSearchCross size={iconSize} onClick={() => setSearchQuery('')} />
+            <CloseSearchCross
+              size={iconSize === 's' ? 20 : 24}
+              onClick={() => setSearchQuery('')}
+            />
           ) : (
-            <SearchIcon size={iconSize} />
+            <SearchIcon size={iconSize === 's' ? 20 : 24} />
           )}
         </InputSearchControl>
       </InputWrap>
