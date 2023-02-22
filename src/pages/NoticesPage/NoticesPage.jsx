@@ -1,9 +1,17 @@
+<<<<<<< HEAD
+import React from 'react';
+import { useSelector } from 'react-redux';
+import { NoticeCategoryItem } from '../../components/NoticeCategoryItem/NoticeCategoryItem';
+import { ModalNotice } from '../../components/ModalNotice';
+import { selectModal } from '../../redux/modal/selectors';
+=======
 import { Suspense, useEffect, useState } from 'react';
 import { Outlet, useSearchParams } from 'react-router-dom';
 import { NoticesSearch } from '../../components/NoticesSearch';
 import { NoticeCategoriesNav } from '../../components/NoticesCategoriesNav/NoticesCategoriesNav';
 import { AddNoticeButton } from '../../components/AddNoticeButton';
 import { Container, ContentWrap, PageTitle, TopPanel } from './NoticesPage.styled';
+>>>>>>> main
 
 const initNotices = [
   {

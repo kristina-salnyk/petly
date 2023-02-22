@@ -1,4 +1,5 @@
 import React from 'react';
+// import { useState } from 'react';
 import {
   ButtonWrapper,
   ButtonLearnMore,
@@ -6,13 +7,21 @@ import {
   ButtonDelete,
   ButtonTextDelete,
 } from './NoticeButtons.styled';
-import {DeleteNoticeIcon} from '../../icons/DeleteNoticeIcon';
+import { DeleteNoticeIcon } from '../../icons/DeleteNoticeIcon';
+import { changeModal } from '../../../redux/modal/slice';
+import { useDispatch } from 'react-redux';
 
 export const NoticeButtons = () => {
+  const dispatch = useDispatch();
+
+  const handleModalChange = () => {
+    dispatch(changeModal());
+  };
+
   return (
     <>
       <ButtonWrapper>
-        <ButtonLearnMore>
+        <ButtonLearnMore onClick={handleModalChange}>
           <ButtonText>Learn More</ButtonText>
         </ButtonLearnMore>
 
