@@ -1,31 +1,21 @@
-import {Ul, Find, News, Friends, StyledNews, StyledFind, StyledFriends} from './Nav.styled';
-// import { NavLink } from 'react-router-dom';
+import { Ul, Find, News, Friends, StyledNews, StyledFind, StyledFriends } from './Nav.styled';
 
 export const Nav = () => {
-
   return (
     <>
       <Ul>
         <News>
-          <StyledNews to="/news">
-              News
-          </StyledNews>
+          <StyledNews to="/news">News</StyledNews>
         </News>
         <Find>
-          <StyledFind to="/notices">
-              Find pet
-          </StyledFind>
+          <StyledFind to="/notices/sell">Find pet</StyledFind>
         </Find>
         <Friends>
-          <StyledFriends to="/friends">
-              Our friends
-          </StyledFriends>
+          <StyledFriends to="/friends">Our friends</StyledFriends>
         </Friends>
       </Ul>
     </>
-
-  )
-
+  );
 };
 
 export default Nav;

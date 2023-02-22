@@ -67,11 +67,13 @@ export const H1 = styled.h1`
     font-weight: 700;
     font-size: 32px;
     line-height: 44px;
-    color: #000000;
+    color: ${props => props.theme.colors.accent};
     padding-left: 20px;
     -bottom: 58px;
 
-    @media (min-width: 768px) {
+    
+
+    @media (min-width: ${props => props.theme.breakpoints.tabletMin}) {
         font-family: 'Manrope';
         font-style: normal;
         font-weight: 700;

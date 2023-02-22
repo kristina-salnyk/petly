@@ -8,11 +8,17 @@ export const LogoutBtn = styled.button`
   border: 0;
   border-radius: 4px;
   cursor: pointer;
-  margin-top: 15px;
-  margin-left: 16px;
+
   padding: 4px 4px 4px 0;
-  &:hover {
-    background-color: #fdf7f2;
+
+  margin-top: 15px;
+  margin-left: auto;
+  margin-right: 12px;
+
+  @media screen and (min-width: 1280px) {
+    margin-top: 15px;
+    margin-left: 16px;
+    margin-right: 0;
   }
 `;
 
