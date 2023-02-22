@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {
   CardInfoWrapper,
   CardInfoList,
@@ -8,26 +9,42 @@ import {
   CardInfoValue,
 } from './NoticeInfo.styled';
 
-export const NoticeInfo = () => {
+export const NoticeInfo = ({ title, breed, location, birthday, price, category }) => {
   return (
     <>
       <CardInfoWrapper>
         <CardInfoList>
-          <CardInfoTitle>Сute dog looking for a home</CardInfoTitle>
+          <CardInfoTitle>{title}</CardInfoTitle>
           <CardInfoField>
             <CardInfoName>Breed:</CardInfoName>
-            <CardInfoValue>Pomeranian</CardInfoValue>
+            <CardInfoValue>{breed}</CardInfoValue>
           </CardInfoField>
           <CardInfoField>
             <CardInfoName>Place:</CardInfoName>
-            <CardInfoValue>Lviv</CardInfoValue>
+            <CardInfoValue>{location}</CardInfoValue>
           </CardInfoField>
           <CardInfoField>
             <CardInfoName>Age:</CardInfoName>
-            <CardInfoValue>one year</CardInfoValue>
+            <CardInfoValue>{birthday}</CardInfoValue>
           </CardInfoField>
+          {category === 'sell' && (
+            <CardInfoField>
+              <CardInfoName>Price:</CardInfoName>
+              <CardInfoValue>{price}</CardInfoValue>
+            </CardInfoField>
+          )}
         </CardInfoList>
       </CardInfoWrapper>
     </>
   );
+};
+
+NoticeInfo.propTypes = {
+  category: PropTypes.string,
+  title: PropTypes.string,
+  breed: PropTypes.string,
+  location: PropTypes.string,
+  price: PropTypes.string,
+
+  birthday: PropTypes.string,
 };

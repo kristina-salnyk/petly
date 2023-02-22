@@ -1,17 +1,12 @@
-<<<<<<< HEAD
 import React from 'react';
-import { useSelector } from 'react-redux';
-import { NoticeCategoryItem } from '../../components/NoticeCategoryItem/NoticeCategoryItem';
-import { ModalNotice } from '../../components/ModalNotice';
-import { selectModal } from '../../redux/modal/selectors';
-=======
 import { Suspense, useEffect, useState } from 'react';
 import { Outlet, useSearchParams } from 'react-router-dom';
 import { NoticesSearch } from '../../components/NoticesSearch';
 import { NoticeCategoriesNav } from '../../components/NoticesCategoriesNav/NoticesCategoriesNav';
 import { AddNoticeButton } from '../../components/AddNoticeButton';
 import { Container, ContentWrap, PageTitle, TopPanel } from './NoticesPage.styled';
->>>>>>> main
+
+
 
 const initNotices = [
   {
@@ -19,7 +14,7 @@ const initNotices = [
     category: 'in-good-hands',
     title: 'Сute dog looking for a home',
     name: 'Ralf',
-    birthday: '2018-10-09T22:00:00.000+00:00',
+    birthday: '2018-10-09',
     breed: 'Pomeranian',
     sex: 'male',
     location: 'Lviv',
@@ -32,10 +27,10 @@ const initNotices = [
   },
   {
     _id: '63f192a4ad43322244318c72',
-    category: 'in-good-hands',
+    category: 'sell',
     title: 'Сute dog looking for a home',
     name: 'Ralf',
-    birthday: '2018-10-09T22:00:00.000+00:00',
+    birthday: '2018-10-09',
     breed: 'Pomeranian',
     gender: 'male',
     location: 'Lviv',
@@ -51,7 +46,7 @@ const initNotices = [
     category: 'in-good-hands',
     title: 'Сute dog looking for a home',
     name: 'Ralf',
-    birthday: '2018-10-09T22:00:00.000+00:00',
+    birthday: '2018-10-09',
     breed: 'Pomeranian',
     sex: 'male',
     location: 'Lviv',
@@ -67,7 +62,7 @@ const initNotices = [
     category: 'in-good-hands',
     title: 'Сute dog looking for a home',
     name: 'Ralf',
-    birthday: '2018-10-09T22:00:00.000+00:00',
+    birthday: '2018-10-09',
     breed: 'Pomeranian',
     sex: 'male',
     location: 'Lviv',
