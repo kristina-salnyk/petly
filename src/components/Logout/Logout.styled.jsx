@@ -15,6 +15,12 @@ export const LogoutBtn = styled.button`
   margin-left: auto;
   margin-right: 12px;
 
+  @media screen and (min-width: 768px) and (max-width: 1279px) {
+    position: absolute;
+    bottom: 20px;
+    left: 30px;
+  }
+
   @media screen and (min-width: 1280px) {
     margin-top: 15px;
     margin-left: 16px;

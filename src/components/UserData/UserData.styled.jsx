@@ -18,6 +18,16 @@ export const MyInformation = styled.p`
     margin-right: auto;
   }
 
+  @media screen and (min-width: 768px) and (max-width: 1279px) {
+    width: 736px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 0;
+    padding-left: 32px;
+    font-size: 28px;
+    margin-bottom: 40px;
+  }
+
   @media screen and (min-width: 1280px) {
     font-size: 28px;
     line-height: 38px;
@@ -44,6 +54,21 @@ export const InformationBackgroundBlock = styled.div`
     margin-right: auto;
   }
 
+  @media screen and (min-width: 768px) and (max-width: 1279px) {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    // margin-left: 0;
+    // margin-right: 32px;
+
+    width: 736px;
+
+    margin-left: auto;
+    margin-right: auto;
+    height: 311px;
+    border-radius: 40px;
+  }
+
   @media screen and (min-width: 1280px) {
     margin-left: 0;
     margin-right: 0;
@@ -60,6 +85,12 @@ export const ProfileImgWrapper = styled.div`
   align-items: center;
   justify-content: center;
   padding-top: 20px;
+
+  @media screen and (min-width: 768px) and (max-width: 1279px) {
+    padding-top: 24px;
+    padding-bottom: 54px;
+    padding-right: 40px;
+  }
 `;
 
 export const ProfileImgBtn = styled.button`
@@ -92,6 +123,11 @@ export const PhotoEditButton = styled.button`
   border-radius: 4px;
   cursor: pointer;
   padding: 4px;
+
+  @media screen and (min-width: 768px) and (max-width: 1279px) {
+    top: 260px;
+    right: 45px;
+  }
 
   @media screen and (min-width: 1280px) {
     top: 210px;
