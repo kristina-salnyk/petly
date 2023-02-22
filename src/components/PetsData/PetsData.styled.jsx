@@ -11,8 +11,15 @@ export const PetsDataWrapper = styled.div`
     margin-right: auto;
   }
 
+  @media screen and (min-width: 768px) and (max-width: 1279px) {
+    width: 736px;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
   @media screen and (min-width: 1280px) {
-    width: 821px;
+    min-width: 821px;
     margin-top: 0;
     margin-left: 32px;
     padding-right: 16px;
@@ -31,6 +38,12 @@ export const MyPetsTitle = styled.p`
   line-height: 27px;
   letter-spacing: 0.04em;
   color: #111111;
+
+  @media screen and (min-width: 768px) and (max-width: 1279px) {
+    font-size: 28px;
+    line-height: 38px;
+    padding-left: 32px;
+  }
 
   @media screen and (min-width: 1280px) {
     font-size: 28px;

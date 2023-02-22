@@ -9,6 +9,7 @@ import { selectSearchQuery } from '../../redux/notices/selectors';
 import { fetchNotices } from '../../redux/notices/operations';
 import { changeSearchQuery } from '../../redux/notices/slice';
 
+
 const NoticesPage = () => {
   const dispatch = useDispatch();
   const { category } = useParams();

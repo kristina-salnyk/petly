@@ -6,6 +6,13 @@ export const InfoList = styled.ul`
   display: flex;
   flex-direction: column;
 
+  @media screen and (min-width: 768px) and (max-width: 1279px) {
+    margin-top: 0;
+    margin-bottom: 35px;
+    margin-right: 40px;
+    padding-left: 32px;
+  }
+
   @media screen and (min-width: 1280px) {
     margin-top: 15px;
   }
@@ -16,6 +23,10 @@ export const InfoItem = styled.li`
 
   &:last-child {
     margin-bottom: 0;
+  }
+
+  @media screen and (min-width: 768px) and (max-width: 1279px) {
+    margin-bottom: 15px;
   }
 
   @media screen and (min-width: 1280px) {
@@ -33,6 +44,11 @@ export const InfoLabel = styled.label`
   line-height: 16px;
   letter-spacing: 0.04em;
   color: #111111;
+
+  @media screen and (min-width: 768px) and (max-width: 1279px) {
+    font-size: 18px;
+    line-height: 25px;
+  }
 
   @media screen and (min-width: 1280px) {
     font-size: 18px;
@@ -95,10 +111,24 @@ export const InfoInput = styled.input`
     min-width: 350px;
   }
 
+  @media screen and (min-width: 768px) and (max-width: 1279px) {
+    min-width: 216px;
+    height: 32px;
+    padding-left: 12px;
+    margin-right: 25px;
+    margin-left: 24px;
+
+    font-size: 18px;
+    line-height: 25px;
+  }
+
   @media screen and (min-width: 1280px) {
     min-width: 216px;
     height: 32px;
     padding-left: 12px;
+
+    font-size: 18px;
+    line-height: 25px;
   }
 `;
 
@@ -115,6 +145,13 @@ export const InfoBtn = styled.button`
   backdrop-filter: blur(2px);
   margin-left: 9px;
   margin-right: 12px;
+
+  @media screen and (min-width: 768px) and (max-width: 1279px) {
+    width: 32px;
+    height: 32px;
+    // margin-right: 16px;
+    // margin-left: 24px;
+  }
 
   @media screen and (min-width: 1280px) {
     width: 32px;
