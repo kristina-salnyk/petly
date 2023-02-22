@@ -2,6 +2,8 @@ import React, { lazy } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { SharedLayout } from './SharedLayout';
 import { NoticeCategoriesList } from './NoticesCategoriesList/NoticesCategoriesList';
+import PrivateRoute from './Routes/PrivateRoute';
+
 
 const LoginPage = lazy(() => import('../pages/LoginPage/LoginPage'));
 const HomePage = lazy(() => import('../pages/HomePage/HomePage'));
@@ -9,7 +11,6 @@ const NewsPage = lazy(() => import('../pages/NewsPage/NewsPage'));
 const NoticesPage = lazy(() => import('../pages/NoticesPage/NoticesPage'));
 const OurFriendsPage = lazy(() => import('../pages/OurFriendsPage/OurFriendsPage'));
 const RegisterPage = lazy(() => import('../pages/RegisterPage/RegisterPage'));
-const UserPage = lazy(() => import('../pages/UserPage/UserPage'));
 
 export function App() {
   return (
@@ -21,7 +22,7 @@ export function App() {
         <Route path="/login" element={<LoginPage />} redirectTo="/user" />
         <Route path="/notices" element={<NoticesPage />} />
         <Route path="/friends" element={<OurFriendsPage />} />
-        <Route path="/user" element={<UserPage />} />
+        <Route path="/user" element={<PrivateRoute />} />
         <Route path="/notices" element={<NoticesPage />}>
           <Route path="" element={<Navigate to="sell" replace />} />
           <Route path=":categoryName" element={<NoticeCategoriesList />} />
