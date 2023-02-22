@@ -1,29 +1,21 @@
 import PropTypes from 'prop-types';
-import { useEffect, useState } from 'react';
-import { useTheme } from 'styled-components';
 import { Form, Input, InputSearchControl, InputWrap } from './NoticesSearch.styled';
 import { SearchIcon } from '../icons/SearchIcon';
 import { CloseSearchCross } from '../icons/CloseSearchCross';
+import { useIconSize } from '../../hooks/useIconSize';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectSearchQuery } from '../../redux/notices/selectors';
+import { changeSearchQuery } from '../../redux/notices/slice';
 
-export const NoticesSearch = ({ defaultValue, onSubmit }) => {
-  const [iconSize, setIconSize] = useState(0);
-  const [searchQuery, setSearchQuery] = useState(defaultValue);
+export const NoticesSearch = ({ onSubmit }) => {
+  const dispatch = useDispatch();
+  const [iconSize] = useIconSize();
 
-  const theme = useTheme();
-
-  useEffect(() => {
-    const media = window.matchMedia(`(min-width: ${theme.breakpoints.tablet[0]})`);
-
-    const onWindowResize = () => setIconSize(media.matches ? 24 : 20);
-    onWindowResize();
-
-    window.addEventListener('resize', onWindowResize);
-    return () => window.removeEventListener('resize', onWindowResize);
-  }, [iconSize, screen]);
+  const searchQuery = useSelector(selectSearchQuery);
 
   const onSubmitSearchQuery = event => {
     event.preventDefault();
-    onSubmit(searchQuery.trim());
+    onSubmit();
   };
 
   return (
@@ -36,13 +28,16 @@ export const NoticesSearch = ({ defaultValue, onSubmit }) => {
           autoFocus
           placeholder="Search"
           value={searchQuery}
-          onInput={event => setSearchQuery(event.target.value)}
+          onInput={event => dispatch(changeSearchQuery(event.target.value))}
         />
         <InputSearchControl>
           {searchQuery ? (
-            <CloseSearchCross size={iconSize} onClick={() => setSearchQuery('')} />
+            <CloseSearchCross
+              size={iconSize === 's' ? 20 : 24}
+              onClick={() => dispatch(changeSearchQuery(''))}
+            />
           ) : (
-            <SearchIcon size={iconSize} />
+            <SearchIcon size={iconSize === 's' ? 20 : 24} />
           )}
         </InputSearchControl>
       </InputWrap>
@@ -51,6 +46,5 @@ export const NoticesSearch = ({ defaultValue, onSubmit }) => {
 };
 
 NoticesSearch.propTypes = {
-  defaultValue: PropTypes.string.isRequired,
   onSubmit: PropTypes.func.isRequired,
 };

@@ -29,7 +29,7 @@ export function App() {
         <Route path="/user" element={<PrivateRoute />} />
         <Route path="/notices" element={<NoticesPage />}>
           <Route path="" element={<Navigate to="sell" replace />} />
-          <Route path=":categoryName" element={<NoticeCategoriesList />} />
+          <Route path=":category" element={<NoticeCategoriesList />} />
         </Route>
         <Route path="*" element={<Navigate to="/" replace />} />
       </Route>
