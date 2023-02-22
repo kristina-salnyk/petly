@@ -17,7 +17,6 @@ export const Container = styled.div`
     padding: 0 ${({ theme }) => theme.spacing[4]}px;
     width: ${({ theme }) => theme.breakpoints.desktop};
   }
-
 `;
 
 export const ContentWrap = styled.div`

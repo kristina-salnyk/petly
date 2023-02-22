@@ -139,7 +139,7 @@
 import React, { useState } from 'react';
 import { ModalAddNotice } from '../../components/ModalAddNotice/ModalAddNotice';
 import { GlobalStyle } from '../../components/ModalAddNotice/ModalAddNotice.styled';
-import { Button, Container } from './NoticesPage.styled';
+import { Button } from './NoticesPage.styled';
 
 const NoticesPage = () => {
   const [showModal, setShowModal] = useState(false);
@@ -148,12 +148,9 @@ const NoticesPage = () => {
   };
   return (
     <>
-      <Container>
-        <ModalAddNotice showModal={showModal} setShowModal={setShowModal} />
-        <Button onClick={openModal}>Add pet</Button>
-
-        <GlobalStyle />
-      </Container>
+      <ModalAddNotice showModal={showModal} setShowModal={setShowModal} />
+      <Button onClick={openModal}>Add pet</Button>
+      <GlobalStyle />
     </>
   );
 };
