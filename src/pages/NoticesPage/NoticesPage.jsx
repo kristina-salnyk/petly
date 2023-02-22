@@ -1,123 +1,50 @@
-import React from 'react';
-import { Suspense, useEffect, useState } from 'react';
-import { Outlet, useSearchParams } from 'react-router-dom';
-import { NoticesSearch } from '../../components/NoticesSearch';
-import { NoticeCategoriesNav } from '../../components/NoticesCategoriesNav/NoticesCategoriesNav';
-import { AddNoticeButton } from '../../components/AddNoticeButton';
-import { Container, ContentWrap, PageTitle, TopPanel } from './NoticesPage.styled';
+import PropTypes from 'prop-types';
+import { Form, Input, InputSearchControl, InputWrap } from './NoticesSearch.styled';
+import { SearchIcon } from '../icons/SearchIcon';
+import { CloseSearchCross } from '../icons/CloseSearchCross';
+import { useIconSize } from '../../hooks/useIconSize';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectSearchQuery } from '../../redux/notices/selectors';
+import { changeSearchQuery } from '../../redux/notices/slice';
 
-
-const initNotices = [
-  {
-    _id: '63f192a4ad43322244318c71',
-    category: 'in-good-hands',
-    title: 'Сute dog looking for a home',
-    name: 'Ralf',
-    birthday: '2018-10-09',
-    breed: 'Pomeranian',
-    sex: 'male',
-    location: 'Lviv',
-    price: '800$',
-    image:
-      'https://www.wdc.govt.nz/files/sharedassets/public/image-collection/animals/dog-adopt-baxter.jpg?dimension=pageimage&w=480',
-    comments:
-      'German Great Dane puppies perfect purebred bloodline, the best European dogs. Protective vaccinations chip, passport FCI export pedigree Worldwide shipping. more information on private messages.',
-    owner: '63f190fc5edc96ee6c83f79f',
-  },
-  {
-    _id: '63f192a4ad43322244318c72',
-    category: 'sell',
-    title: 'Сute dog looking for a home',
-    name: 'Ralf',
-    birthday: '2018-10-09',
-    breed: 'Pomeranian',
-    gender: 'male',
-    location: 'Lviv',
-    price: '800$',
-    image:
-      'https://www.wdc.govt.nz/files/sharedassets/public/image-collection/animals/dog-adopt-baxter.jpg?dimension=pageimage&w=480',
-    comments:
-      'German Great Dane puppies perfect purebred bloodline, the best European dogs. Protective vaccinations chip, passport FCI export pedigree Worldwide shipping. more information on private messages.',
-    owner: '63f190fc5edc96ee6c83f79f',
-  },
-  {
-    _id: '63f192a4ad43322244318c73',
-    category: 'in-good-hands',
-    title: 'Сute dog looking for a home',
-    name: 'Ralf',
-    birthday: '2018-10-09',
-    breed: 'Pomeranian',
-    sex: 'male',
-    location: 'Lviv',
-    price: '800$',
-    image:
-      'https://www.wdc.govt.nz/files/sharedassets/public/image-collection/animals/dog-adopt-baxter.jpg?dimension=pageimage&w=480',
-    comments:
-      'German Great Dane puppies perfect purebred bloodline, the best European dogs. Protective vaccinations chip, passport FCI export pedigree Worldwide shipping. more information on private messages.',
-    owner: '63f190fc5edc96ee6c83f79f',
-  },
-  {
-    _id: '63f192a4ad43322244318c74',
-    category: 'in-good-hands',
-    title: 'Сute dog looking for a home',
-    name: 'Ralf',
-    birthday: '2018-10-09',
-    breed: 'Pomeranian',
-    sex: 'male',
-    location: 'Lviv',
-    price: '800$',
-    image:
-      'https://www.wdc.govt.nz/files/sharedassets/public/image-collection/animals/dog-adopt-baxter.jpg?dimension=pageimage&w=480',
-    comments:
-      'German Great Dane puppies perfect purebred bloodline, the best European dogs. Protective vaccinations chip, passport FCI export pedigree Worldwide shipping. more information on private messages.',
-    owner: '63f190fc5edc96ee6c83f79f',
-  },
-];
-
-const NoticesPage = () => {
+export const NoticesSearch = ({ onSubmit }) => {
   const dispatch = useDispatch();
-  const { category } = useParams();
-
-  const [searchParams, setSearchParams] = useSearchParams();
-  const queryParam = searchParams.get('query') ?? '';
+  const [iconSize] = useIconSize();
 
   const searchQuery = useSelector(selectSearchQuery);
 
-  useEffect(() => {
-    if (!queryParam) {
-      return setSearchQueryParam();
-    }
-    dispatch(changeSearchQuery(queryParam));
-    return () => {
-      dispatch(changeSearchQuery(''));
-    };
-  }, [queryParam]);
-
-  useEffect(() => {
-    dispatch(fetchNotices({ category }));
-  }, [dispatch, category]);
-
-  const setSearchQueryParam = () => {
-    const query = searchQuery.trim();
-    const newParams = query !== '' ? { query } : {};
-    setSearchParams(newParams);
+  const onSubmitSearchQuery = event => {
+    event.preventDefault();
+    onSubmit();
   };
 
   return (
-    <Container>
-      <ContentWrap>
-        <PageTitle>Find your favorite pet</PageTitle>
-        <NoticesSearch onSubmit={setSearchQueryParam} />
-        <TopPanel>
-          <NoticeCategoriesNav />
-          <AddNoticeButton />
-        </TopPanel>
-        <Suspense fallback={<div>Loading...</div>}>
-          <Outlet />
-        </Suspense>
-      </ContentWrap>
-    </Container>
+    <Form onSubmit={onSubmitSearchQuery}>
+      <InputWrap>
+        <Input
+          type="search"
+          name="searchQuery"
+          autoComplete="off"
+          autoFocus
+          placeholder="Search"
+          value={searchQuery}
+          onInput={event => dispatch(changeSearchQuery(event.target.value))}
+        />
+        <InputSearchControl>
+          {searchQuery ? (
+            <CloseSearchCross
+              size={iconSize === 's' ? 20 : 24}
+              onClick={() => dispatch(changeSearchQuery(''))}
+            />
+          ) : (
+            <SearchIcon size={iconSize === 's' ? 20 : 24} />
+          )}
+        </InputSearchControl>
+      </InputWrap>
+    </Form>
   );
 };
 
-export default NoticesPage;
+NoticesSearch.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
+};
