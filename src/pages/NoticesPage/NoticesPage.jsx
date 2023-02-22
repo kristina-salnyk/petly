@@ -7,7 +7,6 @@ import { AddNoticeButton } from '../../components/AddNoticeButton';
 import { Container, ContentWrap, PageTitle, TopPanel } from './NoticesPage.styled';
 
 
-
 const initNotices = [
   {
     _id: '63f192a4ad43322244318c71',
@@ -76,40 +75,30 @@ const initNotices = [
 ];
 
 const NoticesPage = () => {
-  const [notices, setNotices] = useState(initNotices);
-  // const [isLoading, setIsLoading] = useState(false);
-  // const [error, setError] = useState(null);
+  const dispatch = useDispatch();
+  const { category } = useParams();
 
   const [searchParams, setSearchParams] = useSearchParams();
-  const searchQuery = searchParams.get('query') ?? '';
+  const queryParam = searchParams.get('query') ?? '';
 
-  // const { categoryName } = useParams();
+  const searchQuery = useSelector(selectSearchQuery);
 
   useEffect(() => {
-    if (searchQuery.trim() === '') return;
+    if (!queryParam) {
+      return setSearchQueryParam();
+    }
+    dispatch(changeSearchQuery(queryParam));
+    return () => {
+      dispatch(changeSearchQuery(''));
+    };
+  }, [queryParam]);
 
-    setNotices(initNotices);
+  useEffect(() => {
+    dispatch(fetchNotices({ category }));
+  }, [dispatch, category]);
 
-    // setIsLoading(true);
-
-    // (async () => {
-    //   try {
-    // const data = await getNotices(searchQuery);
-    // setNotices(data);
-    // } catch (error) {
-    // setError(error);
-    // } finally {
-    // setIsLoading(false);
-    //   }
-    // })();
-
-    // return () => {
-    // setError(null);
-    // setNotices([]);
-    // };
-  }, [searchQuery]);
-
-  const setSearchQuery = query => {
+  const setSearchQueryParam = () => {
+    const query = searchQuery.trim();
     const newParams = query !== '' ? { query } : {};
     setSearchParams(newParams);
   };
@@ -118,13 +107,13 @@ const NoticesPage = () => {
     <Container>
       <ContentWrap>
         <PageTitle>Find your favorite pet</PageTitle>
-        <NoticesSearch defaultValue={searchQuery} onSubmit={setSearchQuery} />
+        <NoticesSearch onSubmit={setSearchQueryParam} />
         <TopPanel>
           <NoticeCategoriesNav />
           <AddNoticeButton />
         </TopPanel>
         <Suspense fallback={<div>Loading...</div>}>
-          <Outlet context={[notices]} />
+          <Outlet />
         </Suspense>
       </ContentWrap>
     </Container>
