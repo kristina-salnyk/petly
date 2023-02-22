@@ -9,18 +9,18 @@ import {
 } from './ModalButtons.styled';
 import { FavoriteHeartIcon } from '../../../icons/FavoriteInModalHeartIcon';
 
-
 export const ModalButtons = () => {
   return (
     <>
       <ModalButtonWrapper>
-        <ModalButtonContact>
-          <ModalButtonText>Contact</ModalButtonText>
-        </ModalButtonContact>
+        <a > 
+          {' '}
+          <ModalButtonContact>
+            <ModalButtonText>Contact</ModalButtonText>
+          </ModalButtonContact>
+        </a>
         <ModalButtonAdd>
-          <ModalButtonTextAdd>
-            Add to 
-          </ModalButtonTextAdd>
+          <ModalButtonTextAdd>Add to</ModalButtonTextAdd>
           <FavoriteHeartIcon />
         </ModalButtonAdd>
       </ModalButtonWrapper>

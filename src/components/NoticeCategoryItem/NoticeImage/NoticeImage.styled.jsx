@@ -1,20 +1,31 @@
 import styled from 'styled-components';
 
-export const ImageCard = styled.div`
+export const ImageThumb = styled.div`
+position: relative;
   width: 280px;
   height: 288px;
-  background-color: ${props => props.theme.colors.accent};
+  background-color: ${props => props.theme.colors.white};
 
   @media (min-width: 768px) {
     width: 100%;
   }
 `;
 
+export const ImageCard = styled.img`
+  width: 100%;
+  height: 100%;
+`;
+
 export const InfoWrapper = styled.div`
+position: absolute;
+top: 0;
+left: 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding-top: 20px;
+
+  width: 100%;
 `;
 
 export const CategoryLabel = styled.div`
@@ -49,5 +60,5 @@ export const LabelText = styled.span`
   font-size: 12px;
   line-height: 15px;
   letter-spacing: 0.04em;
-  color: ${props => props.theme.colors.black}
+  color: ${props => props.theme.colors.black};
 `;
