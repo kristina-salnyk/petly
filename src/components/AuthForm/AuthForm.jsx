@@ -9,14 +9,17 @@ import {
   BtnLogin,
   BtnRegistr,
   BtnBack,
-  Form,
+  FormField,
   LinkInput,
   StyledLink,
   IconWrapper,
   GoogleIconStyle,
+  // Pass,
 } from './AuthForm.styled';
 import { Formik, ErrorMessage } from 'formik';
 import Loader from '../Loader/Loader';
+// import { ImEyeBlocked } from 'react-icons/im';
+// import { ImEye } from 'react-icons/im';
 
 const schemasForLogin = Yup.object().shape({
   email: Yup.string().email().required().min(10).max(63),
@@ -58,7 +61,7 @@ const validateEmail = value => {
     )
   ) {
     err =
-      'The e-mail address is not correct, there must be at least 2 characters before the "@" symbol, the hyphen cannot be at the beginning, and the e-mail cannot contain Latin letters, email can include Latin letters, numbers and symbols!';
+      'The e-mail address is not correct, there must be at least 2 characters before the "@" symbol, the hyphen cannot be at the beginning, email can include Latin letters, numbers and symbols!';
   }
   return err;
 };
@@ -72,11 +75,6 @@ const validatePass = value => {
   }
   return err;
 };
-
-// const [show, setShow] = useState(false);
-// const handleShow = () => {
-//   setShow(!show);
-// };
 
 const AuthForm = () => {
   const [stepOne, setStepOne] = useState(true);
@@ -108,13 +106,15 @@ const AuthForm = () => {
     };
     actions.resetForm();
     return onLogin(user);
- 
   };
 
   const handleSubmitForRegister = (values, actions) => {
     if (stepOne) {
       if (values.password !== values.passwordConfirm) {
         return Notify.failure('Your passwords must have the same value');
+      }
+      if (!values) {
+        return Notify.failure('Please fulfilled all fields');
       }
       return setStepOne(false);
     }
@@ -137,6 +137,10 @@ const AuthForm = () => {
       return setStepOne(true);
     }
   };
+  // const [show, setShow] = useState(false);
+  // const handleShow = () => {
+  //   setShow(!show);
+  // };
 
   return (
     <>
@@ -149,7 +153,7 @@ const AuthForm = () => {
               initialValues={initialValue}
               onSubmit={handleSubmitForRegister}
             >
-              <Form autoComplete="off">
+              <FormField autoComplete="off">
                 <Input
                   type="email"
                   name="email"
@@ -162,12 +166,14 @@ const AuthForm = () => {
                   render={msg => Notify.warning(`${msg}`, { timeout: 2000 })}
                 />
                 <Input
+                  // type={show ? 'text' : 'password'}
                   type="password"
                   name="password"
                   placeholder="Password"
                   validate={validatePass}
                   required
                 />
+                {/* <Pass onClick={handleShow}>{show ? <ImEye /> : <ImEyeBlocked />}</Pass> */}
                 <ErrorMessage
                   name="password"
                   render={msg => Notify.warning(`${msg}`, { timeout: 2000 })}
@@ -183,11 +189,9 @@ const AuthForm = () => {
                   name="passwordConfirm"
                   render={msg => Notify.warning(`${msg}`, { timeout: 2000 })}
                 />
-                <BtnRegistr type="button" onClick={handleSubmitForRegister}>
-                  Next
-                </BtnRegistr>
+                <BtnRegistr type="submit">Next</BtnRegistr>
                 {/* <Google/> */}
-              </Form>
+              </FormField>
             </Formik>
           ) : (
             <Formik
@@ -196,7 +200,7 @@ const AuthForm = () => {
               onSubmit={handleSubmitForRegister}
               autoComplete="off"
             >
-              <Form>
+              <FormField>
                 <Input type="text" name="name" placeholder="Name" required />
                 <ErrorMessage
                   name="name"
@@ -218,7 +222,7 @@ const AuthForm = () => {
                   Back
                 </BtnBack>
                 {/* <Google/> */}
-              </Form>
+              </FormField>
             </Formik>
           )}
           <LinkInput>
@@ -233,7 +237,7 @@ const AuthForm = () => {
             initialValues={initialValue}
             onSubmit={handleSubmitForLogin}
           >
-            <Form autoComplete="off">
+            <FormField autoComplete="off">
               <Input type="email" name="email" placeholder="Email" />
               <ErrorMessage name="email" render={msg => Notify.warning(`${msg}`)} />
               <Input
@@ -254,7 +258,7 @@ const AuthForm = () => {
                   alt="sing in with Google"
                 />
               </IconWrapper>
-            </Form>
+            </FormField>
           </Formik>
           <LinkInput>
             Dont have an account?
