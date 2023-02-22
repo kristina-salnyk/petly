@@ -1,21 +1,20 @@
-import { useSelector } from 'react-redux';
-import { useOutletContext } from 'react-router-dom';
 import { NoticeCategoryItem } from '../NoticeCategoryItem';
 import { List } from './NoticesCategoriesList.styled';
-import { ModalNotice } from '../ModalNotice';
-import { selectModal } from '../../redux/modal/selectors';
-
+import { useSelector } from 'react-redux';
+import { selectNotices } from '../../redux/notices/selectors';
 
 export const NoticeCategoriesList = () => {
-  const [notices] = useOutletContext();
-  const isShowModal = useSelector(selectModal);
+  const notices = useSelector(selectNotices);
 
   return (
-    <List>
-      {notices.map(item => (
-        <NoticeCategoryItem key={item._id} {...item}/>
-      ))}
-      {isShowModal && <ModalNotice />}
-    </List>
+    <>
+      {notices.length > 0 && (
+        <List>
+          {notices.map(item => (
+            <NoticeCategoryItem key={item._id} {...item} />
+          ))}
+        </List>
+      )}
+    </>
   );
 };
