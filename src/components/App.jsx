@@ -3,7 +3,7 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 import { SharedLayout } from './SharedLayout';
 import { NoticeCategoriesList } from './NoticesCategoriesList/NoticesCategoriesList';
 import PrivateRoute from './Routes/PrivateRoute';
-
+import RestrictedRoute from './Routes/RestrictedRoute';
 
 const LoginPage = lazy(() => import('../pages/LoginPage/LoginPage'));
 const HomePage = lazy(() => import('../pages/HomePage/HomePage'));
@@ -18,8 +18,12 @@ export function App() {
       <Route path="/" element={<SharedLayout />}>
         <Route index element={<HomePage />} />
         <Route path="/news" element={<NewsPage />} />
-        <Route path="/register" redirectTo="/user" element={<RegisterPage />} />
-        <Route path="/login" element={<LoginPage />} redirectTo="/user" />
+        <Route path="/register" element={<RestrictedRoute />}>
+          <Route index element={<RegisterPage />} />
+        </Route>
+        <Route path="/login" element={<RestrictedRoute />}>
+          <Route index element={<LoginPage />} />
+        </Route>
         <Route path="/notices" element={<NoticesPage />} />
         <Route path="/friends" element={<OurFriendsPage />} />
         <Route path="/user" element={<PrivateRoute />} />
