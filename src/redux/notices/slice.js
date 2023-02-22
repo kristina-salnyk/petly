@@ -4,7 +4,7 @@ import { fetchNotices, addNotice, deleteNotice } from './operations';
 const extraActions = [fetchNotices, addNotice, deleteNotice];
 const noticesInitialState = {
   items: [],
-  filter: 'sell',
+  category: 'sell',
   searchQuery: '',
   isLoading: false,
   error: null,
