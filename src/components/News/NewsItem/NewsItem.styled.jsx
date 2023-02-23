@@ -1,26 +1,38 @@
 import styled from 'styled-components';
 
 export const CardNews = styled.div`
-  width: 390px;
+  width: 280px;
   
+  @media (min-width: ${({ theme }) => theme.breakpoints.tablet[0]}){
+    width: 335px;
+  };
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.desktopMin}){
+    width: 390px;
+  };
 `;
 
 export const TopLineCard = styled.div`
-  width: 340px;
-  height: 4px;
+  width: 200px;
+  height: ${({ theme }) => theme.spacing[0]}px;
   margin-bottom: 4px;
-  border-radius: 40px;
-  background:linear-gradient(90deg, #FF634E 0%, #FFDF48 105.44%);
+  border-radius: ${({ theme }) => theme.shape.borderRadius.l}px;
+  background:${({ theme }) => theme.colors.background.gradient};
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.tablet[0]}){
+    width: 280px;
+  };
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.desktopMin}){
+    width: 340px;
+  };
 `;
+
 export const TitleCardNews = styled.h3`
-  padding-top: 8px;
-  font-family: 'Manrope';
-  font-style: normal;
-  font-weight: 700;
-  font-size: 24px;
-  line-height: 33px;
-  letter-spacing: -0.01em;
-  color: black;
+  padding-top: ${({ theme }) => theme.spacing[1]}px;
+  font-weight: ${({ theme }) => theme.typography.weight.bold};
+  ${({ theme }) => theme.typography.size.l};
+  color: ${({ theme }) => theme.colors.text.primary};
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
@@ -31,17 +43,14 @@ export const CardButtonNews = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 40px;
+  margin-top: ${({ theme }) => theme.spacing[9]}px;
 `;
 
 export const DescriptionCardNews = styled.p`
-  margin-top: 16px;
-  font-family: 'Manrope';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 22px;
-  color: #111321;
+  margin-top: ${({ theme }) => theme.spacing[4]}px;
+  font-weight: ${({ theme }) => theme.typography.weight.regular};
+  font-size: ${({ theme }) => theme.typography.size.xs};
+  color: ${({ theme }) => theme.colors.text.primary};
   display: -webkit-box;
   -webkit-line-clamp: 5;
   -webkit-box-orient: vertical;
@@ -49,24 +58,19 @@ export const DescriptionCardNews = styled.p`
 `;
 
 export const DateCardNews = styled.p`
-  font-family: 'Manrope';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 16px;
+  ${({ theme }) => theme.typography.weight.regular};
+  font-size: ${({ theme }) => theme.typography.size.xs};
   line-height: 22px;
-  color: gray;
+  color: ${({ theme }) => theme.colors.dark};
 `;
 
 export const UrlCardNews = styled.a`
-  font-family: 'Manrope';
-  font-style: normal;
-  font-weight: 600;
-  font-size: 16px;
-  line-height: 22px;
-  color: orange;
+  font-weight: ${({ theme }) => theme.typography.weight.semiBold};
+  font-size: ${({ theme }) => theme.typography.size.xs};
+  color: ${({ theme }) => theme.colors.accent};
   text-decoration-line: underline;
   :hover,
   :focus {
-    color: black;
+    color: ${({ theme }) => theme.colors.hoverAccent};
   }
 `;

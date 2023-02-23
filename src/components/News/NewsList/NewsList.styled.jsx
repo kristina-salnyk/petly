@@ -1,97 +1,116 @@
 import styled from 'styled-components';
 
-export const Title = styled.h1`
+export const Title = styled.h2`
   display: flex;
   justify-content: center;
-  margin-bottom: 40px;      
+  margin-top: ${({ theme }) => theme.spacing[9]}px;
   align-items: center;
-  font-family: 'Manrope';
-  font-style: normal;
-  font-weight: 700;
-  font-size: 48px;
-  line-height: 66px;  
+  font-weight: ${({ theme }) => theme.typography.weight.bold};
+  font-size: ${({ theme }) => theme.typography.size.l};
+  @media (min-width: ${({ theme }) => theme.breakpoints.tablet[0]}) {
+    font-size: ${({ theme }) => theme.typography.size.xxxxl};
+    margin-top: ${({ theme }) => theme.spacing[10]}px;
+  }  
   
 `;
 
 export const ListNews = styled.ul`
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
+    list-style: none; 
+    @media (min-width: ${({ theme }) => theme.breakpoints.tablet[0]}){
+      padding-top: ${({ theme }) => theme.spacing[5]}px;
+    }
     
-    margin-top: 60px; 
-    list-style: none;  
 `;
 
 export const ItemNews = styled.li`
+    flex-basis: calc(100% / 1 - 40px);
+    margin: 20px;
+    display: flex;
+    justify-content: center;
+
+    @media (min-width: ${({ theme }) => theme.breakpoints.tablet[0]}){
+      flex-basis: calc(100% / 2 - 32px);
+      margin: 16px;
+      margin-bottom: 60px;
+    };
+
+    @media (min-width: ${({ theme }) => theme.breakpoints.desktopMin}){
+      flex-basis: calc(100% / 3 - 32px);
+      margin: 16px;
+    };
     
-    flex-basis: calc(100% / 3 - 30px);
-    margin-left: 30px;
-    margin-bottom: 60px;
 `;
 
 export const ConteinerNews = styled.div`
     margin-top: 40px;
+    margin: 0 auto;
+  };
 `;
 
-// export const ErrorTitle = styled.h2`
-//     position: relative;
-//     margin: 0px auto;
-//     width: 515px;
-//     height: 100%;
-// `;
-
 export const SearchNewsForm = styled.form`
-  position: relative;
-  margin: 0px auto;
-  width: 608px;
-  height: 44px;
-  border-radius: 44px;
-  background-color: white;
-  border: none;
-  outline: none;
+  padding: ${({ theme }) => theme.spacing[9]}px 20px;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 600px;
 `;
 
 
 export const SearchNewsInput = styled.input`
-  display: inline-block;
-  width: 608px;
-  height: 100%;
-  padding: 8px 52px 8px 20px;
-  border-radius: 44px;
-  background-color: white;
-  box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
-  border: none;
+  padding: ${({ theme }) => theme.spacing[1]}px ${({ theme }) => theme.spacing[9]}px
+    ${({ theme }) => theme.spacing[2]}px ${({ theme }) => theme.spacing[3]}px;
+  width: 100%;
+  font-size: ${({ theme }) => theme.typography.size.xxs};
+  font-weight: ${({ theme }) => theme.typography.weight.medium};
+  color: ${({ theme }) => theme.colors.text.placeholder};
+  box-shadow: ${({ theme }) => theme.shadows[0]};
+  border-radius: ${({ theme }) => theme.shape.borderRadius.l}px;
+  border: 1px solid transparent;
   outline: none;
-  font-size: 16px;
-  line-height: 0.75;
-  letter-spacing: 0.04em;
-  font-size: 20px;
-  
+
   &:focus {
-    outline-color: white;
+    border-color: ${({ theme }) => theme.colors.border};
   }
-  ::placeholder {
-    font-family: 'Inter';
-    font-weight: 500;
-    font-size: 20px;
-    line-height: 1.2;
-    color: #535353;
-    
-    }
+
+  &::-webkit-search-decoration,
+  &::-webkit-search-cancel-button,
+  &::-webkit-search-results-button,
+  &::-webkit-search-results-decoration {
+    display: none;
+  }
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.tablet[0]}) {
+    padding: ${({ theme }) => theme.spacing[2]}px ${({ theme }) => theme.spacing[10]}px
+      ${({ theme }) => theme.spacing[2]}px ${({ theme }) => theme.spacing[5]}px;
+    font-size: ${({ theme }) => theme.typography.size.m};
+  }
 `;
 
 export const SearchNewsButton = styled.button`
+  padding: 0 ${({ theme }) => theme.spacing[3]}px;
+  height: 100%;
   position: absolute;
-  top: 8px;
-  right: 20px;
-  width: 32px;
-  height: 35px;
-  border-radius: 32px;
-  border: none;
-  outline: none;
+  top: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
   background-color: transparent;
+  border: none;
   cursor: pointer;
-  fill: black;
-  :hover {
-    fill: orange;
+
+  &:hover {
+    opacity: ${({ theme }) => theme.shape.opacity};
   }
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.tablet[0]}) {
+    padding: 0 ${({ theme }) => theme.spacing[5]}px;
+  }
+`;
+
+export const InputWrap = styled.div`
+  position: relative;
+  display: inline-block;
+  width: 100%;
 `;
