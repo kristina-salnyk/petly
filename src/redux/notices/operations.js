@@ -11,6 +11,16 @@ export const fetchNotices = createAsyncThunk('notices/fetchAll', async ({ catego
   }
 });
 
+export const fetchNoticeItem = createAsyncThunk('notices/fetchOne', async (noticeId, thunkAPI) => {
+  try {
+    // const params = query ? `?${queryString.stringify({ query })}` : '';
+    const response = await api.get(`/notices/${noticeId}`);
+    return response.data;
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error.message);
+  }
+});
+
 export const addNotice = createAsyncThunk(
   'notices/addNotice',
   async (
