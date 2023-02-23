@@ -18,6 +18,7 @@ position: relative;
 export const ImageModal = styled.img`
   width: 100%;
   height: 100%;
+  object-fit: cover;
 `;
 
 export const LabelWrapper = styled.div`
@@ -42,8 +43,8 @@ export const LabelText = styled.span`
   font-family: ${props => props.theme.typography.font.primary};
   font-style: normal;
   font-weight: 500;
-  font-size: 12px;
-  line-height: 15px;
+  font-size: 16px;
+  line-height: 16px;
   letter-spacing: 0.04em;
   color: ${props => props.theme.colors.black};
   margin-left: 20px;

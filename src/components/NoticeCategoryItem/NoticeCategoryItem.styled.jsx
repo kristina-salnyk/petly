@@ -2,7 +2,8 @@ import styled from 'styled-components';
 
 export const NoticeCard = styled.li`
   width: 280px;
-  height: 606px;
+  height: auto;
+  padding-bottom: 32px;
   background-color: ${props => props.theme.colors.white};
   box-shadow: ${props => props.theme.shadows[0]};
   border-radius: 0px 0px 20px 20px;

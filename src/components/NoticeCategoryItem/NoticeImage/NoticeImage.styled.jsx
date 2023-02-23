@@ -14,6 +14,7 @@ position: relative;
 export const ImageCard = styled.img`
   width: 100%;
   height: 100%;
+  object-fit: cover;
 `;
 
 export const InfoWrapper = styled.div`
@@ -51,14 +52,22 @@ export const FavoriteLabel = styled.div`
   border-radius: 50%;
   margin-right: 15px;
   cursor: pointer;
+  transition: transform ${props => props.theme.animation.cubicBezier};
+  &:hover {
+    transform: scale(1.07) rotateX(0deg) translateZ(25px);
+   
+  }
+  &:hover > svg {
+    fill: ${props => props.theme.colors.accent};
+  }
 `;
 
 export const LabelText = styled.span`
   font-family: ${props => props.theme.typography.font.primary};
   font-style: normal;
   font-weight: 500;
-  font-size: 12px;
-  line-height: 15px;
+  font-size: 16px;
+  line-height: 16px;
   letter-spacing: 0.04em;
   color: ${props => props.theme.colors.black};
 `;

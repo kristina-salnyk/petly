@@ -1,17 +1,29 @@
 import React from 'react';
-import { ImageThumb,ImageModal, LabelWrapper as LabelWrapper, ModalLabel, LabelText } from './ModalImage.styled';
+import PropTypes from 'prop-types';
+import {
+  ImageThumb,
+  ImageModal,
+  LabelWrapper as LabelWrapper,
+  ModalLabel,
+  LabelText,
+} from './ModalImage.styled';
 
-export const ModalImage = () => {
+export const ModalImage = ({ category, image }) => {
   return (
     <>
       <ImageThumb>
-        <ImageModal src="https://www.wdc.govt.nz/files/sharedassets/public/image-collection/animals/dog-adopt-baxter.jpg?dimension=pageimage&w=480" alt="sell" />
+        <ImageModal src={image} alt={category} />
         <LabelWrapper>
           <ModalLabel>
-            <LabelText>in good hands</LabelText>
+            <LabelText>{category}</LabelText>
           </ModalLabel>
         </LabelWrapper>
       </ImageThumb>
     </>
   );
+};
+
+ModalImage.propTypes = {
+  category: PropTypes.string,
+  image: PropTypes.string,
 };
