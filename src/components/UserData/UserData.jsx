@@ -1,6 +1,7 @@
 import { Logout } from '../../components/Logout/Logout';
 import { UserDataItem } from '../UserDataItem/UserDataItem';
 import {
+  UserDataWrapper,
   MyInformation,
   InformationBackgroundBlock,
   ProfileImgWrapper,
@@ -16,7 +17,7 @@ export const UserData = () => {
   const imageUrl = defaultImage;
 
   return (
-    <div style={{ position: 'relative' }}>
+    <UserDataWrapper>
       <MyInformation>My information:</MyInformation>
       <InformationBackgroundBlock>
         <ProfileImgWrapper>
@@ -31,6 +32,6 @@ export const UserData = () => {
         <UserDataItem />
         <Logout />
       </InformationBackgroundBlock>
-    </div>
+    </UserDataWrapper>
   );
 };

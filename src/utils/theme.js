@@ -12,6 +12,7 @@ const theme = Object.freeze({
   colors: {
     accent: '#F59256',
     brightAccent: '#FF6101',
+    hoverAccent: '#ffa96f',
     black: '#111111',
     white: '#FFFFFF',
     link: '#3091EB',
@@ -50,6 +51,7 @@ const theme = Object.freeze({
   shape: {
     borderRadius: { s: 8, m: 20, l: 40, xl: 50 },
     borderWidth: 2,
+    opacity: 0.6,
   },
   typography: {
     font: {

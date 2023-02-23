@@ -1,27 +1,23 @@
-export const AddNoticeButton = () => {
+import { AddPetCrossIcon } from '../icons/AddPetCrossIcon';
+import { Button, IconWrap, Label } from './AddNoticeButton.styled';
+import { useIconSize } from '../../hooks/useIconSize';
+import PropTypes from "prop-types";
 
-  return <div>AddNoticeButton</div>;
-  const [iconSize, setIconSize] = useState(0);
+export const AddNoticeButton = ({onClick}) => {
 
-  const theme = useTheme();
-
-  useEffect(() => {
-    const media = window.matchMedia(`(min-width: ${theme.breakpoints.tablet[0]})`);
-
-    const onWindowResize = () => setIconSize(media.matches ? 32 : 24);
-    onWindowResize();
-
-    window.addEventListener('resize', onWindowResize);
-    return () => window.removeEventListener('resize', onWindowResize);
-  }, [iconSize, screen]);
+  const [iconSize] = useIconSize();
 
   return (
-    <Button >
+    <Button onClick={onClick}>
       <IconWrap>
-        <AddPetCrossIcon size={iconSize} />
+        <AddPetCrossIcon size={iconSize === 's' ? 24 : 32} />
         <Label>Add pet</Label>
       </IconWrap>
     </Button>
   );
-
 };
+
+
+AddNoticeButton.propTypes = {
+onClick: PropTypes.func.isRequired
+}

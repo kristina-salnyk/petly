@@ -1,23 +1,45 @@
 import { api } from '../../utils/api';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-export const fetchNotices = createAsyncThunk(
-  'notices/fetchAll',
-  async (_, thunkAPI) => {
-    try {
-      const response = await api.get('/notices');
-      return response.data;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
-    }
+export const fetchNotices = createAsyncThunk('notices/fetchAll', async ({ category }, thunkAPI) => {
+  try {
+    // const params = query ? `?${queryString.stringify({ query })}` : '';
+    const response = await api.get(`/notices/${category}`);
+    return response.data;
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error.message);
   }
-);
+});
+
+export const fetchOneNotice = createAsyncThunk('notices/fetchOne', async (noticeId, thunkAPI) => {
+  try {
+    const response = await api.get(`/notices/${noticeId}`);
+    return response.data;
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error.message);
+  }
+});
 
 export const addNotice = createAsyncThunk(
   'notices/addNotice',
-  async ({ announcement, title, name, birthday, breed, theSex, location, price, image, comments, owner }, thunkAPI) => {
+  async (
+    { announcement, title, name, birthday, breed, theSex, location, price, image, comments, owner },
+    thunkAPI
+  ) => {
     try {
-      const response = await api.post('/notices', { announcement, title, name, birthday, breed, theSex, location, price, image, comments, owner });
+      const response = await api.post('/notices', {
+        announcement,
+        title,
+        name,
+        birthday,
+        breed,
+        theSex,
+        location,
+        price,
+        image,
+        comments,
+        owner,
+      });
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -25,11 +47,32 @@ export const addNotice = createAsyncThunk(
   }
 );
 
-export const deleteNotice = createAsyncThunk(
-  'notices/deleteNotice',
+export const deleteNotice = createAsyncThunk('notices/deleteNotice', async (noticeId, thunkAPI) => {
+  try {
+    const response = await api.delete(`/notices/${noticeId}`);
+    return response.data;
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error.message);
+  }
+});
+
+export const fetchFaviriteNotices = createAsyncThunk(
+  'notices/fetchFavorites',
+  async (_, thunkAPI) => {
+    try {
+      const response = await api.get('/notices/favorites');
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const addFoviriteNotice = createAsyncThunk(
+  'notices/addFavorite',
   async (noticeId, thunkAPI) => {
     try {
-      const response = await api.delete(`/notices/${noticeId}`);
+      const response = await api.patch(`/notices/favorite/${noticeId}`);
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -37,5 +80,23 @@ export const deleteNotice = createAsyncThunk(
   }
 );
 
+export const deleteFoviriteNotice = createAsyncThunk(
+  'notices/addFavorite',
+  async (noticeId, thunkAPI) => {
+    try {
+      const response = await api.delete(`/notices/favorite/${noticeId}`);
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
 
-
+export const fetchMyNotices = createAsyncThunk('notices/fetchOwnNotices', async (_, thunkAPI) => {
+  try {
+    const response = await api.get('/notices/own');
+    return response.data;
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error.message);
+  }
+});

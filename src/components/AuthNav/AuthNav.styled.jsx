@@ -2,9 +2,10 @@ import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
 export const Div = styled.div`
-  
- @media (max-width: 767px) {
+  display: flex;
+  @media (max-width: 767px) {
   display: none;
+  
     
   
 } 
@@ -12,11 +13,17 @@ export const Div = styled.div`
 `
 
 export const Auth = styled.ul`
+display: block;
+@media (max-width: 767px) {
+  display: none;
   
+    
+  
+} 
  @media (min-width: 768px) {
-   
     display: flex;
-    margin-left: 250px;
+    margin-left: 255px;
+    
   } 
   
     
@@ -35,7 +42,15 @@ export const Login = styled.li`
     text-decoration: none;
     cursor: pointer;
 
+    @media (min-width: 320px) {
+      :hover{
+       color:#FFFFFF;
+       background-color: #F59256;
+       cursor: pointer;
+     }
+
     @media (min-width: 768px) {
+       margin-left: 155px;
        :hover{
         color:#FFFFFF;
         background-color: #F59256;
@@ -44,7 +59,6 @@ export const Login = styled.li`
 
         
         margin-right: 12px;
-        
         font-family: 'Manrope';
         font-style: normal;
         font-weight: 500;
