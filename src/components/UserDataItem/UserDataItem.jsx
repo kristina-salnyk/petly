@@ -7,8 +7,8 @@ import {
   InfoBtn,
 } from './UserDataItem.styled';
 import theme from '../../utils/theme';
-import { useAuth } from '../../hooks/useAuth';
 import { EditProfileInfoPenIcon } from '../../components/icons/EditProfileInfoPenIcon';
+import { useAuth } from '../../hooks/useAuth';
 
 export const UserDataItem = () => {
   const { user } = useAuth();
@@ -19,7 +19,7 @@ export const UserDataItem = () => {
         <InfoLabel>
           Name:
           <FlexWrapper>
-            <InfoInput type="text" value={user.name} />
+            <InfoInput name="name" type="text" value={user.name} />
             <InfoBtn type="button">
               <EditProfileInfoPenIcon color={theme.colors.accent} />
             </InfoBtn>
@@ -41,7 +41,7 @@ export const UserDataItem = () => {
         <InfoLabel>
           Birthday:
           <FlexWrapper>
-            <InfoInput type="text" value="00.00.0000" disabled />
+            <InfoInput type="text" name="birthday" value={user.birthday} />
             <InfoBtn type="button">
               <EditProfileInfoPenIcon color={theme.colors.accent} />
             </InfoBtn>
@@ -59,7 +59,7 @@ export const UserDataItem = () => {
           </FlexWrapper>
         </InfoLabel>
       </InfoItem>
-      <li>
+      <InfoItem>
         <InfoLabel>
           City:
           <FlexWrapper>
@@ -69,7 +69,7 @@ export const UserDataItem = () => {
             </InfoBtn>
           </FlexWrapper>
         </InfoLabel>
-      </li>
+      </InfoItem>
     </InfoList>
   );
 };
