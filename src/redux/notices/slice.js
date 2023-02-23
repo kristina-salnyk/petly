@@ -1,10 +1,30 @@
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
-import { addNotice, deleteNotice, fetchNotices } from './operations';
+import {
+  addNotice,
+  deleteNotice,
+  fetchMyNotices,
+  fetchNotices,
+  fetchFaviriteNotices,
+  addFoviriteNotice,
+  fetchOneNotice,
+  deleteFoviriteNotice,
+} from './operations';
 
-const extraActions = [fetchNotices, addNotice, deleteNotice];
+const extraActions = [
+  fetchNotices,
+  fetchOneNotice,
+  addNotice,
+  deleteNotice,
+  fetchFaviriteNotices,
+  addFoviriteNotice,
+  deleteFoviriteNotice,
+  fetchMyNotices,
+];
 
 const noticesInitialState = {
-  items: [],
+  notices: [],
+  myNotices: [],
+  favoriteNotices: [],
   category: 'sell',
   searchQuery: '',
   isLoading: false,
@@ -17,14 +37,27 @@ const noticesSlice = createSlice({
   extraReducers: builder =>
     builder
       .addCase(fetchNotices.fulfilled, (state, action) => {
-        state.items = action.payload;
+        state.notices = action.payload;
       })
       .addCase(addNotice.fulfilled, (state, action) => {
-        state.items.push(action.payload);
+        state.notices.push(action.payload);
       })
       .addCase(deleteNotice.fulfilled, (state, action) => {
         const index = state.items.findIndex(notice => notice.id === action.payload.id);
-        state.items.splice(index, 1);
+        state.notices.splice(index, 1);
+      })
+      .addCase(fetchMyNotices.fulfilled, (state, action) => {
+        state.myNotices = action.payload;
+      })
+      .addCase(fetchFaviriteNotices.fulfilled, (state, action) => {
+        state.favoriteNotices = action.payload;
+      })
+      .addCase(addFoviriteNotice.fulfilled, (state, action) => {
+        state.favoriteNotices.push(action.payload);
+      })
+      .addCase(deleteFoviriteNotice.fulfilled, (state, action) => {
+        const index = state.favoriteNotices.findIndex(notice => notice.id === action.payload.id);
+        state.favoriteNotices.splice(index, 1);
       })
       .addMatcher(isAnyOf(...extraActions.map(action => action.pending)), state => {
         state.isLoading = true;
