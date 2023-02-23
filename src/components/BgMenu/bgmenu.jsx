@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import { selectIsLoggedIn } from '../../redux/auth/selectors';
 import { useSelector } from 'react-redux';
 import {Login} from '../AuthNav/AuthNav.styled';
+import {UserIcon} from '../icons/UserIcon';
 
 const BgMenu = ({burger_class, menu_class, updateMenu})=> {
   const  isLoggedIn  =  useSelector(selectIsLoggedIn);
@@ -43,6 +44,7 @@ const BgMenu = ({burger_class, menu_class, updateMenu})=> {
             :
             <li>
               <Login>
+                <UserIcon/>
                 <Link to="/user"
                   className='linkUser'>
                   Account

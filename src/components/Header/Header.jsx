@@ -1,4 +1,4 @@
-import {Wrapper, HederWrapper} from './Header.styled';
+import {Wrapper, HederWrapper, UserWrapper} from './Header.styled';
 import Logo from '../Logo/Logo';
 import React, {useState}  from 'react';
 import Nav from '../Nav/Nav';
@@ -18,8 +18,6 @@ export const Header = () => {
   const  isLoggedIn  =  useSelector(selectIsLoggedIn);
   
   
- 
- 
   const updateMenu = () => {
     if(!isMenuClicked) {
       setBurgerClass('burger-bar clicked')
@@ -40,9 +38,10 @@ export const Header = () => {
           <Logo/>
           <Nav/> 
         </Wrapper>
-        {!isLoggedIn ? <AuthNav isMenuClicked = {isMenuClicked}/> : <UserMenu isMenuClicked = {isMenuClicked} />}
-        
-        <BgMenu burger_class={burger_class} menu_class={menu_class} updateMenu={updateMenu}/>
+        <UserWrapper>
+          {!isLoggedIn ? <AuthNav isMenuClicked = {isMenuClicked}/> : <UserMenu isMenuClicked = {isMenuClicked} />}
+          <BgMenu burger_class={burger_class} menu_class={menu_class} updateMenu={updateMenu}/>
+        </UserWrapper>
       </HederWrapper>
     </>
 

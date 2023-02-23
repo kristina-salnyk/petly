@@ -67,7 +67,7 @@ export const H1 = styled.h1`
     font-weight: 700;
     font-size: 32px;
     line-height: 44px;
-    color: ${props => props.theme.colors.accent};
+    color: ${props => props.theme.colors.black};
     padding-left: 20px;
     -bottom: 58px;
 
@@ -148,10 +148,15 @@ export const HederWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-
+  background-color: #FDF7F2;
   margin: 0;
   padding: 0;
   padding-top: 16px;
   padding-left: 20px;
   padding-right: 20px;
 ` 
+
+export const UserWrapper = styled.div`
+    display: flex;
+    align-items: center;
+`

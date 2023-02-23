@@ -11,8 +11,11 @@ export const UserLink = styled(NavLink)`
     line-height: 19px;
     letter-spacing: 0.04em;
     color: black;
+    margin-left:10px;
+   
     :hover {
         background-color: #F59256;
         color:#FFFFFF;
+        transition-duration: .2s;
 
 `
