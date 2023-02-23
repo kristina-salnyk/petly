@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {
   ButtonWrapper,
   ButtonLearnMore,
@@ -6,21 +7,40 @@ import {
   ButtonDelete,
   ButtonTextDelete,
 } from './NoticeButtons.styled';
-import {DeleteNoticeIcon} from '../../icons/DeleteNoticeIcon';
+import { DeleteNoticeIcon } from '../../icons/DeleteNoticeIcon';
+import { changeModal } from '../../../redux/modal/slice';
+import { useDispatch, useSelector } from 'react-redux';
+import {selectIsLoggedIn} from '../../../redux/auth/selectors';
 
-export const NoticeButtons = () => {
+export const NoticeButtons = ({id}) => {
+  console.log(id);
+  const dispatch = useDispatch();
+  const isLoggedIn = useSelector(selectIsLoggedIn);
+ 
+  const handleModalChange = () => {
+    dispatch(changeModal());
+    
+  };
+ 
   return (
     <>
       <ButtonWrapper>
-        <ButtonLearnMore>
+        <ButtonLearnMore onClick={handleModalChange}>
           <ButtonText>Learn More</ButtonText>
         </ButtonLearnMore>
 
-        <ButtonDelete>
-          <ButtonTextDelete>Delete</ButtonTextDelete>
-          <DeleteNoticeIcon />
-        </ButtonDelete>
+        {isLoggedIn && (
+          <ButtonDelete>
+            <ButtonTextDelete>Delete</ButtonTextDelete>
+            <DeleteNoticeIcon />
+          </ButtonDelete>
+        )}
       </ButtonWrapper>
     </>
   );
+};
+
+
+NoticeButtons.propTypes = {
+  id: PropTypes.string,
 };

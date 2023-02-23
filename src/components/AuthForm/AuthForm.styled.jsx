@@ -1,8 +1,9 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import theme from '../../utils/theme';
+import { Form, Field } from 'formik';
 
-export const Form = styled.form`
+export const FormField = styled(Form)`
   width: 100%;
   margin: 0 auto;
   @media (min-width: 768px) {
@@ -10,8 +11,7 @@ export const Form = styled.form`
   }
 `;
 
-
-export const Input = styled.input`
+export const Input = styled(Field)`
   display: block;
   width: 100%;
   box-sizing: border-box;
@@ -46,10 +46,10 @@ export const InputField = styled.div`
 export const BtnLogin = styled.button`
   padding: 10px 28px;
   margin-bottom: 40px;
-  margin-top:40px;
+  margin-top: 40px;
   background: ${theme.colors.accent};
   border-radius: 40px;
-  width:100%;
+  width: 100%;
   color: ${theme.colors.white};
   letter-spacing: 0.04em;
   border: 2px solid ${theme.colors.accent};
@@ -68,12 +68,11 @@ export const BtnLogin = styled.button`
   }
 `;
 
-
 export const BtnRegistr = styled.button`
   padding: 10px 28px;
   background: ${theme.colors.accent};
   border-radius: 40px;
-  width:100%;
+  width: 100%;
   margin-bottom: 16px;
   color: ${theme.colors.white};
   letter-spacing: 0.04em;
@@ -93,12 +92,11 @@ export const BtnRegistr = styled.button`
   }
 `;
 
-
 export const BtnBack = styled.button`
   padding: 10px 28px;
   background: ${theme.colors.accent};
   border-radius: 40px;
-  width:100%;
+  width: 100%;
   margin-bottom: 40px;
   color: ${theme.colors.white};
   letter-spacing: 0.04em;
@@ -137,7 +135,6 @@ export const StyledLink = styled(Link)`
   }
 `;
 
-
 export const Pass = styled.div`
   color: #ff6101;
   position: absolute;
@@ -147,7 +144,6 @@ export const Pass = styled.div`
     top: 17px;
   }
 `;
-
 
 export const IconWrapper = styled.div`
   display: flex;

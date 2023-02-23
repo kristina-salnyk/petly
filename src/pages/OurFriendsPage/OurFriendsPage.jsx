@@ -1,5 +1,13 @@
+import FriendsList from '../../components/Friends/FriendsList/FriendsList';
+import { Container } from './OurFriendsPage.styled';
+
 const OurFriendsPage = () => {
-  return <div>OurFriendsPage</div>;
+  return (
+    <Container>
+      <FriendsList />
+    </Container>
+    
+  );
 };
 
 export default OurFriendsPage;
