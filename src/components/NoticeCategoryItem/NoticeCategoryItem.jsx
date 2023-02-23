@@ -5,30 +5,29 @@ import { NoticeImage } from './NoticeImage/NoticeImage';
 import { NoticeButtons } from './NoticeButtons/NoticeButtons';
 import { NoticeCard } from './NoticeCategoryItem.styled';
 import { NoticeInfo } from './NoticeInfo/NoticeInfo';
-
+import { fetchNoticeItem } from '../../redux/notices/operations';
+import { useDispatch } from 'react-redux';
 import { ModalNotice } from '../ModalNotice/ModalNotice';
 
 export const NoticeCategoryItem = ({
   _id,
   category,
   title,
-  name,
   breed,
   location,
-  gender,
   price,
   image,
   birthday,
-  comments,
+  owner,
 }) => {
   const [modalOpen, setModalOpen] = useState(false);
+  const dispatch = useDispatch();
 
   const onShow = () => {
-    return setModalOpen(true);
-  };
-
-  const onClose = () => {
-    return setModalOpen(false);
+    if (!modalOpen) {
+      dispatch(fetchNoticeItem(_id));
+    }
+    setModalOpen(!modalOpen);
   };
 
   useEffect(() => {
@@ -47,33 +46,19 @@ export const NoticeCategoryItem = ({
     <>
       <NoticeCard>
         <NoticeImage id={_id} category={category} image={image} />
-
-        <NoticeInfo
-          category={category}
-          title={title}
-          location={location}
-          birthday={birthday}
-          breed={breed}
-          price={price}
-        />
-        <NoticeButtons id={_id} onShow={onShow} />
-
-        {modalOpen && (
-          <ModalNotice
-            id={_id}
-            name={name}
+        <div>
+          <NoticeInfo
             category={category}
-            image={image}
             title={title}
-            gender={gender}
             location={location}
             birthday={birthday}
             breed={breed}
             price={price}
-            comments={comments}
-            onClose={onClose}
           />
-        )}
+          <NoticeButtons id={_id} owner={owner} onShow={onShow} />
+        </div>
+
+        {modalOpen && <ModalNotice id={_id} onShow={onShow} />}
       </NoticeCard>
     </>
   );
@@ -92,4 +77,5 @@ NoticeCategoryItem.propTypes = {
   image: PropTypes.string,
   birthday: PropTypes.string,
   comments: PropTypes.string,
+  owner:PropTypes.string,
 };

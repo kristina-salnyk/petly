@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
+import PropTypes from 'prop-types';
 import {
   ModalButtonWrapper,
   ModalButtonContact,
@@ -12,12 +13,13 @@ import { FavoriteHeartIcon } from '../../../icons/FavoriteInModalHeartIcon';
 import { selectIsLoggedIn } from '../../../../redux/auth/selectors';
 // import theme from '../../../../utils/theme';
 
-export const ModalButtons = () => {
+export const ModalButtons = ({id}) => {
   const [favorite, setFavorite] = useState(false);
   const isLoggedIn = useSelector(selectIsLoggedIn);
 
   const addToFavorite = () => {
     if (!isLoggedIn) {
+      console.log(id);
       Notiflix.Notify.warning('Please sign in');
       return;
     }
@@ -44,3 +46,7 @@ export const ModalButtons = () => {
     </>
   );
 };
+
+ModalButtons.propTypes = {
+  id: PropTypes.string,
+}

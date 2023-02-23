@@ -2,32 +2,19 @@ import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Modal } from './ModalContent/Modal';
 import { ModalWrapper, ModalOverlay } from './ModalNotice.styled';
-import { useDispatch } from 'react-redux';
-import { changeModal } from '../../redux/modal/slice';
+
+
+
 import { useRef } from 'react';
 
-export const ModalNotice = ({
-  id,
-  category,
-  image,
-  title,
-  name,
-  gender,
-  location,
-  birthday,
-  breed,
-  price,
-  comments,
-  onClose,
-}) => {
-  const dispatch = useDispatch();
+export const ModalNotice = ({id,onShow}) => {
+
   const modalRef = useRef();
 
   useEffect(() => {
     const handleEsc = event => {
       if (event.keyCode === 27) {
-        dispatch(changeModal());
-        onClose();
+        onShow();
       }
     };
     window.addEventListener('keydown', handleEsc);
@@ -39,7 +26,7 @@ export const ModalNotice = ({
 
   function handleOverlayClick(event) {
     if (event.target === modalRef.current) {
-      onClose();
+      onShow();
     }
   }
 
@@ -47,20 +34,7 @@ export const ModalNotice = ({
     <>
       <ModalOverlay onClick={handleOverlayClick} ref={modalRef}>
         <ModalWrapper>
-          <Modal
-            id={id}
-            category={category}
-            image={image}
-            title={title}
-            name={name}
-            gender={gender}
-            location={location}
-            birthday={birthday}
-            breed={breed}
-            price={price}
-            comments={comments}
-            onClose={onClose}
-          />
+          <Modal id={id} onShow={onShow}/>
         </ModalWrapper>
       </ModalOverlay>
     </>
@@ -68,16 +42,6 @@ export const ModalNotice = ({
 };
 
 ModalNotice.propTypes = {
-  id: PropTypes.string,
-  category: PropTypes.string,
-  name: PropTypes.string,
-  title: PropTypes.string,
-  breed: PropTypes.string,
-  gender: PropTypes.string,
-  location: PropTypes.string,
-  price: PropTypes.string,
-  image: PropTypes.string,
-  birthday: PropTypes.string,
-  comments: PropTypes.string,
-  onClose: PropTypes.func,
+  id:PropTypes.string,
+  onShow: PropTypes.func,
 };
