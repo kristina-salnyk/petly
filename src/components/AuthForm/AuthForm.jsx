@@ -6,76 +6,63 @@ import * as Yup from 'yup';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import {
   Input,
-  BtnLogin,
-  BtnRegistr,
-  BtnBack,
+  Button,
   FormField,
-  LinkInput,
+  InputField,
+  DivPass,
   StyledLink,
-  IconWrapper,
-  GoogleIconStyle,
-  // Pass,
+  LinkField,
 } from './AuthForm.styled';
 import { Formik, ErrorMessage } from 'formik';
 import Loader from '../Loader/Loader';
-// import { ImEyeBlocked } from 'react-icons/im';
-// import { ImEye } from 'react-icons/im';
+import { ImEyeBlocked } from 'react-icons/im';
+import { ImEye } from 'react-icons/im';
 
-const schemasForLogin = Yup.object().shape({
-  email: Yup.string().email().required().min(10).max(63),
-  password: Yup.string().required().min(7).max(32),
-});
-
-const schemasForFirstStep = Yup.object().shape({
+const schemasForLogin = Yup.object({
   email: Yup.string()
-    .email()
-    .required()
-    .min(10, 'the minimum number of characters in the field is 10')
-    .max(63, 'the maximum number of characters in the field is 63 inclusive'),
-  password: Yup.string().required().min(7).max(32),
-  passwordConfirm: Yup.string().required(),
-});
-
-const schemasForSecondStep = Yup.object().shape({
-  name: Yup.string().required('Name is required!'),
-  region: Yup.string()
-    .matches(/^[aA-zZ]+,/, 'Is not correct format, must "City, Region"')
-    .required('Region is required'),
-  number: Yup.string()
     .matches(
-      /^3?[\s]?8?[\s]?\(?0\d{2}?\)?[\s]?\d{3}[\s|-]?\d{2}[\s|-]?\d{2}$/,
-      'Field must contain only numbers and format 380xxxxxxxxx!'
+      /^((([0-9A-Za-z]{1}[-0-9A-z.]{1,}[0-9A-Za-z]{1})|([0-9А-Яа-я]{1}[-0-9А-я.]{1,}[0-9А-Яа-я]{1}))@([-A-Za-z]{1,}.){1,2}[-A-Za-z]{2,})$/u,
+      'Invalid email format'
     )
-    .required('Phone number is required!')
-    .min(12, 'Cannot be less than twelve characters!')
-    .max(12, 'Cannot be more than twelve characters!'),
+    .required('Email is required'),
+  password: Yup.string()
+    .required('Password is require!')
+    .min(7, 'Password too short!')
+    .max(32, 'Password too long!'),
 });
 
-const validateEmail = value => {
-  let err;
-  if (!value) {
-    err = 'E-mail address required';
-  } else if (
-    !/^((([0-9A-Za-z]{1}[-0-9A-z]{1,}[0-9A-Za-z]{1}))@([-0-9A-Za-z]{1,}\.){1,2}[-A-Za-z]{2,})$/i.test(
-      value
+const schemasForFirstStep = Yup.object({
+  email: Yup.string()
+    .matches(
+      /^((([0-9A-Za-z]{1}[-0-9A-z.]{1,}[0-9A-Za-z]{1})|([0-9А-Яа-я]{1}[-0-9А-я.]{1,}[0-9А-Яа-я]{1}))@([-A-Za-z]{1,}.){1,2}[-A-Za-z]{2,})$/u,
+      'Invalid email format'
     )
-  ) {
-    err =
-      'The e-mail address is not correct, there must be at least 2 characters before the "@" symbol, the hyphen cannot be at the beginning, email can include Latin letters, numbers and symbols!';
-  }
-  return err;
-};
+    .required('Email is required'),
+  password: Yup.string()
+    .required('Password is require!')
+    .min(7, 'Password too short!')
+    .max(32, 'Password too long!'),
+  confirmPassword: Yup.string()
+    .oneOf([Yup.ref('password'), ''], 'Password must match!')
+    .required('Require'),
+});
 
-const validatePass = value => {
-  let err;
-  if (!value) {
-    err = 'Password is required';
-  } else if (value.includes(' ')) {
-    err = 'Invalid password, must not include spaces';
-  }
-  return err;
-};
-
+const schemasForSecondStep = Yup.object({
+  name: Yup.string()
+    .min(2, 'Name too short!')
+    .matches(/^[а-яёіїєА-ЯЁІЇЄA-Za-z-\s]+$/, 'Only Letters')
+    .required('Name is required!'),
+  city: Yup.string()
+    .min(2)
+    .required('City is required!')
+    .matches(
+      /^[а-яёіїєА-ЯЁІЇЄA-Za-z]+,?\s[а-яёіїєА-ЯЁІЇЄA-Za-z]+$/,
+      'Enter data in the format "City, region"'
+    ),
+  phone: Yup.string()
+    .required('Phone is required')
+    .matches(/^\+380\d{9}$/, 'Enter phone number in the format +380XXXXXXXXX'),
+});
 const AuthForm = () => {
   const [stepOne, setStepOne] = useState(true);
   const location = useLocation();
@@ -137,10 +124,10 @@ const AuthForm = () => {
       return setStepOne(true);
     }
   };
-  // const [show, setShow] = useState(false);
-  // const handleShow = () => {
-  //   setShow(!show);
-  // };
+  const [show, setShow] = useState(false);
+  const handleShow = () => {
+    setShow(!show);
+  };
 
   return (
     <>
@@ -154,43 +141,46 @@ const AuthForm = () => {
               onSubmit={handleSubmitForRegister}
             >
               <FormField autoComplete="off">
-                <Input
-                  type="email"
-                  name="email"
-                  placeholder="Email"
-                  validate={validateEmail}
-                  required
-                />
-                <ErrorMessage
-                  name="email"
-                  render={msg => Notify.warning(`${msg}`, { timeout: 2000 })}
-                />
-                <Input
-                  // type={show ? 'text' : 'password'}
-                  type="password"
-                  name="password"
-                  placeholder="Password"
-                  validate={validatePass}
-                  required
-                />
-                {/* <Pass onClick={handleShow}>{show ? <ImEye /> : <ImEyeBlocked />}</Pass> */}
-                <ErrorMessage
-                  name="password"
-                  render={msg => Notify.warning(`${msg}`, { timeout: 2000 })}
-                />
-                <Input
-                  type="password"
-                  name="passwordConfirm"
-                  placeholder="Confirm Password"
-                  validate={validatePass}
-                  required
-                />
-                <ErrorMessage
-                  name="passwordConfirm"
-                  render={msg => Notify.warning(`${msg}`, { timeout: 2000 })}
-                />
-                <BtnRegistr type="submit">Next</BtnRegistr>
-                {/* <Google/> */}
+                <InputField>
+                  <Input id="email" type="email" name="email" placeholder="Email" />
+                  <ErrorMessage
+                    name="email"
+                    render={msg =>
+                      Notify.warning(`${msg}`, { timeout: 2000, showOnlyTheLastOne: true })
+                    }
+                  />
+                </InputField>
+                <InputField>
+                  <Input type={show ? 'text' : 'password'} name="password" placeholder="Password" />
+                  <DivPass onClick={handleShow}>{show ? <ImEye /> : <ImEyeBlocked />}</DivPass>
+                  <ErrorMessage
+                    name="password"
+                    render={msg =>
+                      Notify.warning(`${msg}`, { timeout: 2000, showOnlyTheLastOne: true })
+                    }
+                  />
+                </InputField>
+                <InputField margin>
+                  <Input
+                    type={show ? 'text' : 'password'}
+                    name="passwordConfirm"
+                    placeholder="Confirm password"
+                  />
+                  <DivPass onClick={handleShow}>{show ? <ImEye /> : <ImEyeBlocked />}</DivPass>
+
+                  <ErrorMessage
+                    name="password"
+                    render={msg =>
+                      Notify.warning(`${msg}`, { timeout: 2000, showOnlyTheLastOne: true })
+                    }
+                  />
+                </InputField>
+                <Button margin type="submit">
+                  Next
+                </Button>
+                <LinkField>
+                  Already have an account? <StyledLink to="/login">Login</StyledLink>
+                </LinkField>
               </FormField>
             </Formik>
           ) : (
@@ -201,33 +191,51 @@ const AuthForm = () => {
               autoComplete="off"
             >
               <FormField>
-                <Input type="text" name="name" placeholder="Name" required />
-                <ErrorMessage
-                  name="name"
-                  render={msg => Notify.warning(`${msg}`, { timeout: 2000 })}
-                />
-                <Input ttype="text" name="region" placeholder="City, region" required />
-                <ErrorMessage
-                  name="region"
-                  render={msg => Notify.warning(`${msg}`, { timeout: 2000 })}
-                />
-                <Input type="tel" name="number" placeholder="Mobile phone" required />
-                <ErrorMessage
-                  name="number"
-                  render={msg => Notify.warning(`${msg}`, { timeout: 2000 })}
-                />
-
-                <BtnRegistr type="submit">Register</BtnRegistr>
-                <BtnBack type="button" onClick={backBtnClick}>
+                <InputField>
+                  <Input id="name" type="text" name="name" placeholder="Name" />
+                  <ErrorMessage
+                    name="name"
+                    render={msg =>
+                      Notify.warning(`${msg}`, { timeout: 2000, showOnlyTheLastOne: true })
+                    }
+                  />
+                </InputField>
+                <InputField>
+                  <Input id="city" type="text" name="city" placeholder="City, Region" />
+                  <ErrorMessage
+                    name="city"
+                    render={msg =>
+                      Notify.warning(`${msg}`, { timeout: 2000, showOnlyTheLastOne: true })
+                    }
+                  />
+                </InputField>
+                <InputField margin>
+                  <Input id="phone" type="text" name="phone" placeholder="Phone number" />
+                  <ErrorMessage
+                    name="phone"
+                    render={msg =>
+                      Notify.warning(`${msg}`, { timeout: 2000, showOnlyTheLastOne: true })
+                    }
+                  />
+                </InputField>
+                <Button type="submit">Registration</Button>
+                <Button
+                  outline
+                  margin
+                  submit
+                  type="button"
+                  onClick={() => {
+                    backBtnClick;
+                  }}
+                >
                   Back
-                </BtnBack>
-                {/* <Google/> */}
+                </Button>
+                <LinkField>
+                  Already have an account? <StyledLink to="/login">Login</StyledLink>
+                </LinkField>
               </FormField>
             </Formik>
           )}
-          <LinkInput>
-            Already have an account? <StyledLink to="/login">Login</StyledLink>
-          </LinkInput>
         </>
       )}
       {page === '/login' && (
@@ -238,32 +246,36 @@ const AuthForm = () => {
             onSubmit={handleSubmitForLogin}
           >
             <FormField autoComplete="off">
-              <Input type="email" name="email" placeholder="Email" />
-              <ErrorMessage name="email" render={msg => Notify.warning(`${msg}`)} />
-              <Input
-                type="password"
-                name="password"
-                placeholder="Password"
-                validate={validatePass}
+              <InputField>
+                <Input id="email" type="email" name="email" placeholder="Email" />
+              </InputField>
+              <ErrorMessage
+                name="email"
+                render={msg =>
+                  Notify.warning(`${msg}`, { timeout: 2000, showOnlyTheLastOne: true })
+                }
               />
+              <InputField margin>
+                <Input
+                  id="password"
+                  type={show ? 'text' : 'password'}
+                  name="password"
+                  placeholder="Password"
+                />
+                <DivPass onClick={handleShow}>{show ? <ImEye /> : <ImEyeBlocked />}</DivPass>
+              </InputField>
               <ErrorMessage
                 name="password"
-                render={msg => Notify.warning(`${msg}`, { timeout: 2000 })}
+                render={msg =>
+                  Notify.warning(`${msg}`, { timeout: 2000, showOnlyTheLastOne: true })
+                }
               />
-
-              <BtnLogin type="submit">Login</BtnLogin>
-              <IconWrapper>
-                <GoogleIconStyle
-                  src="../../images/AuthPages/googleIcon.png"
-                  alt="sing in with Google"
-                />
-              </IconWrapper>
+              <Button type="submit">Login</Button>
             </FormField>
           </Formik>
-          <LinkInput>
-            Dont have an account?
-            <StyledLink to="/register"> Register </StyledLink>
-          </LinkInput>
+          <LinkField>
+            Don &apos; t have an account? <StyledLink to="/register"> Register </StyledLink>
+          </LinkField>
         </>
       )}
     </>
