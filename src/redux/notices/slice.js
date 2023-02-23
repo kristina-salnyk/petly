@@ -1,7 +1,7 @@
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
-import { addNotice, deleteNotice, fetchNotices } from './operations';
+import { addNotice, deleteNotice, fetchNotices, addFavorite, deleteFavorite } from './operations';
 
-const extraActions = [fetchNotices, addNotice, deleteNotice];
+const extraActions = [fetchNotices, addNotice, deleteNotice, deleteFavorite, addFavorite];
 
 const noticesInitialState = {
   items: [],
@@ -23,6 +23,13 @@ const noticesSlice = createSlice({
         state.items.push(action.payload);
       })
       .addCase(deleteNotice.fulfilled, (state, action) => {
+        const index = state.items.findIndex(notice => notice.id === action.payload.id);
+        state.items.splice(index, 1);
+      })
+      .addCase(addFavorite.fulfilled, (state, action) => {
+        state.items.push(action.payload);
+      })
+      .addCase(deleteFavorite.fulfilled, (state, action) => {
         const index = state.items.findIndex(notice => notice.id === action.payload.id);
         state.items.splice(index, 1);
       })
