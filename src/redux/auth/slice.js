@@ -4,9 +4,9 @@ import { register, logIn, logOut, refreshUser } from './operations';
 const authSlice = createSlice({
   name: 'auth',
   initialState: {
-    user: { name: null, email: null, phone: null, city: null, birthday: '00.00.0000' },
+    user: { name: null, email: null, phone: null, city: null, birthday: null },
     token: null,
-    isLoggedIn: false,
+    isLoggedIn: true,
     isRefreshing: false,
   },
   extraReducers: builder =>
