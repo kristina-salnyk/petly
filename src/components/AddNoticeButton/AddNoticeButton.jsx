@@ -1,7 +1,7 @@
 import { AddPetCrossIcon } from '../icons/AddPetCrossIcon';
 import { Button, IconWrap, Label } from './AddNoticeButton.styled';
 import { useIconSize } from '../../hooks/useIconSize';
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 
 export const AddNoticeButton = ({onClick}) => {
 
@@ -19,5 +19,5 @@ export const AddNoticeButton = ({onClick}) => {
 
 
 AddNoticeButton.propTypes = {
-onClick: PropTypes.func.isRequired
+  onClick: PropTypes.func.isRequired
 }

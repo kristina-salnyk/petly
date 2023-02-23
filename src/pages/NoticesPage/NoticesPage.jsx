@@ -5,9 +5,9 @@ import { NoticeCategoriesNav } from '../../components/NoticesCategoriesNav/Notic
 import { AddNoticeButton } from '../../components/AddNoticeButton';
 import { Container, ContentWrap, PageTitle, TopPanel } from './NoticesPage.styled';
 import { GlobalStyle } from '../../components/ModalAddNotice/ModalAddNotice.styled';
+import { ModalAddNotice } from '../../components/ModalAddNotice';
 
-
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector, useState } from 'react-redux';
 import { selectSearchQuery } from '../../redux/notices/selectors';
 import { fetchNotices } from '../../redux/notices/operations';
 import { changeSearchQuery } from '../../redux/notices/slice';
@@ -15,7 +15,7 @@ import { changeSearchQuery } from '../../redux/notices/slice';
 const NoticesPage = () => {
   const dispatch = useDispatch();
   const { category } = useParams();
-  
+
   const [showModal, setShowModal] = useState(false);
   const openModal = () => {
     setShowModal(prev => !prev);
@@ -53,7 +53,7 @@ const NoticesPage = () => {
         <NoticesSearch onSubmit={setSearchQueryParam} />
         <TopPanel>
           <NoticeCategoriesNav />
-          <AddNoticeButton onClick={openModal}/>
+          <AddNoticeButton onClick={openModal} />
         </TopPanel>
         <Suspense fallback={<div>Loading...</div>}>
           <Outlet />
