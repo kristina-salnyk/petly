@@ -142,7 +142,13 @@ export const PetsData = () => {
                       placeholder="Type breed"
                     />
                     <FooterModal>
-                      <ButtonModal onClick={() => handlOpenModal(false)}>Cancel</ButtonModal>
+                      <ButtonModal
+                        onClick={() => handlOpenModal(false)}
+                        whileHover={{ scale: 1.1 }}
+                        whileTap={{ scale: 0.9 }}
+                      >
+                        Cancel
+                      </ButtonModal>
                       <SecondOpenModalButton
                         type="submit"
                         handlClick={() => secondHandlOpenModal(true)}
@@ -190,10 +196,19 @@ export const PetsData = () => {
                     />
                   </BoxTextereaModalSecond>
                   <FooterModalSecond>
-                    <SecondButtonModal onClick={() => secondHandlOpenModal(false)}>
+                    <SecondButtonModal
+                      onClick={() => secondHandlOpenModal(false)}
+                      whileHover={{ scale: 1.1 }}
+                      whileTap={{ scale: 0.9 }}
+                    >
                       Back
                     </SecondButtonModal>
-                    <SecondButtonModal onClick={handleSubmit} type="submit">
+                    <SecondButtonModal
+                      onClick={handleSubmit}
+                      whileHover={{ scale: 1.1 }}
+                      whileTap={{ scale: 0.9 }}
+                      type="submit"
+                    >
                       Done
                     </SecondButtonModal>
                   </FooterModalSecond>

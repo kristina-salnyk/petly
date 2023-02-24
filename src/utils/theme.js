@@ -7,7 +7,7 @@ const theme = Object.freeze({
     tabletMin: '768px',
     tabletMax: '1279',
     desktopMin: '1280px',
-    desktopMax: '1599px'
+    desktopMax: '1599px',
   },
   colors: {
     accent: '#F59256',
@@ -22,6 +22,7 @@ const theme = Object.freeze({
     burgerBlack: '#212121',
     background: {
       primary: '#FDF7F2',
+      button: '#f59256',
       card: '#D9D9D9',
       gradient: 'linear-gradient(90deg, #FF634E 0%, #FFDF48 105.44%)',
     },

@@ -8,8 +8,8 @@ const OpenModalButton = styled(motion.button)`
   justify-content: center;
   border-radius: 40px;
   border: 2px solid #f59256;
-  background: #ffffff;
-  color: #111111;
+  background: ${({ theme }) => theme.colors.white};
+  color:  ${({ theme }) => theme.colors.black};
   text-align: center;
   text-decoration: none;
   display: inline-block;
@@ -22,8 +22,8 @@ const OpenModalButton = styled(motion.button)`
   width: 180px;
   height: 44px;
   :hover {
-    color: #ffffff;
-    background-color: #f59256;
+    color: ${({ theme }) => theme.colors.white};
+    background-color: ${({ theme }) => theme.colors.background.button};
   }
   @media screen and (max-width: 720px) {
     margin-top: 12px;

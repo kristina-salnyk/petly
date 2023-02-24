@@ -12,7 +12,7 @@ const OpenModalButton = styled(motion.button)`
   border-radius: 50%;
   border: none;
   cursor: pointer;
-  background-color: #f59256;
+  background-color: ${({ theme }) => theme.colors.background.button};
 `;
 const animatedOpenButton = ({ children, handlClick }) => {
   return (
