@@ -44,7 +44,7 @@ export const TabletWrapper = styled.div`
 `;
 
 export const ModalComments = styled.p`
-  margin-top: 18px;
+  margin-top: 10px;
 `;
 
 export const ModalCommentsName = styled.span`

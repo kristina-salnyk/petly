@@ -43,120 +43,56 @@ export const InputField = styled.div`
   }
 `;
 
-export const BtnLogin = styled.button`
-  padding: 10px 28px;
-  margin-bottom: 40px;
-  margin-top: 40px;
-  background: ${theme.colors.accent};
-  border-radius: 40px;
+export const Button = styled.button`
+  color: ${props => (props.outline ? 'black' : 'white')};
   width: 100%;
-  color: ${theme.colors.white};
-  letter-spacing: 0.04em;
-  border: 2px solid ${theme.colors.accent};
-
-  font-style: normal;
-  font-weight: 500;
+  padding: 10px;
+  border-radius: 40px;
   font-size: 20px;
-  line-height: 27px;
-
-  cursor: pointer;
-
+  border: ${props =>
+    props.outline ? `2px solid ${theme.colors.accent}` : `2px solid ${theme.colors.accent}`};
+  background-color: ${props => (props.outline ? 'white' : `${theme.colors.accent}`)};
+  margin-bottom: ${props => (props.noMargin ? '0' : '20px')};
+  transition: background-color 300ms cubic-bezier(0.4, 0, 0.2, 1);
   &:hover,
   &:focus {
-    background: transparent;
-    color: ${theme.colors.black};
+    background-color: ${theme.colors.white};
+    border: 2px solid ${theme.colors.accent};
+    color: #000000;
+  }
+  @media (min-width: 768px) {
+    padding: 18px;
+    margin-bottom: ${props => (props.margin ? '40px' : '16px')};
   }
 `;
 
-export const BtnRegistr = styled.button`
-  padding: 10px 28px;
-  background: ${theme.colors.accent};
-  border-radius: 40px;
-  width: 100%;
-  margin-bottom: 16px;
-  color: ${theme.colors.white};
-  letter-spacing: 0.04em;
-  border: 2px solid ${theme.colors.accent};
-
-  font-style: normal;
-  font-weight: 500;
-  font-size: 20px;
-  line-height: 27px;
-
-  cursor: pointer;
-
-  &:hover,
-  &:focus {
-    background: transparent;
-    color: ${theme.colors.black};
-  }
-`;
-
-export const BtnBack = styled.button`
-  padding: 10px 28px;
-  background: ${theme.colors.accent};
-  border-radius: 40px;
-  width: 100%;
-  margin-bottom: 40px;
-  color: ${theme.colors.white};
-  letter-spacing: 0.04em;
-  border: 2px solid ${theme.colors.accent};
-
-  font-style: normal;
-  font-weight: 500;
-  font-size: 20px;
-  line-height: 27px;
-
-  cursor: pointer;
-
-  &:hover,
-  &:focus {
-    background: transparent;
-    color: ${theme.colors.black};
-  }
-`;
-export const LinkInput = styled.p`
+export const LinkField = styled.p`
   text-align: center;
   color: ${theme.colors.dark};
+  font-size: 12px;
 `;
 
 export const StyledLink = styled(Link)`
   position: relative;
   color: ${theme.colors.link};
-  &::after {
+  &::before {
     position: absolute;
     display: block;
     content: '';
     width: 100%;
     height: 0.5px;
-    background-color: ${theme.colors.link};
+    background-color: blue;
     left: 0;
-    top: 16px;
+    top: 14px;
   }
 `;
 
-export const Pass = styled.div`
+export const DivPass = styled.div`
   color: #ff6101;
   position: absolute;
   right: 12px;
   top: 12px;
   @media (min-width: 768px) {
     top: 17px;
-  }
-`;
-
-export const IconWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  margin-bottom: 20px;
-`;
-
-export const GoogleIconStyle = styled.img`
-  width: 50px;
-  height: 50px;
-  opacity: 0.8;
-  transition: opacity 300ms cubic-bezier(0.4, 0, 0.2, 1);
-  &:hover {
-    opacity: 1;
   }
 `;

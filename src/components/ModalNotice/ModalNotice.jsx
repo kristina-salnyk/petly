@@ -1,19 +1,20 @@
 import React, { useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { Modal } from './ModalContent/Modal';
 import { ModalWrapper, ModalOverlay } from './ModalNotice.styled';
-import { useDispatch } from 'react-redux';
-import { changeModal } from '../../redux/modal/slice';
+
+
+
 import { useRef } from 'react';
 
-export const ModalNotice = () => {
-  const dispatch = useDispatch();
+export const ModalNotice = ({id,onShow}) => {
+
   const modalRef = useRef();
 
   useEffect(() => {
     const handleEsc = event => {
       if (event.keyCode === 27) {
-        console.log('Close');
-        dispatch(changeModal());
+        onShow();
       }
     };
     window.addEventListener('keydown', handleEsc);
@@ -25,7 +26,7 @@ export const ModalNotice = () => {
 
   function handleOverlayClick(event) {
     if (event.target === modalRef.current) {
-      dispatch(changeModal());
+      onShow();
     }
   }
 
@@ -33,9 +34,14 @@ export const ModalNotice = () => {
     <>
       <ModalOverlay onClick={handleOverlayClick} ref={modalRef}>
         <ModalWrapper>
-          <Modal />
+          <Modal id={id} onShow={onShow}/>
         </ModalWrapper>
       </ModalOverlay>
     </>
   );
+};
+
+ModalNotice.propTypes = {
+  id:PropTypes.string,
+  onShow: PropTypes.func,
 };

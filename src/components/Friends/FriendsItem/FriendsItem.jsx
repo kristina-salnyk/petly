@@ -11,6 +11,8 @@ import {
   SponsorItem,
   TextWrapper,
   List,
+  AddresLink,
+  ItemWraper
 } from './FriendsItem.styled';
 import FriendsTimeTable from './FriendsShedule';
 import defaultImage from '../../../images/defaultImage.png';
@@ -36,75 +38,77 @@ const FriendsItem = ({
 
   return (
     <SponsorItem>
-      <SponsorLink href={website} target="_blank">
-        {title}
-      </SponsorLink>
-      <FriendCard>
-        <Img src={imageUrl ?? defaultImage} alt={title} />
-        <List>
-          <TextWrapper
-            onClick={() => {
-              setIsVisible(!isVisible);
-            }}
-            onMouseLeave={() => {
-              setTimeout(() => {
-                setIsVisible(true);
-              }, 1000);
-            }}
-          >
-            {workDays === null || workDays === undefined || workDays.length === 0 ? (
-              <>
-                <Text>Time: </Text>
-                <Text>------------</Text>
-              </>
-            ) : (
-              <>
-                {' '}
-                {workDays.isOpen ? (
-                  <>
-                    <Text>Time:</Text>
-                    <Time>
-                      {workDays.from}-{workDays.to}
-                    </Time>
-                  </>
-                ) : (
-                  <>
-                    <Text>Time:</Text>
-                    <Time>Closed</Time>
-                  </>
-                )}
-                {isVisible || <FriendsTimeTable shedule={newWorkDays} />}
-              </>
-            )}
-          </TextWrapper>
-          <TextWrapper>
-            <Text>Adress:</Text>
-            {location ? (
-              <ContactLink href={location} target="_blank">
-                {address}
-              </ContactLink>
-            ) : (
-              <Text>дані відсутні</Text>
-            )}
-          </TextWrapper>
-          <TextWrapper>
-            <Text>Email:</Text>
-            {email ? (
-              <ContactLink href={`mailto:${email}`}>{email}</ContactLink>
-            ) : (
-              <Text>дані відсутні</Text>
-            )}
-          </TextWrapper>
-          <TextWrapper>
-            <Text>Phone:</Text>
-            {phone ? (
-              <ContactLink href={`tel:${phone}`}>{phone}</ContactLink>
-            ) : (
-              <Text>дані відсутні</Text>
-            )}
-          </TextWrapper>
-        </List>
-      </FriendCard>
+      <ItemWraper>
+        <SponsorLink href={website} target="_blank">
+          {title}
+        </SponsorLink>
+        <FriendCard>
+          <Img src={imageUrl ?? defaultImage} alt={title} />
+          <List>
+            <TextWrapper
+              onClick={() => {
+                setIsVisible(!isVisible);
+              }}
+              onMouseLeave={() => {
+                setTimeout(() => {
+                  setIsVisible(true);
+                }, 1000);
+              }}
+            >
+              {workDays === null || workDays === undefined || workDays.length === 0 ? (
+                <>
+                  <Text>Time: </Text>
+                  <Text>-------------</Text>
+                </>
+              ) : (
+                <>
+                  {' '}
+                  {workDays.isOpen ? (
+                    <>
+                      <Text>Time:</Text>
+                      <Time>
+                        {workDays.from}-{workDays.to}
+                      </Time>
+                    </>
+                  ) : (
+                    <>
+                      <Text>Time:</Text>
+                      <Time>Closed</Time>
+                    </>
+                  )}
+                  {isVisible || <FriendsTimeTable shedule={newWorkDays} />}
+                </>
+              )}
+            </TextWrapper>
+            <TextWrapper>
+              <Text>Adress:</Text>
+              {location ? (
+                <AddresLink href={location} target="_blank">
+                  {address}
+                </AddresLink>
+              ) : (
+                <Text>-------------</Text>
+              )}
+            </TextWrapper>
+            <TextWrapper>
+              <Text>Email:</Text>
+              {email ? (
+                <ContactLink href={`mailto:${email}`}>{email}</ContactLink>
+              ) : (
+                <Text>-------------</Text>
+              )}
+            </TextWrapper>
+            <TextWrapper>
+              <Text>Phone:</Text>
+              {phone ? (
+                <ContactLink href={`tel:${phone}`}>{phone}</ContactLink>
+              ) : (
+                <Text>-------------</Text>
+              )}
+            </TextWrapper>
+          </List>
+        </FriendCard>
+      </ItemWraper>
     </SponsorItem>
   );
 };

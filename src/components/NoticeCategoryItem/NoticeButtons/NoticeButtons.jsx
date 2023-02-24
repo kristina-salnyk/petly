@@ -8,29 +8,32 @@ import {
   ButtonTextDelete,
 } from './NoticeButtons.styled';
 import { DeleteNoticeIcon } from '../../icons/DeleteNoticeIcon';
-import { changeModal } from '../../../redux/modal/slice';
-import { useDispatch, useSelector } from 'react-redux';
-import {selectIsLoggedIn} from '../../../redux/auth/selectors';
+import { useSelector} from 'react-redux';
 
-export const NoticeButtons = ({id}) => {
-  console.log(id);
-  const dispatch = useDispatch();
+import { selectIsLoggedIn } from '../../../redux/auth/selectors';
+// import { useDispatch } from 'react-redux';
+// import { deleteNotice } from '../../../redux/notices/operations';
+
+export const NoticeButtons = ({ id, owner, onShow }) => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
- 
-  const handleModalChange = () => {
-    dispatch(changeModal());
-    
+  // const dispatch = useDispatch();
+
+
+  const deleteMyNotice = () => {
+    console.log(owner);
+    console.log(id);
+    // dispatch(deleteNotice(id));
   };
- 
+
   return (
     <>
       <ButtonWrapper>
-        <ButtonLearnMore onClick={handleModalChange}>
+        <ButtonLearnMore onClick={onShow}>
           <ButtonText>Learn More</ButtonText>
         </ButtonLearnMore>
 
         {isLoggedIn && (
-          <ButtonDelete>
+          <ButtonDelete onClick={deleteMyNotice}>
             <ButtonTextDelete>Delete</ButtonTextDelete>
             <DeleteNoticeIcon />
           </ButtonDelete>
@@ -40,7 +43,8 @@ export const NoticeButtons = ({id}) => {
   );
 };
 
-
 NoticeButtons.propTypes = {
   id: PropTypes.string,
+  owner:PropTypes.string,
+  onShow: PropTypes.func,
 };

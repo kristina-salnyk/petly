@@ -1,51 +1,67 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {
   ModalInfoWrapper,
   ModalInfoList,
   ModalInfoTitle,
-  ModalInfoField,
   ModalInfoName,
   ModalInfoValue,
+  ModalInfoLink,
 } from './ModalInfo.styled';
 
-export const ModalInfo = () => {
+export const ModalInfo = ({ category, title, name, location, gender, birthday, breed, price }) => {
   return (
     <>
       <ModalInfoWrapper>
+        <ModalInfoTitle>{title}</ModalInfoTitle>
         <ModalInfoList>
-          <ModalInfoTitle>Сute dog looking for a home</ModalInfoTitle>
+          <ModalInfoName>Name:</ModalInfoName>
+          <ModalInfoValue>{name}</ModalInfoValue>
 
-          <ModalInfoField>
-            <ModalInfoName>Name:</ModalInfoName>
-            <ModalInfoValue>Rich</ModalInfoValue>
-          </ModalInfoField>
-          <ModalInfoField>
-            <ModalInfoName>Birthday:</ModalInfoName>
-            <ModalInfoValue>21.09.2020</ModalInfoValue>
-          </ModalInfoField>
-          <ModalInfoField>
-            <ModalInfoName>Breed:</ModalInfoName>
-            <ModalInfoValue>Pomeranian</ModalInfoValue>
-          </ModalInfoField>
-          <ModalInfoField>
-            <ModalInfoName>Location:</ModalInfoName>
-            <ModalInfoValue>Lviv</ModalInfoValue>
-          </ModalInfoField>
-          <ModalInfoField>
-            <ModalInfoName>The sex:</ModalInfoName>
-            <ModalInfoValue>male</ModalInfoValue>
-          </ModalInfoField>
-          <ModalInfoField>
-            <ModalInfoName>Email:</ModalInfoName>
-            <ModalInfoValue>user@mail.com</ModalInfoValue>
-          </ModalInfoField>
-          <ModalInfoField>
-            <ModalInfoName>Phone:</ModalInfoName>
-            <ModalInfoValue>+380971234567</ModalInfoValue>
-          </ModalInfoField>
+          <ModalInfoName>Birthday:</ModalInfoName>
+          <ModalInfoValue>{birthday}</ModalInfoValue>
 
+          <ModalInfoName>Breed:</ModalInfoName>
+          <ModalInfoValue>{breed}</ModalInfoValue>
+
+          <ModalInfoName>Location:</ModalInfoName>
+          <ModalInfoValue>{location}</ModalInfoValue>
+
+          <ModalInfoName>The sex:</ModalInfoName>
+          <ModalInfoValue>{gender}</ModalInfoValue>
+
+          <ModalInfoName>Email:</ModalInfoName>
+
+          <ModalInfoValue>
+            <ModalInfoLink href="https://www.google.com/intl/en/gmail/about/" target={'_blank'}>user@mail.com</ModalInfoLink>
+          </ModalInfoValue>
+
+          <ModalInfoName>Phone:</ModalInfoName>
+
+          <ModalInfoValue>
+            <ModalInfoLink href="tel:+380971234567" target={'_blank'}>+380971234567</ModalInfoLink>
+          </ModalInfoValue>
+          {category === 'sell' && (
+            <>
+              {' '}
+              <ModalInfoName>Price:</ModalInfoName>
+              <ModalInfoValue>{price}$</ModalInfoValue>
+            </>
+          )}
         </ModalInfoList>
       </ModalInfoWrapper>
     </>
   );
+};
+
+ModalInfo.propTypes = {
+  category: PropTypes.string,
+  title: PropTypes.string,
+  name: PropTypes.string,
+  breed: PropTypes.string,
+  gender: PropTypes.string,
+  location: PropTypes.string,
+  price: PropTypes.string,
+  birthday: PropTypes.string,
+  comments: PropTypes.string,
 };

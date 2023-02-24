@@ -1,7 +1,21 @@
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
-import { addNotice, deleteNotice, fetchNotices } from './operations';
+import {
+  addNotice,
+  deleteNotice,
+  fetchNotices,
+  addFavorite,
+  deleteFavorite,
+  fetchNoticeItem,
+} from './operations';
 
-const extraActions = [fetchNotices, addNotice, deleteNotice];
+const extraActions = [
+  fetchNotices,
+  addNotice,
+  deleteNotice,
+  deleteFavorite,
+  addFavorite,
+  fetchNoticeItem,
+];
 
 const noticesInitialState = {
   items: [],
@@ -9,6 +23,7 @@ const noticesInitialState = {
   searchQuery: '',
   isLoading: false,
   error: null,
+  noticeItem: {},
 };
 
 const noticesSlice = createSlice({
@@ -19,10 +34,20 @@ const noticesSlice = createSlice({
       .addCase(fetchNotices.fulfilled, (state, action) => {
         state.items = action.payload;
       })
+      .addCase(fetchNoticeItem.fulfilled, (state, action) => {
+        state.noticeItem = action.payload;
+      })
       .addCase(addNotice.fulfilled, (state, action) => {
         state.items.push(action.payload);
       })
       .addCase(deleteNotice.fulfilled, (state, action) => {
+        const index = state.items.findIndex(notice => notice.id === action.payload.id);
+        state.items.splice(index, 1);
+      })
+      .addCase(addFavorite.fulfilled, (state, action) => {
+        state.items.push(action.payload);
+      })
+      .addCase(deleteFavorite.fulfilled, (state, action) => {
         const index = state.items.findIndex(notice => notice.id === action.payload.id);
         state.items.splice(index, 1);
       })
