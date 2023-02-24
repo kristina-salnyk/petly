@@ -7,7 +7,8 @@ import {
   ProfileImgWrapper,
   ProfileImgBtn,
   ProfileImg,
-  PhotoEditButton,
+  PhotoEditWrapper,
+  PhotoEditInput,
   PhotoEditSpan,
 } from './UserData.styled';
 import { EditPhotoIcon } from '../../components/icons/EditPhotoIcon';
@@ -21,14 +22,18 @@ export const UserData = () => {
       <MyInformation>My information:</MyInformation>
       <InformationBackgroundBlock>
         <ProfileImgWrapper>
-          <ProfileImgBtn type="button">
+          <label>
+            <ProfileImgBtn type="file" />
             <ProfileImg src={imageUrl} alt="User avatar" />
-          </ProfileImgBtn>
+          </label>
         </ProfileImgWrapper>
-        <PhotoEditButton type="button">
-          <EditPhotoIcon />
-          <PhotoEditSpan>Edit photo</PhotoEditSpan>
-        </PhotoEditButton>
+        <label>
+          <PhotoEditWrapper>
+            <PhotoEditInput type="file" />
+            <EditPhotoIcon />
+            <PhotoEditSpan>Edit photo</PhotoEditSpan>
+          </PhotoEditWrapper>
+        </label>
         <UserDataItem />
         <Logout />
       </InformationBackgroundBlock>
