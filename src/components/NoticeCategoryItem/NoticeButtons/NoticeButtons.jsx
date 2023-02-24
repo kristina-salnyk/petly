@@ -7,22 +7,18 @@ import {
   ButtonDelete,
   ButtonTextDelete,
 } from './NoticeButtons.styled';
+import { useSelector } from 'react-redux';
+import { selectUser } from '../../../redux/auth/selectors';
+import { useDispatch } from 'react-redux';
 import { DeleteNoticeIcon } from '../../icons/DeleteNoticeIcon';
-import { useSelector} from 'react-redux';
-
-import { selectIsLoggedIn } from '../../../redux/auth/selectors';
-// import { useDispatch } from 'react-redux';
-// import { deleteNotice } from '../../../redux/notices/operations';
+import { deleteNotice } from '../../../redux/notices/operations';
 
 export const NoticeButtons = ({ id, owner, onShow }) => {
-  const isLoggedIn = useSelector(selectIsLoggedIn);
-  // const dispatch = useDispatch();
-
+  const user = useSelector(selectUser);
+  const dispatch = useDispatch();
 
   const deleteMyNotice = () => {
-    console.log(owner);
-    console.log(id);
-    // dispatch(deleteNotice(id));
+    dispatch(deleteNotice(id));
   };
 
   return (
@@ -32,7 +28,7 @@ export const NoticeButtons = ({ id, owner, onShow }) => {
           <ButtonText>Learn More</ButtonText>
         </ButtonLearnMore>
 
-        {isLoggedIn && (
+        {user.id === owner && (
           <ButtonDelete onClick={deleteMyNotice}>
             <ButtonTextDelete>Delete</ButtonTextDelete>
             <DeleteNoticeIcon />
@@ -45,6 +41,6 @@ export const NoticeButtons = ({ id, owner, onShow }) => {
 
 NoticeButtons.propTypes = {
   id: PropTypes.string,
-  owner:PropTypes.string,
+  owner: PropTypes.string,
   onShow: PropTypes.func,
 };

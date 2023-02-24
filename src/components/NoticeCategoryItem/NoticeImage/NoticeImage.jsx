@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import Notiflix from 'notiflix';
+import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import {
   ImageThumb,
   ImageCard,
@@ -8,12 +11,11 @@ import {
   FavoriteLabel,
   LabelText,
 } from './NoticeImage.styled';
-import Notiflix from 'notiflix';
+
 import { FavoriteHeartIcon } from '../../icons/FavoriteHeartIcon';
 import { selectIsLoggedIn } from '../../../redux/auth/selectors';
 import { addFavorite } from '../../../redux/notices/operations';
-import { useSelector } from 'react-redux';
-import { useDispatch } from 'react-redux';
+
 import theme from '../../../utils/theme';
 
 export const NoticeImage = ({ id, category, image }) => {
@@ -23,11 +25,10 @@ export const NoticeImage = ({ id, category, image }) => {
   const [favorite, setFavorite] = useState(false);
 
   const addToFavorite = () => {
-    if (isLoggedIn) {
+    if (!isLoggedIn) {
       Notiflix.Notify.warning('Please sign in');
       return;
     }
-    console.log(id);
     dispatch(addFavorite(id));
     console.log('add to favorite');
     return setFavorite(!favorite);
