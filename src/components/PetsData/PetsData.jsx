@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
-import { Formik, Form, ErrorMessage } from 'formik';
-import { Notify } from 'notiflix/build/notiflix-notify-aio';
+import { useFormik } from 'formik';
+// import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 import {
   PetsDataWrapper,
@@ -46,7 +46,7 @@ import OpenModalButton from '../ModalAddPet/OpenModalButton';
 import SecondModal from '../ModalAddPet/SecondModal';
 import SecondOpenModalButton from '../ModalAddPet/SecondOpenModalButton';
 
-export const ModalContent = styled(Form)`
+export const ModalContent = styled.div`
   display: flex;
   flex-direction: column;
   padding: 0px 80px 0px;
@@ -56,36 +56,30 @@ export const ModalContent = styled(Form)`
   }
 `;
 
+export const Form = styled.form``;
+
 export const PetsData = () => {
   const [isOpen, toggle] = useState(false);
   const [isOpenSecond, toggleSecond] = useState(false);
 
   const dispatch = useDispatch();
 
-  let pet = useSelector(state => state.pets.items);
+  const formik = useFormik({
+    initialValues: {
+      name: '',
+      birth: '',
+      breed: '',
+      comments: '',
+      image: '',
+    },
+    // onSubmit: values => Notify.failure(JSON.stringify(values, null, 2)),
+  });
 
-  const onPet = data => {
-    dispatch(addPet(data));
-  };
+  const handleSubmit = e => {
+    e.preventDefault();
 
-  const initialValue = {
-    name: '',
-    birth: '',
-    breed: '',
-    comments: '',
-    petImage: '',
-  };
-
-  const handleSubmitModal = (values, actions) => {
-    pet = {
-      name: values.name,
-      birth: values.birth,
-      breed: values.breed,
-      comments: values.comments,
-      petImage: values.petImage,
-    };
-    actions.resetForm();
-    return onPet(pet);
+    dispatch(addPet(formik.values));
+    console.log(formik.values);
   };
 
   function handlOpenModal(open) {
@@ -109,29 +103,37 @@ export const PetsData = () => {
           </OpenModalButton>
           {isOpenSecond === false && (
             <ModalAddPet isOpen={isOpen} handleClose={() => handlOpenModal(false)}>
-              <Formik initialValues={initialValue} onSubmit={handleSubmitModal}>
+              <Form onSubmit={formik.handleSubmit}>
                 <ModalContent>
                   <HeaderModal>
                     <TitleModal>Add pet</TitleModal>
                   </HeaderModal>
                   <MainModal>
                     <LabelInput>Name pet</LabelInput>
-                    <InputModal type="text" name="name" placeholder="Type name pet" />
-                    <ErrorMessage
+                    <InputModal
+                      onChange={formik.handleChange}
+                      value={formik.values.name}
+                      type="text"
                       name="name"
-                      render={msg => Notify.warning(`${msg}`, { timeout: 2000 })}
+                      placeholder="Type name pet"
                     />
+
                     <LabelInput>Date of birth</LabelInput>
-                    <InputModal type="number" name="date" placeholder="Type date of birth" />
-                    <ErrorMessage
-                      name="date"
-                      render={msg => Notify.warning(`${msg}`, { timeout: 2000 })}
+                    <InputModal
+                      onChange={formik.handleChange}
+                      value={formik.values.birth}
+                      type="date"
+                      name="birth"
+                      placeholder="Type date of birth"
                     />
+
                     <LabelInput>Breed</LabelInput>
-                    <InputModal type="text" name="breed" placeholder="Type breed" />
-                    <ErrorMessage
+                    <InputModal
+                      onChange={formik.handleChange}
+                      value={formik.values.breed}
+                      type="text"
                       name="breed"
-                      render={msg => Notify.warning(`${msg}`, { timeout: 2000 })}
+                      placeholder="Type breed"
                     />
                     <FooterModal>
                       <ButtonModal onClick={() => handlOpenModal(false)}>Cancel</ButtonModal>
@@ -144,7 +146,7 @@ export const PetsData = () => {
                     </FooterModal>
                   </MainModal>
                 </ModalContent>
-              </Formik>
+              </Form>
             </ModalAddPet>
           )}
           {isOpenSecond === true && (
@@ -152,7 +154,7 @@ export const PetsData = () => {
               isOpenSecond={isOpenSecond}
               handleClose={() => secondHandlOpenModal(false)}
             >
-              <Formik initialValues={initialValue} onSubmit={handleSubmitModal}>
+              <Form onSubmit={formik.handleSubmit}>
                 <ModalContent>
                   <HeaderModalSecond>
                     <TitleModalSecond>Add pet</TitleModalSecond>
@@ -161,10 +163,11 @@ export const PetsData = () => {
                     <TextModal>Add photo and some comments</TextModal>
                     <BoxFileModalSecond>
                       <LabelModalSecond>
-                        <InputModalSecond type="file" name="photo" />
-                        <ErrorMessage
-                          name="photo"
-                          render={msg => Notify.warning(`${msg}`, { timeout: 2000 })}
+                        <InputModalSecond
+                          onChange={formik.handleChange}
+                          value={formik.values.image}
+                          type="file"
+                          name="image"
                         />
                         <AddPhotoOfPetIcon />
                       </LabelModalSecond>
@@ -172,10 +175,12 @@ export const PetsData = () => {
                   </MainModalSecond>
                   <BoxTextereaModalSecond>
                     <TextModal>Comments</TextModal>
-                    <TextareaModalSecond type="text" name="comments" placeholder="Type comments" />
-                    <ErrorMessage
+                    <TextareaModalSecond
+                      onChange={formik.handleChange}
+                      value={formik.values.comments}
+                      type="text"
                       name="comments"
-                      render={msg => Notify.warning(`${msg}`, { timeout: 2000 })}
+                      placeholder="Type comments"
                     />
                   </BoxTextereaModalSecond>
                   <FooterModalSecond>
@@ -183,15 +188,16 @@ export const PetsData = () => {
                       Back
                     </SecondButtonModal>
                     <SecondButtonModal
-                      onClick={() => secondHandlOpenModal(false)}
+                      onSubmit={() => secondHandlOpenModal(false)}
                       handlClick={() => handlOpenModal(false)}
+                      onClick={handleSubmit}
                       type="submit"
                     >
                       Done
                     </SecondButtonModal>
                   </FooterModalSecond>
                 </ModalContent>
-              </Formik>
+              </Form>
             </SecondModal>
           )}
         </AddPetWrapper>
