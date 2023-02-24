@@ -17,7 +17,7 @@ export const Overlay = styled(motion.div)`
 export const ModalContainer = styled(motion.div)`
   width: 608px;
   height: 570px;
-  background-color: white;
+  background-color: ${({ theme }) => theme.colors.white};
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -28,7 +28,7 @@ export const ModalContainer = styled(motion.div)`
   flex-direction: column;
   justify-content: center;
 
-  @media screen and (max-width: 720px) {
+  @media screen and (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
     width: 280px;
     height: 530px;
   }
@@ -40,7 +40,7 @@ export const CloseButton = styled.div`
   right: 18px;
   top: 18px;
   cursor: pointer;
-  background-color: #fdf7f2;
+  background-color: ${({ theme }) => theme.colors.background.primary};
   border-radius: 40px;
   display: flex;
   justify-content: center;
@@ -54,8 +54,8 @@ export const ButtonCancelModal = styled.button`
   border-radius: 40px;
   margin-top: 40px;
   border: 2px solid #f59256;
-  background: #ffffff;
-  color: #111111;
+  background: ${({ theme }) => theme.colors.white};
+  color: ${({ theme }) => theme.colors.black};
   text-align: center;
   text-decoration: none;
   display: inline-block;
@@ -68,8 +68,10 @@ export const ButtonCancelModal = styled.button`
   width: 180px;
   height: 44px;
   :hover {
-    color: #ffffff;
-    background-color: #f59256;
+    color: ${({ theme }) => theme.colors.white};
+    background-color: ${({ theme }) => theme.colors.background.button};
+    scale: 1.1;
+    scale: 0.9;
   }
 `;
 
