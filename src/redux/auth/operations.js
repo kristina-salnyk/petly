@@ -4,10 +4,7 @@ import { setAuthHeader, clearAuthHeader } from '../../utils/api';
 
 export const register = createAsyncThunk('auth/register', async (credentials, thunkAPI) => {
   try {
-    console.log(credentials);
     const response = await api.post('/auth/register', credentials);
-    console.log(response.data.token);
-    setAuthHeader(response.data.token);
 
     return response.data;
   } catch (error) {
