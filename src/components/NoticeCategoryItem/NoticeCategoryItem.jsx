@@ -46,17 +46,16 @@ export const NoticeCategoryItem = ({
     <>
       <NoticeCard>
         <NoticeImage id={_id} category={category} image={image} />
-        <div>
-          <NoticeInfo
-            category={category}
-            title={title}
-            location={location}
-            birthday={birthday}
-            breed={breed}
-            price={price}
-          />
-          <NoticeButtons id={_id} owner={owner} onShow={onShow} />
-        </div>
+
+        <NoticeInfo
+          category={category}
+          title={title}
+          location={location}
+          birthday={birthday}
+          breed={breed}
+          price={price}
+        />
+        <NoticeButtons id={_id} owner={owner} onShow={onShow} />
 
         {modalOpen && <ModalNotice id={_id} onShow={onShow} />}
       </NoticeCard>
@@ -77,5 +76,5 @@ NoticeCategoryItem.propTypes = {
   image: PropTypes.string,
   birthday: PropTypes.string,
   comments: PropTypes.string,
-  owner:PropTypes.string,
+  owner: PropTypes.string,
 };
