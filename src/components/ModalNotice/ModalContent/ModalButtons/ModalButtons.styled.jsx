@@ -5,7 +5,7 @@ export const ModalButtonWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-top: 40px;
+  margin-top: 30px;
   @media (min-width: 768px) {
     display: flex;
     flex-direction: row;
@@ -13,7 +13,7 @@ export const ModalButtonWrapper = styled.div`
     align-items: baseline;
     justify-content: flex-start;
     gap: 12px;
-    margin-top: 32px;
+    margin-top: 40px;
   }
 `;
 
@@ -28,7 +28,6 @@ export const ModalButtonContact = styled.button`
 
   &:hover {
     background-color: ${props => props.theme.colors.white};
-    /* transition: background-color ${props => props.theme.animation.cubicBezier}; */
     transform: scale(1.07) rotateX(0deg) translateZ(25px);
   }
   &:hover > span {

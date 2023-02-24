@@ -2,19 +2,10 @@ import styled from 'styled-components';
 
 export const CardInfoWrapper = styled.div`
   padding: 20px;
-
-  @media (min-width: 768px) {
-    /* padding-right: 85px; */
-  }
-  @media (min-width: 1280px) {
-    /* padding-right: 37px; */
-  }
 `;
 
 export const CardInfoList = styled.ul`
   list-style: none;
-  /* margin: 0;
-  padding: 0;*/
   margin-top: 20px;
   display: grid;
   grid-template-columns: 2fr 5fr;
