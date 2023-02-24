@@ -6,18 +6,17 @@ import womanDesktop from '../../components/Header/images/png/womanDesktop.png';
 import bgDesktop from '../../components/Header/images/png/WaveDesktop2.png';
 import UnionDesk from '../../components/Header/images/UnionDesk.svg';
 import WaveDesctop3 from '../../components/Header/images/png/waveDesktop3.png';
-import {H1, Page} from '../../components/Header/Header.styled';
-import {ImageHeart, ImageWoman, ImageBG, Frame} from './HomePage.styled';
-
-
+import { H1, Page } from '../../components/Header/Header.styled';
+import { ImageHeart, ImageWoman, ImageBG, Frame } from './HomePage.styled';
 
 const HomePage = () => {
-
   return (
-
     <>
       <Page>
-        <H1>Take good care of <br/>your small pets</H1>
+        <H1>
+          Take good care on <br />
+          your small pets
+        </H1>
       </Page>
       <div>
         <ImageHeart src={UnionDesk} alt="heart" />
@@ -33,12 +32,8 @@ const HomePage = () => {
           <ImageBG src={bgDesktop} alt="background" />
         </picture>
       </div>
-      
     </>
-
-  )
-
+  );
 };
 
 export default HomePage;
-
