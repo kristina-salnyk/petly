@@ -8,13 +8,13 @@ export const Ul = styled.ul`
   display: flex;
   gap:80px;
   white-space: nowrap;
-  }
+  
   @media (max-width: 1279px) {
     display: none;
     margin:0;
     padding:0;
     
-  
+  }
 
     
 `

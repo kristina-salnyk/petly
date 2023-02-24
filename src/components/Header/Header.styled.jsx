@@ -67,11 +67,13 @@ export const H1 = styled.h1`
     font-weight: 700;
     font-size: 32px;
     line-height: 44px;
-    color: #000000;
+    color: ${props => props.theme.colors.black};
     padding-left: 20px;
     -bottom: 58px;
 
-    @media (min-width: 768px) {
+    
+
+    @media (min-width: ${props => props.theme.breakpoints.tabletMin}) {
         font-family: 'Manrope';
         font-style: normal;
         font-weight: 700;
@@ -128,8 +130,7 @@ export const Union = styled.img`
     position: absolute;
     right: 579px;
     top: 295px;
-}
-}
+
 @media screen and (max-width: 1279px) {
     display: none;
     
@@ -147,10 +148,15 @@ export const HederWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-
+  background-color: #FDF7F2;
   margin: 0;
   padding: 0;
   padding-top: 16px;
   padding-left: 20px;
   padding-right: 20px;
 ` 
+
+export const UserWrapper = styled.div`
+    display: flex;
+    align-items: center;
+`

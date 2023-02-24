@@ -2,8 +2,14 @@
 import { Link } from 'react-router-dom';
 import  './bgmenu.css'
 import PropTypes from 'prop-types';
+import { selectIsLoggedIn } from '../../redux/auth/selectors';
+import { useSelector } from 'react-redux';
+import {Login} from '../AuthNav/AuthNav.styled';
+import {UserIcon} from '../icons/UserIcon';
 
 const BgMenu = ({burger_class, menu_class, updateMenu})=> {
+  const  isLoggedIn  =  useSelector(selectIsLoggedIn);
+  
 
   return (
 
@@ -20,18 +26,32 @@ const BgMenu = ({burger_class, menu_class, updateMenu})=> {
       <div className={menu_class}>
         
         <ul className="auth" >
-          <li className="login">
-            <Link to="/login" 
-              className='linkLogin'>
+          {!isLoggedIn ? 
+            <>
+              <li className="login">
+                <Link to="/login" 
+                  className='linkLogin'>
                 Login 
-            </Link>
-          </li>
-          <li className="register">
-            <Link to="/register"
-              className='linkRegister'>
+                </Link>
+              </li>
+              <li className="register">
+                <Link to="/register"
+                  className='linkRegister'>
                Registration
-            </Link>
-          </li>
+                </Link>
+              </li>
+            </>
+            :
+            <li>
+              <Login>
+                <UserIcon/>
+                <Link to="/user"
+                  className='linkUser'>
+                  Account
+                </Link>
+              </Login>
+            </li>
+          }
         </ul>
         <div className="div">
           <ul className="bgNews">

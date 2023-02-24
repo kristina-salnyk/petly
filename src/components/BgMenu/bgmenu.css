@@ -12,6 +12,11 @@
     /* padding: 1em; */
     
 }
+@media screen and (max-width: 767px) {
+    .BG {
+        height: 3.5em;
+    }
+}
 
 .burger-menu {
     height: 55%;
@@ -29,12 +34,12 @@
 }
 @media screen and (min-width: 500px) {
     .burger-menu {
-        width: 5em;
+        width: 4em;
     }
 }
 @media screen and (min-width: 700px) {
     .burger-menu {
-        width: 5em;
+        width: 3em;
     }
 }
 @media screen and (min-width: 1000px) {
@@ -54,24 +59,30 @@
     background-color: #212121;
     border-radius: 0.5em;
 }
+@media screen and (max-width: 767px) {
+    .burger-bar {
+        height: 5px
+    }
+}
 
 .menu {
     width: 100%;
     height: 444vh;
-    background-color: #FDF7F2;;
+    background-color: #FDF7F2;
     position: absolute;
-    top: 100px;
+    top: 72px;
     left: 0;
     z-index: 1;
+    padding-top: 45px;
 }
 
 @media screen and (min-width: 768px) {
     .menu {
-        width: 100%;
+        width: 103%;
         height: 444vh;
         background-color: #FDF7F2;;
         position: absolute;
-        top: 141px;
+        top: 95px;
         left: 0;
         z-index: 1;
     }
@@ -91,7 +102,14 @@
     display: flex;
     flex-direction: column;
     list-style: none;
+   
+    padding-top: 70px;
     
+}
+@media screen and (min-width: 320px) {
+    .bgNews {
+     padding-top: 0;
+    }
 }
 
 .div {
@@ -140,7 +158,8 @@
 }
 @media screen and (min-width: 768px) {
     .news {
-        margin-left: 55px
+        margin-left: 55px;
+        padding-top: 35px;
     }
 }
 
@@ -219,7 +238,7 @@
 .auth{
     padding-bottom: 60px;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
 }
 
 .login {
@@ -282,6 +301,24 @@
 .linkRegister:hover{
     color:#FFFFFF;
 }
+.linkUser {
+    color:#111111;
+    font-family: 'Manrope';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 19px;
+    letter-spacing: 0.04em;
+    margin-left: 10px;
+
+}
+.linkUser:hover{
+    color:#FFFFFF;
+    background-color: #F59256;
+    cursor: pointer;
+    
+}
+
 .linkLogin {
     text-decoration: none;
     color:#111111
@@ -299,23 +336,43 @@
 /* animation*/
 /* clicked*/
 .burger-bar.clicked:nth-child(1){
-    transform: rotate(45deg) translate(0.75em, 1.25em);
+    transform: rotate(45deg) translate(0.75em, 1.15em);
     transition: ease-out 0.5s;
+    width: 40px;
+}
+@media screen and (max-width: 767px) {
+    .burger-bar.clicked:nth-child(1) {
+        transform: rotate(45deg) translate(0.3em, 0.99em);
+        transition: ease-out 0.5s;
+        width: 40px;
+    }
 }
 
 .burger-bar.clicked:nth-child(2){
-    transform: scale(0.1);
+    transform: scale(0.02);
     transition: ease-out 0.5s;
+    
 }
 
 .burger-bar.clicked:nth-child(3){
-    transform: rotate(135deg) translate(-0.5em, 1em);
+    transform: rotate(135deg) translate(-0.5em, 0.99em);
     transition: ease-out 0.5s;
+    width: 40px;
+     
 }
+@media screen and (max-width: 767px) {
+    .burger-bar.clicked:nth-child(3) {
+        transform: rotate(135deg) translate(-0.15em, 0.89em);
+        transition: ease-out 0.5s;
+        width: 40px;
+    }
+}
+
 
 /* unclicked */
 .burger-bar.unclicked {
     transform: rotate(0) translate(0);
     transition: cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.5s;
+    
     
 }
