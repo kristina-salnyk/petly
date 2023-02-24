@@ -1,4 +1,3 @@
-import { NavLink } from 'react-router-dom';
 import { createGlobalStyle } from 'styled-components';
 import styled from 'styled-components';
 
@@ -16,7 +15,7 @@ export const FerstModalWrapper = styled.div`
   width: 280px;
   height: 813px;
   box-shadow: 0 5px 16px rgba(0, 0, 0, 0.2);
-  background: ${props=>props.theme.colors.white};
+  background: ${props => props.theme.colors.white};
   display: grid;
   grid-template-columns: 1fr 1fr;
   position: relative;
@@ -27,14 +26,13 @@ export const FerstModalWrapper = styled.div`
     width: 608px;
     height: 100%;
   }
-  
 `;
 
 export const SecondModalWrapper = styled.div`
   width: 280px;
   height: 855px;
   box-shadow: 0 5px 16px rgba(0, 0, 0, 0.2);
-  background: ${props=>props.theme.colors.white};
+  background: ${props => props.theme.colors.white};
   display: grid;
   grid-template-columns: 1fr 1fr;
   position: relative;
@@ -43,9 +41,8 @@ export const SecondModalWrapper = styled.div`
 
   @media (min-width: ${({ theme }) => theme.breakpoints.tablet[0]}) {
     width: 608px;
-   height: 100%;
+    height: 100%;
   }
-
 `;
 
 export const ModalContent = styled.div`
@@ -53,21 +50,20 @@ export const ModalContent = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  line-height: 1.8
+  line-height: 1.8;
 `;
-
 
 export const Title = styled.h1`
   height: 33px;
   position: absolute;
   left: 90px;
-  top: 20px;
+  top: 30px;
   font-family: 'Manrope';
   font-style: normal;
   font-weight: 500;
   font-size: 24px;
   line-height: 33px;
-  @media (min-width: ${({ theme }) => theme.breakpoints.tablet[0]})  {
+  @media (min-width: ${({ theme }) => theme.breakpoints.tablet[0]}) {
     left: 240px;
     top: 10px;
     font-size: 36px;
@@ -76,18 +72,18 @@ export const Title = styled.h1`
 `;
 
 export const P = styled.p`
-position: absolute;
-left: 10px;
-right: 10px;
-top: 40px;
-text-align: center;
-letter-spacing: -0.01em;
-color: ${props=>props.theme.colors.black};
-@media (min-width: ${({ theme }) => theme.breakpoints.tablet[0]}) {
-  left: 40px;
+  position: absolute;
+  left: 10px;
+  right: 10px;
   top: 60px;
-}
-`
+  text-align: center;
+  letter-spacing: -0.01em;
+  color: ${props => props.theme.colors.black};
+  @media (min-width: ${({ theme }) => theme.breakpoints.tablet[0]}) {
+    left: 40px;
+    top: 60px;
+  }
+`;
 
 export const ButtonCansel = styled.button`
   width: 240px;
@@ -97,14 +93,14 @@ export const ButtonCansel = styled.button`
   border-radius: 40px;
   position: absolute;
   left: 20px;
-  top: 510px;
+  top: 540px;
   font-family: 'Manrope';
   font-style: normal;
   font-weight: 500;
   font-size: 16px;
   line-height: 22px;
   letter-spacing: 0.04em;
-  color: ${props=>props.theme.colors.black};
+  color: ${props => props.theme.colors.black};
   @media (min-width: ${({ theme }) => theme.breakpoints.tablet[0]}) {
     width: 180px;
     height: 44px;
@@ -120,16 +116,16 @@ export const ButtonNext = styled.button`
   border-radius: 40px;
   position: absolute;
   left: 20px;
-  top: 560px;
+  top: 590px;
   font-family: 'Manrope';
   font-style: normal;
   font-weight: 500;
   font-size: 16px;
   line-height: 22px;
   letter-spacing: 0.04em;
-  color: ${props=>props.theme.colors.white};
+  color: ${props => props.theme.colors.white};
 
-  @media (min-width: ${({ theme }) => theme.breakpoints.tablet[0]}){
+  @media (min-width: ${({ theme }) => theme.breakpoints.tablet[0]}) {
     width: 180px;
     height: 44px;
     left: 320px;
@@ -137,30 +133,31 @@ export const ButtonNext = styled.button`
   }
 `;
 
-
 export const CloseModalButton = styled.button`
   cursor: pointer;
   position: absolute;
-  top: 10px;
- left: 230px;
-  width: 38px;
-  height: 38px;
+  top: 30px;
+  left: 230px;
+  width: 34px;
+  height: 34px;
+  display: flex;
+  justify-content: center;
   padding: 0;
   z-index: 10;
   border-radius: 50%;
-  background: ${props=>props.theme.colors.white};
-  @media (min-width: ${({ theme }) => theme.breakpoints.tablet[0]}){
+  background: ${props => props.theme.colors.white};
+  @media (min-width: ${({ theme }) => theme.breakpoints.tablet[0]}) {
     top: 10px;
     left: 540px;
     width: 38px;
-  height: 38px;
+    height: 38px;
   }
 `;
 
 export const Form = styled.form`
   width: 240px;
   left: 20px;
-  top: 180px;
+  top: 200px;
   position: absolute;
 
   @media (min-width: ${({ theme }) => theme.breakpoints.tablet[0]}) {
@@ -183,14 +180,14 @@ export const Input = styled.input`
     height: 48px;
     margin-bottom: 20px;
   }
-    ::placeholder {
+  ::placeholder {
     font-family: 'Inter';
     font-weight: 400;
     font-size: 16px;
     line-height: 26px;
     color: #535353;
     padding-left: 10px;
-    }
+  }
 `;
 export const Label = styled.label`
   height: 27px;
@@ -214,65 +211,68 @@ export const Label = styled.label`
 
 export const Categories = styled.div`
   position: absolute;
-  top: 100px;
+  top: 120px;
   left: 20px;
   gap: ${({ theme }) => theme.spacing[3]}px;
 
   @media (min-width: ${({ theme }) => theme.breakpoints.tablet[0]}) {
     position: absolute;
     top: 100px;
-   left: 100px;
-  }
-  `;
-
-export const Category = styled(NavLink)`
-  padding: 2px 20px;
-  margin-left: 5px;   
-  display: inline-block;
-  font-size: ${({ theme }) => theme.typography.size.xs};
-  font-weight: ${({ theme }) => theme.typography.weight.medium};
-  background-color: ${({ theme }) => theme.colors.white};
-  color: ${({ theme }) => theme.colors.black};
-  border: 2px solid ${({ theme }) => theme.colors.accent};
-  border-radius: ${({ theme }) => theme.shape.borderRadius.l}px;
- 
-  
-  &.active {
-    background-color: ${({ theme }) => theme.colors.accent};
-    color: ${({ theme }) => theme.colors.white};
-    &:hover {
-      background-color: ${({ theme }) => theme.colors.hoverAccent};
-    }
-  }
-  &:hover {
-    border-color: ${({ theme }) => theme.colors.hoverAccent};
-  }
-  @media (min-width: ${({ theme }) => theme.breakpoints.tablet[0]}) {
-    padding: 2px 20px;  
-    margin-left: 10px; 
-    font-size: ${({ theme }) => theme.typography.size.m};
+    left: 100px;
   }
 `;
 
-export const SexWrapper = styled.div`
-display: flex;
-position: absolute;
-top: 80px;
-` 
-export const SexItem = styled.div`
-width: 36px;
-hight: 36px;
-margin-left: 80px;
-` 
-export const SexLabel = styled.label`
+export const Category = styled.input`
+display: none;
+`;
+export const CategoryWrap = styled.div`
+padding: 2px 20px;
+margin-left: 5px;
+display: inline-block;
+font-size: ${({ theme }) => theme.typography.size.xs};
+font-weight: ${({ theme }) => theme.typography.weight.medium};
+background-color: ${({ theme }) => theme.colors.white};
 color: ${({ theme }) => theme.colors.black};
-&:hover {
-  color: ${({ theme }) => theme.colors.hoverAccent};
-}
-&:active {
-  color: ${({ theme }) => theme.colors.hoverAccent};
-}
+border: 2px solid ${({ theme }) => theme.colors.accent};
+border-radius: ${({ theme }) => theme.shape.borderRadius.l}px;
+
+
+  &:hover {
+    background-color: ${({ theme }) => theme.colors.accent};
+  }
+  &:active {
+    background-color: ${({ theme }) => theme.colors.accent};
+  }
+  &:focus {
+    ackground-color: ${({ theme }) => theme.colors.accent};
+  }
+
 @media (min-width: ${({ theme }) => theme.breakpoints.tablet[0]}) {
+  padding: 2px 20px;
+  margin-left: 10px;
+  font-size: ${({ theme }) => theme.typography.size.m};
+  &:hover {
+    background-color: ${({ theme }) => theme.colors.accent};
+  }
+  &:active {
+    color: ${({ theme }) => theme.colors.hoverAccent};
+  }
+}
+}
+`
+
+
+export const GenderWrapper = styled.div`
+  display: flex;
+  position: absolute;
+  top: 80px;
+`;
+export const GenderItem = styled.div`
+  width: 36px;
+  hight: 36px;
+  margin-left: 80px;
+`;
+export const GenderLabel = styled.label`
   color: ${({ theme }) => theme.colors.black};
   &:hover {
     color: ${({ theme }) => theme.colors.hoverAccent};
@@ -280,23 +280,29 @@ color: ${({ theme }) => theme.colors.black};
   &:active {
     color: ${({ theme }) => theme.colors.hoverAccent};
   }
-}
+  @media (min-width: ${({ theme }) => theme.breakpoints.tablet[0]}) {
+    color: ${({ theme }) => theme.colors.black};
+    &:hover {
+      color: ${({ theme }) => theme.colors.hoverAccent};
+    }
+    &:active {
+      color: ${({ theme }) => theme.colors.hoverAccent};
+    }
+  }
 `;
 
-export const SexP = styled.p`
-
-`
-export const SexInput = styled.input`
-width: 36px;
-hight: 36px;
-display: none;
-` 
+export const GenderP = styled.p``;
+export const GenderInput = styled.input`
+  width: 36px;
+  hight: 36px;
+  display: none;
+`;
 export const FileBox = styled.div`
-width: 140px;
-height: 140px;
-background: #fdf7f2;
-border-radius: 20px;
-`
+  width: 140px;
+  height: 140px;
+  background: #fdf7f2;
+  border-radius: 20px;
+`;
 export const Comments = styled.textarea`
   width: 100%;
   background: #fdf7f2;
@@ -309,24 +315,24 @@ export const Comments = styled.textarea`
     height: 48px;
     margin-bottom: 20px;
   }
-    ::placeholder {
+  ::placeholder {
     font-family: 'Inter';
     font-weight: 400;
     font-size: 16px;
     line-height: 26px;
     color: #535353;
     padding-left: 10px;
-    }
-`; 
+  }
+`;
 export const ButtonWrapper = styled.div`
-position: absolute;
-left: 0px;
-top: 70px;
-@media (min-width: ${({ theme }) => theme.breakpoints.tablet[0]}){
-  left: 20px;
-  top: 30px;
-}
-`
+  position: absolute;
+  left: 0px;
+  top: 70px;
+  @media (min-width: ${({ theme }) => theme.breakpoints.tablet[0]}) {
+    left: 20px;
+    top: 30px;
+  }
+`;
 
 export const GlobalStyle = createGlobalStyle`
 box-sizing: border-box;
@@ -334,4 +340,3 @@ margin: 0;
 padding: 0;
 font-family: 'Arial', sans-serif;
 `;
-

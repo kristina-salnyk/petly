@@ -41,14 +41,9 @@ const noticesSlice = createSlice({
         state.items.push(action.payload);
       })
       .addCase(deleteNotice.fulfilled, (state, action) => {
-        const index = state.items.findIndex(notice => notice.id === action.payload.id);
-        state.items.splice(index, 1);
-      })
-      .addCase(addFavorite.fulfilled, (state, action) => {
-        state.items.push(action.payload);
-      })
-      .addCase(deleteFavorite.fulfilled, (state, action) => {
-        const index = state.items.findIndex(notice => notice.id === action.payload.id);
+        const index = state.items.findIndex(
+          notice => notice.id === action.payload.id
+        );
         state.items.splice(index, 1);
       })
       .addMatcher(isAnyOf(...extraActions.map(action => action.pending)), state => {
@@ -68,7 +63,5 @@ const noticesSlice = createSlice({
     },
   },
 });
-
-export const { changeSearchQuery } = noticesSlice.actions;
 
 export const noticesReducer = noticesSlice.reducer;

@@ -1,9 +1,6 @@
-import { Suspense, useEffect, useState } from 'react';
-import { Outlet, useParams, useSearchParams } from 'react-router-dom';
-import { NoticesSearch } from '../../components/NoticesSearch';
-import { NoticeCategoriesNav } from '../../components/NoticesCategoriesNav/NoticesCategoriesNav';
-import { AddNoticeButton } from '../../components/AddNoticeButton';
-import { Container, ContentWrap, PageTitle, TopPanel } from './NoticesPage.styled';
+
+import React, { useState } from 'react';
+import { ModalAddNotice } from '../../components/ModalAddNotice/ModalAddNotice';
 import { GlobalStyle } from '../../components/ModalAddNotice/ModalAddNotice.styled';
 import { ModalAddNotice } from '../../components/ModalAddNotice';
 
