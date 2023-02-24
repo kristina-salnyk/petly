@@ -18,6 +18,7 @@ const NoticesPage = () => {
 
   const [showModal, setShowModal] = useState(false);
   const openModal = () => {
+    console.log('jjkjjjjj');
     setShowModal(prev => !prev);
   };
 
@@ -66,3 +67,25 @@ const NoticesPage = () => {
 };
 
 export default NoticesPage;
+
+// import React, { useState } from 'react';
+// import { ModalAddNotice } from '../../components/ModalAddNotice/ModalAddNotice';
+// import { GlobalStyle } from '../../components/ModalAddNotice/ModalAddNotice.styled';
+// import { Button } from './NoticesPage.styled';
+
+// const NoticesPage = () => {
+//   const [showModal, setShowModal] = useState(false);
+//   const openModal = () => {
+    
+//     setShowModal(prev => !prev);
+//   };
+//   return (
+//     <>
+//       <ModalAddNotice showModal={showModal} setShowModal={setShowModal} />
+//       <Button onClick={openModal}>Add pet</Button>
+//       <GlobalStyle />
+//     </>
+//   );
+// };
+
+// export default NoticesPage;

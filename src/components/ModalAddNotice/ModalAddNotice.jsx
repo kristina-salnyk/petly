@@ -1,10 +1,11 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { addNotice } from '../../redux/notices/operations';
 import { CloseModalIcon } from '../icons/CloseModalIcon';
 import { MalePetIcon } from '../icons/MalePetIcon';
 import { AddPhotoOfPetIcon } from '../icons/AddPhotoOfPetIcon';
 import { FemalePetIcon } from '../icons/FemalePetIcon';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import {
   Background,
   FerstModalWrapper,
@@ -20,35 +21,37 @@ import {
   P,
   Categories,
   Category,
-  SexWrapper,
-  SexItem,
-  SexInput,
-  SexP,
-  SexLabel,
+  GenderWrapper,
+  GenderItem,
+  GenderInput,
+  GenderP,
+  GenderLabel,
   FileBox,
   Comments,
   ButtonWrapper,
+  CategoryWrap,
 } from './ModalAddNotice.styled';
-import { useDispatch, useSelector } from 'react-redux';
-import { selectError, selectNotices } from '../../redux/notices/selectors';
+import { useDispatch } from 'react-redux';
+import { useFormik } from 'formik';
 
-//   const isLoading = useSelector(selectIsLoading);
 export const ModalAddNotice = ({ showModal, setShowModal }) => {
   const [active, setActive] = useState('FerstWraper');
 
-  const [formData, setFormData] = useState({
-    title: '',
-    name: '',
-    birthday: '',
-    breed: '',
-    theSex: '',
-    location: '',
-    price: '',
-    image: '',
-    comments: '',
+  const formik = useFormik({
+    initialValues: {
+      announcement: '',
+      title: '',
+      name: '',
+      birthday: '',
+      breed: '',
+      gender: '',
+      location: '',
+      price: '',
+      image: '',
+      comments: '',
+    },
+    onSubmit: values => Notify.failure(JSON.stringify(values, null, 2)),
   });
-
-  const modalRef = useRef();
 
   const keyPress = useCallback(
     e => {
@@ -64,86 +67,129 @@ export const ModalAddNotice = ({ showModal, setShowModal }) => {
     return () => document.removeEventListener('keydown', keyPress);
   }, [keyPress]);
 
-  const closeModal = e => {
-    if (modalRef.current === e.target) {
-      setShowModal(false);
+  const validate = () => {
+    if (!formik.values.announcement) {
+      return Notify.failure('announcement is required!');
+    }
+    if (!formik.values.title) {
+      return Notify.failure('title is required!');
+    }
+    if (!formik.values.name) {
+      return Notify.failure('name is required!');
+    }
+    if (!formik.values.birthday) {
+      return Notify.failure('birthday is required!');
+    }
+    if (!formik.values.breed) {
+      return Notify.failure('breed is required!');
+    }
+    if (!formik.values.gender) {
+      return Notify.failure('gender is required!');
+    }
+    if (!formik.values.location) {
+      return Notify.failure('location is required!');
+    }
+    if (!formik.values.price) {
+      return Notify.failure('price is required!');
+    }
+    if (!formik.values.image) {
+      return Notify.failure('image is required!');
+    }
+    if (!formik.values.comments) {
+      return Notify.failure('comments is required!');
     }
   };
-
-  // const isLoading = useSelector(selectIsLoading);
-  const isError = useSelector(selectError);
-  const isAdded = useSelector(selectNotices);
-  console.log(isAdded);
-
+  const closeModal = () => setShowModal(prev => !prev);
   const dispatch = useDispatch();
 
   const handleSubmit = e => {
     e.preventDefault();
-    const form = e.currentTarget;
-
-    if (isError) {
-      console.log('произошла ошибка');
-    }
-
-    if (isAdded(formData)) {
-      return console.log(`${formData.name} is already in contacts`);
-    }
-    dispatch(addNotice(formData));
-    form.reset();
+    validate();
+    closeModal();
+    formik.resetForm();
+    dispatch(addNotice(formik.values));
+    console.log(formik.values);
   };
-
+  const handleGender = e => (formik.values.gender = e.target.value);
+  const handleCategory = e => (formik.values.announcement = e.target.value);
   return (
     <>
       {showModal ? (
-        <Background onClick={closeModal}>
+        <Background>
           {active === 'FerstWraper' && (
             <FerstModalWrapper showModal={showModal}>
               <ModalContent>
                 <Title> Add Pet</Title>
                 <P>Enter information about your pet. All fields are required</P>
                 <Categories>
-                  <Category to="lost-found">lost/found</Category>
-                  <Category to="in-good-hands">in good hands</Category>
-                  <Category to="sell">sell</Category>
+                  <label>
+                    <CategoryWrap>lost/found</CategoryWrap>
+                    <Category
+                      type="radio"
+                      name="lost/found"
+                      value="lost/found"
+                      onChange={e => handleCategory(e)}
+                    ></Category>
+                  </label>
+                  <label>
+                    <CategoryWrap>in good hands</CategoryWrap>
+                    <Category
+                      type="radio"
+                      name="in good hands"
+                      value="in good hands"
+                      onChange={e => handleCategory(e)}
+                    ></Category>
+                  </label>
+                  <label>
+                    <CategoryWrap>sell</CategoryWrap>
+                    <Category
+                      type="radio"
+                      name="sell"
+                      value="sell"
+                      onChange={e => handleCategory(e)}
+                    ></Category>
+                  </label>
                 </Categories>
 
-                <Form>
+                <Form onSubmit={formik.handleSubmit}>
                   <Label htmlFor="text">Tittle of ad</Label>
                   <Input
-                    onChange={e => setFormData({ ...formData, title: e.target.value })}
+                    onChange={formik.handleChange}
                     type="text"
                     name="title"
-                    value={formData.title}
+                    value={formik.values.title}
                     required
                     autoFocus
                     placeholder="Type title"
                   />
+
                   <Label htmlFor="name ">Name pet</Label>
                   <Input
-                    onChange={e => setFormData({ ...formData, name: e.target.value })}
+                    onChange={formik.handleChange}
                     type="text"
                     name="name"
-                    value={formData.name}
+                    value={formik.values.name}
                     required
                     autoFocus
                     placeholder="Type name pet"
                   />
+
                   <Label htmlFor="Date">Date of birth </Label>
                   <Input
-                    onChange={e => setFormData({ ...formData, birthday: e.target.value })}
+                    onChange={formik.handleChange}
                     type="date"
                     name="birthday"
-                    value={formData.birthday}
+                    value={formik.values.birthday}
                     required
                     autoFocus
                     placeholder="Type date of birth "
                   />
                   <Label htmlFor="Breed">Breed</Label>
                   <Input
-                    onChange={e => setFormData({ ...formData, breed: e.target.value })}
+                    onChange={formik.handleChange}
                     type="text"
                     name="breed"
-                    value={formData.breed}
+                    value={formik.values.breed}
                     required
                     autoFocus
                     placeholder="Type breed"
@@ -157,10 +203,7 @@ export const ModalAddNotice = ({ showModal, setShowModal }) => {
                 >
                   Next
                 </ButtonNext>
-                <CloseModalButton
-                  area-label="Close modal"
-                  onClick={() => setShowModal(prev => !prev)}
-                >
+                <CloseModalButton area-label="Close modal" onClick={closeModal}>
                   <CloseModalIcon color={'black'} />
                 </CloseModalButton>
 
@@ -172,62 +215,60 @@ export const ModalAddNotice = ({ showModal, setShowModal }) => {
             <SecondModalWrapper>
               <ModalContent>
                 <Title> Add Pet</Title>
-                <SexWrapper>
-                  <SexItem>
-                    <SexLabel>
+                <GenderWrapper>
+                  <GenderItem>
+                    <GenderLabel>
                       <MalePetIcon />
-                      <SexP>Male</SexP>
-                      <SexInput
-                        onChange={e => setFormData({ ...formData, male: e.target.value })}
+                      <GenderP>Male</GenderP>
+                      <GenderInput
                         type="radio"
                         name="male"
-                        value={formData.theSex}
-                        required
+                        value="male"
+                        onChange={e => handleGender(e)}
                       />
-                    </SexLabel>
-                  </SexItem>
-                  <SexItem>
-                    <SexLabel>
+                    </GenderLabel>
+                  </GenderItem>
+                  <GenderItem>
+                    <GenderLabel>
                       <FemalePetIcon />
-                      <SexP>Female</SexP>
-                      <SexInput
-                        onChange={e => setFormData({ ...formData, female: e.target.value })}
+                      <GenderP>Female</GenderP>
+                      <GenderInput
                         type="radio"
-                        name="female"
-                        value={formData.theSex}
-                        required
+                        name="gender"
+                        value="female"
+                        onChange={e => handleGender(e)}
                       />
-                    </SexLabel>
-                  </SexItem>
-                </SexWrapper>
-                <Form>
+                    </GenderLabel>
+                  </GenderItem>
+                </GenderWrapper>
+                <Form onSubmit={formik.handleSubmit}>
                   <Label htmlFor="text">Location*:</Label>
                   <Input
-                    onChange={e => setFormData({ ...formData, location: e.target.value })}
+                    onChange={formik.handleChange}
                     type="location"
                     name="location"
-                    value={formData.location}
+                    value={formik.values.location}
                     required
                     autoFocus
                     placeholder="Location"
                   ></Input>
                   <Label htmlFor="text">Price*:</Label>
                   <Input
-                    onChange={e => setFormData({ ...formData, price: e.target.value })}
+                    onChange={formik.handleChange}
                     type="text"
                     name="price"
-                    value={formData.price}
+                    value={formik.values.price}
                     required
                     autoFocus
                     placeholder="price"
                   ></Input>
                   <FileBox>
                     <label>
-                      <SexInput
-                        onChange={e => setFormData({ ...formData, image: e.target.value })}
+                      <GenderInput
                         type="file"
                         name="image"
-                        value={formData.image}
+                        value={formik.values.image}
+                        onChange={formik.handleChange}
                         required
                       />
                       <AddPhotoOfPetIcon />
@@ -235,9 +276,9 @@ export const ModalAddNotice = ({ showModal, setShowModal }) => {
                   </FileBox>
                   <Label htmlFor="text">Comments*:</Label>
                   <Comments
-                    onChange={e => setFormData({ ...formData, comments: e.target.value })}
+                    onChange={formik.handleChange}
                     name="comments"
-                    value={formData.comments}
+                    value={formik.values.comments}
                     autoFocus
                     placeholder="Comments"
                     required
@@ -251,14 +292,15 @@ export const ModalAddNotice = ({ showModal, setShowModal }) => {
                   >
                     Back
                   </ButtonCansel>
-                  <ButtonNext onSubmit={handleSubmit}>Done</ButtonNext>
-                  <CloseModalButton
-                    area-label="Close modal"
-                    onClick={() => setShowModal(prev => !prev)}
-                  >
-                    <CloseModalIcon color={'black'} />
-                  </CloseModalButton>
+
+                  <ButtonNext onClick={handleSubmit}>Done</ButtonNext>
                 </ButtonWrapper>
+                <CloseModalButton
+                  area-label="Close modal"
+                  onClick={() => setShowModal(prev => !prev)}
+                >
+                  <CloseModalIcon color={'black'} />
+                </CloseModalButton>
               </ModalContent>
             </SecondModalWrapper>
           )}
