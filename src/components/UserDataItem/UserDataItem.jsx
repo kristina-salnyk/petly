@@ -1,3 +1,6 @@
+import { useDispatch } from 'react-redux';
+import { refreshUser } from '../../redux/auth/operations';
+import { useEffect } from 'react';
 import {
   InfoList,
   InfoItem,
@@ -12,6 +15,12 @@ import { useAuth } from '../../hooks/useAuth';
 
 export const UserDataItem = () => {
   const { user } = useAuth();
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(refreshUser());
+  }, [dispatch]);
 
   return (
     <InfoList>
