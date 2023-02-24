@@ -39,7 +39,7 @@ export const ModalAddNotice = ({ showModal, setShowModal }) => {
 
   const formik = useFormik({
     initialValues: {
-      announcement: '',
+      category: '',
       title: '',
       name: '',
       birthday: '',
@@ -68,8 +68,8 @@ export const ModalAddNotice = ({ showModal, setShowModal }) => {
   }, [keyPress]);
 
   const validate = () => {
-    if (!formik.values.announcement) {
-      return Notify.failure('announcement is required!');
+    if (!formik.values.category) {
+      return Notify.failure('category is required!');
     }
     if (!formik.values.title) {
       return Notify.failure('title is required!');
@@ -111,7 +111,7 @@ export const ModalAddNotice = ({ showModal, setShowModal }) => {
     console.log(formik.values);
   };
   const handleGender = e => (formik.values.gender = e.target.value);
-  const handleCategory = e => (formik.values.announcement = e.target.value);
+  const handleCategory = e => (formik.values.category = e.target.value);
   return (
     <>
       {showModal ? (
