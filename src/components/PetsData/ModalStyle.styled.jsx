@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import { Field } from 'formik';
+// import { Field } from 'formik';
 
-export const InputModal = styled(Field)`
+export const InputModal = styled.input`
   box-sizing: border-box;
   width: 100%;
   height: 48px;
