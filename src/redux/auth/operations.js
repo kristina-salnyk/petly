@@ -1,17 +1,15 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { api } from '../../utils/api';
-import { setAuthHeader, clearAuthHeader } from '../../utils/api';
+import { api, clearAuthHeader, setAuthHeader } from '../../utils/api';
 
 export const register = createAsyncThunk('auth/register', async (credentials, thunkAPI) => {
   try {
-    console.log(credentials);
     const response = await api.post('/auth/register', credentials);
-    console.log(response.data.token);
-    setAuthHeader(response.data.token);
-
     return response.data;
   } catch (error) {
-    return thunkAPI.rejectWithValue(error.message);
+    return thunkAPI.rejectWithValue({
+      message: error?.response?.data?.message,
+      status: error?.response?.status,
+    });
   }
 });
 
@@ -21,7 +19,10 @@ export const logIn = createAsyncThunk('auth/login', async (credentials, thunkAPI
     setAuthHeader(response.data.token);
     return response.data;
   } catch (error) {
-    return thunkAPI.rejectWithValue(error.message);
+    return thunkAPI.rejectWithValue({
+      message: error?.response?.data?.message,
+      status: error?.response?.status,
+    });
   }
 });
 
