@@ -4,6 +4,7 @@ import { api, clearAuthHeader, setAuthHeader } from '../../utils/api';
 export const register = createAsyncThunk('auth/register', async (credentials, thunkAPI) => {
   try {
     const response = await api.post('/auth/register', credentials);
+    
     return response.data;
   } catch (error) {
     return thunkAPI.rejectWithValue({
@@ -16,6 +17,7 @@ export const register = createAsyncThunk('auth/register', async (credentials, th
 export const logIn = createAsyncThunk('auth/login', async (credentials, thunkAPI) => {
   try {
     const response = await api.post('/auth/login', credentials);
+    console.log(response);
     setAuthHeader(response.data.token);
     return response.data;
   } catch (error) {
@@ -53,6 +55,15 @@ export const refreshUser = createAsyncThunk('auth/refresh', async (_, thunkAPI) 
 export const updateUser = createAsyncThunk('auth/update', async (credentials, thunkAPI) => {
   try {
     const response = await api.patch('/user/update', credentials);
+    return response.data;
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error.message);
+  }
+});
+
+export const verifyUser = createAsyncThunk('auth/verify', async (token, thunkAPI) => {
+  try {
+    const response = await api.get(`/auth/verify/${token}`);
     return response.data;
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);

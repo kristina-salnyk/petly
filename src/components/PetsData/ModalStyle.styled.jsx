@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import { Field } from 'formik';
+import { motion } from 'framer-motion';
 
-export const InputModal = styled(Field)`
+export const InputModal = styled.input`
   box-sizing: border-box;
   width: 100%;
   height: 48px;
@@ -11,7 +11,7 @@ export const InputModal = styled(Field)`
   line-height: 26px;
 
   display: none;
-  background: #fdf7f2;
+  background: ${({ theme }) => theme.colors.background.primary};
   border: 1px solid rgba(245, 146, 86, 0.5);
   border-radius: 40px;
   border: 1px solid rgba(33, 33, 33, 0.2);
@@ -34,9 +34,9 @@ export const TitleModal = styled.h1`
   font-weight: 500;
   font-size: 36px;
   line-height: 49px;
-  color: #111111;
+  color: ${({ theme }) => theme.colors.black};
 
-  @media screen and (max-width: 720px) {
+  @media screen and (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
     font-size: 24px;
     line-height: 33px;
   }
@@ -49,7 +49,7 @@ export const MainModal = styled.div`
 `;
 
 export const LabelInput = styled.label`
-  color: #111111;
+  color: ${({ theme }) => theme.colors.black};
   display: block;
   margin-bottom: 5px;
   font-family: 'Manrope';
@@ -60,7 +60,7 @@ export const LabelInput = styled.label`
   letter-spacing: 0.01em;
   margin-top: 10px;
 
-  @media screen and (max-width: 720px) {
+  @media screen and (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
     font-size: 18px;
     line-height: 26px;
   }
@@ -71,20 +71,20 @@ export const FooterModal = styled.div`
   justify-content: space-around;
   margin-top: 40px;
 
-  @media screen and (max-width: 720px) {
+  @media screen and (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
     display: flex;
     flex-direction: column;
     align-items: center;
   }
 `;
 
-export const ButtonModal = styled.button`
+export const ButtonModal = styled(motion.button)`
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 40px;
   border: 2px solid #f59256;
-  background: #ffffff;
+  background: ${({ theme }) => theme.colors.white};
   color: #111111;
   text-align: center;
   text-decoration: none;
@@ -98,7 +98,7 @@ export const ButtonModal = styled.button`
   width: 180px;
   height: 44px;
   :hover {
-    color: #ffffff;
-    background-color: #f59256;
+    color: ${({ theme }) => theme.colors.white};
+    background-color: ${({ theme }) => theme.colors.background.button};
   }
 `;

@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { motion } from 'framer-motion';
 
 export const HeaderModalSecond = styled.div`
   display: flex;
@@ -12,9 +13,9 @@ export const TitleModalSecond = styled.h1`
   font-weight: 500;
   font-size: 36px;
   line-height: 49px;
-  color: #111111;
+  color: ${({ theme }) => theme.colors.black};
 
-  @media screen and (max-width: 720px) {
+  @media screen and (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
     font-size: 24px;
     line-height: 33px;
   }
@@ -26,7 +27,7 @@ export const MainModalSecond = styled.div`
   flex-direction: column;
   margin: 20px;
 
-  @media screen and (max-width: 720px) {
+  @media screen and (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
     margin: 0px;
   }
 `;
@@ -36,7 +37,7 @@ export const FooterModalSecond = styled.div`
   justify-content: space-around;
   margin: 20px;
 
-  @media screen and (max-width: 720px) {
+  @media screen and (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -44,13 +45,13 @@ export const FooterModalSecond = styled.div`
   }
 `;
 
-export const SecondButtonModal = styled.button`
+export const SecondButtonModal = styled(motion.button)`
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 40px;
   border: 2px solid #f59256;
-  background: #ffffff;
+  background: ${({ theme }) => theme.colors.white};
   color: #111111;
   text-align: center;
   text-decoration: none;
@@ -64,11 +65,11 @@ export const SecondButtonModal = styled.button`
   width: 180px;
   height: 44px;
   :hover {
-    color: #ffffff;
-    background-color: #f59256;
+    color: ${({ theme }) => theme.colors.white};
+    background-color: ${({ theme }) => theme.colors.background.button};
   }
 
-  @media screen and (max-width: 720px) {
+  @media screen and (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -84,7 +85,7 @@ export const TextModal = styled.p`
   line-height: 27px;
   margin-bottom: 20px;
 
-  @media screen and (max-width: 720px) {
+  @media screen and (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
     font-size: 16px;
     line-height: 22px;
   }
@@ -96,7 +97,7 @@ export const BoxFileModalSecond = styled.div`
   justify-content: center;
   width: 182px;
   height: 182px;
-  background: #fdf7f2;
+  background: ${({ theme }) => theme.colors.background.primary};
   border-radius: 40px;
 `;
 
@@ -117,7 +118,7 @@ flex-direction: column;
 export const TextareaModalSecond = styled.textarea`
   width: 100%;
   height: 116px;
-  background: #fdf7f2;
+  background: ${({ theme }) => theme.colors.background.primary};
   border: 1px solid rgba(245, 146, 86, 0.5);
   padding: 16px;
   border-radius: 20px;
