@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { motion, AnimatePresence } from 'framer-motion';
+import PropTypes from 'prop-types';
 
 const Overlay = styled(motion.div)`
   position: fixed;
@@ -43,12 +44,7 @@ const Modal = ({ handleClose, children, isOpen }) => {
   return (
     <AnimatePresence>
       {isOpen && (
-        <Overlay
-          initial={'initial'}
-          animate={'isOpen'}
-          exit={'exit'}
-          variants={modalVariant}
-        >
+        <Overlay initial={'initial'} animate={'isOpen'} exit={'exit'} variants={modalVariant}>
           <ModalContainer variants={containerVariant}>
             <CloseButton
               onClick={handleClose}
@@ -88,3 +84,9 @@ const Modal = ({ handleClose, children, isOpen }) => {
 };
 
 export default Modal;
+
+Modal.propTypes = {
+  handleClose: PropTypes.func,
+  children: PropTypes.node,
+  isOpen: PropTypes.func,
+};

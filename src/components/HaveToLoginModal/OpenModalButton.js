@@ -1,6 +1,6 @@
-import React from "react";
-import { motion } from "framer-motion";
-import styled from "styled-components";
+import React from 'react';
+import { motion } from 'framer-motion';
+import styled from 'styled-components';
 
 const OpenModalButton = styled(motion.button)`
   font-size: 1.2rem;
