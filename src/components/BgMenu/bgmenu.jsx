@@ -28,13 +28,13 @@ const BgMenu = ({burger_class, menu_class, updateMenu})=> {
         <ul className="auth" >
           {!isLoggedIn ? 
             <>
-              <li className="login">
+              <li className="login" onClick = {updateMenu}>
                 <Link to="/login" 
                   className='linkLogin'>
                 Login 
                 </Link>
               </li>
-              <li className="register">
+              <li className="register" onClick = {updateMenu}>
                 <Link to="/register"
                   className='linkRegister'>
                Registration
@@ -46,7 +46,7 @@ const BgMenu = ({burger_class, menu_class, updateMenu})=> {
               <Login>
                 <UserIcon/>
                 <Link to="/user"
-                  className='linkUser'>
+                  className='linkUser' onClick = {updateMenu}>
                   Account
                 </Link>
               </Login>
