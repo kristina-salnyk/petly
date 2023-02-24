@@ -1,36 +1,38 @@
 import styled from 'styled-components';
 
 export const SponsorLink = styled.a`
-  margin-bottom: 12px;
-  font-weight: 700;
-  font-size: 12px;
-  line-height: 16px;
-  color: #F59256;
+  margin-bottom: 16px;
+  font-weight: ${({ theme }) => theme.typography.weight.bold};
+  font-size: ${({ theme }) => theme.typography.size.xxxs};
+  color: ${({ theme }) => theme.colors.accent};
   text-align: center;
+  text-decoration-line: underline;
 
   :hover,
   :focus {
-    color: #F59256;
-    text-decoration: underline;
+    color: ${({ theme }) => theme.colors.hoverAccent};
   }
-  @media screen and (min-width: 768px) {
-    margin-bottom: 16px;
+ @media (min-width: ${({ theme }) => theme.breakpoints.tablet[0]}) {
+    font-size: ${({ theme }) => theme.typography.size.xs};
+    margin-bottom: 20px;
+    width: 300px;
   }
-  @media screen and (min-width: 1280px) {
-    font-size: 20px;
-    line-height: 27px;
+  @media (min-width: ${({ theme }) => theme.breakpoints.desktopMin}) {
+    font-size: ${({ theme }) => theme.typography.size.m};
+    margin-bottom: 24px;
+    width: 350px;
   }
 `;
 
 export const FriendCard = styled.div`
   display: flex;
   flex-direction: row;
-  align-items: center;
+  align-items: flex-start;
 `;
 
 export const Time = styled.button`
-  font-weight: 500;
-  font-size: 12px;
+  font-weight: ${({ theme }) => theme.typography.weight.medium};
+  font-size: ${({ theme }) => theme.typography.size.xxxs};
   line-height: 16px;
   display: flex;
   align-items: center;
@@ -39,35 +41,32 @@ export const Time = styled.button`
   border: none;
   background-color: inherit;
   &.active {
-    color: #F59256;
+    color: ${({ theme }) => theme.colors.hoverAccent};
   }
   :hover:not(.active),
   :focus-visible:not(.active) {
-    color: #F59256;
+    color: ${({ theme }) => theme.colors.hoverAccent};
   }
 
-  @media screen and (min-width: 768px) {
-    font-size: 14px;
-    line-height: 19px;
+  @media (min-width: ${({ theme }) => theme.breakpoints.tablet[0]}) {
+    font-size: ${({ theme }) => theme.typography.size.xxs};
   }
-  @media screen and (min-width: 1280px) {
-    font-size: 16px;
-    line-height: 22px;
+  @media (min-width: ${({ theme }) => theme.breakpoints.desktopMin}) {
+    font-size: ${({ theme }) => theme.typography.size.xs};
   }
 `;
 
 export const Text = styled.p`
-  font-weight: 500;
-  font-size: 12px;
-  line-height: 16px;
+  font-weight: ${({ theme }) => theme.typography.weight.medium};
+  font-size: ${({ theme }) => theme.typography.size.xxxs};
+  
 
-  @media screen and (min-width: 768px) {
-    font-size: 14px;
-    line-height: 19px;
+  @media (min-width: ${({ theme }) => theme.breakpoints.tablet[0]}) {
+    font-size: ${({ theme }) => theme.typography.size.xxs};
+    
   }
-  @media screen and (min-width: 1280px) {
-    font-size: 16px;
-    line-height: 22px;
+  @media (min-width: ${({ theme }) => theme.breakpoints.desktopMin}) {
+    font-size: ${({ theme }) => theme.typography.size.xs};
   }
 `;
 
@@ -78,22 +77,41 @@ export const TextWrapper = styled.li`
   margin-bottom: 12px;
 `;
 
-export const ContactLink = styled.a`
-  font-weight: 500;
-  font-size: 12px;
-  line-height: 16px;
+export const AddresLink = styled.a`
+  text-decoration-line: underline;
+  font-weight: ${({ theme }) => theme.typography.weight.medium};
+  font-size: ${({ theme }) => theme.typography.size.xxxs};
+  color: ${({ theme }) => theme.colors.text.primary};
+  
   :hover,
   :focus {
-    color: #F59256;
+    color: ${({ theme }) => theme.colors.hoverAccent};
   }
 
-  @media screen and (min-width: 768px) {
-    font-size: 14px;
-    line-height: 19px;
+  @media (min-width: ${({ theme }) => theme.breakpoints.tablet[0]}) {
+    font-size: ${({ theme }) => theme.typography.size.xxs};
   }
-  @media screen and (min-width: 1280px) {
-    font-size: 16px;
-    line-height: 22px;
+  @media (min-width: ${({ theme }) => theme.breakpoints.desktopMin}) {
+    font-size: ${({ theme }) => theme.typography.size.xs};
+  }
+`;
+
+
+export const ContactLink = styled.a`
+  font-weight: ${({ theme }) => theme.typography.weight.medium};
+  font-size: ${({ theme }) => theme.typography.size.xxxs};
+  color: ${({ theme }) => theme.colors.text.primary};
+  
+  :hover,
+  :focus {
+    color: ${({ theme }) => theme.colors.hoverAccent};
+  }
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.tablet[0]}) {
+    font-size: ${({ theme }) => theme.typography.size.xxs};
+  }
+  @media (min-width: ${({ theme }) => theme.breakpoints.desktopMin}) {
+    font-size: ${({ theme }) => theme.typography.size.xs};
   }
 `;
 
@@ -101,11 +119,11 @@ export const Img = styled.img`
   margin-right: 12px;
   max-width: 110px;
   max-height: 115px;
-  @media screen and (min-width: 768px) {
+  @media (min-width: ${({ theme }) => theme.breakpoints.tablet[0]}) {
     max-width: 120px;
     margin-right: 14px;
   }
-  @media screen and (min-width: 1280px) {
+  @media (min-width: ${({ theme }) => theme.breakpoints.desktopMin}) {
     max-width: 158px;
     margin-right: 16px;
   }
@@ -113,23 +131,23 @@ export const Img = styled.img`
 
 export const SponsorItem = styled.li`
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  display: flex;
+  justify-content: center;
   margin-bottom: 12px;
-  padding: 12px;
-  background-color: white;
-  box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
-  border-radius: 20px;
+  flex-basis: calc(100% / 1 - 40px);
+  display: flex;
+  justify-content: center;
 
-  @media screen and (min-width: 768px) {
-    margin-right: 32px;
-    margin-bottom: 32px;
-    padding: 16px;
-    border-radius: 40px;
-  }
-  @media screen and (min-width: 1280px) {
-    max-width: 395px;
-  }
+    @media (min-width: ${({ theme }) => theme.breakpoints.tablet[0]}){
+      flex-basis: calc(100% / 2 - 32px);
+      margin: 15px;
+    };
+
+    @media (min-width: ${({ theme }) => theme.breakpoints.desktopMin}){
+      flex-basis: calc(100% / 3 - 32px);
+      margin: 16px;
+    };
+  
 `;
 
 export const List = styled.ul`
@@ -151,9 +169,9 @@ export const TimeList = styled.ul`
   justify-content: center;
 
   background-color: white;
-  border: #F59256 2px solid;
+  border: ${({ theme }) => theme.colors.accent} 2px solid;
   box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.25);
-  border-radius: 8px;
+  border-radius: ${({ theme }) => theme.shape.borderRadius.s}px;
   padding: 12px;
   margin-bottom: -4px;
 `;
@@ -161,7 +179,31 @@ export const TimeList = styled.ul`
 export const TimeItem = styled.li`
   margin-bottom: 4px;
   width: 100px;
-  @media screen and (min-width: 768px) {
+  @media (min-width: ${({ theme }) => theme.breakpoints.tablet[0]}) {
     width: 120px;
+  }
+  @media (min-width: ${({ theme }) => theme.breakpoints.desktopMin}){
+    width: 126px;
+  }
+`;
+
+export const ItemWraper = styled.div`
+  width: 280px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: white;
+  box-shadow: ${({ theme }) => theme.shadows[0]};
+  border-radius: ${({ theme }) => theme.shape.borderRadius.m}px;
+  padding: 12px 4px;
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.tablet[0]}){
+    width: 336px;
+    border-radius: ${({ theme }) => theme.shape.borderRadius.l}px;
+    padding: 16px 4px;
+  }
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.desktopMin}){
+    width: 395px;
   }
 `;

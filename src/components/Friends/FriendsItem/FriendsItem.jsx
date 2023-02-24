@@ -11,6 +11,8 @@ import {
   SponsorItem,
   TextWrapper,
   List,
+  AddresLink,
+  ItemWraper
 } from './FriendsItem.styled';
 import FriendsTimeTable from './FriendsShedule';
 import defaultImage from '../../../images/defaultImage.png';
@@ -36,7 +38,8 @@ const FriendsItem = ({
 
   return (
     <SponsorItem>
-      <SponsorLink href={website} target="_blank">
+      <ItemWraper>
+        <SponsorLink href={website} target="_blank">
         {title}
       </SponsorLink>
       <FriendCard>
@@ -55,7 +58,7 @@ const FriendsItem = ({
             {workDays === null || workDays === undefined || workDays.length === 0 ? (
               <>
                 <Text>Time: </Text>
-                <Text>------------</Text>
+                <Text>-------------</Text>
               </>
             ) : (
               <>
@@ -80,11 +83,11 @@ const FriendsItem = ({
           <TextWrapper>
             <Text>Adress:</Text>
             {location ? (
-              <ContactLink href={location} target="_blank">
+              <AddresLink href={location} target="_blank">
                 {address}
-              </ContactLink>
+              </AddresLink>
             ) : (
-              <Text>дані відсутні</Text>
+              <Text>-------------</Text>
             )}
           </TextWrapper>
           <TextWrapper>
@@ -92,7 +95,7 @@ const FriendsItem = ({
             {email ? (
               <ContactLink href={`mailto:${email}`}>{email}</ContactLink>
             ) : (
-              <Text>дані відсутні</Text>
+              <Text>-------------</Text>
             )}
           </TextWrapper>
           <TextWrapper>
@@ -100,11 +103,12 @@ const FriendsItem = ({
             {phone ? (
               <ContactLink href={`tel:${phone}`}>{phone}</ContactLink>
             ) : (
-              <Text>дані відсутні</Text>
+              <Text>-------------</Text>
             )}
           </TextWrapper>
         </List>
       </FriendCard>
+      </ItemWraper>
     </SponsorItem>
   );
 };
