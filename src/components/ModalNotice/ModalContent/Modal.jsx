@@ -13,49 +13,37 @@ import {
 } from './Modal.styled';
 import { CloseModalIcon } from '../../icons/CloseModalIcon';
 import theme from '../../../utils/theme';
+import { selectNoticeItem } from '../../../redux/notices/selectors';
+import { useSelector } from 'react-redux';
 
-
-export const Modal = ({
-  id,
-  category,
-  image,
-  title,
-  name,
-  gender,
-  location,
-  birthday,
-  breed,
-  price,
-  comments,
-  onClose
-}) => {
- 
+export const Modal = ({id,onShow}) => {
+  const noticesItem = useSelector(selectNoticeItem);
 
   return (
     <>
       <ModalThumb>
-        <CloseModalButton onClick={onClose}>
+        <CloseModalButton onClick={onShow}>
           <CloseModalIcon width={30} fill={theme.colors.black} />
         </CloseModalButton>
 
         <TabletWrapper>
-          <ModalImage category={category} image={image} />
+          <ModalImage category={noticesItem.category} image={noticesItem.image} />
 
           <ModalInfo
-            category={category}
-            title={title}
-            name={name}
-            gender={gender}
-            location={location}
-            birthday={birthday}
-            breed={breed}
-            price={price}
+            category={noticesItem.category}
+            title={noticesItem.title}
+            name={noticesItem.name}
+            gender={noticesItem.gender}
+            location={noticesItem.location}
+            birthday={noticesItem.birthday}
+            breed={noticesItem.breed}
+            price={noticesItem.price}
           />
         </TabletWrapper>
 
         <ModalComments>
           <ModalCommentsName>Comments:</ModalCommentsName>{' '}
-          <ModalCommentsText>{comments}</ModalCommentsText>
+          <ModalCommentsText>{noticesItem.comments}</ModalCommentsText>
         </ModalComments>
 
         <ModalButtons id={id} />
@@ -76,5 +64,5 @@ Modal.propTypes = {
   image: PropTypes.string,
   birthday: PropTypes.string,
   comments: PropTypes.string,
-  onClose: PropTypes.func,
+  onShow: PropTypes.func,
 };
