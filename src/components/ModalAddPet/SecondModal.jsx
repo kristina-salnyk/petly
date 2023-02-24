@@ -1,10 +1,10 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 import { CloseModalIcon } from '../icons/CloseModalIcon';
 import { motion, AnimatePresence } from 'framer-motion';
 
-export const Overlay = styled(motion.div)`
+const Overlay = styled(motion.div)`
   position: fixed;
   top: 0;
   left: 0;
@@ -14,26 +14,25 @@ export const Overlay = styled(motion.div)`
   display: flex;
   z-index: 1000;
 `;
-export const ModalContainer = styled(motion.div)`
+
+const ModalContainer = styled(motion.div)`
   width: 608px;
-  height: 570px;
+  height: 661px;
   background-color: ${({ theme }) => theme.colors.white};
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   border-radius: 12px;
   position: relative;
-  z-index: 500;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  z-index: 550;
 
   @media screen and (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
     width: 280px;
-    height: 530px;
+    height: 670px;
   }
 `;
-export const CloseButton = styled.div`
+
+const CloseButton = styled.div`
   width: 44px;
   height: 44px;
   position: absolute;
@@ -47,50 +46,21 @@ export const CloseButton = styled.div`
   align-items: center;
 `;
 
-export const ButtonCancelModal = styled.button`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 40px;
-  margin-top: 40px;
-  border: 2px solid #f59256;
-  background: ${({ theme }) => theme.colors.white};
-  color: ${({ theme }) => theme.colors.black};
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  font-family: 'Manrope';
-  font-style: normal;
-  font-weight: 500;
-  font-size: 20px;
-  line-height: 19px;
-  width: 180px;
-  height: 44px;
-  :hover {
-    color: ${({ theme }) => theme.colors.white};
-    background-color: ${({ theme }) => theme.colors.background.button};
-    scale: 1.1;
-    scale: 0.9;
-  }
-`;
-
 const modalVariant = {
   initial: { opacity: 0 },
-  isOpen: { opacity: 1 },
+  isOpenSecond: { opacity: 1 },
   exit: { opacity: 0 },
 };
 const containerVariant = {
   initial: { transition: { type: 'spring' } },
-  isOpen: { top: '"50%' },
+  isOpenSecond: { top: '"50%' },
   exit: { top: '-50%' },
 };
-
-const ModalAddPet = ({ handleClose, children, isOpen }) => {
+const SecondModal = ({ handleClose, children, isOpenSecond }) => {
   return (
     <AnimatePresence>
-      {isOpen && (
-        <Overlay initial={'initial'} animate={'isOpen'} exit={'exit'} variants={modalVariant}>
+      {isOpenSecond && (
+        <Overlay initial={'initial'} animate={'isOpenSecond'} exit={'exit'} variants={modalVariant}>
           <ModalContainer variants={containerVariant}>
             <CloseButton
               onClick={handleClose}
@@ -106,10 +76,11 @@ const ModalAddPet = ({ handleClose, children, isOpen }) => {
     </AnimatePresence>
   );
 };
-export default ModalAddPet;
 
-ModalAddPet.propTypes = {
+export default SecondModal;
+
+SecondModal.propTypes = {
   handleClose: PropTypes.func,
   children: PropTypes.element,
-  isOpen: PropTypes.bool,
+  isOpenSecond: PropTypes.bool,
 };

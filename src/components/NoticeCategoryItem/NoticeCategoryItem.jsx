@@ -5,30 +5,29 @@ import { NoticeImage } from './NoticeImage/NoticeImage';
 import { NoticeButtons } from './NoticeButtons/NoticeButtons';
 import { NoticeCard } from './NoticeCategoryItem.styled';
 import { NoticeInfo } from './NoticeInfo/NoticeInfo';
-
+import { fetchNoticeItem } from '../../redux/notices/operations';
+import { useDispatch } from 'react-redux';
 import { ModalNotice } from '../ModalNotice/ModalNotice';
 
 export const NoticeCategoryItem = ({
   _id,
   category,
   title,
-  name,
   breed,
   location,
-  gender,
   price,
   image,
   birthday,
-  comments,
+  owner,
 }) => {
   const [modalOpen, setModalOpen] = useState(false);
+  const dispatch = useDispatch();
 
   const onShow = () => {
-    return setModalOpen(true);
-  };
-
-  const onClose = () => {
-    return setModalOpen(false);
+    if (!modalOpen) {
+      dispatch(fetchNoticeItem(_id));
+    }
+    setModalOpen(!modalOpen);
   };
 
   useEffect(() => {
@@ -56,24 +55,9 @@ export const NoticeCategoryItem = ({
           breed={breed}
           price={price}
         />
-        <NoticeButtons id={_id} onShow={onShow} />
+        <NoticeButtons id={_id} owner={owner} onShow={onShow} />
 
-        {modalOpen && (
-          <ModalNotice
-            id={_id}
-            name={name}
-            category={category}
-            image={image}
-            title={title}
-            gender={gender}
-            location={location}
-            birthday={birthday}
-            breed={breed}
-            price={price}
-            comments={comments}
-            onClose={onClose}
-          />
-        )}
+        {modalOpen && <ModalNotice id={_id} onShow={onShow} />}
       </NoticeCard>
     </>
   );
@@ -92,4 +76,5 @@ NoticeCategoryItem.propTypes = {
   image: PropTypes.string,
   birthday: PropTypes.string,
   comments: PropTypes.string,
+  owner: PropTypes.string,
 };

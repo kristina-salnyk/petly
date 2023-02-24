@@ -7,14 +7,20 @@ import {
   ButtonDelete,
   ButtonTextDelete,
 } from './NoticeButtons.styled';
-import { DeleteNoticeIcon } from '../../icons/DeleteNoticeIcon';
 import { useSelector } from 'react-redux';
-import {selectIsLoggedIn} from '../../../redux/auth/selectors';
+import { selectUser } from '../../../redux/auth/selectors';
+import { useDispatch } from 'react-redux';
+import { DeleteNoticeIcon } from '../../icons/DeleteNoticeIcon';
+import { deleteNotice } from '../../../redux/notices/operations';
 
-export const NoticeButtons = ({onShow}) => {
-  const isLoggedIn = useSelector(selectIsLoggedIn);
- 
- 
+export const NoticeButtons = ({ id, owner, onShow }) => {
+  const user = useSelector(selectUser);
+  const dispatch = useDispatch();
+
+  const deleteMyNotice = () => {
+    dispatch(deleteNotice(id));
+  };
+
   return (
     <>
       <ButtonWrapper>
@@ -22,8 +28,8 @@ export const NoticeButtons = ({onShow}) => {
           <ButtonText>Learn More</ButtonText>
         </ButtonLearnMore>
 
-        {isLoggedIn && (
-          <ButtonDelete>
+        {user.id === owner && (
+          <ButtonDelete onClick={deleteMyNotice}>
             <ButtonTextDelete>Delete</ButtonTextDelete>
             <DeleteNoticeIcon />
           </ButtonDelete>
@@ -33,7 +39,8 @@ export const NoticeButtons = ({onShow}) => {
   );
 };
 
-
 NoticeButtons.propTypes = {
+  id: PropTypes.string,
+  owner: PropTypes.string,
   onShow: PropTypes.func,
 };

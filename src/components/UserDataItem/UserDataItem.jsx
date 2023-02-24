@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import {
   InfoList,
   InfoItem,
@@ -7,19 +8,16 @@ import {
   InfoBtn,
 } from './UserDataItem.styled';
 import theme from '../../utils/theme';
-import { useAuth } from '../../hooks/useAuth';
 import { EditProfileInfoPenIcon } from '../../components/icons/EditProfileInfoPenIcon';
 
-export const UserDataItem = () => {
-  const { user } = useAuth();
-
+export const UserDataItem = ({ user }) => {
   return (
     <InfoList>
       <InfoItem>
         <InfoLabel>
           Name:
           <FlexWrapper>
-            <InfoInput type="text" value={user.name} />
+            <InfoInput name="name" type="text" value={user.name} />
             <InfoBtn type="button">
               <EditProfileInfoPenIcon color={theme.colors.accent} />
             </InfoBtn>
@@ -41,7 +39,7 @@ export const UserDataItem = () => {
         <InfoLabel>
           Birthday:
           <FlexWrapper>
-            <InfoInput type="text" value="00.00.0000" disabled />
+            <InfoInput type="text" name="birthday" value={user.birthday} />
             <InfoBtn type="button">
               <EditProfileInfoPenIcon color={theme.colors.accent} />
             </InfoBtn>
@@ -59,7 +57,7 @@ export const UserDataItem = () => {
           </FlexWrapper>
         </InfoLabel>
       </InfoItem>
-      <li>
+      <InfoItem>
         <InfoLabel>
           City:
           <FlexWrapper>
@@ -69,7 +67,17 @@ export const UserDataItem = () => {
             </InfoBtn>
           </FlexWrapper>
         </InfoLabel>
-      </li>
+      </InfoItem>
     </InfoList>
   );
+};
+
+UserDataItem.propTypes = {
+  user: PropTypes.shape({
+    name: PropTypes.string,
+    email: PropTypes.string,
+    city: PropTypes.string,
+    phone: PropTypes.string,
+    birthday: PropTypes.string,
+  }),
 };

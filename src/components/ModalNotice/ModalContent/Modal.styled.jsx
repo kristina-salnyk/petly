@@ -3,7 +3,8 @@ import styled from 'styled-components';
 export const ModalThumb = styled.div`
   position: relative;
   width: 280px;
-  background-color: white;
+  height: 100vh;
+  background-color: ${props => props.theme.colors.white};
   padding: 20px;
   border-radius: 20px;
 
@@ -44,7 +45,9 @@ export const TabletWrapper = styled.div`
 `;
 
 export const ModalComments = styled.p`
-  margin-top: 10px;
+  @media (min-width: 768px) {
+    margin-top: 28px;
+  }
 `;
 
 export const ModalCommentsName = styled.span`
@@ -66,7 +69,7 @@ export const ModalCommentsText = styled.span`
   font-family: ${props => props.theme.typography.font.primary};
   font-style: normal;
   font-size: 14px;
-  line-height: 19px;
+  line-height: 16px;
   color: ${props => props.theme.colors.text.primary};
 
   @media (min-width: 768px) {

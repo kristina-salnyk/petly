@@ -93,14 +93,16 @@ export const ProfileImgWrapper = styled.div`
   }
 `;
 
-export const ProfileImgBtn = styled.button`
+export const ProfileImgBtn = styled.input`
   width: auto;
   height: auto;
+  display: none;
+  border-radius: 50%;
+
   margin: 0;
   padding: 0;
   border: none;
   background-color: transparent;
-  cursor: pointer;
   border-radius: 50%;
 `;
 
@@ -108,14 +110,16 @@ export const ProfileImg = styled.img`
   width: 233px;
   height: 233px;
   border-radius: 50%;
+  cursor: pointer;
 `;
 
-export const PhotoEditButton = styled.button`
+export const PhotoEditWrapper = styled.div`
   position: absolute;
   top: 240px;
   right: 20px;
 
   display: flex;
+
   align-items: center;
   justify-content: center;
   background-color: #fff;
@@ -134,6 +138,10 @@ export const PhotoEditButton = styled.button`
     left: 290px;
     right: 0;
   }
+`;
+
+export const PhotoEditInput = styled.input`
+  display: none;
 `;
 
 export const PhotoEditSpan = styled.span`

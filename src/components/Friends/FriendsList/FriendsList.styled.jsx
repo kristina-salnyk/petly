@@ -1,34 +1,30 @@
 import styled from 'styled-components';
 
-export const TitleFriends = styled.h1`
-  font-weight: 700;
-  font-size: 24px;
-  line-height: 33px;
+export const TitleFriends = styled.h2`
+  font-weight: ${({ theme }) => theme.typography.weight.bold};
+  font-size: ${({ theme }) => theme.typography.size.l};
   text-align: center;
   color: black;
-  margin-top: 47px;
-  @media screen and (min-width: 768px) {
-    font-size: 48px;
-    line-height: 66px;
-    margin-top: 94px;
+  margin-top: 40px;
+  margin-bottom: 28px;
+  @media (min-width: ${({ theme }) => theme.breakpoints.tablet[0]}) {
+    font-size: ${({ theme }) => theme.typography.size.xxxxl};
+    margin-top: 88px;
+    margin-bottom: 40px;
   }
-  @media screen and (min-width: 1280px) {
-    margin-top: 72px;
+  @media (min-width: ${({ theme }) => theme.breakpoints.desktopMin}) {
+    margin-top: 60px;
+    margin-bottom: 60px;
   } 
-  
 `;
 
 export const List = styled.ul`
-  display: grid;
-  margin-top: 40px;
-  @media screen and (min-width: 768px) {
-    grid-template-columns: 1fr 1fr;
-    margin-top: 45px;
-    margin-right: -32px;
-    margin-bottom: -32px;
-  }
-  @media screen and (min-width: 1280px) {
-    grid-template-columns: 1fr 1fr 1fr;
-    margin-top: 60px;
-  }
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  list-style: none; 
+
+    @media (min-width: ${({ theme }) => theme.breakpoints.tablet[0]}){
+      padding-top: ${({ theme }) => theme.spacing[5]}px;
+    }
 `;

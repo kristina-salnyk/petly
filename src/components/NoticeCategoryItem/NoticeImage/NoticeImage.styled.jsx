@@ -25,7 +25,6 @@ left: 0;
   align-items: center;
   justify-content: space-between;
   padding-top: 20px;
-
   width: 100%;
 `;
 

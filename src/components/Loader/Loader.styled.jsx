@@ -3,14 +3,12 @@ import styled from 'styled-components';
 export const LoaderStyled = styled.div`
   display: flex;
   justify-content: center;
-  align-items: center;
   position: absolute;
   width: 100%;
   height: 100%;
   background: #fdf7f2;
   z-index: 1;
   opacity: 0.5;
-  position: fixed;
-  top: 0;
-  left: 0'
+  top: -10%;
+  left: 0;
 `;
