@@ -53,8 +53,6 @@ export const ModalAddNotice = ({ showModal, setShowModal }) => {
     onSubmit: values => Notify.failure(JSON.stringify(values, null, 2)),
   });
 
-
-
   const keyPress = useCallback(
     e => {
       if (e.key === 'Escape' && showModal) {
@@ -68,8 +66,6 @@ export const ModalAddNotice = ({ showModal, setShowModal }) => {
     document.addEventListener('keydown', keyPress);
     return () => document.removeEventListener('keydown', keyPress);
   }, [keyPress]);
-
- 
 
   const validate = () => {
     if (!formik.values.announcement) {
@@ -103,7 +99,7 @@ export const ModalAddNotice = ({ showModal, setShowModal }) => {
       return Notify.failure('comments is required!');
     }
   };
-  const closeModal = () => setShowModal(prev => !prev)
+  const closeModal = () => setShowModal(prev => !prev);
   const dispatch = useDispatch();
 
   const handleSubmit = e => {
@@ -119,7 +115,7 @@ export const ModalAddNotice = ({ showModal, setShowModal }) => {
   return (
     <>
       {showModal ? (
-        <Background >
+        <Background>
           {active === 'FerstWraper' && (
             <FerstModalWrapper showModal={showModal}>
               <ModalContent>
@@ -207,10 +203,7 @@ export const ModalAddNotice = ({ showModal, setShowModal }) => {
                 >
                   Next
                 </ButtonNext>
-                <CloseModalButton
-                  area-label="Close modal"
-                  onClick={closeModal}
-                >
+                <CloseModalButton area-label="Close modal" onClick={closeModal}>
                   <CloseModalIcon color={'black'} />
                 </CloseModalButton>
 

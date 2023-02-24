@@ -63,5 +63,5 @@ const noticesSlice = createSlice({
     },
   },
 });
-
+export const { changeSearchQuery } = noticesSlice.actions;
 export const noticesReducer = noticesSlice.reducer;

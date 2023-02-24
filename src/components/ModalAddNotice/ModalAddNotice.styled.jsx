@@ -6,6 +6,8 @@ export const Background = styled.div`
   height: 100%;
   background: rgba(0, 0, 0, 0.8);
   position: fixed;
+  top: 0;
+  left: 0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -85,6 +87,7 @@ export const P = styled.p`
   }
 `;
 
+
 export const ButtonCansel = styled.button`
   width: 240px;
   height: 40px;
@@ -163,7 +166,7 @@ export const Form = styled.form`
   @media (min-width: ${({ theme }) => theme.breakpoints.tablet[0]}) {
     width: 448px;
     left: 80px;
-    top: 170px;
+    top: 190px;
   }
 `;
 
@@ -243,9 +246,7 @@ border-radius: ${({ theme }) => theme.shape.borderRadius.l}px;
   &:active {
     background-color: ${({ theme }) => theme.colors.accent};
   }
-  &:focus {
-    ackground-color: ${({ theme }) => theme.colors.accent};
-  }
+  
 
 @media (min-width: ${({ theme }) => theme.breakpoints.tablet[0]}) {
   padding: 2px 20px;
@@ -255,17 +256,16 @@ border-radius: ${({ theme }) => theme.shape.borderRadius.l}px;
     background-color: ${({ theme }) => theme.colors.accent};
   }
   &:active {
-    color: ${({ theme }) => theme.colors.hoverAccent};
+    background-color: ${({ theme }) => theme.colors.accent};
   }
 }
 }
 `
-
-
 export const GenderWrapper = styled.div`
   display: flex;
   position: absolute;
   top: 80px;
+  left: 60px
 `;
 export const GenderItem = styled.div`
   width: 36px;
@@ -275,26 +275,24 @@ export const GenderItem = styled.div`
 export const GenderLabel = styled.label`
   color: ${({ theme }) => theme.colors.black};
   &:hover {
-    color: ${({ theme }) => theme.colors.hoverAccent};
+    color: ${({ theme }) => theme.colors.accent};
   }
   &:active {
-    color: ${({ theme }) => theme.colors.hoverAccent};
+    color: ${({ theme }) => theme.colors.accent};
   }
   @media (min-width: ${({ theme }) => theme.breakpoints.tablet[0]}) {
-    color: ${({ theme }) => theme.colors.black};
     &:hover {
-      color: ${({ theme }) => theme.colors.hoverAccent};
+     color: ${({ theme }) => theme.colors.accent};
     }
     &:active {
-      color: ${({ theme }) => theme.colors.hoverAccent};
+      color: ${({ theme }) => theme.colors.accent};
     }
-  }
+    }
+  
 `;
 
 export const GenderP = styled.p``;
 export const GenderInput = styled.input`
-  width: 36px;
-  hight: 36px;
   display: none;
 `;
 export const FileBox = styled.div`
@@ -329,8 +327,8 @@ export const ButtonWrapper = styled.div`
   left: 0px;
   top: 70px;
   @media (min-width: ${({ theme }) => theme.breakpoints.tablet[0]}) {
-    left: 20px;
-    top: 30px;
+    left: 10px;
+    top: 60px;
   }
 `;
 

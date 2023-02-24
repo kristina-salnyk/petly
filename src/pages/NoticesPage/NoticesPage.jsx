@@ -1,6 +1,9 @@
-
-import React, { useState } from 'react';
-import { ModalAddNotice } from '../../components/ModalAddNotice/ModalAddNotice';
+import { Suspense, useEffect, useState } from 'react';
+import { Outlet, useParams, useSearchParams } from 'react-router-dom';
+import { NoticesSearch } from '../../components/NoticesSearch';
+import { NoticeCategoriesNav } from '../../components/NoticesCategoriesNav/NoticesCategoriesNav';
+import { AddNoticeButton } from '../../components/AddNoticeButton';
+import { Container, ContentWrap, PageTitle, TopPanel } from './NoticesPage.styled';
 import { GlobalStyle } from '../../components/ModalAddNotice/ModalAddNotice.styled';
 import { ModalAddNotice } from '../../components/ModalAddNotice';
 
@@ -15,6 +18,7 @@ const NoticesPage = () => {
 
   const [showModal, setShowModal] = useState(false);
   const openModal = () => {
+    console.log('jjkjjjjj');
     setShowModal(prev => !prev);
   };
 
@@ -63,3 +67,25 @@ const NoticesPage = () => {
 };
 
 export default NoticesPage;
+
+// import React, { useState } from 'react';
+// import { ModalAddNotice } from '../../components/ModalAddNotice/ModalAddNotice';
+// import { GlobalStyle } from '../../components/ModalAddNotice/ModalAddNotice.styled';
+// import { Button } from './NoticesPage.styled';
+
+// const NoticesPage = () => {
+//   const [showModal, setShowModal] = useState(false);
+//   const openModal = () => {
+    
+//     setShowModal(prev => !prev);
+//   };
+//   return (
+//     <>
+//       <ModalAddNotice showModal={showModal} setShowModal={setShowModal} />
+//       <Button onClick={openModal}>Add pet</Button>
+//       <GlobalStyle />
+//     </>
+//   );
+// };
+
+// export default NoticesPage;

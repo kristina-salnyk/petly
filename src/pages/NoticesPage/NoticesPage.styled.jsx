@@ -42,3 +42,9 @@ export const TopPanel = styled.div`
   align-items: center;
 `;
 
+export const Button = styled.div`
+width: 50px;
+height: 50px
+
+`;
+
