@@ -1,4 +1,5 @@
-import {Login, Auth, Div} from '../../components/AuthNav/AuthNav.styled';
+import {Auth, Div} from '../../components/AuthNav/AuthNav.styled';
+import {UserButton} from './UserNav.styled'
 import {UserLink} from './UserNav.styled'
 import {UserIcon} from '../icons/UserIcon';
 
@@ -11,12 +12,12 @@ export const UserNav = ({isMenuClicked}) => {
       {!isMenuClicked && 
       <Div>
         <Auth>
-          <Login>
+          <UserButton>
             <UserIcon/>
             <UserLink to="/user">
               Account
             </UserLink >
-          </Login>
+          </UserButton>
         </Auth>
       </Div> 
       }

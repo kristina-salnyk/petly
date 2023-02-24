@@ -28,13 +28,14 @@ bottom:0;
 right:0;
 z-index:-10;
 
-@media (max-width: 759px){
+@media (max-width: 767px){
 	max-width:100%;
 	right:50%;
 	transform: translateX(50%);
 }
-@media (min-width: 760px) and (max-width: 1279px){
+@media (min-width: 767px) and (max-width: 1279px){
 	max-width:100%;
+	
 	right:50%;
 	transform: translateX(50%);
 }
