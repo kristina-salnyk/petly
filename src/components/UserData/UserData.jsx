@@ -1,5 +1,10 @@
 import { Logout } from '../../components/Logout/Logout';
 import { UserDataItem } from '../UserDataItem/UserDataItem';
+import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import { refreshUser } from '../../redux/auth/operations';
+import { useAuth } from '../../hooks/useAuth';
+
 import {
   UserDataWrapper,
   MyInformation,
@@ -15,6 +20,13 @@ import { EditPhotoIcon } from '../../components/icons/EditPhotoIcon';
 import defaultImage from '../../images/addAvatarMockUp.png';
 
 export const UserData = () => {
+  const { user } = useAuth();
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(refreshUser());
+  }, [dispatch]);
+
   const imageUrl = defaultImage;
 
   return (
@@ -24,7 +36,7 @@ export const UserData = () => {
         <ProfileImgWrapper>
           <label>
             <ProfileImgBtn type="file" />
-            <ProfileImg src={imageUrl} alt="User avatar" />
+            <ProfileImg src={imageUrl || user.avatarUrl} alt="User avatar" />
           </label>
         </ProfileImgWrapper>
         <label>
@@ -34,7 +46,7 @@ export const UserData = () => {
             <PhotoEditSpan>Edit photo</PhotoEditSpan>
           </PhotoEditWrapper>
         </label>
-        <UserDataItem />
+        <UserDataItem user={user} />
         <Logout />
       </InformationBackgroundBlock>
     </UserDataWrapper>
