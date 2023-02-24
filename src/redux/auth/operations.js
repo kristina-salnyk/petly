@@ -54,3 +54,12 @@ export const updateUser = createAsyncThunk('auth/update', async (credentials, th
     return thunkAPI.rejectWithValue(error.message);
   }
 });
+
+export const verifyUser = createAsyncThunk('auth/verify', async (token, thunkAPI) => {
+  try {
+    const response = await api.get(`/auth/verify/${token}`);
+    return response.data;
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error.message);
+  }
+});
