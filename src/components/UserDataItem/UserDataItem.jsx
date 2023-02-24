@@ -1,6 +1,4 @@
-import { useDispatch } from 'react-redux';
-import { refreshUser } from '../../redux/auth/operations';
-import { useEffect } from 'react';
+import PropTypes from 'prop-types';
 import {
   InfoList,
   InfoItem,
@@ -11,17 +9,8 @@ import {
 } from './UserDataItem.styled';
 import theme from '../../utils/theme';
 import { EditProfileInfoPenIcon } from '../../components/icons/EditProfileInfoPenIcon';
-import { useAuth } from '../../hooks/useAuth';
 
-export const UserDataItem = () => {
-  const { user } = useAuth();
-
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(refreshUser());
-  }, [dispatch]);
-
+export const UserDataItem = ({ user }) => {
   return (
     <InfoList>
       <InfoItem>
@@ -81,4 +70,14 @@ export const UserDataItem = () => {
       </InfoItem>
     </InfoList>
   );
+};
+
+UserDataItem.propTypes = {
+  user: PropTypes.shape({
+    name: PropTypes.string,
+    email: PropTypes.string,
+    city: PropTypes.string,
+    phone: PropTypes.string,
+    birthday: PropTypes.string,
+  }),
 };
