@@ -3,21 +3,18 @@ import { NavLink } from 'react-router-dom';
 
 export const Div = styled.div`
   display: flex;
-  
+
   @media (max-width: 767px) {
-  display: none;
-
-} 
-@media (min-width: 767px) {
-  :hover{
-    background-color: #F59256
-     color:#FFFFFF;
-     cursor: pointer;
-
-} 
- 
-`
-
+    display: none;
+  }
+  @media (min-width: 767px) {
+    :hover {
+      background-color: #f59256;
+      color: #ffffff;
+      cursor: pointer;
+    }
+  }
+`;
 
 export const Auth = styled.ul`
   display: block;
@@ -26,17 +23,13 @@ export const Auth = styled.ul`
   }
   @media (min-width: 768px) {
     display: flex;
-      hover{
-      background-color: #F59256
-       color:#FFFFFF;
-       cursor: pointer;
-      
-    
-  } 
-  
-    
-`
-
+    hover {
+      background-color: #f59256;
+      color: #ffffff;
+      cursor: pointer;
+    }
+  }
+`;
 
 export const Login = styled.div`
   border-radius: 40px;
