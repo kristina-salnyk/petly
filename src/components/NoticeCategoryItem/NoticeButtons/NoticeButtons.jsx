@@ -7,11 +7,11 @@ import {
   ButtonDelete,
   ButtonTextDelete,
 } from './NoticeButtons.styled';
-import { useSelector } from 'react-redux';
-import { selectUser } from '../../../redux/auth/selectors';
-import { useDispatch } from 'react-redux';
-import { DeleteNoticeIcon } from '../../icons/DeleteNoticeIcon';
+import { useSelector, useDispatch } from 'react-redux';
 import { deleteNotice } from '../../../redux/notices/operations';
+import { selectUser } from '../../../redux/auth/selectors';
+import { DeleteNoticeIcon } from '../../icons/DeleteNoticeIcon';
+
 
 export const NoticeButtons = ({ id, owner, onShow }) => {
   const user = useSelector(selectUser);

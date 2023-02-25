@@ -13,7 +13,7 @@ export const ModalButtonWrapper = styled.div`
     align-items: baseline;
     justify-content: flex-start;
     gap: 12px;
-    margin-top: 40px;
+    margin-top: 30px;
   }
 `;
 

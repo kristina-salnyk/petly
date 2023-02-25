@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux';
 import { ModalImage } from './ModalImage/ModalImage';
 import { ModalInfo } from './ModalInfo/ModalInfo';
 import { ModalButtons } from './ModalButtons/ModalButtons';
@@ -11,12 +12,13 @@ import {
   ModalCommentsName,
   ModalCommentsText,
 } from './Modal.styled';
+import { selectNoticeItem } from '../../../redux/notices/selectors';
 import { CloseModalIcon } from '../../icons/CloseModalIcon';
 import theme from '../../../utils/theme';
-import { selectNoticeItem } from '../../../redux/notices/selectors';
-import { useSelector } from 'react-redux';
 
-export const Modal = ({id,onShow}) => {
+
+
+export const Modal = ({ icon, addToFavorite, onShow}) => {
   const noticesItem = useSelector(selectNoticeItem);
 
   return (
@@ -46,23 +48,14 @@ export const Modal = ({id,onShow}) => {
           <ModalCommentsText>{noticesItem.comments}</ModalCommentsText>
         </ModalComments>
 
-        <ModalButtons id={id} />
+        <ModalButtons icon={icon} addToFavorite={addToFavorite} />
       </ModalThumb>
     </>
   );
 };
 
 Modal.propTypes = {
-  id: PropTypes.string,
-  category: PropTypes.string,
-  title: PropTypes.string,
-  name: PropTypes.string,
-  breed: PropTypes.string,
-  location: PropTypes.string,
-  gender: PropTypes.string,
-  price: PropTypes.string,
-  image: PropTypes.string,
-  birthday: PropTypes.string,
-  comments: PropTypes.string,
   onShow: PropTypes.func,
+  icon: PropTypes.bool,
+  addToFavorite: PropTypes.func,
 };
