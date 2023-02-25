@@ -18,7 +18,6 @@ const NoticesPage = () => {
 
   const [showModal, setShowModal] = useState(false);
   const openModal = () => {
-    console.log('jjkjjjjj');
     setShowModal(prev => !prev);
   };
 
@@ -76,7 +75,7 @@ export default NoticesPage;
 // const NoticesPage = () => {
 //   const [showModal, setShowModal] = useState(false);
 //   const openModal = () => {
-    
+
 //     setShowModal(prev => !prev);
 //   };
 //   return (

@@ -15,7 +15,8 @@ import {
   Title,
   ButtonCansel,
   ButtonNext,
-  Form,
+  FerstForm,
+  SecondForm,
   Input,
   Label,
   P,
@@ -28,8 +29,9 @@ import {
   GenderLabel,
   FileBox,
   Comments,
-  ButtonWrapper,
   CategoryWrap,
+  Ferstbutton,
+  SecondButton,
 } from './ModalAddNotice.styled';
 import { useDispatch } from 'react-redux';
 import { useFormik } from 'formik';
@@ -126,8 +128,8 @@ export const ModalAddNotice = ({ showModal, setShowModal }) => {
                     <CategoryWrap>lost/found</CategoryWrap>
                     <Category
                       type="radio"
-                      name="lost/found"
-                      value="lost/found"
+                      name="lost-found"
+                      value="lost-found"
                       onChange={e => handleCategory(e)}
                     ></Category>
                   </label>
@@ -135,8 +137,8 @@ export const ModalAddNotice = ({ showModal, setShowModal }) => {
                     <CategoryWrap>in good hands</CategoryWrap>
                     <Category
                       type="radio"
-                      name="in good hands"
-                      value="in good hands"
+                      name="in-good-hands"
+                      value="in-good-hands"
                       onChange={e => handleCategory(e)}
                     ></Category>
                   </label>
@@ -151,7 +153,7 @@ export const ModalAddNotice = ({ showModal, setShowModal }) => {
                   </label>
                 </Categories>
 
-                <Form onSubmit={formik.handleSubmit}>
+                <FerstForm onSubmit={formik.handleSubmit}>
                   <Label htmlFor="text">Tittle of ad</Label>
                   <Input
                     onChange={formik.handleChange}
@@ -194,15 +196,17 @@ export const ModalAddNotice = ({ showModal, setShowModal }) => {
                     autoFocus
                     placeholder="Type breed"
                   />
-                </Form>
-                <ButtonCansel onClick={() => setShowModal(prev => !prev)}>Cancel</ButtonCansel>
-                <ButtonNext
-                  onClick={() => {
-                    setActive('SecondWraper');
-                  }}
-                >
-                  Next
-                </ButtonNext>
+                </FerstForm>
+                <Ferstbutton>
+                  <ButtonCansel onClick={() => setShowModal(prev => !prev)}>Cancel</ButtonCansel>
+                  <ButtonNext
+                    onClick={() => {
+                      setActive('SecondWraper');
+                    }}
+                  >
+                    Next
+                  </ButtonNext>
+                </Ferstbutton>
                 <CloseModalButton area-label="Close modal" onClick={closeModal}>
                   <CloseModalIcon color={'black'} />
                 </CloseModalButton>
@@ -241,7 +245,7 @@ export const ModalAddNotice = ({ showModal, setShowModal }) => {
                     </GenderLabel>
                   </GenderItem>
                 </GenderWrapper>
-                <Form onSubmit={formik.handleSubmit}>
+                <SecondForm onSubmit={formik.handleSubmit}>
                   <Label htmlFor="text">Location*:</Label>
                   <Input
                     onChange={formik.handleChange}
@@ -267,8 +271,7 @@ export const ModalAddNotice = ({ showModal, setShowModal }) => {
                       <GenderInput
                         type="file"
                         name="image"
-                        value={formik.values.image}
-                        onChange={formik.handleChange}
+                        onChange={e => formik.setFieldValue('image', e.currentTarget.files[0])}
                         required
                       />
                       <AddPhotoOfPetIcon />
@@ -283,8 +286,8 @@ export const ModalAddNotice = ({ showModal, setShowModal }) => {
                     placeholder="Comments"
                     required
                   ></Comments>
-                </Form>
-                <ButtonWrapper>
+                </SecondForm>
+                <SecondButton>
                   <ButtonCansel
                     onClick={() => {
                       setActive('FerstWraper');
@@ -294,7 +297,7 @@ export const ModalAddNotice = ({ showModal, setShowModal }) => {
                   </ButtonCansel>
 
                   <ButtonNext onClick={handleSubmit}>Done</ButtonNext>
-                </ButtonWrapper>
+                </SecondButton>
                 <CloseModalButton
                   area-label="Close modal"
                   onClick={() => setShowModal(prev => !prev)}
