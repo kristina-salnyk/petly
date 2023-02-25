@@ -10,6 +10,7 @@ const authSlice = createSlice({
       phone: null,
       city: null,
       birthday: null,
+      avatarURL: null,
       favorites: [],
       _id: null,
       token: null,

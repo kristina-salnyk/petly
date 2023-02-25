@@ -17,7 +17,7 @@ export const UserDataItem = ({ user }) => {
         <InfoLabel>
           Name:
           <FlexWrapper>
-            <InfoInput name="name" type="text" value={user.name} />
+            <InfoInput name="name" type="text" defaultValue={user.name} />
             <InfoBtn type="button">
               <EditProfileInfoPenIcon color={theme.colors.accent} />
             </InfoBtn>
@@ -28,7 +28,7 @@ export const UserDataItem = ({ user }) => {
         <InfoLabel>
           Email:
           <FlexWrapper>
-            <InfoInput type="text" value={user.email} />
+            <InfoInput type="text" defaultValue={user.email} />
             <InfoBtn type="button">
               <EditProfileInfoPenIcon color={theme.colors.accent} />
             </InfoBtn>
@@ -39,7 +39,7 @@ export const UserDataItem = ({ user }) => {
         <InfoLabel>
           Birthday:
           <FlexWrapper>
-            <InfoInput type="text" name="birthday" value={user.birthday} />
+            <InfoInput type="text" name="birthday" defaultValue={user.birthday} />
             <InfoBtn type="button">
               <EditProfileInfoPenIcon color={theme.colors.accent} />
             </InfoBtn>
@@ -50,7 +50,7 @@ export const UserDataItem = ({ user }) => {
         <InfoLabel>
           Phone:
           <FlexWrapper>
-            <InfoInput type="text" value={user.phone} />
+            <InfoInput type="text" defaultValue={user.phone} />
             <InfoBtn type="button">
               <EditProfileInfoPenIcon color={theme.colors.accent} />
             </InfoBtn>
@@ -61,7 +61,7 @@ export const UserDataItem = ({ user }) => {
         <InfoLabel>
           City:
           <FlexWrapper>
-            <InfoInput type="text" value={user.city} />
+            <InfoInput type="text" defaultValue={user.city} />
             <InfoBtn type="button">
               <EditProfileInfoPenIcon color={theme.colors.accent} />
             </InfoBtn>
