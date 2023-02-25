@@ -59,7 +59,7 @@ export const Title = styled.h1`
   height: 33px;
   position: absolute;
   left: 90px;
-  top: 30px;
+  top: 100px;
   font-family: 'Manrope';
   font-style: normal;
   font-weight: 500;
@@ -67,7 +67,7 @@ export const Title = styled.h1`
   line-height: 33px;
   @media (min-width: ${({ theme }) => theme.breakpoints.tablet[0]}) {
     left: 240px;
-    top: 10px;
+    top: 30px;
     font-size: 36px;
     line-height: 49px;
   }
@@ -84,49 +84,87 @@ export const P = styled.p`
   @media (min-width: ${({ theme }) => theme.breakpoints.tablet[0]}) {
     left: 40px;
     top: 60px;
+   
   }
 `;
-
+export const Ferstbutton = styled.div`
+position: absolute;
+left: 50px;
+top: 600px;
+@media (min-width: ${({ theme }) => theme.breakpoints.tablet[0]}) {
+  left: 110px;
+  top: 650px;
+}
+`
+export const SecondButton = styled.div`
+position: absolute;
+left: 50px;
+top: 620px;
+@media (min-width: ${({ theme }) => theme.breakpoints.tablet[0]}) {
+  left: 110px;
+  top: 650px;
+}
+`
 
 export const ButtonCansel = styled.button`
-  width: 240px;
-  height: 40px;
-  background: #ffffff;
-  box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
-  border-radius: 40px;
-  position: absolute;
-  left: 20px;
-  top: 540px;
-  font-family: 'Manrope';
-  font-style: normal;
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 22px;
-  letter-spacing: 0.04em;
-  color: ${props => props.theme.colors.black};
+display: flex;
+align-items: center;
+justify-content: center;
+border-radius: 40px;
+border: 2px solid #f59256;
+background: ${({ theme }) => theme.colors.white};
+color: #111111;
+text-align: center;
+text-decoration: none;
+display: inline-block;
+font-size: 16px;
+font-family: 'Manrope';
+font-style: normal;
+font-weight: 500;
+font-size: 20px;
+line-height: 19px;
+width: 180px;
+height: 44px;
+margin-right: 10px;
+margin-bottom: 10px;
+:hover {
+  :hover {
+    color: ${({ theme }) => theme.colors.black};
+    background-color: ${({ theme }) => theme.colors.accent};
+  }
+}
   @media (min-width: ${({ theme }) => theme.breakpoints.tablet[0]}) {
     width: 180px;
     height: 44px;
     left: 100px;
     top: 590px;
+    margin-right: 10px;
   }
 `;
 
 export const ButtonNext = styled.button`
-  width: 240px;
-  height: 40px;
-  background: #f59256;
-  border-radius: 40px;
-  position: absolute;
-  left: 20px;
-  top: 590px;
-  font-family: 'Manrope';
-  font-style: normal;
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 22px;
-  letter-spacing: 0.04em;
-  color: ${props => props.theme.colors.white};
+display: flex;
+align-items: center;
+justify-content: center;
+border-radius: 40px;
+border: 2px solid #f59256;
+background: ${({ theme }) => theme.colors.white};
+color: #111111;
+text-align: center;
+text-decoration: none;
+display: inline-block;
+font-size: 16px;
+font-family: 'Manrope';
+font-style: normal;
+font-weight: 500;
+font-size: 20px;
+line-height: 19px;
+width: 180px;
+height: 44px;
+:hover {
+  color: ${({ theme }) => theme.colors.black};
+  background-color: ${({ theme }) => theme.colors.accent};
+}
 
   @media (min-width: ${({ theme }) => theme.breakpoints.tablet[0]}) {
     width: 180px;
@@ -157,10 +195,23 @@ export const CloseModalButton = styled.button`
   }
 `;
 
-export const Form = styled.form`
+export const FerstForm = styled.form`
   width: 240px;
   left: 20px;
-  top: 200px;
+  top: 250px;
+  position: absolute;
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.tablet[0]}) {
+    width: 448px;
+    left: 80px;
+    top: 190px;
+  }
+`;
+
+export const SecondForm = styled.form`
+  width: 240px;
+  left: 20px;
+  top: 250px;
   position: absolute;
 
   @media (min-width: ${({ theme }) => theme.breakpoints.tablet[0]}) {
@@ -322,15 +373,7 @@ export const Comments = styled.textarea`
     padding-left: 10px;
   }
 `;
-export const ButtonWrapper = styled.div`
-  position: absolute;
-  left: 0px;
-  top: 70px;
-  @media (min-width: ${({ theme }) => theme.breakpoints.tablet[0]}) {
-    left: 10px;
-    top: 60px;
-  }
-`;
+
 
 export const GlobalStyle = createGlobalStyle`
 box-sizing: border-box;
