@@ -31,7 +31,7 @@ export const NoticeInfo = ({ title, breed, location, birthday, price, category }
             <>
               {' '}
               <CardInfoName>Price:</CardInfoName>
-              <CardInfoValue>{price}</CardInfoValue>
+              <CardInfoValue>{price}$</CardInfoValue>
             </>
           )}
         </CardInfoList>
