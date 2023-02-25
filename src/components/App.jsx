@@ -4,6 +4,7 @@ import { SharedLayout } from './SharedLayout';
 import { NoticeCategoriesList } from './NoticesCategoriesList/NoticesCategoriesList';
 import { PrivateRoute } from '../hooks/PrivateRoute';
 import { RestrictedRoute } from '../hooks/RestrictedRoute';
+import { VerifyPage } from '../pages/VerifyPage/VerifyPage';
 
 const LoginPage = lazy(() => import('../pages/LoginPage/LoginPage'));
 const HomePage = lazy(() => import('../pages/HomePage/HomePage'));
@@ -37,6 +38,7 @@ export function App() {
           <Route path="" element={<Navigate to="sell" replace />} />
           <Route path=":category" element={<NoticeCategoriesList />} />
         </Route>
+        <Route path="/verify/:verificationToken" element={<VerifyPage />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Route>
     </Routes>
