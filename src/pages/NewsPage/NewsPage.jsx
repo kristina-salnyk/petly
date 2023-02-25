@@ -1,9 +1,46 @@
 import NewsList from '../../components/News/NewsList/NewsList';
-import { Container } from './NewsPage.styled';
+import NewsSearchForm from '../../components/News/NewsSearch/NewsSearch';
+import { Container, TitleNews } from './NewsPage.styled';
+import { useSearchParams } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectNewsSearchString} from '../../redux/news/selectors';
+import { filterNews } from '../../redux/news/filterSlice';
+// import { fetchNews } from '../../redux/news/operations';
 
 const NewsPage = () => {
+  const dispatch = useDispatch();
+  // const { category } = useParams();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const queryParam = searchParams.get('query') ?? '';
+  const searchQuery = useSelector(selectNewsSearchString);
+
+  useEffect(() => {
+    if (!queryParam) {
+      return setSearchQueryParam();
+    }
+    dispatch(filterNews(queryParam));
+    return () => {
+      dispatch(filterNews(''));
+    };
+  }, [queryParam]);
+
+  // useEffect(() => {
+  //   dispatch(fetchNews({ category }));
+  // }, [dispatch, category]);
+
+  const setSearchQueryParam = () => {
+    const query = searchQuery.filter.trim();
+    const newParams = query !== '' ? { query } : {};
+    setSearchParams(newParams);
+  };
+
+  console.log(searchQuery.filter);
+  
   return (
     <Container>
+      <TitleNews>News</TitleNews>
+      <NewsSearchForm onSubmit={setSearchQueryParam}/>
       <NewsList />
     </Container>
   
