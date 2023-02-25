@@ -6,7 +6,7 @@ import BgMenu from '../BgMenu/bgmenu';
 import AuthNav from '../AuthNav/AuthNav';
 import UserMenu from '../../components/UserNav/UserNav';
 import { selectIsLoggedIn, selectIsRefreshing } from '../../redux/auth/selectors';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { refreshUser } from '../../redux/auth/operations';
 
 export const Header = () => {
@@ -17,8 +17,10 @@ export const Header = () => {
   const isRefreshing = useSelector(selectIsRefreshing);
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(refreshUser());
-  }, [dispatch]);
+    if (isLoggedIn) {
+      dispatch(refreshUser());
+    }
+  }, [isLoggedIn, dispatch]);
 
   const updateMenu = () => {
     if (!isMenuClicked) {
