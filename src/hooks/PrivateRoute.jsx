@@ -9,6 +9,6 @@ export const PrivateRoute = ({ component: Component, redirectTo = '/' }) => {
 };
 
 PrivateRoute.propTypes = {
-  component: PropTypes.component,
+  component: PropTypes.object,
   redirectTo: PropTypes.string,
 };
