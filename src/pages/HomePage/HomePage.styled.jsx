@@ -15,7 +15,7 @@ position: absolute;
 right: 460px;
 bottom:509px;
 object-fit: cover;
-@media (max-width: 1280px) {
+@media (max-width: 1279px) {
 	display:none;
 }
 `
