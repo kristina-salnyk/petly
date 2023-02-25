@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import React from 'react';
 import PropTypes from 'prop-types';
 import {
   ModalButtonWrapper,
@@ -8,22 +7,12 @@ import {
   ModalButtonAdd,
   ModalButtonTextAdd,
 } from './ModalButtons.styled';
-import Notiflix from 'notiflix';
 import { FavoriteHeartIcon } from '../../../icons/FavoriteInModalHeartIcon';
-import { selectIsLoggedIn } from '../../../../redux/auth/selectors';
-// import theme from '../../../../utils/theme';
 
-export const ModalButtons = ({id}) => {
-  const [favorite, setFavorite] = useState(false);
-  const isLoggedIn = useSelector(selectIsLoggedIn);
-
-  const addToFavorite = () => {
-    if (!isLoggedIn) {
-      console.log(id);
-      Notiflix.Notify.warning('Please sign in');
-      return;
-    }
-    return setFavorite(!favorite);
+export const ModalButtons = ({icon, addToFavorite }) => {
+  
+  const addToFavoriteModal = () => {
+    addToFavorite();
   };
 
   return (
@@ -35,11 +24,8 @@ export const ModalButtons = ({id}) => {
             <ModalButtonText>Contact</ModalButtonText>
           </ModalButtonContact>
         </a>
-        <ModalButtonAdd
-          // style={favorite ? { backgroundColor: theme.colors.accent } : null}
-          onClick={addToFavorite}
-        >
-          <ModalButtonTextAdd>{favorite ? 'Added to' :'Add to'}</ModalButtonTextAdd>
+        <ModalButtonAdd onClick={addToFavoriteModal}>
+          <ModalButtonTextAdd>{icon ? 'Delete from' : 'Add to'}</ModalButtonTextAdd>
           <FavoriteHeartIcon />
         </ModalButtonAdd>
       </ModalButtonWrapper>
@@ -48,5 +34,6 @@ export const ModalButtons = ({id}) => {
 };
 
 ModalButtons.propTypes = {
-  id: PropTypes.string,
-}
+  icon: PropTypes.bool,
+  addToFavorite: PropTypes.func,
+};

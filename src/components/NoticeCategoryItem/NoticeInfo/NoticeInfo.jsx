@@ -1,5 +1,5 @@
 import React from 'react';
-// import { differenceInYears,parseISO  } from 'date-fns';
+// import { differenceInYears  } from 'date-fns';
 import PropTypes from 'prop-types';
 import {
   CardInfoWrapper,
@@ -10,8 +10,8 @@ import {
 } from './NoticeInfo.styled';
 
 export const NoticeInfo = ({ title, breed, location, birthday, price, category }) => {
-  // console.log(typeof(birthday));
-  // const age = differenceInYears(new Date(), parseISO(birthday));
+
+  // const age = differenceInYears(new Date(), birthday );
 
   return (
     <>
