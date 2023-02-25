@@ -84,55 +84,54 @@ export const P = styled.p`
   @media (min-width: ${({ theme }) => theme.breakpoints.tablet[0]}) {
     left: 40px;
     top: 60px;
-   
   }
 `;
 export const Ferstbutton = styled.div`
-position: absolute;
-left: 50px;
-top: 600px;
-@media (min-width: ${({ theme }) => theme.breakpoints.tablet[0]}) {
-  left: 110px;
-  top: 650px;
-}
-`
+  position: absolute;
+  left: 50px;
+  top: 600px;
+  @media (min-width: ${({ theme }) => theme.breakpoints.tablet[0]}) {
+    left: 110px;
+    top: 650px;
+  }
+`;
 export const SecondButton = styled.div`
-position: absolute;
-left: 50px;
-top: 620px;
-@media (min-width: ${({ theme }) => theme.breakpoints.tablet[0]}) {
-  left: 110px;
-  top: 650px;
-}
-`
+  position: absolute;
+  left: 50px;
+  top: 620px;
+  @media (min-width: ${({ theme }) => theme.breakpoints.tablet[0]}) {
+    left: 110px;
+    top: 650px;
+  }
+`;
 
 export const ButtonCansel = styled.button`
-display: flex;
-align-items: center;
-justify-content: center;
-border-radius: 40px;
-border: 2px solid #f59256;
-background: ${({ theme }) => theme.colors.white};
-color: #111111;
-text-align: center;
-text-decoration: none;
-display: inline-block;
-font-size: 16px;
-font-family: 'Manrope';
-font-style: normal;
-font-weight: 500;
-font-size: 20px;
-line-height: 19px;
-width: 180px;
-height: 44px;
-margin-right: 10px;
-margin-bottom: 10px;
-:hover {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 40px;
+  border: 2px solid #f59256;
+  background: ${({ theme }) => theme.colors.white};
+  color: #111111;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 19px;
+  width: 180px;
+  height: 44px;
+  margin-right: 10px;
+  margin-bottom: 10px;
   :hover {
-    color: ${({ theme }) => theme.colors.black};
-    background-color: ${({ theme }) => theme.colors.accent};
+    :hover {
+      color: ${({ theme }) => theme.colors.black};
+      background-color: ${({ theme }) => theme.colors.accent};
+    }
   }
-}
   @media (min-width: ${({ theme }) => theme.breakpoints.tablet[0]}) {
     width: 180px;
     height: 44px;
@@ -143,28 +142,28 @@ margin-bottom: 10px;
 `;
 
 export const ButtonNext = styled.button`
-display: flex;
-align-items: center;
-justify-content: center;
-border-radius: 40px;
-border: 2px solid #f59256;
-background: ${({ theme }) => theme.colors.white};
-color: #111111;
-text-align: center;
-text-decoration: none;
-display: inline-block;
-font-size: 16px;
-font-family: 'Manrope';
-font-style: normal;
-font-weight: 500;
-font-size: 20px;
-line-height: 19px;
-width: 180px;
-height: 44px;
-:hover {
-  color: ${({ theme }) => theme.colors.black};
-  background-color: ${({ theme }) => theme.colors.accent};
-}
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 40px;
+  border: 2px solid #f59256;
+  background: ${({ theme }) => theme.colors.white};
+  color: #111111;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 19px;
+  width: 180px;
+  height: 44px;
+  :hover {
+    color: ${({ theme }) => theme.colors.black};
+    background-color: ${({ theme }) => theme.colors.accent};
+  }
 
   @media (min-width: ${({ theme }) => theme.breakpoints.tablet[0]}) {
     width: 180px;
@@ -277,46 +276,43 @@ export const Categories = styled.div`
 `;
 
 export const Category = styled.input`
-display: none;
+  display: none;
 `;
 export const CategoryWrap = styled.div`
-padding: 2px 20px;
-margin-left: 5px;
-display: inline-block;
-font-size: ${({ theme }) => theme.typography.size.xs};
-font-weight: ${({ theme }) => theme.typography.weight.medium};
-background-color: ${({ theme }) => theme.colors.white};
-color: ${({ theme }) => theme.colors.black};
-border: 2px solid ${({ theme }) => theme.colors.accent};
-border-radius: ${({ theme }) => theme.shape.borderRadius.l}px;
-
-
-  &:hover {
-    background-color: ${({ theme }) => theme.colors.accent};
-  }
-  &:active {
-    background-color: ${({ theme }) => theme.colors.accent};
-  }
-  
-
-@media (min-width: ${({ theme }) => theme.breakpoints.tablet[0]}) {
   padding: 2px 20px;
-  margin-left: 10px;
-  font-size: ${({ theme }) => theme.typography.size.m};
+  margin-left: 5px;
+  display: inline-block;
+  font-size: ${({ theme }) => theme.typography.size.xs};
+  font-weight: ${({ theme }) => theme.typography.weight.medium};
+  background-color: ${({ theme }) => theme.colors.white};
+  color: ${({ theme }) => theme.colors.black};
+  border: 2px solid ${({ theme }) => theme.colors.accent};
+  border-radius: ${({ theme }) => theme.shape.borderRadius.l}px;
+
   &:hover {
     background-color: ${({ theme }) => theme.colors.accent};
   }
   &:active {
     background-color: ${({ theme }) => theme.colors.accent};
   }
-}
-}
-`
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.tablet[0]}) {
+    padding: 2px 20px;
+    margin-left: 10px;
+    font-size: ${({ theme }) => theme.typography.size.m};
+    &:hover {
+      background-color: ${({ theme }) => theme.colors.accent};
+    }
+    &:active {
+      background-color: ${({ theme }) => theme.colors.accent};
+    }
+  }
+`;
 export const GenderWrapper = styled.div`
   display: flex;
   position: absolute;
   top: 80px;
-  left: 60px
+  left: 60px;
 `;
 export const GenderItem = styled.div`
   width: 36px;
@@ -333,13 +329,12 @@ export const GenderLabel = styled.label`
   }
   @media (min-width: ${({ theme }) => theme.breakpoints.tablet[0]}) {
     &:hover {
-     color: ${({ theme }) => theme.colors.accent};
+      color: ${({ theme }) => theme.colors.accent};
     }
     &:active {
       color: ${({ theme }) => theme.colors.accent};
     }
-    }
-  
+  }
 `;
 
 export const GenderP = styled.p``;
@@ -373,7 +368,6 @@ export const Comments = styled.textarea`
     padding-left: 10px;
   }
 `;
-
 
 export const GlobalStyle = createGlobalStyle`
 box-sizing: border-box;
