@@ -118,7 +118,7 @@ export const InfoInput = styled.input`
     margin-right: 25px;
     margin-left: 24px;
 
-    font-size: 18px;
+    font-size: 17px;
     line-height: 25px;
   }
 
@@ -127,7 +127,7 @@ export const InfoInput = styled.input`
     height: 32px;
     padding-left: 12px;
 
-    font-size: 18px;
+    font-size: 17px;
     line-height: 25px;
   }
 `;
