@@ -19,6 +19,7 @@ const authSlice = createSlice({
     isRefreshing: false,
     isLoading: false,
     error: null,
+    isRegistered: false,
   },
   extraReducers: builder =>
     builder
@@ -29,6 +30,7 @@ const authSlice = createSlice({
       .addCase(register.fulfilled, state => {
         state.isLoading = false;
         state.error = null;
+        state.isRegistered = true;
       })
       .addCase(register.rejected, (state, action) => {
         state.isLoading = false;
