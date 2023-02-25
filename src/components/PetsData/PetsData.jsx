@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import { useFormik } from 'formik';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
+// import defaultImage from '../../images/addAvatarMockUp.png';
 import {
   PetsDataWrapper,
   TitleWrapper,
@@ -34,7 +35,6 @@ import {
   FooterModalSecond,
   InputModalSecond,
   TextModal,
-  LabelModalSecond,
   BoxFileModalSecond,
   TextareaModalSecond,
   BoxTextereaModalSecond,
@@ -57,11 +57,18 @@ export const ModalContent = styled.div`
   }
 `;
 
+export const LabelModalSecondFile = styled.label`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
 export const Form = styled.form``;
 
 export const PetsData = () => {
   const [isOpen, toggle] = useState(false);
   const [isOpenSecond, toggleSecond] = useState(false);
+  // const [temporaryImg, setTemporaryImg] = useState(null);
 
   const dispatch = useDispatch();
 
@@ -70,19 +77,42 @@ export const PetsData = () => {
   const formik = useFormik({
     initialValues: {
       name: '',
-      birth: '',
+      birthday: '',
       breed: '',
       comments: '',
-      image: '',
+      petImage: '',
     },
-    onSubmit: values => Notify.failure(JSON.stringify(values, null, 2)),
   });
+
+  // const onImageChange = e => {
+  //   const { files } = e.currentTarget;
+  //   if (files) {
+  //     setTemporaryImg(URL.createObjectURL(files[0]));
+  //     formik.values.petImage(files[0]);
+  //   }
+  // };
+  // useEffect(() => {
+  //   if (formik.values.petImage) {
+  //     const update = new FormData();
+  //     update.append('avatarURL', formik.values.petImage);
+  //     dispatch(addPet(update));
+  //   }
+  // }, [formik.values.petImage, addPet]);
 
   const handleSubmit = e => {
     e.preventDefault();
 
+    if (formik.values.petImage === '') {
+      return Notify.failure('Image is required!');
+    }
+
+    if (formik.values.comments === '') {
+      return Notify.failure('Comments is required!');
+    }
+
     dispatch(addPet(formik.values));
     console.log(formik.values);
+
     formik.resetForm();
     closeModal();
     closeModalSecond();
@@ -94,9 +124,22 @@ export const PetsData = () => {
   }
 
   function secondHandlOpenModal(open) {
-    console.log('close modal');
+    if (formik.values.name === '') {
+      return Notify.failure('Name is required!');
+    }
+
+    if (formik.values.birthday === '') {
+      return Notify.failure('Birth is required!');
+    }
+
+    if (formik.values.breed === '') {
+      return Notify.failure('Breed is required!');
+    }
+
     toggleSecond(open);
   }
+
+  // const imageUrl = defaultImage;
 
   return (
     <PetsDataWrapper>
@@ -119,20 +162,19 @@ export const PetsData = () => {
                     <InputModal
                       onChange={formik.handleChange}
                       value={formik.values.name}
+                      id="name"
                       type="text"
                       name="name"
                       placeholder="Type name pet"
                     />
-
-                    <LabelInput>Date of birth</LabelInput>
+                    <LabelInput placeholder="Type date of birth">Date of birth</LabelInput>
                     <InputModal
                       onChange={formik.handleChange}
-                      value={formik.values.birth}
+                      value={formik.values.birthday}
+                      placeholder="Type date of birth"
                       type="date"
                       name="birthday"
-                      placeholder="Type date of birth"
                     />
-
                     <LabelInput>Breed</LabelInput>
                     <InputModal
                       onChange={formik.handleChange}
@@ -150,7 +192,7 @@ export const PetsData = () => {
                         Cancel
                       </ButtonModal>
                       <SecondOpenModalButton
-                        type="submit"
+                        type="button"
                         handlClick={() => secondHandlOpenModal(true)}
                       >
                         Next
@@ -174,15 +216,16 @@ export const PetsData = () => {
                   <MainModalSecond>
                     <TextModal>Add photo and some comments</TextModal>
                     <BoxFileModalSecond>
-                      <LabelModalSecond>
+                      <LabelModalSecondFile>
                         <InputModalSecond
                           onChange={formik.handleChange}
                           value={formik.values.image}
                           type="file"
-                          name="image"
+                          name="petImage"
                         />
+                        {/* <PetImg src={addPet.petImage || temporaryImg} /> */}
                         <AddPhotoOfPetIcon />
-                      </LabelModalSecond>
+                      </LabelModalSecondFile>
                     </BoxFileModalSecond>
                   </MainModalSecond>
                   <BoxTextereaModalSecond>

@@ -23,6 +23,14 @@ export const InputModal = styled.input`
   align-items: center;
 `;
 
+export const PetImg = styled.img`
+  width: 182px;
+  height: 182px;
+  border-radius: 40px;
+  cursor: pointer;
+  z-index: 100;
+`;
+
 export const HeaderModal = styled.div`
   display: flex;
   justify-content: center;

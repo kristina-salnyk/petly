@@ -95,8 +95,6 @@ export const BoxFileModalSecond = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 182px;
-  height: 182px;
   background: ${({ theme }) => theme.colors.background.primary};
   border-radius: 40px;
 `;
