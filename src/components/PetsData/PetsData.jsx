@@ -129,7 +129,7 @@ export const PetsData = () => {
                       onChange={formik.handleChange}
                       value={formik.values.birth}
                       type="date"
-                      name="birth"
+                      name="birthday"
                       placeholder="Type date of birth"
                     />
 
