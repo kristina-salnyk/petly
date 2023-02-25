@@ -107,8 +107,8 @@ export const ModalAddNotice = ({ showModal, setShowModal }) => {
     validate();
     closeModal();
     formik.resetForm();
-    dispatch(addNotice(formik.values));
     console.log(formik.values);
+    dispatch(addNotice(formik.values));
   };
   const handleGender = e => (formik.values.gender = e.target.value);
   const handleCategory = e => (formik.values.category = e.target.value);
