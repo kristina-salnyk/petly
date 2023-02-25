@@ -6,11 +6,11 @@ import { AddNoticeButton } from '../../components/AddNoticeButton';
 import { Container, ContentWrap, PageTitle, TopPanel } from './NoticesPage.styled';
 import { GlobalStyle } from '../../components/ModalAddNotice/ModalAddNotice.styled';
 import { ModalAddNotice } from '../../components/ModalAddNotice';
-
 import { useDispatch, useSelector } from 'react-redux';
 import { selectSearchQuery } from '../../redux/notices/selectors';
 import { fetchNotices } from '../../redux/notices/operations';
 import { changeSearchQuery } from '../../redux/notices/slice';
+import Loader from '../../components/Loader/Loader';
 
 const NoticesPage = () => {
   const dispatch = useDispatch();
@@ -55,7 +55,7 @@ const NoticesPage = () => {
           <NoticeCategoriesNav />
           <AddNoticeButton onClick={openModal} />
         </TopPanel>
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense fallback={<Loader />}>
           <Outlet />
         </Suspense>
       </ContentWrap>
@@ -66,25 +66,3 @@ const NoticesPage = () => {
 };
 
 export default NoticesPage;
-
-// import React, { useState } from 'react';
-// import { ModalAddNotice } from '../../components/ModalAddNotice/ModalAddNotice';
-// import { GlobalStyle } from '../../components/ModalAddNotice/ModalAddNotice.styled';
-// import { Button } from './NoticesPage.styled';
-
-// const NoticesPage = () => {
-//   const [showModal, setShowModal] = useState(false);
-//   const openModal = () => {
-
-//     setShowModal(prev => !prev);
-//   };
-//   return (
-//     <>
-//       <ModalAddNotice showModal={showModal} setShowModal={setShowModal} />
-//       <Button onClick={openModal}>Add pet</Button>
-//       <GlobalStyle />
-//     </>
-//   );
-// };
-
-// export default NoticesPage;
