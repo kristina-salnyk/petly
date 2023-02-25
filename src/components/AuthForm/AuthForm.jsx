@@ -117,7 +117,6 @@ const AuthForm = () => {
         initialValues={isRegister ? initialValues : { email: '', password: '' }}
         onSubmit={isRegister ? handleRegisterSubmit : handleLoginSubmit}
       >
-        {/* eslint-disable-next-line no-unused-vars */}
         {({ validateForm }) => (
           <FormField autoComplete="on">
             <>
