@@ -247,7 +247,6 @@
     border: 2px solid #F59256;
     background: #FDF7F2;
     color: #111111;
-    padding: 8px 28px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
@@ -255,15 +254,6 @@
     
 
 }
-
-
-
-@media screen and (min-width: 768px) {
-    .auth {
-     display: none;
-    }
-}
-
 .login{
     font-family: 'Manrope';
     font-style: normal;
@@ -276,6 +266,25 @@
     background-color: #F59256;
     
 }
+.linkLogin {
+    padding: 8px 28px;
+    text-decoration: none;
+    color:#111111
+    
+}
+.linkLogin:hover{
+    color:#FFFFFF;
+}
+
+
+
+@media screen and (min-width: 768px) {
+    .auth {
+     display: none;
+    }
+}
+
+
 .register {
     font-family: 'Manrope';
     font-style: normal;
@@ -288,13 +297,13 @@
     border-radius: 40px;
     border: 2px solid #F59256;
     color: #111111;
-    padding: 8px 28px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
 }
 .linkRegister{
+    padding: 8px 28px;
     text-decoration: none;
     color:#111111
 }
@@ -302,8 +311,9 @@
     color:#FFFFFF;
 }
 .linkUser {
-    color:#111111;
-    font-family: 'Manrope';
+    color:#FFFFFF;
+    
+font-family: 'Manrope';
     font-style: normal;
     font-weight: 500;
     font-size: 14px;
@@ -312,21 +322,10 @@
     margin-left: 10px;
 
 }
-.linkUser:hover{
-    color:#FFFFFF;
-    background-color: #F59256;
-    cursor: pointer;
-    
-}
 
-.linkLogin {
-    text-decoration: none;
-    color:#111111
-    
-}
-.linkLogin:hover{
-    color:#FFFFFF;
-}
+
+
+
 
 .register:hover {
   background-color: #F59256;

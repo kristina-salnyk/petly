@@ -9,13 +9,13 @@ export const AuthNav = ({isMenuClicked}) => {
       {!isMenuClicked &&
       
         <Auth>
-          <Login>
-            <StyledLogin to="/login">
+          <Login to="/login">
+            <StyledLogin>
               Login
             </StyledLogin>
           </Login>
-          <Register>
-            <StyledRegister to="/register">
+          <Register to="/register">
+            <StyledRegister  >
             Registration
             </StyledRegister>
           </Register>
