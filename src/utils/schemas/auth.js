@@ -11,24 +11,17 @@ export const loginSchema = Yup.object({
   password: Yup.string()
     .required('Password field is required')
     .min(7, 'Password is too short. The minimum number of symbols is 7')
-    .max(32, 'Password is too long. The maximum number of symbols is 32')
-    .minNumbers(1, 'password must contain at least 1 number')
-    .minSymbols(1, 'password must contain at least 1 special character'),
+    .max(32, 'Password is too long. The maximum number of symbols is 32'),
 });
 
 export const registerSchema = Yup.object({
   email: Yup.string()
     .required('Email field is required')
-    .matches(
-      /^((([0-9A-Za-z]{1}[-0-9A-z.]{1,}[0-9A-Za-z]{1})|([0-9А-Яа-я]{1}[-0-9А-я.]{1,}[0-9А-Яа-я]{1}))@([-A-Za-z]{1,}.){1,2}[-A-Za-z]{2,})$/u,
-      'Invalid email format'
-    ),
+    .matches(/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/u, 'Invalid email format'),
   password: Yup.string()
     .required('Password is required')
     .min(7, 'Password is too short. The minimum number of symbols is 7')
-    .max(32, 'Password is too long. The maximum number of symbols is 32')
-    .minNumbers(1, 'password must contain at least 1 number')
-    .minSymbols(1, 'password must contain at least 1 special character'),
+    .max(32, 'Password is too long. The maximum number of symbols is 32'),
   passwordConfirm: Yup.string()
     .required('Password confirmation is required')
     .oneOf([Yup.ref('password'), ''], 'Password confirmation must match'),
