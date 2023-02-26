@@ -18,7 +18,7 @@ export const Header = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(refreshUser());
-  }, [dispatch, isLoggedIn]);
+  }, [dispatch]);
 
   const updateMenu = () => {
     if (!isMenuClicked) {
