@@ -4,17 +4,25 @@ import { useSelector } from 'react-redux';
 import { selectSearchedNotices } from '../../redux/notices/selectors';
 import { InformationBlock } from '../InformationBlock/InformationBlock';
 import noResultsImg from '../../images/no-results-img.png';
+import { useParams } from 'react-router-dom';
 
 export const NoticeCategoriesList = () => {
   const notices = useSelector(selectSearchedNotices);
+  const { category } = useParams();
 
   return (
     <>
       {notices.length > 0 ? (
         <List>
-          {notices.map(item => (
-            <NoticeCategoryItem key={item._id} {...item} />
-          ))}
+          {notices.map(item => {
+            return (
+              <>
+                {((category === 'favorites' && item.favorite) || category !== 'favorites') && (
+                  <NoticeCategoryItem key={item._id} {...item} />
+                )}
+              </>
+            );
+          })}
         </List>
       ) : (
         <InformationBlock
