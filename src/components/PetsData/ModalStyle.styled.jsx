@@ -1,6 +1,16 @@
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 
+export const ModalContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding: 0px 80px 0px;
+
+  @media screen and (max-width: 720px) {
+    padding: 0px 20px 0px;
+  }
+`;
+
 export const InputModal = styled.input`
   box-sizing: border-box;
   width: 100%;

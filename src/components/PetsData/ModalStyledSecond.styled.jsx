@@ -21,6 +21,26 @@ export const TitleModalSecond = styled.h1`
   }
 `;
 
+export const AddedImage = styled.div`
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  width: 208px;
+  height: 208px;
+  border-radius: 20px;
+  & > img {
+    object-fit: cover;
+    min-width: 100%;
+    min-height: 100%;
+  }
+  @media ${({ theme }) => theme.breakpoints.mobile} {
+    width: 182px;
+    height: 182px;
+  }
+`;
+
 export const MainModalSecond = styled.div`
   display: flex;
   align-items: center;
@@ -30,6 +50,13 @@ export const MainModalSecond = styled.div`
   @media screen and (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
     margin: 0px;
   }
+`;
+export const LabelModalSecondFile = styled.label`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 182px;
+  height: 182px;
 `;
 
 export const FooterModalSecond = styled.div`
