@@ -1,14 +1,9 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { Modal } from './ModalContent/Modal';
 import { ModalWrapper, ModalOverlay } from './ModalNotice.styled';
 
-
-
-import { useRef } from 'react';
-
-export const ModalNotice = ({id,onShow}) => {
-
+export const ModalNotice = ({ icon, addToFavorite, onShow }) => {
   const modalRef = useRef();
 
   useEffect(() => {
@@ -24,17 +19,17 @@ export const ModalNotice = ({id,onShow}) => {
     };
   }, []);
 
-  function handleOverlayClick(event) {
+  const handleOverlayClick = event => {
     if (event.target === modalRef.current) {
       onShow();
     }
-  }
+  };
 
   return (
     <>
       <ModalOverlay onClick={handleOverlayClick} ref={modalRef}>
         <ModalWrapper>
-          <Modal id={id} onShow={onShow}/>
+          <Modal icon={icon} addToFavorite={addToFavorite} onShow={onShow} />
         </ModalWrapper>
       </ModalOverlay>
     </>
@@ -42,6 +37,7 @@ export const ModalNotice = ({id,onShow}) => {
 };
 
 ModalNotice.propTypes = {
-  id:PropTypes.string,
+  icon: PropTypes.bool,
+  addToFavorite: PropTypes.func,
   onShow: PropTypes.func,
 };

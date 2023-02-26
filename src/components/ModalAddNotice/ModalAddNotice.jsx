@@ -34,6 +34,7 @@ import {
   Ferstbutton,
   SecondButton,
   AddedImage,
+
 } from './ModalAddNotice.styled';
 import { useDispatch } from 'react-redux';
 import { useFormik } from 'formik';
@@ -111,8 +112,8 @@ export const ModalAddNotice = ({ showModal, setShowModal }) => {
     validate();
     closeModal();
     formik.resetForm();
-    dispatch(addNotice(formik.values));
     console.log(formik.values);
+    dispatch(addNotice({ ...formik.values, image: URL.createObjectURL(formik.values.image) }));
   };
   const handleGender = e => (formik.values.gender = e.target.value);
   const handleCategory = e => (formik.values.category = e.target.value);
@@ -138,8 +139,8 @@ export const ModalAddNotice = ({ showModal, setShowModal }) => {
                     <CategoryWrap>lost/found</CategoryWrap>
                     <Category
                       type="radio"
-                      name="lost/found"
-                      value="lost/found"
+                      name="lost-found"
+                      value="lost-found"
                       onChange={e => handleCategory(e)}
                     ></Category>
                   </label>
@@ -147,8 +148,8 @@ export const ModalAddNotice = ({ showModal, setShowModal }) => {
                     <CategoryWrap>in good hands</CategoryWrap>
                     <Category
                       type="radio"
-                      name="in good hands"
-                      value="in good hands"
+                      name="in-good-hands"
+                      value="in-good-hands"
                       onChange={e => handleCategory(e)}
                     ></Category>
                   </label>
@@ -207,7 +208,6 @@ export const ModalAddNotice = ({ showModal, setShowModal }) => {
                     placeholder="Type breed"
                   />
                 </FerstForm>
-
                 <Ferstbutton>
                   <ButtonCansel onClick={() => setShowModal(prev => !prev)}>Cancel</ButtonCansel>
                   <ButtonNext
@@ -218,7 +218,6 @@ export const ModalAddNotice = ({ showModal, setShowModal }) => {
                     Next
                   </ButtonNext>
                 </Ferstbutton>
-
                 <CloseModalButton area-label="Close modal" onClick={closeModal}>
                   <CloseModalIcon color={'black'} />
                 </CloseModalButton>
@@ -302,6 +301,7 @@ export const ModalAddNotice = ({ showModal, setShowModal }) => {
                       <img alt="pet" src={image} />
                     </AddedImage>
                   )}
+
                   <Label htmlFor="text">Comments*:</Label>
                   <Comments
                     onChange={formik.handleChange}

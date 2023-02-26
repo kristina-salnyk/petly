@@ -25,6 +25,7 @@ import {
   LabelInput,
   FooterModal,
   ButtonModal,
+  ModalContent,
 } from './ModalStyle.styled';
 
 import {
@@ -34,11 +35,12 @@ import {
   FooterModalSecond,
   InputModalSecond,
   TextModal,
-  LabelModalSecond,
   BoxFileModalSecond,
   TextareaModalSecond,
   BoxTextereaModalSecond,
   SecondButtonModal,
+  LabelModalSecondFile,
+  AddedImage,
 } from './ModalStyledSecond.styled';
 
 import ModalAddPet from '../ModalAddPet/ModalAddPet';
@@ -47,42 +49,51 @@ import OpenModalButton from '../ModalAddPet/OpenModalButton';
 import SecondModal from '../ModalAddPet/SecondModal';
 import SecondOpenModalButton from '../ModalAddPet/SecondOpenModalButton';
 
-export const ModalContent = styled.div`
-  display: flex;
-  flex-direction: column;
-  padding: 0px 80px 0px;
-
-  @media screen and (max-width: 720px) {
-    padding: 0px 20px 0px;
-  }
-`;
-
 export const Form = styled.form``;
 
 export const PetsData = () => {
   const [isOpen, toggle] = useState(false);
   const [isOpenSecond, toggleSecond] = useState(false);
+  const [image, setImage] = useState(null);
 
   const dispatch = useDispatch();
 
+  const onImageChange = e => {
+    const { files } = e.currentTarget;
+    if (files) {
+      setImage(URL.createObjectURL(files[0]));
+      formik.setFieldValue('petImage', files[0]);
+    }
+  };
+
   const closeModal = () => toggle(prev => !prev);
   const closeModalSecond = () => toggleSecond(prev => !prev);
+
   const formik = useFormik({
     initialValues: {
       name: '',
-      birth: '',
+      birthday: '',
       breed: '',
       comments: '',
-      image: '',
+      petImage: '',
     },
-    onSubmit: values => Notify.failure(JSON.stringify(values, null, 2)),
   });
 
   const handleSubmit = e => {
     e.preventDefault();
 
+    if (formik.values.petImage === '') {
+      return Notify.failure('Image is required!');
+    }
+
+    if (formik.values.comments === '') {
+      return Notify.failure('Comments is required!');
+    }
+
     dispatch(addPet(formik.values));
     console.log(formik.values);
+
+    console.log(formik.values.petImage.name);
     formik.resetForm();
     closeModal();
     closeModalSecond();
@@ -94,7 +105,18 @@ export const PetsData = () => {
   }
 
   function secondHandlOpenModal(open) {
-    console.log('close modal');
+    if (formik.values.name === '') {
+      return Notify.failure('Name is required!');
+    }
+
+    if (formik.values.birthday === '') {
+      return Notify.failure('Birth is required!');
+    }
+
+    if (formik.values.breed === '') {
+      return Notify.failure('Breed is required!');
+    }
+
     toggleSecond(open);
   }
 
@@ -119,20 +141,19 @@ export const PetsData = () => {
                     <InputModal
                       onChange={formik.handleChange}
                       value={formik.values.name}
+                      id="name"
                       type="text"
                       name="name"
                       placeholder="Type name pet"
                     />
-
-                    <LabelInput>Date of birth</LabelInput>
+                    <LabelInput placeholder="Type date of birth">Date of birth</LabelInput>
                     <InputModal
                       onChange={formik.handleChange}
-                      value={formik.values.birth}
+                      value={formik.values.birthday}
+                      placeholder="Type date of birth"
                       type="date"
                       name="birthday"
-                      placeholder="Type date of birth"
                     />
-
                     <LabelInput>Breed</LabelInput>
                     <InputModal
                       onChange={formik.handleChange}
@@ -150,7 +171,7 @@ export const PetsData = () => {
                         Cancel
                       </ButtonModal>
                       <SecondOpenModalButton
-                        type="submit"
+                        type="button"
                         handlClick={() => secondHandlOpenModal(true)}
                       >
                         Next
@@ -166,24 +187,34 @@ export const PetsData = () => {
               isOpenSecond={isOpenSecond}
               handleClose={() => secondHandlOpenModal(false)}
             >
-              <Form onSubmit={formik.handleSubmit}>
+              <Form onSubmit={formik.handleSubmit} encType="multipart/form-data">
                 <ModalContent>
                   <HeaderModalSecond>
                     <TitleModalSecond>Add pet</TitleModalSecond>
                   </HeaderModalSecond>
                   <MainModalSecond>
                     <TextModal>Add photo and some comments</TextModal>
-                    <BoxFileModalSecond>
-                      <LabelModalSecond>
-                        <InputModalSecond
-                          onChange={formik.handleChange}
-                          value={formik.values.image}
-                          type="file"
-                          name="image"
-                        />
-                        <AddPhotoOfPetIcon />
-                      </LabelModalSecond>
-                    </BoxFileModalSecond>
+                    {formik.values.petImage === '' ? (
+                      <BoxFileModalSecond htmlFor="imagePet">
+                        <LabelModalSecondFile>
+                          <AddPhotoOfPetIcon />
+                          <InputModalSecond
+                            id="imagePet"
+                            name="petImage"
+                            type="file"
+                            accept=".png, .jpg, .jpeg"
+                            onChange={e => {
+                              formik.handleChange(e);
+                              onImageChange(e);
+                            }}
+                          />
+                        </LabelModalSecondFile>
+                      </BoxFileModalSecond>
+                    ) : (
+                      <AddedImage>
+                        <img alt="pet" src={image} />
+                      </AddedImage>
+                    )}
                   </MainModalSecond>
                   <BoxTextereaModalSecond>
                     <TextModal>Comments</TextModal>

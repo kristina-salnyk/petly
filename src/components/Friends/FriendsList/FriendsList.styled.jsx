@@ -28,3 +28,7 @@ export const List = styled.ul`
       padding-top: ${({ theme }) => theme.spacing[5]}px;
     }
 `;
+
+export const ErrorTitle = styled.h3`
+  text-align: center;
+`;

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import {
   Button,
@@ -14,10 +14,9 @@ import { ImEye, ImEyeBlocked } from 'react-icons/im';
 import { loginSchema, registerSchema } from '../../utils/schemas/auth';
 import { useDispatch, useSelector } from 'react-redux';
 import { logIn, register } from '../../redux/auth/operations';
-import { selectError, selectIsLoading } from '../../redux/auth/selectors';
+import { selectIsLoading } from '../../redux/auth/selectors';
 import { useLocation } from 'react-router-dom';
 import Loader from '../Loader/Loader';
-import { clearError } from '../../redux/auth/slice';
 
 const initialValues = {
   email: '',
@@ -37,22 +36,7 @@ const AuthForm = () => {
   const [step, setStep] = useState(1);
   const [isPasswordShown, setIsPasswordShown] = useState(false);
 
-  const error = useSelector(selectError);
   const isLoading = useSelector(selectIsLoading);
-
-  useEffect(() => {
-    if (!error) return;
-
-    const message = [409, 401, 400].includes(error.status)
-      ? error.message
-      : `Request was failed with code ${error.status}`;
-
-    Notify.failure(`${isRegister ? 'Registration' : 'Login'} is not completed. ${message}`, {
-      timeout: 5000,
-    });
-
-    dispatch(clearError());
-  }, [error]);
 
   const handleIsPasswordShownToggle = () => {
     setIsPasswordShown(prevState => !prevState);
@@ -117,7 +101,6 @@ const AuthForm = () => {
         initialValues={isRegister ? initialValues : { email: '', password: '' }}
         onSubmit={isRegister ? handleRegisterSubmit : handleLoginSubmit}
       >
-        {/* eslint-disable-next-line no-unused-vars */}
         {({ validateForm }) => (
           <FormField autoComplete="on">
             <>

@@ -2,6 +2,7 @@ import { Outlet } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Suspense } from 'react';
 import { Header } from './Header/Header';
+import Loader from './Loader/Loader';
 
 export const SharedLayout = () => {
   return (
@@ -9,7 +10,7 @@ export const SharedLayout = () => {
       <Header />
       <main>
         <section>
-          <Suspense fallback={<div>Loading...</div>}>
+          <Suspense fallback={<Loader/>}>
             <Outlet />
           </Suspense>
         </section>

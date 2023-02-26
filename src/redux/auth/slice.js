@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { logIn, logOut, refreshUser, register, updateUser } from './operations';
+import { logIn, logOut, refreshUser, register, updateUser, verifyUser } from './operations';
 
 const authSlice = createSlice({
   name: 'auth',
@@ -10,6 +10,7 @@ const authSlice = createSlice({
       phone: null,
       city: null,
       birthday: null,
+      avatarURL: null,
       favorites: [],
       _id: null,
       token: null,
@@ -19,6 +20,7 @@ const authSlice = createSlice({
     isRefreshing: false,
     isLoading: false,
     error: null,
+    isRegistered: false,
   },
   extraReducers: builder =>
     builder
@@ -29,6 +31,7 @@ const authSlice = createSlice({
       .addCase(register.fulfilled, state => {
         state.isLoading = false;
         state.error = null;
+        state.isRegistered = true;
       })
       .addCase(register.rejected, (state, action) => {
         state.isLoading = false;
@@ -75,6 +78,21 @@ const authSlice = createSlice({
       })
       .addCase(updateUser.rejected, state => {
         state.isRefreshing = false;
+      })
+      .addCase(verifyUser.pending, state => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(verifyUser.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.error = null;
+        state.user = action.payload.user;
+        state.token = action.payload.token;
+        state.isLoggedIn = true;
+      })
+      .addCase(verifyUser.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload;
       }),
   reducers: {
     clearError(state) {
