@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import Notiflix from 'notiflix';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { NoticeImage } from './NoticeImage/NoticeImage';
 import { NoticeButtons } from './NoticeButtons/NoticeButtons';
 import { NoticeCard } from './NoticeCategoryItem.styled';
 import { NoticeInfo } from './NoticeInfo/NoticeInfo';
-import { fetchNoticeItem, addFavorite, deleteFavorite } from '../../redux/notices/operations';
+import { addFavorite, deleteFavorite, fetchNoticeItem } from '../../redux/notices/operations';
 import { ModalNotice } from '../ModalNotice/ModalNotice';
 import { selectIsLoggedIn } from '../../redux/auth/selectors';
 
@@ -20,12 +20,11 @@ export const NoticeCategoryItem = ({
   image,
   birthday,
   owner,
-  favorite,
+  favorite = false,
 }) => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
 
   const [modalOpen, setModalOpen] = useState(false);
-  const [icon, setIcon] = useState(favorite);
 
   const dispatch = useDispatch();
 
@@ -34,15 +33,11 @@ export const NoticeCategoryItem = ({
       Notiflix.Notify.warning('Please sign in');
       return;
     }
-    if (isLoggedIn && icon) {
-      setIcon(false);
+    if (favorite) {
       dispatch(deleteFavorite(_id));
       return;
     }
-    if (isLoggedIn && !icon) {
-      setIcon(true);
-      dispatch(addFavorite(_id));
-    }
+    dispatch(addFavorite(_id));
   };
 
   const onShow = () => {
@@ -67,7 +62,12 @@ export const NoticeCategoryItem = ({
   return (
     <>
       <NoticeCard>
-        <NoticeImage icon={icon} addToFavorite={addToFavorite} category={category} image={image} />
+        <NoticeImage
+          icon={favorite}
+          addToFavorite={addToFavorite}
+          category={category}
+          image={image}
+        />
 
         <NoticeInfo
           category={category}
@@ -79,12 +79,11 @@ export const NoticeCategoryItem = ({
         />
         <NoticeButtons id={_id} owner={owner} onShow={onShow} />
 
-        {modalOpen && <ModalNotice icon={icon} addToFavorite={addToFavorite} onShow={onShow} />}
+        {modalOpen && <ModalNotice icon={favorite} addToFavorite={addToFavorite} onShow={onShow} />}
       </NoticeCard>
     </>
   );
 };
-
 
 NoticeCategoryItem.propTypes = {
   _id: PropTypes.string,
