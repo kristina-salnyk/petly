@@ -34,7 +34,6 @@ import {
   Ferstbutton,
   SecondButton,
   AddedImage,
-
 } from './ModalAddNotice.styled';
 import { useDispatch } from 'react-redux';
 import { useFormik } from 'formik';
@@ -42,6 +41,7 @@ import { useFormik } from 'formik';
 export const ModalAddNotice = ({ showModal, setShowModal }) => {
   const [active, setActive] = useState('FerstWraper');
   const [image, setImage] = useState(null);
+
   const formik = useFormik({
     initialValues: {
       category: '',
@@ -111,9 +111,8 @@ export const ModalAddNotice = ({ showModal, setShowModal }) => {
     e.preventDefault();
     validate();
     closeModal();
-    formik.resetForm();
-    console.log(formik.values);
     dispatch(addNotice({ ...formik.values, image: URL.createObjectURL(formik.values.image) }));
+    formik.resetForm();
   };
   const handleGender = e => (formik.values.gender = e.target.value);
   const handleCategory = e => (formik.values.category = e.target.value);
@@ -121,7 +120,7 @@ export const ModalAddNotice = ({ showModal, setShowModal }) => {
     const { files } = e.currentTarget;
     if (files) {
       setImage(URL.createObjectURL(files[0]));
-      formik.setFieldValue('petImage', files[0]);
+      formik.setFieldValue('image', files[0]);
     }
   };
 
@@ -285,7 +284,7 @@ export const ModalAddNotice = ({ showModal, setShowModal }) => {
                       <label>
                         <AddPhotoOfPetIcon />
                         <GenderInput
-                          id="imagePet"
+                          id="image"
                           name="image"
                           type="file"
                           accept=".png, .jpg, .jpeg"
