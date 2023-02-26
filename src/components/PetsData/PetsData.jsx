@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
+import { addPet } from '../../redux/pets/operations';
 import { useFormik } from 'formik';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
@@ -15,7 +16,6 @@ import {
 import { PetsList } from '../PetsList/PetsList';
 import { AddPetCrossIcon } from '../../components/icons/AddPetCrossIcon';
 import { AddPhotoOfPetIcon } from '../icons/AddPhotoOfPetIcon';
-import { addPet } from '../../redux/pets/operations';
 
 import {
   HeaderModal,
@@ -65,6 +65,7 @@ export const PetsData = () => {
       comments: '',
       petImage: '',
     },
+
     onSubmit: values => {
       const data = new FormData();
       data.append('name', values.name);
@@ -72,9 +73,24 @@ export const PetsData = () => {
       data.append('breed', values.breed);
       data.append('petImage', values.petImage);
       data.append('comments', values.comments);
-      dispatch(addPet({ ...data, image: URL.createObjectURL(formik.values.petImage) }));
+
+      dispatch(
+        addPet({
+          name: values.name,
+          birthday: values.birthday,
+          breed: values.breed,
+          comments: values.comments,
+          petImage: values.petImage,
+        })
+      );
+      console.log({
+        name: values.name,
+        birthday: values.birthday,
+        breed: values.breed,
+        comments: values.comments,
+        petImage: values.petImage,
+      });
       handleSubmit();
-      Notify.success(JSON.stringify(values, null, 2));
     },
   });
 
@@ -98,7 +114,7 @@ export const PetsData = () => {
       return Notify.failure('Comments is required!');
     }
 
-    console.log({ ...formik.values, image: URL.createObjectURL(formik.values.petImage) });
+    console.log({ ...formik.values });
 
     console.log({ image: URL.createObjectURL(formik.values.petImage) });
     formik.resetForm();
