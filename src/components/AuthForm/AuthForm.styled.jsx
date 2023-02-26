@@ -23,7 +23,7 @@ export const Input = styled(Field)`
   font-size: 14px;
   line-height: 19px;
   letter-spacing: 0.04em;
-  color: ${theme.colors.dark};
+  color: ${theme.colors.black};
 
   padding: 11px 14px 12px;
   margin-top: 16px;
