@@ -341,7 +341,7 @@ export const GenderTitle = styled.p`
 `;
 export const GenderItem = styled.div`
   width: 36px;
-  hight: 36px;
+  height: 36px;
   margin-right: 60px;
 `;
 export const GenderLabel = styled.label`
