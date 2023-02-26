@@ -25,6 +25,7 @@ import {
   GenderWrapper,
   GenderItem,
   GenderInput,
+  GenderTitle,
   GenderP,
   GenderLabel,
   FileBox,
@@ -32,13 +33,15 @@ import {
   CategoryWrap,
   Ferstbutton,
   SecondButton,
+  AddedImage,
+
 } from './ModalAddNotice.styled';
 import { useDispatch } from 'react-redux';
 import { useFormik } from 'formik';
 
 export const ModalAddNotice = ({ showModal, setShowModal }) => {
   const [active, setActive] = useState('FerstWraper');
-
+  const [image, setImage] = useState(null);
   const formik = useFormik({
     initialValues: {
       category: '',
@@ -114,6 +117,14 @@ export const ModalAddNotice = ({ showModal, setShowModal }) => {
   };
   const handleGender = e => (formik.values.gender = e.target.value);
   const handleCategory = e => (formik.values.category = e.target.value);
+  const onImageChange = e => {
+    const { files } = e.currentTarget;
+    if (files) {
+      setImage(URL.createObjectURL(files[0]));
+      formik.setFieldValue('petImage', files[0]);
+    }
+  };
+
   return (
     <>
       {showModal ? (
@@ -219,6 +230,9 @@ export const ModalAddNotice = ({ showModal, setShowModal }) => {
             <SecondModalWrapper>
               <ModalContent>
                 <Title> Add Pet</Title>
+
+                <GenderTitle>The Sex*:</GenderTitle>
+
                 <GenderWrapper>
                   <GenderItem>
                     <GenderLabel>
@@ -245,7 +259,7 @@ export const ModalAddNotice = ({ showModal, setShowModal }) => {
                     </GenderLabel>
                   </GenderItem>
                 </GenderWrapper>
-                <SecondForm encType="multipart/form-data" onSubmit={formik.handleSubmit}>
+                <SecondForm onSubmit={formik.handleSubmit}>
                   <Label htmlFor="text">Location*:</Label>
                   <Input
                     onChange={formik.handleChange}
@@ -266,17 +280,28 @@ export const ModalAddNotice = ({ showModal, setShowModal }) => {
                     autoFocus
                     placeholder="price"
                   ></Input>
-                  <FileBox>
-                    <label>
-                      <GenderInput
-                        type="file"
-                        name="image"
-                        onChange={e => formik.setFieldValue('image', e.currentTarget.files[0])}
-                        required
-                      />
-                      <AddPhotoOfPetIcon />
-                    </label>
-                  </FileBox>
+                  {formik.values.image === '' ? (
+                    <FileBox htmlFor="image">
+                      <label>
+                        <AddPhotoOfPetIcon />
+                        <GenderInput
+                          id="imagePet"
+                          name="image"
+                          type="file"
+                          accept=".png, .jpg, .jpeg"
+                          onChange={e => {
+                            formik.handleChange(e);
+                            onImageChange(e);
+                          }}
+                        />
+                      </label>
+                    </FileBox>
+                  ) : (
+                    <AddedImage>
+                      <img alt="pet" src={image} />
+                    </AddedImage>
+                  )}
+
                   <Label htmlFor="text">Comments*:</Label>
                   <Comments
                     onChange={formik.handleChange}
