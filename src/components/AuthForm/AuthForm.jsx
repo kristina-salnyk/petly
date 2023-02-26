@@ -8,6 +8,9 @@ import {
   InputField,
   LinkField,
   StyledLink,
+  IconWrapper,
+  IconLink,
+  IconStyle,
 } from './AuthForm.styled';
 import { Formik } from 'formik';
 import { ImEye, ImEyeBlocked } from 'react-icons/im';
@@ -17,6 +20,7 @@ import { logIn, register } from '../../redux/auth/operations';
 import { selectIsLoading } from '../../redux/auth/selectors';
 import { useLocation } from 'react-router-dom';
 import Loader from '../Loader/Loader';
+import googleImg from '../../images/AuthPages/googleIcon.png';
 
 const initialValues = {
   email: '',
@@ -169,14 +173,31 @@ const AuthForm = () => {
                 </>
               )}
               {isRegister && (
-                <LinkField>
-                  Already have an account? <StyledLink to="/login">Login</StyledLink>
-                </LinkField>
+                <>
+                  <LinkField margin>
+                    Already have an account? <StyledLink to="/login">Login</StyledLink>
+                  </LinkField>
+                  <IconWrapper>
+                    <LinkField> Sign with </LinkField>
+                    <IconLink href={'https://google.com.ua'} target="_self">
+                      <IconStyle src={googleImg} alt="google-sign-in" />
+                    </IconLink>
+                  </IconWrapper>
+                </>
               )}
               {!isRegister && (
-                <LinkField>
-                  Don &apos; t have an account? <StyledLink to="/register"> Register </StyledLink>
-                </LinkField>
+                <>
+                  <LinkField margin>
+                    Don &apos; t have an account? <StyledLink to="/register"> Register </StyledLink>
+                  </LinkField>
+
+                  <IconWrapper>
+                    <LinkField> Sign with </LinkField>
+                    <IconLink href={'https://google.com.ua'} target="_self">
+                      <IconStyle src={googleImg} alt="google-sign-in" />
+                    </IconLink>
+                  </IconWrapper>
+                </>
               )}
             </>
           </FormField>

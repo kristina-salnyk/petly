@@ -70,6 +70,7 @@ export const LinkField = styled.p`
   text-align: center;
   color: ${theme.colors.dark};
   font-size: 12px;
+  margin-bottom: ${props => (props.margin ? '10px' : 0)};
 `;
 
 export const StyledLink = styled(Link)`
@@ -94,5 +95,25 @@ export const DivPass = styled.div`
   top: 12px;
   @media (min-width: 768px) {
     top: 17px;
+  }
+`;
+
+export const IconWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const IconLink = styled.a`
+  margin: 0 10px;
+`;
+
+export const IconStyle = styled.img`
+  width: 50px;
+  height: 50px;
+  opacity: 0.8;
+  transition: opacity 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  &:hover {
+    opacity: 1;
   }
 `;
