@@ -8,11 +8,7 @@ const passwordReq =
   /^.*(?=.{7,})((?!.* )(?=.*[!@#$%^&*()\-/_=+{};:,<.>]){1})(?=.*\d)((?=.*[a-z]){1})((?=.*[A-Z]){1}).*$/;
 
 export const loginSchema = Yup.object({
-  email: Yup.string()
-    .required('Email field is required')
-    .min(10)
-    .max(63)
-    .matches(emailReq, 'Invalid email format'),
+  email: Yup.string().required('Email field is required').min(10).max(63),
 
   password: Yup.string()
     .required('Password field is required')
