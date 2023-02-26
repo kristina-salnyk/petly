@@ -15,7 +15,8 @@ import {
   Title,
   ButtonCansel,
   ButtonNext,
-  Form,
+  FerstForm,
+  SecondForm,
   Input,
   Label,
   P,
@@ -24,19 +25,22 @@ import {
   GenderWrapper,
   GenderItem,
   GenderInput,
+  GenderTitle,
   GenderP,
   GenderLabel,
   FileBox,
   Comments,
-  ButtonWrapper,
   CategoryWrap,
+  Ferstbutton,
+  SecondButton,
+  AddedImage,
 } from './ModalAddNotice.styled';
 import { useDispatch } from 'react-redux';
 import { useFormik } from 'formik';
 
 export const ModalAddNotice = ({ showModal, setShowModal }) => {
   const [active, setActive] = useState('FerstWraper');
-
+  const [image, setImage] = useState(null);
   const formik = useFormik({
     initialValues: {
       category: '',
@@ -112,6 +116,14 @@ export const ModalAddNotice = ({ showModal, setShowModal }) => {
   };
   const handleGender = e => (formik.values.gender = e.target.value);
   const handleCategory = e => (formik.values.category = e.target.value);
+  const onImageChange = e => {
+    const { files } = e.currentTarget;
+    if (files) {
+      setImage(URL.createObjectURL(files[0]));
+      formik.setFieldValue('petImage', files[0]);
+    }
+  };
+
   return (
     <>
       {showModal ? (
@@ -151,7 +163,7 @@ export const ModalAddNotice = ({ showModal, setShowModal }) => {
                   </label>
                 </Categories>
 
-                <Form onSubmit={formik.handleSubmit}>
+                <FerstForm onSubmit={formik.handleSubmit}>
                   <Label htmlFor="text">Tittle of ad</Label>
                   <Input
                     onChange={formik.handleChange}
@@ -194,15 +206,19 @@ export const ModalAddNotice = ({ showModal, setShowModal }) => {
                     autoFocus
                     placeholder="Type breed"
                   />
-                </Form>
-                <ButtonCansel onClick={() => setShowModal(prev => !prev)}>Cancel</ButtonCansel>
-                <ButtonNext
-                  onClick={() => {
-                    setActive('SecondWraper');
-                  }}
-                >
-                  Next
-                </ButtonNext>
+                </FerstForm>
+
+                <Ferstbutton>
+                  <ButtonCansel onClick={() => setShowModal(prev => !prev)}>Cancel</ButtonCansel>
+                  <ButtonNext
+                    onClick={() => {
+                      setActive('SecondWraper');
+                    }}
+                  >
+                    Next
+                  </ButtonNext>
+                </Ferstbutton>
+
                 <CloseModalButton area-label="Close modal" onClick={closeModal}>
                   <CloseModalIcon color={'black'} />
                 </CloseModalButton>
@@ -215,6 +231,9 @@ export const ModalAddNotice = ({ showModal, setShowModal }) => {
             <SecondModalWrapper>
               <ModalContent>
                 <Title> Add Pet</Title>
+
+                <GenderTitle>The Sex*:</GenderTitle>
+
                 <GenderWrapper>
                   <GenderItem>
                     <GenderLabel>
@@ -241,7 +260,7 @@ export const ModalAddNotice = ({ showModal, setShowModal }) => {
                     </GenderLabel>
                   </GenderItem>
                 </GenderWrapper>
-                <Form onSubmit={formik.handleSubmit}>
+                <SecondForm onSubmit={formik.handleSubmit}>
                   <Label htmlFor="text">Location*:</Label>
                   <Input
                     onChange={formik.handleChange}
@@ -262,18 +281,27 @@ export const ModalAddNotice = ({ showModal, setShowModal }) => {
                     autoFocus
                     placeholder="price"
                   ></Input>
-                  <FileBox>
-                    <label>
-                      <GenderInput
-                        type="file"
-                        name="image"
-                        value={formik.values.image}
-                        onChange={formik.handleChange}
-                        required
-                      />
-                      <AddPhotoOfPetIcon />
-                    </label>
-                  </FileBox>
+                  {formik.values.image === '' ? (
+                    <FileBox htmlFor="image">
+                      <label>
+                        <AddPhotoOfPetIcon />
+                        <GenderInput
+                          id="imagePet"
+                          name="image"
+                          type="file"
+                          accept=".png, .jpg, .jpeg"
+                          onChange={e => {
+                            formik.handleChange(e);
+                            onImageChange(e);
+                          }}
+                        />
+                      </label>
+                    </FileBox>
+                  ) : (
+                    <AddedImage>
+                      <img alt="pet" src={image} />
+                    </AddedImage>
+                  )}
                   <Label htmlFor="text">Comments*:</Label>
                   <Comments
                     onChange={formik.handleChange}
@@ -283,8 +311,8 @@ export const ModalAddNotice = ({ showModal, setShowModal }) => {
                     placeholder="Comments"
                     required
                   ></Comments>
-                </Form>
-                <ButtonWrapper>
+                </SecondForm>
+                <SecondButton>
                   <ButtonCansel
                     onClick={() => {
                       setActive('FerstWraper');
@@ -294,7 +322,7 @@ export const ModalAddNotice = ({ showModal, setShowModal }) => {
                   </ButtonCansel>
 
                   <ButtonNext onClick={handleSubmit}>Done</ButtonNext>
-                </ButtonWrapper>
+                </SecondButton>
                 <CloseModalButton
                   area-label="Close modal"
                   onClick={() => setShowModal(prev => !prev)}

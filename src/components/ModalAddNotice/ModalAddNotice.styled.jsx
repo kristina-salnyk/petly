@@ -301,6 +301,26 @@ export const FileBox = styled.div`
   background: #fdf7f2;
   border-radius: 20px;
 `;
+export const AddedImage = styled.div`
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  width: 208px;
+  height: 208px;
+  border-radius: 20px;
+  & > img {
+    object-fit: cover;
+    min-width: 100%;
+    min-height: 100%;
+  }
+  @media ${({ theme }) => theme.breakpoints.mobile} {
+    width: 182px;
+    height: 182px;
+  }
+`;
+
 export const Comments = styled.textarea`
   width: 100%;
   background: #fdf7f2;
