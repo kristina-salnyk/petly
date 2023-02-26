@@ -6,11 +6,9 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectNewsSearchString} from '../../redux/news/selectors';
 import { filterNews } from '../../redux/news/filterSlice';
-// import { fetchNews } from '../../redux/news/operations';
 
 const NewsPage = () => {
   const dispatch = useDispatch();
-  // const { category } = useParams();
   const [searchParams, setSearchParams] = useSearchParams();
   const queryParam = searchParams.get('query') ?? '';
   const searchQuery = useSelector(selectNewsSearchString);
@@ -24,10 +22,6 @@ const NewsPage = () => {
       dispatch(filterNews(''));
     };
   }, [queryParam]);
-
-  // useEffect(() => {
-  //   dispatch(fetchNews({ category }));
-  // }, [dispatch, category]);
 
   const setSearchQueryParam = () => {
     const query = searchQuery.filter.trim();

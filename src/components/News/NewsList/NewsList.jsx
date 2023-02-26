@@ -3,11 +3,14 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectNews,  selectIsLoading, selectNewsSearchString} from '../../../redux/news/selectors';
 import { fetchNews } from '../../../redux/news/operations';
+import Loading from '../../Loading/Loading';
+import NotFound from '../../Loading/NotFound';
 
 import {
   ListNews,
   ItemNews,
   ConteinerNews,
+  ErrorTitle
 } from './NewsList.styled'
 
 const handleNewsSearch = (news, filter) => {
@@ -33,24 +36,33 @@ const NewsList = () => {
   const searchNews = handleNewsSearch(sortedNewsByDate, searchQuery.filter);
 
   useEffect(() => {
-    dispatch(fetchNews());
+    setTimeout(() => {
+      dispatch(fetchNews());
+    }, 2000);
+    
   }, [dispatch]);
 
   return (
     <ConteinerNews>
       <ListNews>
-        {isLoading &&
-                    searchNews.map(({ _id, title, description, date, url }) => (
-                      <ItemNews key={_id}>
-                        <NewsItem
-                          title={title}
-                          description={description}
-                          date={date}
-                          url={url}
-                        />
-                      </ItemNews>
-                    ))
+        {!isLoading ? (<Loading/>) : (searchNews.map(({ _id, title, description, date, url }) => (
+          <ItemNews key={_id}>
+            <NewsItem
+              title={title}
+              description={description}
+              date={date}
+              url={url}
+            />
+          </ItemNews>
+        )))
         }
+        {(searchNews.length === 0) && isLoading && (
+          <div>
+            <ErrorTitle> Nothing found for your search, please try again! </ErrorTitle>
+            <NotFound/>
+          </div>
+          
+        )}
       </ListNews>
     </ConteinerNews>
   );
