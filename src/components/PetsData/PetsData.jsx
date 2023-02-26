@@ -55,8 +55,28 @@ export const PetsData = () => {
   const [isOpen, toggle] = useState(false);
   const [isOpenSecond, toggleSecond] = useState(false);
   const [image, setImage] = useState(null);
-
   const dispatch = useDispatch();
+
+  const formik = useFormik({
+    initialValues: {
+      name: '',
+      birthday: '',
+      breed: '',
+      comments: '',
+      petImage: '',
+    },
+    onSubmit: values => {
+      const data = new FormData();
+      data.append('name', values.name);
+      data.append('birthday', values.birthday);
+      data.append('breed', values.breed);
+      data.append('petImage', values.petImage);
+      data.append('comments', values.comments);
+      dispatch(addPet({ ...data, image: URL.createObjectURL(formik.values.petImage) }));
+      handleSubmit();
+      Notify.success(JSON.stringify(values, null, 2));
+    },
+  });
 
   const onImageChange = e => {
     const { files } = e.currentTarget;
@@ -69,19 +89,7 @@ export const PetsData = () => {
   const closeModal = () => toggle(prev => !prev);
   const closeModalSecond = () => toggleSecond(prev => !prev);
 
-  const formik = useFormik({
-    initialValues: {
-      name: '',
-      birthday: '',
-      breed: '',
-      comments: '',
-      petImage: '',
-    },
-  });
-
-  const handleSubmit = e => {
-    e.preventDefault();
-
+  const handleSubmit = () => {
     if (formik.values.petImage === '') {
       return Notify.failure('Image is required!');
     }
@@ -90,17 +98,15 @@ export const PetsData = () => {
       return Notify.failure('Comments is required!');
     }
 
-    dispatch(addPet(formik.values));
-    console.log(formik.values);
+    console.log({ ...formik.values, image: URL.createObjectURL(formik.values.petImage) });
 
-    console.log(formik.values.petImage.name);
+    console.log({ image: URL.createObjectURL(formik.values.petImage) });
     formik.resetForm();
     closeModal();
     closeModalSecond();
   };
 
   function handlOpenModal(open) {
-    console.log('close modal');
     toggle(open);
   }
 
@@ -187,7 +193,7 @@ export const PetsData = () => {
               isOpenSecond={isOpenSecond}
               handleClose={() => secondHandlOpenModal(false)}
             >
-              <Form onSubmit={formik.handleSubmit} encType="multipart/form-data">
+              <Form onSubmit={formik.handleSubmit}>
                 <ModalContent>
                   <HeaderModalSecond>
                     <TitleModalSecond>Add pet</TitleModalSecond>
@@ -235,7 +241,7 @@ export const PetsData = () => {
                       Back
                     </SecondButtonModal>
                     <SecondButtonModal
-                      onClick={handleSubmit}
+                      onSubmit={handleSubmit}
                       whileHover={{ scale: 1.1 }}
                       whileTap={{ scale: 0.9 }}
                       type="submit"
@@ -255,5 +261,7 @@ export const PetsData = () => {
 };
 PetsData.propTypes = {
   handleClose: PropTypes.func,
+  isOpenSecond: PropTypes.bool,
   isOpen: PropTypes.bool,
+  image: PropTypes.bool,
 };
