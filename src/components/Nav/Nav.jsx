@@ -1,18 +1,18 @@
-import { Ul, Find, News, Friends, StyledNews, StyledFind, StyledFriends } from './Nav.styled';
+import { LinkStyled, NavItem, Ul } from './Nav.styled';
 
 export const Nav = () => {
   return (
     <>
       <Ul>
-        <News>
-          <StyledNews to="/news">News</StyledNews>
-        </News>
-        <Find>
-          <StyledFind to="/notices/sell">Find pet</StyledFind>
-        </Find>
-        <Friends>
-          <StyledFriends to="/friends">Our friends</StyledFriends>
-        </Friends>
+        <NavItem>
+          <LinkStyled to="/news">News</LinkStyled>
+        </NavItem>
+        <NavItem>
+          <LinkStyled to="/notices">Find pet</LinkStyled>
+        </NavItem>
+        <NavItem>
+          <LinkStyled to="/friends">Our friends</LinkStyled>
+        </NavItem>
       </Ul>
     </>
   );
