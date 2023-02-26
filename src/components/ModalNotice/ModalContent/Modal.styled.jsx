@@ -6,10 +6,13 @@ export const ModalThumb = styled.div`
   background-color: ${props => props.theme.colors.white};
   padding: 20px;
   border-radius: 20px;
+  height: 100vh;
+  overflow-y: scroll;
 
   @media (min-width: 768px) {
     width: 704px;
     height: 540px;
+    overflow-y: auto;
   }
 `;
 
