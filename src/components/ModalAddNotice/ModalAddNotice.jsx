@@ -245,7 +245,7 @@ export const ModalAddNotice = ({ showModal, setShowModal }) => {
                     </GenderLabel>
                   </GenderItem>
                 </GenderWrapper>
-                <SecondForm onSubmit={formik.handleSubmit}>
+                <SecondForm encType="multipart/form-data" onSubmit={formik.handleSubmit}>
                   <Label htmlFor="text">Location*:</Label>
                   <Input
                     onChange={formik.handleChange}
