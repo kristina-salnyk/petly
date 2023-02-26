@@ -48,7 +48,7 @@ export const Button = styled.button`
   width: 100%;
   padding: 10px;
   border-radius: 40px;
-  font-size: 20px;
+  font-size: 18px;
   border: ${props =>
     props.outline ? `2px solid ${theme.colors.accent}` : `2px solid ${theme.colors.accent}`};
   background-color: ${props => (props.outline ? 'white' : `${theme.colors.accent}`)};
@@ -62,7 +62,7 @@ export const Button = styled.button`
   }
   @media (min-width: 768px) {
     padding: 18px;
-    margin-bottom: ${props => (props.margin ? '40px' : '16px')};
+    margin-bottom: ${props => (props.margin ? '30px' : '16px')};
   }
 `;
 

@@ -21,6 +21,7 @@ import { selectIsLoading } from '../../redux/auth/selectors';
 import { useLocation } from 'react-router-dom';
 import Loader from '../Loader/Loader';
 import googleImg from '../../images/AuthPages/googleIcon.png';
+import cities from './cities.json';
 
 const initialValues = {
   email: '',
@@ -159,7 +160,20 @@ const AuthForm = () => {
                     <Input id="name" type="text" name="name" placeholder="Name" />
                   </InputField>
                   <InputField>
-                    <Input id="city" type="text" name="city" placeholder="City, Region" />
+                    <Input
+                      id="city"
+                      type="text"
+                      list="region"
+                      name="city"
+                      placeholder="City, Region"
+                    />
+                    <datalist id="region">
+                      {cities.map(city => (
+                        <option key={`${city.city}.${city.lat}`}>
+                          {city.city}, {city.admin_name}
+                        </option>
+                      ))}
+                    </datalist>
                   </InputField>
                   <InputField margin>
                     <Input id="phone" type="text" name="phone" placeholder="Phone number" />
