@@ -17,8 +17,10 @@ export const Header = () => {
   const isRefreshing = useSelector(selectIsRefreshing);
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(refreshUser());
-  }, [dispatch]);
+    if (isLoggedIn) {
+      dispatch(refreshUser());
+    }
+  }, [dispatch, isLoggedIn]);
 
   const updateMenu = () => {
     if (!isMenuClicked) {
