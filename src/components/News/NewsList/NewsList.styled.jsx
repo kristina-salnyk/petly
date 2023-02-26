@@ -32,3 +32,7 @@ export const ConteinerNews = styled.div`
   margin-top: 40px;
   margin: 0 auto;
 `;
+
+export const ErrorTitle = styled.h3`
+  text-align: center;
+`;

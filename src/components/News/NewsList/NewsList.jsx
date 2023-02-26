@@ -10,6 +10,7 @@ import {
   ListNews,
   ItemNews,
   ConteinerNews,
+  ErrorTitle
 } from './NewsList.styled'
 
 const handleNewsSearch = (news, filter) => {
@@ -57,7 +58,7 @@ const NewsList = () => {
         }
         {(searchNews.length === 0) && isLoading && (
           <div>
-            <h3> Nothing found for your search, please try again! </h3>
+            <ErrorTitle> Nothing found for your search, please try again! </ErrorTitle>
             <NotFound/>
           </div>
           

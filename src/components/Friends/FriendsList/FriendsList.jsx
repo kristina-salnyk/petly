@@ -1,4 +1,4 @@
-import { TitleFriends, List } from './FriendsList.styled';
+import { TitleFriends, List, ErrorTitle } from './FriendsList.styled';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -14,7 +14,6 @@ const FriendsList = () => {
   const isLoading = useSelector(selectIsLoading);
   const friends = useSelector(selectFriends);
   
-  console.log('FetchFRIENDS', friends)
   useEffect(() => {
     setTimeout(() => {
       dispatch(fetchFriends())
@@ -41,7 +40,7 @@ const FriendsList = () => {
         )}
         {(friends.length === 0) && isLoading && (
           <div>
-            <h3> Ooops, something went wrong, try reloading the page </h3>
+            <ErrorTitle> Ooops, something went wrong, try reloading the page </ErrorTitle>
             <NotFound/>
           </div>
           
