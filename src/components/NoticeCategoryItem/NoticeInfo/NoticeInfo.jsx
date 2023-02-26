@@ -1,5 +1,5 @@
 import React from 'react';
-// import { differenceInYears  } from 'date-fns';
+import { differenceInYears  } from 'date-fns';
 import PropTypes from 'prop-types';
 import {
   CardInfoWrapper,
@@ -10,8 +10,14 @@ import {
 } from './NoticeInfo.styled';
 
 export const NoticeInfo = ({ title, breed, location, birthday, price, category }) => {
-
-  // const age = differenceInYears(new Date(), birthday );
+  const parts = birthday.split('.');
+  const year = parts[2];
+  const month = parts[1] - 1;
+  const day = parts[0];
+  const date = new Date(year, month, day);
+  const isoDate = date.toISOString().slice(0, 10);
+  
+  const age = differenceInYears(new Date(), new Date(isoDate) );
 
   return (
     <>
@@ -25,7 +31,7 @@ export const NoticeInfo = ({ title, breed, location, birthday, price, category }
           <CardInfoValue>{location}</CardInfoValue>
 
           <CardInfoName>Age:</CardInfoName>
-          <CardInfoValue>{birthday}</CardInfoValue>
+          <CardInfoValue>{(age <= 1) ? 'One year' : `${age} years`}</CardInfoValue>
 
           {category === 'sell' && (
             <>
@@ -48,4 +54,3 @@ NoticeInfo.propTypes = {
   price: PropTypes.string,
   birthday: PropTypes.string,
 };
-
