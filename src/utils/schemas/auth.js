@@ -5,24 +5,15 @@ const emailReq =
   /^((([0-9A-Za-z]{1}[-0-9A-z.]{1,}[0-9A-Za-z]{1})|([0-9А-Яа-я]{1}[-0-9А-я.]{1,}[0-9А-Яа-я]{1}))@([-A-Za-z]{1,}.){1,2}[-A-Za-z]{2,})$/u;
 const passwordReq =
   // eslint-disable-next-line no-useless-escape
-  /^.*(?=.{7,})((?!.* )(?=.*[!@#$%^&*()\-_=+{};:,<.>]){1})(?=.*\d)((?=.*[a-z]){1})((?=.*[A-Z]){1}).*$/;
+  /^.*(?=.{7,})((?!.* )(?=.*[!@#$%^&*()\-/_=+{};:,<.>]){1})(?=.*\d)((?=.*[a-z]){1})((?=.*[A-Z]){1}).*$/;
 
 export const loginSchema = Yup.object({
-  email: Yup.string()
-    .required('Email field is required')
-    .min(10)
-    .max(63)
-    .matches(emailReq, 'Invalid email format'),
+  email: Yup.string().required('Email field is required').min(10).max(63),
 
   password: Yup.string()
     .required('Password field is required')
     .min(7, 'Password is too short. The minimum number of symbols is 7')
-    .max(32, 'Password is too long. The maximum number of symbols is 32')
-    .matches(
-      passwordReq,
-      { excludeEmptyString: false },
-      'Password must contain at least 7 characters, one uppercase, one number and one special case character. Can &apos; t contain a gap'
-    ),
+    .max(32, 'Password is too long. The maximum number of symbols is 32'),
 });
 
 export const registerSchema = Yup.object({
@@ -39,8 +30,7 @@ export const registerSchema = Yup.object({
     .matches(
       passwordReq,
       'Password must contain at least 7 characters, one uppercase, one number and one special case character'
-    )
-    .notOneOf([' ', '']),
+    ),
   passwordConfirm: Yup.string()
     .required('Password confirmation is required')
     .oneOf([Yup.ref('password'), ''], 'Password confirmation must match'),
