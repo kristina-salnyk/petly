@@ -110,7 +110,7 @@ export const ModalAddNotice = ({ showModal, setShowModal }) => {
     closeModal();
     formik.resetForm();
     console.log(formik.values);
-    dispatch(addNotice(formik.values));
+    dispatch(addNotice({ ...formik.values, image: URL.createObjectURL(formik.values.image) }));
   };
   const handleGender = e => (formik.values.gender = e.target.value);
   const handleCategory = e => (formik.values.category = e.target.value);
