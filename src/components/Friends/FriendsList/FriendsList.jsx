@@ -1,10 +1,12 @@
-import { TitleFriends, List } from './FriendsList.styled';
+import { TitleFriends, List, ErrorTitle } from './FriendsList.styled';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { selectFriends, selectIsLoading } from '../../../redux/friends/selectors';
 import { fetchFriends } from '../../../redux/friends/operations';
 import FriendsItem from '../FriendsItem/FriendsItem';
+import Loading from '../../Loading/Loading';
+import NotFound from '../../Loading/NotFound';
 
 
 const FriendsList = () => {
@@ -12,28 +14,37 @@ const FriendsList = () => {
   const isLoading = useSelector(selectIsLoading);
   const friends = useSelector(selectFriends);
   
-  console.log('FetchFRIENDS', friends)
   useEffect(() => {
-    dispatch(fetchFriends())
+    setTimeout(() => {
+      dispatch(fetchFriends())
+    }, 2000);
   }, [dispatch]);
 
   return (
     <>
       <TitleFriends>Our Friends</TitleFriends>
       <List>
-        {isLoading &&
-                    friends.map(({ _id, title, url, addressUrl, imageUrl, address, workDays, phone, email, }) => (
-                      <FriendsItem
-                        key={_id}
-                        title={title}
-                        website={url}
-                        location={addressUrl}
-                        imageUrl={imageUrl}
-                        address={address}
-                        workDays={workDays}
-                        phone={phone}
-                        email={email}
-                      />))}
+        {!isLoading ? (<Loading />) : (
+          friends.map(({ _id, title, url, addressUrl, imageUrl, address, workDays, phone, email, }) => (
+            <FriendsItem
+              key={_id}
+              title={title}
+              website={url}
+              location={addressUrl}
+              imageUrl={imageUrl}
+              address={address}
+              workDays={workDays}
+              phone={phone}
+              email={email}
+            />))
+        )}
+        {(friends.length === 0) && isLoading && (
+          <div>
+            <ErrorTitle> Ooops, something went wrong, try reloading the page </ErrorTitle>
+            <NotFound/>
+          </div>
+          
+        )}
       </List>
     </>
         

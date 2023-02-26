@@ -7,13 +7,7 @@ export const Div = styled.div`
   @media (max-width: 767px) {
     display: none;
   }
-  @media (min-width: 767px) {
-    :hover {
-      background-color: #f59256;
-      color: #ffffff;
-      cursor: pointer;
-    }
-  }
+  
 `;
 
 export const Auth = styled.ul`
@@ -22,6 +16,7 @@ export const Auth = styled.ul`
     display: none;
   }
   @media (min-width: 768px) {
+   
     display: flex;
     hover {
       background-color: #f59256;
@@ -31,11 +26,10 @@ export const Auth = styled.ul`
   }
 `;
 
-export const Login = styled.div`
+export const Login = styled(NavLink)`
   border-radius: 40px;
   border: 2px solid #f59256;
   color: #111111;
-  padding: 5px 28px;
   text-align: center;
   text-decoration: none;
   display: inline-flex;
@@ -48,13 +42,14 @@ export const Login = styled.div`
   @media (min-width: 320px) {
     &:hover {
       color: #ffffff;
-      background-color: #f59256;
       cursor: pointer;
     }
   }
 
   @media (min-width: 768px) {
+    margin-right: 20px;
     &:hover {
+      background: #F59256;
       color: #ffffff;
       cursor: pointer;
     }
@@ -66,9 +61,34 @@ export const Login = styled.div`
   font-size: 20px;
   line-height: 27px;
   text-decoration: none;
-  margin-right: 20px;
+  
 `;
-export const StyledLogin = styled(NavLink)`
+export const LoginBg = styled(NavLink)`
+  border-radius: 40px;
+  border: 2px solid #f59256;
+  background-color: #F59256;
+  color: #111111;
+  padding: 5px 28px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-flex;
+  font-size: 16px;
+  text-decoration: none;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+`
+export const UserLogin = styled(NavLink)`
+
+`
+export const UserRegister = styled(NavLink)`
+
+`
+  
+
+  
+export const StyledLogin = styled.div`
+  padding: 8px 28px;
   text-decoration: none;
   color: #111111;
   &:hover {
@@ -76,19 +96,19 @@ export const StyledLogin = styled(NavLink)`
     cursor: pointer;
   }
 `;
-export const StyledRegister = styled(NavLink)`
+export const StyledRegister = styled.div`
   text-decoration: none;
+  padding: 8px 28px;
   color: #111111;
   &:hover {
     color: #ffffff;
   }
 `;
 
-export const Register = styled.li`
+export const Register = styled(NavLink)`
   border-radius: 40px;
   border: 2px solid #f59256;
   color: #111111;
-  padding: 8px 28px;
   text-align: center;
   text-decoration: none;
   display: inline-block;

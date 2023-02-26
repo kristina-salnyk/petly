@@ -21,14 +21,31 @@ export const fetchNoticeItem = createAsyncThunk('notices/fetchOne', async (notic
   }
 });
 
-export const addNotice = createAsyncThunk('notices/addNotice', async (fields, thunkAPI) => {
-  try {
-    const response = await api.post('/notices', fields);
-    return response.data;
-  } catch (error) {
-    return thunkAPI.rejectWithValue(error.message);
+export const addNotice = createAsyncThunk(
+  'notices/addNotice',
+  async (
+    { name, category, title, birthday, comments, location, gender, breed, price, image },
+    thunkAPI
+  ) => {
+    try {
+      const response = await api.post('/notices', {
+        name,
+        category,
+        title,
+        birthday,
+        comments,
+        location,
+        gender,
+        breed,
+        price,
+        image,
+      });
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
   }
-});
+);
 
 export const deleteNotice = createAsyncThunk('notices/deleteNotice', async (noticeId, thunkAPI) => {
   try {
@@ -48,11 +65,14 @@ export const addFavorite = createAsyncThunk('notices/addFavorite', async (notice
   }
 });
 
-export const deleteFavorite = createAsyncThunk('notices/delete', async (noticeId, thunkAPI) => {
-  try {
-    const response = await api.delete(`/notices/favorite/${noticeId}`);
-    return response.data;
-  } catch (error) {
-    return thunkAPI.rejectWithValue(error.message);
+export const deleteFavorite = createAsyncThunk(
+  'notices/deleteFavorite',
+  async (noticeId, thunkAPI) => {
+    try {
+      const response = await api.delete(`/notices/favorite/${noticeId}`);
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
   }
-});
+);

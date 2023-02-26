@@ -1,11 +1,11 @@
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
 import {
-  addNotice,
-  deleteNotice,
-  fetchNotices,
   addFavorite,
+  addNotice,
   deleteFavorite,
+  deleteNotice,
   fetchNoticeItem,
+  fetchNotices,
 } from './operations';
 
 const extraActions = [
@@ -40,10 +40,16 @@ const noticesSlice = createSlice({
       .addCase(addNotice.fulfilled, (state, action) => {
         state.items.push(action.payload);
       })
+      .addCase(addFavorite.fulfilled, (state, action) => {
+        const index = state.items.findIndex(notice => notice._id === action.payload.notice.id);
+        state.items[index].favorite = action.payload.notice.favorite;
+      })
+      .addCase(deleteFavorite.fulfilled, (state, action) => {
+        const index = state.items.findIndex(notice => notice._id === action.payload.notice.id);
+        state.items[index].favorite = action.payload.notice.favorite;
+      })
       .addCase(deleteNotice.fulfilled, (state, action) => {
-        const index = state.items.findIndex(
-          notice => notice.id === action.payload.id
-        );
+        const index = state.items.findIndex(notice => notice._id === action.payload.id);
         state.items.splice(index, 1);
       })
       .addMatcher(isAnyOf(...extraActions.map(action => action.pending)), state => {

@@ -63,5 +63,4 @@ ModalInfo.propTypes = {
   location: PropTypes.string,
   price: PropTypes.string,
   birthday: PropTypes.string,
-  comments: PropTypes.string,
 };

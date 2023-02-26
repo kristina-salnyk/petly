@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-
+import Notiflix from 'notiflix';
+import { useDispatch, useSelector } from 'react-redux';
 import { NoticeImage } from './NoticeImage/NoticeImage';
 import { NoticeButtons } from './NoticeButtons/NoticeButtons';
 import { NoticeCard } from './NoticeCategoryItem.styled';
 import { NoticeInfo } from './NoticeInfo/NoticeInfo';
-import { fetchNoticeItem } from '../../redux/notices/operations';
-import { useDispatch } from 'react-redux';
+import { addFavorite, deleteFavorite, fetchNoticeItem } from '../../redux/notices/operations';
 import { ModalNotice } from '../ModalNotice/ModalNotice';
+import { selectIsLoggedIn } from '../../redux/auth/selectors';
 
 export const NoticeCategoryItem = ({
   _id,
@@ -19,9 +20,25 @@ export const NoticeCategoryItem = ({
   image,
   birthday,
   owner,
+  favorite = false,
 }) => {
+  const isLoggedIn = useSelector(selectIsLoggedIn);
+
   const [modalOpen, setModalOpen] = useState(false);
+
   const dispatch = useDispatch();
+
+  const addToFavorite = () => {
+    if (!isLoggedIn) {
+      Notiflix.Notify.warning('Please sign in');
+      return;
+    }
+    if (favorite) {
+      dispatch(deleteFavorite(_id));
+      return;
+    }
+    dispatch(addFavorite(_id));
+  };
 
   const onShow = () => {
     if (!modalOpen) {
@@ -45,7 +62,12 @@ export const NoticeCategoryItem = ({
   return (
     <>
       <NoticeCard>
-        <NoticeImage id={_id} category={category} image={image} />
+        <NoticeImage
+          icon={favorite}
+          addToFavorite={addToFavorite}
+          category={category}
+          image={image}
+        />
 
         <NoticeInfo
           category={category}
@@ -57,12 +79,11 @@ export const NoticeCategoryItem = ({
         />
         <NoticeButtons id={_id} owner={owner} onShow={onShow} />
 
-        {modalOpen && <ModalNotice id={_id} onShow={onShow} />}
+        {modalOpen && <ModalNotice icon={favorite} addToFavorite={addToFavorite} onShow={onShow} />}
       </NoticeCard>
     </>
   );
 };
-// li item
 
 NoticeCategoryItem.propTypes = {
   _id: PropTypes.string,
@@ -77,4 +98,5 @@ NoticeCategoryItem.propTypes = {
   birthday: PropTypes.string,
   comments: PropTypes.string,
   owner: PropTypes.string,
+  favorite: PropTypes.bool,
 };

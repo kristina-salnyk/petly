@@ -70,8 +70,8 @@ export const ModalAddNotice = ({ showModal, setShowModal }) => {
     document.addEventListener('keydown', keyPress);
     return () => document.removeEventListener('keydown', keyPress);
   }, [keyPress]);
-
-  const validate = () => {
+  
+  const validateFerst = () => {
     if (!formik.values.category) {
       return Notify.failure('category is required!');
     }
@@ -84,9 +84,9 @@ export const ModalAddNotice = ({ showModal, setShowModal }) => {
     if (!formik.values.birthday) {
       return Notify.failure('birthday is required!');
     }
-    if (!formik.values.breed) {
-      return Notify.failure('breed is required!');
-    }
+  };
+
+  const validateSecond = () => {
     if (!formik.values.gender) {
       return Notify.failure('gender is required!');
     }
@@ -108,11 +108,11 @@ export const ModalAddNotice = ({ showModal, setShowModal }) => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    validate();
+    validateSecond();
     closeModal();
     formik.resetForm();
-    dispatch(addNotice(formik.values));
     console.log(formik.values);
+    dispatch(addNotice({ ...formik.values, image: URL.createObjectURL(formik.values.image) }));
   };
   const handleGender = e => (formik.values.gender = e.target.value);
   const handleCategory = e => (formik.values.category = e.target.value);
@@ -120,7 +120,7 @@ export const ModalAddNotice = ({ showModal, setShowModal }) => {
     const { files } = e.currentTarget;
     if (files) {
       setImage(URL.createObjectURL(files[0]));
-      formik.setFieldValue('petImage', files[0]);
+      formik.setFieldValue('image', files[0]);
     }
   };
 
@@ -138,8 +138,8 @@ export const ModalAddNotice = ({ showModal, setShowModal }) => {
                     <CategoryWrap>lost/found</CategoryWrap>
                     <Category
                       type="radio"
-                      name="lost/found"
-                      value="lost/found"
+                      name="lost-found"
+                      value="lost-found"
                       onChange={e => handleCategory(e)}
                     ></Category>
                   </label>
@@ -147,8 +147,8 @@ export const ModalAddNotice = ({ showModal, setShowModal }) => {
                     <CategoryWrap>in good hands</CategoryWrap>
                     <Category
                       type="radio"
-                      name="in good hands"
-                      value="in good hands"
+                      name="in-good-hands"
+                      value="in-good-hands"
                       onChange={e => handleCategory(e)}
                     ></Category>
                   </label>
@@ -207,18 +207,17 @@ export const ModalAddNotice = ({ showModal, setShowModal }) => {
                     placeholder="Type breed"
                   />
                 </FerstForm>
-
                 <Ferstbutton>
                   <ButtonCansel onClick={() => setShowModal(prev => !prev)}>Cancel</ButtonCansel>
                   <ButtonNext
                     onClick={() => {
                       setActive('SecondWraper');
+                      validateFerst();
                     }}
                   >
                     Next
                   </ButtonNext>
                 </Ferstbutton>
-
                 <CloseModalButton area-label="Close modal" onClick={closeModal}>
                   <CloseModalIcon color={'black'} />
                 </CloseModalButton>
@@ -302,6 +301,7 @@ export const ModalAddNotice = ({ showModal, setShowModal }) => {
                       <img alt="pet" src={image} />
                     </AddedImage>
                   )}
+
                   <Label htmlFor="text">Comments*:</Label>
                   <Comments
                     onChange={formik.handleChange}

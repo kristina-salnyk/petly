@@ -12,9 +12,9 @@ export const UserNav = ({isMenuClicked}) => {
       {!isMenuClicked && 
       <Div>
         <Auth>
-          <UserButton>
+          <UserButton to="/user">
             <UserIcon/>
-            <UserLink to="/user">
+            <UserLink  >
               Account
             </UserLink >
           </UserButton>

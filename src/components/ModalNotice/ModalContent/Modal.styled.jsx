@@ -3,14 +3,16 @@ import styled from 'styled-components';
 export const ModalThumb = styled.div`
   position: relative;
   width: 280px;
-  height: 100vh;
   background-color: ${props => props.theme.colors.white};
   padding: 20px;
   border-radius: 20px;
+  height: 100vh;
+  overflow-y: scroll;
 
   @media (min-width: 768px) {
     width: 704px;
     height: 540px;
+    overflow-y: auto;
   }
 `;
 
@@ -46,7 +48,7 @@ export const TabletWrapper = styled.div`
 
 export const ModalComments = styled.p`
   @media (min-width: 768px) {
-    margin-top: 28px;
+    margin-top: 10px;
   }
 `;
 
