@@ -1,22 +1,20 @@
 import { Logout } from '../../components/Logout/Logout';
 import { UserDataItem } from '../UserDataItem/UserDataItem';
 import { useDispatch } from 'react-redux';
-import { useEffect } from 'react';
-import { refreshUser, updateUser } from '../../redux/auth/operations';
+import { useEffect, useState } from 'react';
+import { updateUser } from '../../redux/auth/operations';
 import { useAuth } from '../../hooks/useAuth';
 
-import { useState } from 'react';
-
 import {
-  UserDataWrapper,
-  MyInformation,
   InformationBackgroundBlock,
-  ProfileImgWrapper,
-  ProfileImgBtn,
-  ProfileImg,
-  PhotoEditWrapper,
+  MyInformation,
   PhotoEditInput,
   PhotoEditSpan,
+  PhotoEditWrapper,
+  ProfileImg,
+  ProfileImgBtn,
+  ProfileImgWrapper,
+  UserDataWrapper,
 } from './UserData.styled';
 import { EditPhotoIcon } from '../../components/icons/EditPhotoIcon';
 import defaultImage from '../../images/addAvatarMockUp.png';
@@ -28,10 +26,6 @@ export const UserData = () => {
   const { user } = useAuth();
 
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(refreshUser());
-  }, [dispatch]);
 
   const onImageChange = e => {
     const { files } = e.currentTarget;
