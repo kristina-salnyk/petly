@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import theme from '../../utils/theme';
-import { Field, Form } from 'formik';
+import { Field, Form, ErrorMessage } from 'formik';
 
 export const FormField = styled(Form)`
   width: 100%;
@@ -122,4 +122,10 @@ export const IconStyle = styled.img`
   &:hover {
     opacity: 1;
   }
+`;
+
+export const Error = styled(ErrorMessage)`
+  color: red;
+  text-align: left;
+  font-size: 12px;
 `;
