@@ -210,6 +210,7 @@ export const Ferstbutton = styled.div`
   @media (min-width: ${({ theme }) => theme.breakpoints.tablet[0]}) {
     left: 110px;
     padding-top: 70px;
+
   }
 `;
 export const SecondButton = styled.div`

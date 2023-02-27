@@ -10,45 +10,54 @@ import {
 import { DeleteMyPetIcon } from '../../components/icons/DeleteMyPetIcon';
 import defaultImage from '../../images/cat.png';
 
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectPets } from '../../redux/pets/selectors';
+import { fetchPets, deletePet } from '../../redux/pets/operations';
+
 export const PetsList = () => {
-  const imageUrl = defaultImage;
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchPets());
+  }, [dispatch]);
+
+  const pets = useSelector(selectPets);
+
+  const handleDelete = petId => {
+    return dispatch(deletePet(petId));
+  };
+
+  if (pets.length === 0) {
+    return (
+      <p>
+        <br />
+        You have&apos;t added pets
+      </p>
+    );
+  }
 
   return (
     <PetInfoList>
-      <PetInfoItem>
-        <PetInfoDeleteBtn type="button">
-          <DeleteMyPetIcon />
-        </PetInfoDeleteBtn>
-        <PetInfoWrapper>
-          <PetInfoImg src={imageUrl} alt="Pet" />
-          <PetInfoContainer>
-            <PetInfo>Name: Jack</PetInfo>
-            <PetInfo>Date of birth: 22.04.2018</PetInfo>
-            <PetInfo>Breed: Persian cat</PetInfo>
-            <PetInfo>
-              Comments: Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum, labore esse
-              velit fugiat dolore itaque quae doloribus corrupti. Sapiente, dolore.
-            </PetInfo>
-          </PetInfoContainer>
-        </PetInfoWrapper>
-      </PetInfoItem>
-      <PetInfoItem>
-        <PetInfoDeleteBtn type="button">
-          <DeleteMyPetIcon />
-        </PetInfoDeleteBtn>
-        <PetInfoWrapper>
-          <PetInfoImg src={imageUrl} alt="Pet" />
-          <PetInfoContainer>
-            <PetInfo>Name: Jack</PetInfo>
-            <PetInfo>Date of birth: 22.04.2018</PetInfo>
-            <PetInfo>Breed: Persian cat</PetInfo>
-            <PetInfo>
-              Comments: Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum, labore esse
-              velit fugiat dolore itaque quae doloribus corrupti. Sapiente, dolore.
-            </PetInfo>
-          </PetInfoContainer>
-        </PetInfoWrapper>
-      </PetInfoItem>
+      {pets.map(({ _id, birthday, breed, comments, name, petImage }) => (
+        <PetInfoItem key={_id}>
+          <PetInfoDeleteBtn type="button">
+            <DeleteMyPetIcon
+              onClick={() => {
+                handleDelete(_id);
+              }}
+            />
+          </PetInfoDeleteBtn>
+          <PetInfoWrapper>
+            <PetInfoImg src={petImage || defaultImage} alt="Pet" />
+            <PetInfoContainer>
+              <PetInfo>Name: {name}</PetInfo>
+              <PetInfo>Date of birth: {birthday}</PetInfo>
+              <PetInfo>Breed: {breed}</PetInfo>
+              <PetInfo>Comments: {comments}</PetInfo>
+            </PetInfoContainer>
+          </PetInfoWrapper>
+        </PetInfoItem>
+      ))}
     </PetInfoList>
   );
 };

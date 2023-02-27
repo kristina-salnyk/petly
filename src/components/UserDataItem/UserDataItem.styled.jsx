@@ -73,7 +73,8 @@ export const InfoInput = styled.input`
   box-sizing: border-box;
   padding-left: 18px;
   background: #fff;
-  border: 1px solid black;
+  border: none;
+  // border: 1px solid black;
   // border: 1px solid rgba(245, 146, 86, 0.5);
   border-radius: 40px;
 

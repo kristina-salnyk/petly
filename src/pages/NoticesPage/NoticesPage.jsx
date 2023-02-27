@@ -11,13 +11,21 @@ import { selectSearchQuery } from '../../redux/notices/selectors';
 import { fetchNotices } from '../../redux/notices/operations';
 import { changeSearchQuery } from '../../redux/notices/slice';
 import Loader from '../../components/Loader/Loader';
+import Notiflix from 'notiflix';
+import { useAuth } from '../../hooks/useAuth';
 
 const NoticesPage = () => {
   const dispatch = useDispatch();
   const { category } = useParams();
 
+  const { isLoggedIn } = useAuth();
+
   const [showModal, setShowModal] = useState(false);
   const openModal = () => {
+    if (!isLoggedIn) {
+      Notiflix.Notify.warning('Please, log in to your account');
+      return;
+    }
     setShowModal(prev => !prev);
   };
 
