@@ -182,32 +182,21 @@ const AuthForm = () => {
                 </>
               )}
               {isRegister && (
-                <>
-                  <LinkField margin>
-                    Already have an account? <StyledLink to="/login">Login</StyledLink>
-                  </LinkField>
-                  <IconWrapper>
-                    <LinkField> Sign with </LinkField>
-                    <IconLink href={'https://google.com.ua'} target="_self">
-                      <IconStyle src={googleImg} alt="google-sign-in" />
-                    </IconLink>
-                  </IconWrapper>
-                </>
+                <LinkField margin>
+                  Already have an account? <StyledLink to="/login">Login</StyledLink>
+                </LinkField>
               )}
               {!isRegister && (
-                <>
-                  <LinkField margin>
-                    Don &apos; t have an account? <StyledLink to="/register"> Register </StyledLink>
-                  </LinkField>
-
-                  <IconWrapper>
-                    <LinkField> Sign with </LinkField>
-                    <IconLink href={`${API_BASE_URL}/auth/google`}>
-                      <IconStyle src={googleImg} alt="google-sign-in" />
-                    </IconLink>
-                  </IconWrapper>
-                </>
+                <LinkField margin>
+                  Don &apos; t have an account? <StyledLink to="/register"> Register </StyledLink>
+                </LinkField>
               )}
+              <IconWrapper>
+                <LinkField> Sign with </LinkField>
+                <IconLink href={`${API_BASE_URL}/auth/google`}>
+                  <IconStyle src={googleImg} alt="google-sign-in" />
+                </IconLink>
+              </IconWrapper>
             </>
           </FormField>
         )}
