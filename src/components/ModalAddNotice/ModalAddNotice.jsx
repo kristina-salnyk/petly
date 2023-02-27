@@ -34,9 +34,11 @@ import {
   Ferstbutton,
   SecondButton,
   AddedImage,
+  Star,
 } from './ModalAddNotice.styled';
 import { useDispatch } from 'react-redux';
 import { useFormik } from 'formik';
+// import { object, string, date } from 'yup';
 
 export const ModalAddNotice = ({ showModal, setShowModal }) => {
   const [active, setActive] = useState('FerstWraper');
@@ -56,7 +58,10 @@ export const ModalAddNotice = ({ showModal, setShowModal }) => {
       image: '',
       comments: '',
     },
-    onSubmit: values => Notify.failure(JSON.stringify(values, null, 2)),
+
+    onSubmit: values => {
+      alert(JSON.stringify(values, null, 2));
+    },
   });
 
   const keyPress = useCallback(
@@ -80,9 +85,7 @@ export const ModalAddNotice = ({ showModal, setShowModal }) => {
     if (!formik.values.title) {
       return Notify.failure('title is required!');
     }
-    if (!formik.values.name) {
-      return Notify.failure('name is required!');
-    }
+
     if (!formik.values.birthday) {
       return Notify.failure('birthday is required!');
     }
@@ -118,7 +121,7 @@ export const ModalAddNotice = ({ showModal, setShowModal }) => {
   };
   const handleGender = e => (formik.values.gender = e.target.value);
   const handleCategory = e => (formik.values.category = e.target.value);
-  
+
   const onImageChange = e => {
     const { files } = e.currentTarget;
     if (files) {
@@ -142,6 +145,10 @@ export const ModalAddNotice = ({ showModal, setShowModal }) => {
                       onClick={() => {
                         setCategory('lost/found');
                       }}
+                      style={{
+                        backgroundColor: categori === 'lost/found' && '#F59256',
+                        color: categori === 'lost/found' && '#FFFFFF',
+                      }}
                     >
                       lost/found
                     </CategoryWrap>
@@ -156,6 +163,10 @@ export const ModalAddNotice = ({ showModal, setShowModal }) => {
                     <CategoryWrap
                       onClick={() => {
                         setCategory('in good hands');
+                      }}
+                      style={{
+                        backgroundColor: categori === 'in good hands' && '#F59256',
+                        color: categori === 'in good hands' && '#FFFFFF',
                       }}
                     >
                       in good hands
@@ -172,6 +183,10 @@ export const ModalAddNotice = ({ showModal, setShowModal }) => {
                       onClick={() => {
                         setCategory('sell');
                       }}
+                      style={{
+                        backgroundColor: categori === 'sell' && '#F59256',
+                        color: categori === 'sell' && '#FFFFFF',
+                      }}
                     >
                       sell
                     </CategoryWrap>
@@ -185,7 +200,9 @@ export const ModalAddNotice = ({ showModal, setShowModal }) => {
                 </Categories>
 
                 <FerstForm onSubmit={formik.handleSubmit}>
-                  <Label htmlFor="text">Tittle of ad</Label>
+                  <Label htmlFor="text">
+                    Tittle of ad<Star>*</Star>
+                  </Label>
                   <Input
                     onChange={formik.handleChange}
                     type="text"
@@ -250,7 +267,9 @@ export const ModalAddNotice = ({ showModal, setShowModal }) => {
               <ModalContent>
                 <Title> Add Pet</Title>
 
-                <GenderTitle>The Sex*:</GenderTitle>
+                <GenderTitle>
+                  The Sex<Star>*</Star>:
+                </GenderTitle>
 
                 <GenderWrapper>
                   <GenderItem>
@@ -279,7 +298,9 @@ export const ModalAddNotice = ({ showModal, setShowModal }) => {
                   </GenderItem>
                 </GenderWrapper>
                 <SecondForm onSubmit={formik.handleSubmit}>
-                  <Label htmlFor="text">Location*:</Label>
+                  <Label htmlFor="text">
+                    Location<Star>*</Star>:
+                  </Label>
                   <Input
                     onChange={formik.handleChange}
                     type="location"
@@ -291,7 +312,9 @@ export const ModalAddNotice = ({ showModal, setShowModal }) => {
                   ></Input>
                   {categori === 'sell' && (
                     <>
-                      <Label htmlFor="text">Price*:</Label>
+                      <Label htmlFor="text">
+                        Price<Star>*</Star>:
+                      </Label>
                       <Input
                         onChange={formik.handleChange}
                         type="text"
@@ -326,7 +349,7 @@ export const ModalAddNotice = ({ showModal, setShowModal }) => {
                     </AddedImage>
                   )}
 
-                  <Label htmlFor="text">Comments*:</Label>
+                  <Label htmlFor="text">Comments:</Label>
                   <Comments
                     onChange={formik.handleChange}
                     name="comments"

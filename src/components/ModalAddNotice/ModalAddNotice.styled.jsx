@@ -444,7 +444,9 @@ export const Comments = styled.textarea`
     padding-left: 10px;
   }
 `;
-
+export const Star = styled.span`
+color: ${({ theme }) => theme.colors.accent};
+`
 export const GlobalStyle = createGlobalStyle`
 box-sizing: border-box;
 margin: 0;
