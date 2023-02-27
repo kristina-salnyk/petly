@@ -27,6 +27,10 @@ export const UserData = () => {
 
   const dispatch = useDispatch();
 
+  // useEffect(() => {
+  //   dispatch(refreshUser());
+  // }, [dispatch]);
+
   const onImageChange = e => {
     const { files } = e.currentTarget;
     if (files) {
@@ -34,13 +38,6 @@ export const UserData = () => {
       setAvatar(files[0]);
     }
   };
-  useEffect(() => {
-    if (avatar) {
-      const update = new FormData();
-      update.append('avatarURL', avatar);
-      dispatch(updateUser(update));
-    }
-  }, [avatar, updateUser]);
 
   useEffect(() => {
     if (avatar) {
