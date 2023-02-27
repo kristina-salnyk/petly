@@ -77,9 +77,8 @@ export const PetsData = () => {
       data.append('petImage', values.petImage);
       data.append('comments', values.comments);
 
-      dispatch(addPet(data));
-      console.log(data);
       handleSubmit();
+      dispatch(addPet(data));
     },
   });
 
@@ -104,39 +103,30 @@ export const PetsData = () => {
     }
 
     if (!formik.values.birthday) {
-      return Notify.failure('birthday is required!');
+      return Notify.failure('Birthday is required!');
     }
 
     if (formik.values.breed === '' || formik.errors.breed) {
-      return Notify.failure(`${formik.errors.breed}`);
+      return Notify.failure('Breed is required!');
     }
 
     setIsOpenSecond(open);
   }
 
   const handleSubmit = () => {
-    console.log(formik.values.petImage);
-
-    // if (formik.values.petImage === '' || formik.errors.petImage) {
-    //   return Notify.failure(`${formik.errors.petImage} required`);
-    // }
-
-    // console.log(formik.values.comments);
-
-    // if (formik.values.comments === '' || formik.errors.comments) {
-    //   return Notify.failure(`${formik.errors.comments} required`);
-    // }
-
-    console.log(
-      formik.values.name,
-      formik.values.birthday,
-      formik.values.breed,
-      formik.values.comments,
-      formik.values.petImage
-    );
     formik.resetForm();
     closeModal();
     closeModalSecond();
+  };
+
+  const validFunc = () => {
+    if (formik.values.petImage === '') {
+      return Notify.failure('Image is required!');
+    }
+
+    if (formik.values.comments === '' || formik.errors.comments) {
+      return Notify.failure('Comments is required!');
+    }
   };
 
   return (
@@ -256,6 +246,7 @@ export const PetsData = () => {
                       Back
                     </SecondButtonModal>
                     <SecondButtonModal
+                      onClick={validFunc}
                       onSubmit={handleSubmit}
                       whileHover={{ scale: 1.1 }}
                       whileTap={{ scale: 0.9 }}
