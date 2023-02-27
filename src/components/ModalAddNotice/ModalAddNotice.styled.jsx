@@ -23,10 +23,11 @@ export const FerstModalWrapper = styled.div`
   position: relative;
   z-index: 10;
   border-radius: 10px;
-
+  overflow: scroll;
   @media (min-width: ${({ theme }) => theme.breakpoints.tablet[0]}) {
     width: 608px;
     height: 100%;
+    overflow: scroll;
   }
 `;
 
@@ -40,10 +41,11 @@ export const SecondModalWrapper = styled.div`
   position: relative;
   z-index: 10;
   border-radius: 10px;
-
+  overflow: scroll;
   @media (min-width: ${({ theme }) => theme.breakpoints.tablet[0]}) {
     width: 608px;
     height: 100%;
+    overflow: scroll;
   }
 `;
 
@@ -89,7 +91,6 @@ export const P = styled.p`
   }
 `;
 
-
 export const Categories = styled.div`
   position: absolute;
   top: 110px;
@@ -103,14 +104,14 @@ export const Categories = styled.div`
     left: 120px;
     display: flex;
     flex-direction: row;
-    align-items: flex-start; 
+    align-items: flex-start;
   }
 `;
 
 export const Category = styled.input`
   display: none;
 `;
-export const CategoryWrap = styled.label`
+export const CategoryWrap = styled.div`
   padding: 5px 20px;
   gap: 10px;
   margin-left: 5px;
@@ -205,19 +206,20 @@ export const Ferstbutton = styled.div`
   position: absolute;
   left: 50px;
   top: 540px;
-
+  padding-top: 20px;
   @media (min-width: ${({ theme }) => theme.breakpoints.tablet[0]}) {
     left: 110px;
-    top: 640px;
+    padding-top: 70px;
   }
 `;
 export const SecondButton = styled.div`
   position: absolute;
   left: 50px;
   top: 560px;
+  padding-top: 20px;
   @media (min-width: ${({ theme }) => theme.breakpoints.tablet[0]}) {
     left: 110px;
-    top: 650px;
+    padding-top: 80px;
   }
 `;
 
@@ -415,6 +417,7 @@ export const Comments = styled.textarea`
   border-radius: 40px;
   margin-bottom: 10px;
   padding: 10px 52px 8px 20px;
+  overflow: visible;
   @media (min-width: 768px) {
     width: 100%;
     height: 48px;
