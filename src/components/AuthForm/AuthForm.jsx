@@ -161,14 +161,8 @@ const AuthForm = () => {
                     <Input id="name" type="text" name="name" placeholder="Name" />
                   </InputField>
                   <InputField>
-                    <Input
-                      id="city"
-                      type="text"
-                      list="region"
-                      name="city"
-                      placeholder="City, Region"
-                    />
-                    <datalist id="region">
+                    <Input type="text" list="city" name="city" placeholder="City, Region" />
+                    <datalist id="city">
                       {cities.map(city => (
                         <option key={`${city.city}.${city.lat}`}>
                           {city.city}, {city.admin_name}
