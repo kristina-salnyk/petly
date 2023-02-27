@@ -19,7 +19,7 @@ export const PetsDataWrapper = styled.div`
   }
 
   @media screen and (min-width: 1280px) {
-    min-width: 821px;
+    width: 100%;
     margin-top: 0;
     margin-left: 32px;
     padding-right: 16px;
