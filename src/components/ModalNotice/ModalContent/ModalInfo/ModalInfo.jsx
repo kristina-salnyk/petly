@@ -8,7 +8,7 @@ import {
   ModalInfoValue,
   ModalInfoLink,
 } from './ModalInfo.styled';
-import { dateFormatting } from '../../../../utils/date';
+// import { dateFormatting } from '../../../../utils/date';
 
 export const ModalInfo = ({ category, title, name, location, gender, birthday, breed, price }) => {
   return (
@@ -20,7 +20,7 @@ export const ModalInfo = ({ category, title, name, location, gender, birthday, b
           <ModalInfoValue>{name}</ModalInfoValue>
 
           <ModalInfoName>Birthday:</ModalInfoName>
-          <ModalInfoValue>{dateFormatting(birthday)}</ModalInfoValue>
+          <ModalInfoValue>{birthday}</ModalInfoValue>
 
           <ModalInfoName>Breed:</ModalInfoName>
           <ModalInfoValue>{breed}</ModalInfoValue>
