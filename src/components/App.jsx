@@ -8,6 +8,7 @@ import { VerifyPage } from '../pages/VerifyPage/VerifyPage';
 import { useDispatch } from 'react-redux';
 import { useAuth } from '../hooks/useAuth';
 import { refreshUser } from '../redux/auth/operations';
+import { GoogleAuthPage } from '../pages/GoogleAuthPage/GoogleAuthPage';
 
 const LoginPage = lazy(() => import('../pages/LoginPage/LoginPage'));
 const HomePage = lazy(() => import('../pages/HomePage/HomePage'));
@@ -51,6 +52,7 @@ export function App() {
               <Route path=":category" element={<NoticeCategoriesList />} />
             </Route>
             <Route path="/verify/:verificationToken" element={<VerifyPage />} />
+            <Route path="/google-auth" element={<GoogleAuthPage />} />
             <Route path="*" element={<Navigate to="/" replace />} />
           </Route>
         </Routes>

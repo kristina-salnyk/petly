@@ -4,13 +4,13 @@ import {
   Button,
   DivPass,
   FormField,
+  IconLink,
+  IconStyle,
+  IconWrapper,
   Input,
   InputField,
   LinkField,
   StyledLink,
-  IconWrapper,
-  IconLink,
-  IconStyle,
 } from './AuthForm.styled';
 import { Formik } from 'formik';
 import { ImEye, ImEyeBlocked } from 'react-icons/im';
@@ -22,6 +22,7 @@ import { useLocation } from 'react-router-dom';
 import Loader from '../Loader/Loader';
 import googleImg from '../../images/AuthPages/googleIcon.png';
 import cities from './cities.json';
+import { API_BASE_URL } from '../../redux/constants';
 
 const initialValues = {
   email: '',
@@ -207,7 +208,7 @@ const AuthForm = () => {
 
                   <IconWrapper>
                     <LinkField> Sign with </LinkField>
-                    <IconLink href={'https://google.com.ua'} target="_self">
+                    <IconLink href={`${API_BASE_URL}/auth/google`}>
                       <IconStyle src={googleImg} alt="google-sign-in" />
                     </IconLink>
                   </IconWrapper>
