@@ -134,8 +134,9 @@ export const PhotoEditWrapper = styled.div`
   }
 
   @media screen and (min-width: 1280px) {
+    width: 100px;
     top: 210px;
-    left: 290px;
+    left: 300px;
     right: 0;
   }
 `;
