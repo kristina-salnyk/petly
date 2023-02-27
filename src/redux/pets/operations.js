@@ -12,16 +12,12 @@ export const fetchPets = createAsyncThunk('pets/fetchAll', async (_, thunkAPI) =
 
 export const addPet = createAsyncThunk(
   'pets/addPet',
-  async ({ name, birthday, breed, petImage, comments }, thunkAPI) => {
+
+  async (fields, thunkAPI) => {
     try {
-      const response = await api.post('/pets', {
-        name,
-        birthday,
-        breed,
-        petImage,
-        comments,
-      });
-      console.log(response.data);
+      console.log('fields', fields);
+
+      const response = await api.post('/pets', fields);
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
