@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import {
   Button,
   DivPass,
@@ -11,6 +10,7 @@ import {
   InputField,
   LinkField,
   StyledLink,
+  Error,
 } from './AuthForm.styled';
 import { Formik } from 'formik';
 import { ImEye, ImEyeBlocked } from 'react-icons/im';
@@ -57,24 +57,12 @@ const AuthForm = () => {
       validationFields.forEach(field => {
         if (result[field]) {
           isValid = false;
-          showValidationError(result[field]);
         }
       });
 
       if (!isValid) return;
       setStep(2);
     });
-  };
-
-  const handleSubmitClick = validateForm => {
-    validateForm().then(result => {
-      const errors = Object.values(result);
-      errors.forEach(showValidationError);
-    });
-  };
-
-  const showValidationError = error => {
-    Notify.warning(`${error}`, { timeout: 5000 });
   };
 
   const handleRegisterSubmit = values => {
@@ -113,17 +101,20 @@ const AuthForm = () => {
               {step === 1 && (
                 <>
                   <InputField>
-                    <Input id="email" type="email" name="email" placeholder="Email" />
+                    <Input id="email" type="email" name="email" placeholder="Email" required />
+                    <Error name="email" component="div" />
                   </InputField>
                   <InputField margin={!isRegister}>
                     <Input
                       type={isPasswordShown ? 'text' : 'password'}
                       name="password"
                       placeholder="Password"
+                      required
                     />
                     <DivPass onClick={handleIsPasswordShownToggle}>
                       {isPasswordShown ? <ImEye /> : <ImEyeBlocked />}
                     </DivPass>
+                    <Error name="password" component="div" />
                   </InputField>
                   {isRegister && (
                     <>
@@ -132,10 +123,12 @@ const AuthForm = () => {
                           type={isPasswordShown ? 'text' : 'password'}
                           name="passwordConfirm"
                           placeholder="Confirm password"
+                          required
                         />
                         <DivPass onClick={handleIsPasswordShownToggle}>
                           {isPasswordShown ? <ImEye /> : <ImEyeBlocked />}
                         </DivPass>
+                        <Error name="passwordConfirm" component="div" />
                       </InputField>
                       <Button
                         margin
@@ -148,20 +141,23 @@ const AuthForm = () => {
                       </Button>
                     </>
                   )}
-                  {!isRegister && (
-                    <Button type="submit" onClick={() => handleSubmitClick(validateForm)}>
-                      Login
-                    </Button>
-                  )}
+                  {!isRegister && <Button type="submit">Login</Button>}
                 </>
               )}
               {step === 2 && (
                 <>
                   <InputField>
-                    <Input id="name" type="text" name="name" placeholder="Name" />
+                    <Input id="name" type="text" name="name" placeholder="Name" required />
+                    <Error name="name" component="div" />
                   </InputField>
                   <InputField>
-                    <Input type="text" list="city" name="city" placeholder="City, Region" />
+                    <Input
+                      type="text"
+                      list="city"
+                      name="city"
+                      placeholder="City, Region"
+                      required
+                    />
                     <datalist id="city">
                       {cities.map(city => (
                         <option key={`${city.city}.${city.lat}`}>
@@ -169,13 +165,19 @@ const AuthForm = () => {
                         </option>
                       ))}
                     </datalist>
+                    <Error name="city" component="div" />
                   </InputField>
                   <InputField margin>
-                    <Input id="phone" type="text" name="phone" placeholder="Phone number" />
+                    <Input
+                      id="phone"
+                      type="text"
+                      name="phone"
+                      placeholder="Phone number"
+                      required
+                    />
+                    <Error name="phone" component="div" />
                   </InputField>
-                  <Button type="submit" onClick={() => handleSubmitClick(validateForm)}>
-                    Registration
-                  </Button>
+                  <Button type="submit">Registration</Button>
                   <Button outline margin type="button" onClick={() => setStep(1)}>
                     Back
                   </Button>
