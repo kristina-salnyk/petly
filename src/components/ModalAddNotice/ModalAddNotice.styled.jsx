@@ -23,11 +23,17 @@ export const FerstModalWrapper = styled.div`
   position: relative;
   z-index: 10;
   border-radius: 10px;
-  overflow: scroll;
+  overflow: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  scrollbar-height: none;
   @media (min-width: ${({ theme }) => theme.breakpoints.tablet[0]}) {
     width: 608px;
     height: 100%;
-    overflow: scroll;
+    overflow: auto;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    scrollbar-height: none;
   }
 `;
 
@@ -41,11 +47,17 @@ export const SecondModalWrapper = styled.div`
   position: relative;
   z-index: 10;
   border-radius: 10px;
-  overflow: scroll;
+  overflow: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  scrollbar-height: none;
   @media (min-width: ${({ theme }) => theme.breakpoints.tablet[0]}) {
     width: 608px;
     height: 100%;
-    overflow: scroll;
+    overflow: auto;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    scrollbar-height: none;
   }
 `;
 
@@ -209,8 +221,7 @@ export const Ferstbutton = styled.div`
   padding-top: 20px;
   @media (min-width: ${({ theme }) => theme.breakpoints.tablet[0]}) {
     left: 110px;
-    padding-top: 70px;
-
+    margin-top: 70px;
   }
 `;
 export const SecondButton = styled.div`
@@ -220,7 +231,7 @@ export const SecondButton = styled.div`
   padding-top: 20px;
   @media (min-width: ${({ theme }) => theme.breakpoints.tablet[0]}) {
     left: 110px;
-    padding-top: 80px;
+    margin-top: 70px;
   }
 `;
 

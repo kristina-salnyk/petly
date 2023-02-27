@@ -118,7 +118,7 @@ export const ModalAddNotice = ({ showModal, setShowModal }) => {
   };
   const handleGender = e => (formik.values.gender = e.target.value);
   const handleCategory = e => (formik.values.category = e.target.value);
-  console.log(formik.values.category)
+  
   const onImageChange = e => {
     const { files } = e.currentTarget;
     if (files) {
@@ -223,8 +223,6 @@ export const ModalAddNotice = ({ showModal, setShowModal }) => {
                     type="text"
                     name="breed"
                     value={formik.values.breed}
-                    required
-                    autoFocus
                     placeholder="Type breed"
                   />
                 </FerstForm>
