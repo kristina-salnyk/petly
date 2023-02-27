@@ -13,7 +13,7 @@ import defaultImage from '../../images/cat.png';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectPets } from '../../redux/pets/selectors';
-import { fetchPets } from '../../redux/pets/operations';
+import { fetchPets, deletePet } from '../../redux/pets/operations';
 
 export const PetsList = () => {
   const dispatch = useDispatch();
@@ -22,6 +22,10 @@ export const PetsList = () => {
   }, [dispatch]);
 
   const pets = useSelector(selectPets);
+
+  const handleDelete = petId => {
+    return dispatch(deletePet(petId));
+  };
 
   if (pets.length === 0) {
     return (
@@ -37,7 +41,11 @@ export const PetsList = () => {
       {pets.map(({ _id, birthday, breed, comments, name, petImage }) => (
         <PetInfoItem key={_id}>
           <PetInfoDeleteBtn type="button">
-            <DeleteMyPetIcon />
+            <DeleteMyPetIcon
+              onClick={() => {
+                handleDelete(_id);
+              }}
+            />
           </PetInfoDeleteBtn>
           <PetInfoWrapper>
             <PetInfoImg src={petImage || defaultImage} alt="Pet" />
