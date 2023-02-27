@@ -12,7 +12,7 @@ export const ModalThumb = styled.div`
   @media (min-width: 768px) {
     width: 704px;
     height: 540px;
-    overflow-y: auto;
+    overflow-y: hidden;
   }
 `;
 
