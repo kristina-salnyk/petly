@@ -8,6 +8,7 @@ import {
   ModalInfoValue,
   ModalInfoLink,
 } from './ModalInfo.styled';
+import { dateFormatting } from '../../../../utils/date';
 
 export const ModalInfo = ({ category, title, name, location, gender, birthday, breed, price }) => {
   return (
@@ -19,7 +20,7 @@ export const ModalInfo = ({ category, title, name, location, gender, birthday, b
           <ModalInfoValue>{name}</ModalInfoValue>
 
           <ModalInfoName>Birthday:</ModalInfoName>
-          <ModalInfoValue>{birthday}</ModalInfoValue>
+          <ModalInfoValue>{dateFormatting(birthday)}</ModalInfoValue>
 
           <ModalInfoName>Breed:</ModalInfoName>
           <ModalInfoValue>{breed}</ModalInfoValue>
@@ -33,13 +34,17 @@ export const ModalInfo = ({ category, title, name, location, gender, birthday, b
           <ModalInfoName>Email:</ModalInfoName>
 
           <ModalInfoValue>
-            <ModalInfoLink href="https://www.google.com/intl/en/gmail/about/" target={'_blank'}>user@mail.com</ModalInfoLink>
+            <ModalInfoLink href="https://www.google.com/intl/en/gmail/about/" target={'_blank'}>
+              user@mail.com
+            </ModalInfoLink>
           </ModalInfoValue>
 
           <ModalInfoName>Phone:</ModalInfoName>
 
           <ModalInfoValue>
-            <ModalInfoLink href="tel:+380971234567" target={'_blank'}>+380971234567</ModalInfoLink>
+            <ModalInfoLink href="tel:+380971234567" target={'_blank'}>
+              +380971234567
+            </ModalInfoLink>
           </ModalInfoValue>
           {category === 'sell' && (
             <>
