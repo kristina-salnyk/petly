@@ -74,22 +74,7 @@ export const PetsData = () => {
       data.append('petImage', values.petImage);
       data.append('comments', values.comments);
 
-      dispatch(
-        addPet({
-          name: values.name,
-          birthday: values.birthday,
-          breed: values.breed,
-          comments: values.comments,
-          petImage: values.petImage,
-        })
-      );
-      console.log({
-        name: values.name,
-        birthday: values.birthday,
-        breed: values.breed,
-        comments: values.comments,
-        petImage: values.petImage,
-      });
+      dispatch(addPet(data));
       handleSubmit();
     },
   });
@@ -114,9 +99,6 @@ export const PetsData = () => {
       return Notify.failure('Comments is required!');
     }
 
-    console.log({ ...formik.values });
-
-    console.log({ image: URL.createObjectURL(formik.values.petImage) });
     formik.resetForm();
     closeModal();
     closeModalSecond();
