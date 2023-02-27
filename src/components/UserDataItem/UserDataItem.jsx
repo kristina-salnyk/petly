@@ -90,6 +90,7 @@ export const UserDataItem = ({ user }) => {
             <InfoInput
               type="text"
               name="userName"
+              placeholder="Name (Latin alphabet)"
               disabled={isNameDisabled}
               onChange={handleValueChange}
               value={userName}
@@ -114,8 +115,9 @@ export const UserDataItem = ({ user }) => {
           Email:
           <FlexWrapper>
             <InfoInput
-              type="text"
+              type="email"
               name="userEmail"
+              placeholder="user@mail.com"
               disabled={isEmaillDisabled}
               onChange={handleValueChange}
               value={userEmail}
@@ -140,12 +142,13 @@ export const UserDataItem = ({ user }) => {
           Birthday:
           <FlexWrapper>
             <InfoInput
-              type="text"
+              type="date"
               name="userBirthday"
               disabled={isBirthdayDisabled}
               onChange={handleValueChange}
               value={userBirthday}
               autoComplete="off"
+              pattern="\d{1,2}/\d{1,2}/\d{4}"
             />
             <InfoBtn
               type="submit"
@@ -170,6 +173,7 @@ export const UserDataItem = ({ user }) => {
             <InfoInput
               type="text"
               name="userPhone"
+              placeholder="+380*********"
               disabled={isPhoneDisabled}
               onChange={handleValueChange}
               value={userPhone}
@@ -196,6 +200,7 @@ export const UserDataItem = ({ user }) => {
             <InfoInput
               type="text"
               name="userCity"
+              placeholder="City, region"
               disabled={isCityDisabled}
               onChange={handleValueChange}
               value={userCity}
