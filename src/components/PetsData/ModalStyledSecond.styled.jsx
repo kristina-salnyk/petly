@@ -132,12 +132,11 @@ export const InputModalSecond = styled.input`
 export const LabelModalSecond = styled.label``;
 
 export const BoxTextereaModalSecond = styled.div`
-display: flex;
-justify-content: flex-start;
-align-items: flex-start;
-align-content: flex-start;
-flex-direction: column;
-}
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  align-content: flex-start;
+  flex-direction: column;
 `;
 
 export const TextareaModalSecond = styled.textarea`
