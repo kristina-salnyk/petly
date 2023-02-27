@@ -4,6 +4,9 @@ import {
   Button,
   DivPass,
   FormField,
+  IconLink,
+  IconStyle,
+  IconWrapper,
   Input,
   InputField,
   LinkField,
@@ -17,6 +20,9 @@ import { logIn, register } from '../../redux/auth/operations';
 import { selectIsLoading } from '../../redux/auth/selectors';
 import { useLocation } from 'react-router-dom';
 import Loader from '../Loader/Loader';
+import googleImg from '../../images/AuthPages/googleIcon.png';
+import cities from './cities.json';
+import { API_BASE_URL } from '../../redux/constants';
 
 const initialValues = {
   email: '',
@@ -155,7 +161,14 @@ const AuthForm = () => {
                     <Input id="name" type="text" name="name" placeholder="Name" />
                   </InputField>
                   <InputField>
-                    <Input id="city" type="text" name="city" placeholder="City, Region" />
+                    <Input type="text" list="city" name="city" placeholder="City, Region" />
+                    <datalist id="city">
+                      {cities.map(city => (
+                        <option key={`${city.city}.${city.lat}`}>
+                          {city.city}, {city.admin_name}
+                        </option>
+                      ))}
+                    </datalist>
                   </InputField>
                   <InputField margin>
                     <Input id="phone" type="text" name="phone" placeholder="Phone number" />
@@ -169,14 +182,31 @@ const AuthForm = () => {
                 </>
               )}
               {isRegister && (
-                <LinkField>
-                  Already have an account? <StyledLink to="/login">Login</StyledLink>
-                </LinkField>
+                <>
+                  <LinkField margin>
+                    Already have an account? <StyledLink to="/login">Login</StyledLink>
+                  </LinkField>
+                  <IconWrapper>
+                    <LinkField> Sign with </LinkField>
+                    <IconLink href={'https://google.com.ua'} target="_self">
+                      <IconStyle src={googleImg} alt="google-sign-in" />
+                    </IconLink>
+                  </IconWrapper>
+                </>
               )}
               {!isRegister && (
-                <LinkField>
-                  Don &apos; t have an account? <StyledLink to="/register"> Register </StyledLink>
-                </LinkField>
+                <>
+                  <LinkField margin>
+                    Don &apos; t have an account? <StyledLink to="/register"> Register </StyledLink>
+                  </LinkField>
+
+                  <IconWrapper>
+                    <LinkField> Sign with </LinkField>
+                    <IconLink href={`${API_BASE_URL}/auth/google`}>
+                      <IconStyle src={googleImg} alt="google-sign-in" />
+                    </IconLink>
+                  </IconWrapper>
+                </>
               )}
             </>
           </FormField>

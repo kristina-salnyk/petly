@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import theme from '../../utils/theme';
-import { Form, Field } from 'formik';
+import { Field, Form } from 'formik';
 
 export const FormField = styled(Form)`
   width: 100%;
@@ -27,9 +27,11 @@ export const Input = styled(Field)`
 
   padding: 11px 14px 12px;
   margin-top: 16px;
+
   &:first-child {
     margin-top: 0px;
   }
+
   &:nth-child(3) {
     margin-bottom: 40px;
   }
@@ -48,21 +50,23 @@ export const Button = styled.button`
   width: 100%;
   padding: 10px;
   border-radius: 40px;
-  font-size: 20px;
+  font-size: 18px;
   border: ${props =>
     props.outline ? `2px solid ${theme.colors.accent}` : `2px solid ${theme.colors.accent}`};
   background-color: ${props => (props.outline ? 'white' : `${theme.colors.accent}`)};
   margin-bottom: ${props => (props.noMargin ? '0' : '20px')};
   transition: background-color 300ms cubic-bezier(0.4, 0, 0.2, 1);
+
   &:hover,
   &:focus {
     background-color: ${theme.colors.white};
     border: 2px solid ${theme.colors.accent};
     color: #000000;
   }
+
   @media (min-width: 768px) {
     padding: 18px;
-    margin-bottom: ${props => (props.margin ? '40px' : '16px')};
+    margin-bottom: ${props => (props.margin ? '30px' : '16px')};
   }
 `;
 
@@ -70,11 +74,13 @@ export const LinkField = styled.p`
   text-align: center;
   color: ${theme.colors.dark};
   font-size: 12px;
+  margin-bottom: ${props => (props.margin ? '10px' : 0)};
 `;
 
 export const StyledLink = styled(Link)`
   position: relative;
   color: ${theme.colors.link};
+
   &::before {
     position: absolute;
     display: block;
@@ -94,5 +100,26 @@ export const DivPass = styled.div`
   top: 12px;
   @media (min-width: 768px) {
     top: 17px;
+  }
+`;
+
+export const IconWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const IconLink = styled.a`
+  margin: 0 10px;
+`;
+
+export const IconStyle = styled.img`
+  width: 50px;
+  height: 50px;
+  opacity: 0.8;
+  transition: opacity 300ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  &:hover {
+    opacity: 1;
   }
 `;
