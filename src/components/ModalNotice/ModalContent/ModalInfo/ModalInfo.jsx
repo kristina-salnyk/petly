@@ -10,7 +10,7 @@ import {
 } from './ModalInfo.styled';
 // import { dateFormatting } from '../../../../utils/date';
 
-export const ModalInfo = ({ category, title, name, location, gender, birthday, breed, price }) => {
+export const ModalInfo = ({ category, title, name, location, gender, birthday, breed, price, email, phone }) => {
   return (
     <>
       <ModalInfoWrapper>
@@ -35,15 +35,15 @@ export const ModalInfo = ({ category, title, name, location, gender, birthday, b
 
           <ModalInfoValue>
             <ModalInfoLink href="https://www.google.com/intl/en/gmail/about/" target={'_blank'}>
-              user@mail.com
+              {email}
             </ModalInfoLink>
           </ModalInfoValue>
 
           <ModalInfoName>Phone:</ModalInfoName>
 
           <ModalInfoValue>
-            <ModalInfoLink href="tel:+380971234567" target={'_blank'}>
-              +380971234567
+            <ModalInfoLink href={`tel:${phone}`} target={'_blank'}>
+              {phone}
             </ModalInfoLink>
           </ModalInfoValue>
           {category === 'sell' && (
@@ -68,4 +68,6 @@ ModalInfo.propTypes = {
   location: PropTypes.string,
   price: PropTypes.string,
   birthday: PropTypes.string,
+  email: PropTypes.string,
+  phone: PropTypes.string,
 };

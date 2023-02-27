@@ -20,6 +20,7 @@ import theme from '../../../utils/theme';
 
 export const Modal = ({ icon, addToFavorite, onShow}) => {
   const noticesItem = useSelector(selectNoticeItem);
+  
 
   return (
     <>
@@ -40,6 +41,8 @@ export const Modal = ({ icon, addToFavorite, onShow}) => {
             birthday={noticesItem.birthday}
             breed={noticesItem.breed}
             price={noticesItem.price}
+            email={noticesItem.email}
+            phone={noticesItem.phone}
           />
         </TabletWrapper>
 
