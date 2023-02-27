@@ -115,8 +115,8 @@ export const ProfileImg = styled.img`
 
 export const PhotoEditWrapper = styled.div`
   position: absolute;
-  top: 240px;
-  right: 20px;
+  top: 250px;
+  right: 15px;
 
   display: flex;
 
@@ -135,7 +135,7 @@ export const PhotoEditWrapper = styled.div`
 
   @media screen and (min-width: 1280px) {
     width: 100px;
-    top: 210px;
+    top: 225px;
     left: 300px;
     right: 0;
   }
