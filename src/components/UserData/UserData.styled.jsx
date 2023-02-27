@@ -109,6 +109,7 @@ export const ProfileImgBtn = styled.input`
 export const ProfileImg = styled.img`
   width: 233px;
   height: 233px;
+  object-fit: cover;
   border-radius: 50%;
   cursor: pointer;
 `;
