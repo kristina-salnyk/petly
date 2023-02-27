@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import { addPet } from '../../redux/pets/operations';
 import { useFormik } from 'formik';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
+import { petsSchema } from '../../utils/schemas/pets';
 
 import {
   PetsDataWrapper,
@@ -52,8 +53,8 @@ import SecondOpenModalButton from '../ModalAddPet/SecondOpenModalButton';
 export const Form = styled.form``;
 
 export const PetsData = () => {
-  const [isOpen, toggle] = useState(false);
-  const [isOpenSecond, toggleSecond] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const [isOpenSecond, setIsOpenSecond] = useState(false);
   const [image, setImage] = useState(null);
   const dispatch = useDispatch();
 
@@ -64,8 +65,9 @@ export const PetsData = () => {
       breed: '',
       comments: '',
       petImage: '',
-
     },
+
+    validationSchema: petsSchema,
 
     onSubmit: values => {
       const data = new FormData();
@@ -76,6 +78,7 @@ export const PetsData = () => {
       data.append('comments', values.comments);
 
       dispatch(addPet(data));
+      console.log(data);
       handleSubmit();
     },
   });
@@ -88,43 +91,53 @@ export const PetsData = () => {
     }
   };
 
-  const closeModal = () => toggle(prev => !prev);
-  const closeModalSecond = () => toggleSecond(prev => !prev);
+  const closeModal = () => setIsOpen(prev => !prev);
+  const closeModalSecond = () => setIsOpenSecond(prev => !prev);
+
+  function handlOpenModal(open) {
+    setIsOpen(open);
+  }
+
+  function secondHandlOpenModal(open) {
+    if (formik.values.name === '' || formik.errors.name) {
+      return Notify.failure('Name is required!');
+    }
+
+    if (!formik.values.birthday) {
+      return Notify.failure('birthday is required!');
+    }
+
+    if (formik.values.breed === '' || formik.errors.breed) {
+      return Notify.failure(`${formik.errors.breed}`);
+    }
+
+    setIsOpenSecond(open);
+  }
 
   const handleSubmit = () => {
-    if (formik.values.petImage === '') {
-      return Notify.failure('Image is required!');
-    }
+    console.log(formik.values.petImage);
 
-    if (formik.values.comments === '') {
-      return Notify.failure('Comments is required!');
-    }
+    // if (formik.values.petImage === '' || formik.errors.petImage) {
+    //   return Notify.failure(`${formik.errors.petImage} required`);
+    // }
 
+    // console.log(formik.values.comments);
 
+    // if (formik.values.comments === '' || formik.errors.comments) {
+    //   return Notify.failure(`${formik.errors.comments} required`);
+    // }
+
+    console.log(
+      formik.values.name,
+      formik.values.birthday,
+      formik.values.breed,
+      formik.values.comments,
+      formik.values.petImage
+    );
     formik.resetForm();
     closeModal();
     closeModalSecond();
   };
-
-  function handlOpenModal(open) {
-    toggle(open);
-  }
-
-  function secondHandlOpenModal(open) {
-    if (formik.values.name === '') {
-      return Notify.failure('Name is required!');
-    }
-
-    if (formik.values.birthday === '') {
-      return Notify.failure('Birth is required!');
-    }
-
-    if (formik.values.breed === '') {
-      return Notify.failure('Breed is required!');
-    }
-
-    toggleSecond(open);
-  }
 
   return (
     <PetsDataWrapper>
@@ -148,7 +161,7 @@ export const PetsData = () => {
                       onChange={formik.handleChange}
                       value={formik.values.name}
                       id="name"
-                      type="text"
+                      type="string"
                       name="name"
                       placeholder="Type name pet"
                     />
@@ -164,10 +177,11 @@ export const PetsData = () => {
                     <InputModal
                       onChange={formik.handleChange}
                       value={formik.values.breed}
-                      type="text"
+                      type="string"
                       name="breed"
                       placeholder="Type breed"
                     />
+
                     <FooterModal>
                       <ButtonModal
                         onClick={() => handlOpenModal(false)}
@@ -224,10 +238,11 @@ export const PetsData = () => {
                   </MainModalSecond>
                   <BoxTextereaModalSecond>
                     <TextModal>Comments</TextModal>
+
                     <TextareaModalSecond
                       onChange={formik.handleChange}
                       value={formik.values.comments}
-                      type="text"
+                      type="string"
                       name="comments"
                       placeholder="Type comments"
                     />
