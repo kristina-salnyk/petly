@@ -65,6 +65,15 @@ export const refreshUser = createAsyncThunk('auth/refresh', async (defaultToken,
   }
 });
 
+export const getUserInfo = createAsyncThunk('auth/user', async (_, thunkAPI) => {
+  try {
+    const response = await api.get('/user/current');
+    return response.data;
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error.message);
+  }
+});
+
 export const updateUser = createAsyncThunk('auth/update', async (credentials, thunkAPI) => {
   try {
     const response = await api.patch('/user/update', credentials);
