@@ -13,8 +13,7 @@ import {
   ModalContent,
   CloseModalButton,
   Title,
-  ButtonCansel,
-  ButtonNext,
+  Button,
   FerstForm,
   SecondForm,
   Input,
@@ -31,8 +30,7 @@ import {
   FileBox,
   Comments,
   CategoryWrap,
-  Ferstbutton,
-  SecondButton,
+  ButtonWrapper,
   AddedImage,
   Star,
 } from './ModalAddNotice.styled';
@@ -117,7 +115,6 @@ export const ModalAddNotice = ({ showModal, setShowModal }) => {
     closeModal();
     dispatch(addNotice({ ...formik.values, image: URL.createObjectURL(formik.values.image) }));
     formik.resetForm();
-
   };
   const handleGender = e => (formik.values.gender = e.target.value);
   const handleCategory = e => (formik.values.category = e.target.value);
@@ -243,17 +240,19 @@ export const ModalAddNotice = ({ showModal, setShowModal }) => {
                     placeholder="Type breed"
                   />
                 </FerstForm>
-                <Ferstbutton>
-                  <ButtonCansel onClick={() => setShowModal(prev => !prev)}>Cancel</ButtonCansel>
-                  <ButtonNext
+                <ButtonWrapper>
+                  <Button margin onClick={() => setShowModal(prev => !prev)}>
+                    Cancel
+                  </Button>
+                  <Button
                     onClick={() => {
                       setActive('SecondWraper');
                       validateFerst();
                     }}
                   >
                     Next
-                  </ButtonNext>
-                </Ferstbutton>
+                  </Button>
+                </ButtonWrapper>
                 <CloseModalButton area-label="Close modal" onClick={closeModal}>
                   <CloseModalIcon color={'black'} />
                 </CloseModalButton>
@@ -298,7 +297,7 @@ export const ModalAddNotice = ({ showModal, setShowModal }) => {
                   </GenderItem>
                 </GenderWrapper>
                 <SecondForm onSubmit={formik.handleSubmit}>
-                  <Label htmlFor="text">
+                  <Label top htmlFor="text">
                     Location<Star>*</Star>:
                   </Label>
                   <Input
@@ -316,6 +315,7 @@ export const ModalAddNotice = ({ showModal, setShowModal }) => {
                         Price<Star>*</Star>:
                       </Label>
                       <Input
+                        bottom
                         onChange={formik.handleChange}
                         type="text"
                         name="price"
@@ -358,17 +358,18 @@ export const ModalAddNotice = ({ showModal, setShowModal }) => {
                     placeholder="Comments"
                   ></Comments>
                 </SecondForm>
-                <SecondButton>
-                  <ButtonCansel
+                <ButtonWrapper btn mobBtn>
+                  <Button
+                    margin
                     onClick={() => {
                       setActive('FerstWraper');
                     }}
                   >
                     Back
-                  </ButtonCansel>
+                  </Button>
 
-                  <ButtonNext onClick={handleSubmit}>Done</ButtonNext>
-                </SecondButton>
+                  <Button onClick={handleSubmit}>Done</Button>
+                </ButtonWrapper>
                 <CloseModalButton
                   area-label="Close modal"
                   onClick={() => setShowModal(prev => !prev)}
