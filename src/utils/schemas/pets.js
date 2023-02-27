@@ -7,5 +7,5 @@ export const petsSchema = Yup.object().shape({
     .required(),
   breed: Yup.string().min(2).max(16).required(),
   petImage: Yup.string().required(),
-  comments: Yup.string().min(8).max(120).required(),
+  comments: Yup.string().min(2).max(120),
 });
