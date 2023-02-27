@@ -1,13 +1,12 @@
-import { Wrapper, HederWrapper, UserWrapper } from './Header.styled';
+import { HederWrapper, UserWrapper, Wrapper } from './Header.styled';
 import Logo from '../Logo/Logo';
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Nav from '../Nav/Nav';
 import BgMenu from '../BgMenu/bgmenu';
 import AuthNav from '../AuthNav/AuthNav';
 import UserMenu from '../../components/UserNav/UserNav';
 import { selectIsLoggedIn, selectIsRefreshing } from '../../redux/auth/selectors';
-import { useSelector, useDispatch } from 'react-redux';
-import { refreshUser } from '../../redux/auth/operations';
+import { useSelector } from 'react-redux';
 
 export const Header = () => {
   const [burger_class, setBurgerClass] = useState('burger-bar unclicked');
@@ -15,10 +14,6 @@ export const Header = () => {
   const [isMenuClicked, setIsMenuClicked] = useState(false);
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const isRefreshing = useSelector(selectIsRefreshing);
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(refreshUser());
-  }, [dispatch]);
 
   const updateMenu = () => {
     if (!isMenuClicked) {
