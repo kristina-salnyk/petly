@@ -64,6 +64,7 @@ export const PetsData = () => {
       breed: '',
       comments: '',
       petImage: '',
+
     },
 
     onSubmit: values => {
@@ -98,6 +99,7 @@ export const PetsData = () => {
     if (formik.values.comments === '') {
       return Notify.failure('Comments is required!');
     }
+
 
     formik.resetForm();
     closeModal();
@@ -191,7 +193,7 @@ export const PetsData = () => {
               isOpenSecond={isOpenSecond}
               handleClose={() => secondHandlOpenModal(false)}
             >
-              <Form onSubmit={formik.handleSubmit}>
+              <Form onSubmit={formik.handleSubmit} encType="multipart/form-data">
                 <ModalContent>
                   <HeaderModalSecond>
                     <TitleModalSecond>Add pet</TitleModalSecond>

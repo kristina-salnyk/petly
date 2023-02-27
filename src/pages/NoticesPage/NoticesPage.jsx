@@ -26,7 +26,6 @@ const NoticesPage = () => {
       Notiflix.Notify.warning('Please, log in to your account');
       return;
     }
-
     setShowModal(prev => !prev);
   };
 

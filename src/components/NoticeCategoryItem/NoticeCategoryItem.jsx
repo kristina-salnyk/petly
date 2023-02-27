@@ -30,7 +30,7 @@ export const NoticeCategoryItem = ({
 
   const addToFavorite = () => {
     if (!isLoggedIn) {
-      Notiflix.Notify.warning('Please, log in to your account');
+      Notiflix.Notify.warning('Please sign in');
       return;
     }
     if (favorite) {

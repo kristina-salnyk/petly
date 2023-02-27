@@ -15,7 +15,7 @@ export const Background = styled.div`
 
 export const FerstModalWrapper = styled.div`
   width: 280px;
-  height: 813px;
+  height: 100%;
   box-shadow: 0 5px 16px rgba(0, 0, 0, 0.2);
   background: ${props => props.theme.colors.white};
   display: grid;
@@ -23,16 +23,17 @@ export const FerstModalWrapper = styled.div`
   position: relative;
   z-index: 10;
   border-radius: 10px;
-
+  overflow: scroll;
   @media (min-width: ${({ theme }) => theme.breakpoints.tablet[0]}) {
     width: 608px;
     height: 100%;
+    overflow: scroll;
   }
 `;
 
 export const SecondModalWrapper = styled.div`
   width: 280px;
-  height: 855px;
+  height: 100%;
   box-shadow: 0 5px 16px rgba(0, 0, 0, 0.2);
   background: ${props => props.theme.colors.white};
   display: grid;
@@ -40,10 +41,11 @@ export const SecondModalWrapper = styled.div`
   position: relative;
   z-index: 10;
   border-radius: 10px;
-
+  overflow: scroll;
   @media (min-width: ${({ theme }) => theme.breakpoints.tablet[0]}) {
     width: 608px;
     height: 100%;
+    overflow: scroll;
   }
 `;
 
@@ -59,7 +61,7 @@ export const Title = styled.h1`
   height: 33px;
   position: absolute;
   left: 90px;
-  top: 100px;
+  top: 10px;
   font-family: 'Manrope';
   font-style: normal;
   font-weight: 500;
@@ -75,11 +77,13 @@ export const Title = styled.h1`
 
 export const P = styled.p`
   position: absolute;
-  top: 140px;
+  text-align: center;
+  top: 50px;
   left: 10px;
   @media (min-width: ${({ theme }) => theme.breakpoints.tablet[0]}) {
-    left: 100px;
+    margin-left: 40px;
     top: 80px;
+    text-align: center;
     font-style: normal;
     font-weight: 500;
     font-size: 20px;
@@ -89,29 +93,29 @@ export const P = styled.p`
 
 export const Categories = styled.div`
   position: absolute;
-  top: 200px;
+  top: 110px;
   left: 10px;
-  flex-wrap: wrap;
   width: 100%;
-  display: flex;
-
   gap: ${({ theme }) => theme.spacing[3]}px;
 
   @media (min-width: ${({ theme }) => theme.breakpoints.tablet[0]}) {
     position: absolute;
-    top: 140px;
+    top: 130px;
     left: 120px;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
   }
 `;
 
 export const Category = styled.input`
   display: none;
 `;
-export const CategoryWrap = styled.span`
-  padding-left: 10px;
-  padding-right: 10px;
+export const CategoryWrap = styled.div`
+  padding: 5px 20px;
+  gap: 10px;
   margin-left: 5px;
-
+  margin-top: 5px;
   display: inline-block;
   font-size: ${({ theme }) => theme.typography.size.xs};
   font-weight: ${({ theme }) => theme.typography.weight.medium};
@@ -127,15 +131,14 @@ export const CategoryWrap = styled.span`
     background-color: ${({ theme }) => theme.colors.accent};
   }
   @media (min-width: ${({ theme }) => theme.breakpoints.tablet[0]}) {
-    padding-left: 20px;
-    padding-right: 20px;
+    padding: 5px 20px;
   }
 `;
 
 export const FerstForm = styled.form`
   width: 240px;
   left: 20px;
-  top: 280px;
+  top: 210px;
   position: absolute;
 
   @media (min-width: ${({ theme }) => theme.breakpoints.tablet[0]}) {
@@ -148,7 +151,7 @@ export const FerstForm = styled.form`
 export const SecondForm = styled.form`
   width: 240px;
   left: 20px;
-  top: 250px;
+  top: 160px;
   position: absolute;
   @media (min-width: ${({ theme }) => theme.breakpoints.tablet[0]}) {
     width: 448px;
@@ -202,20 +205,22 @@ export const Label = styled.label`
 export const Ferstbutton = styled.div`
   position: absolute;
   left: 50px;
-  top: 610px;
-
+  top: 540px;
+  padding-top: 20px;
   @media (min-width: ${({ theme }) => theme.breakpoints.tablet[0]}) {
     left: 110px;
-    top: 640px;
+    padding-top: 70px;
+
   }
 `;
 export const SecondButton = styled.div`
   position: absolute;
   left: 50px;
-  top: 650px;
+  top: 560px;
+  padding-top: 20px;
   @media (min-width: ${({ theme }) => theme.breakpoints.tablet[0]}) {
     left: 110px;
-    top: 650px;
+    padding-top: 80px;
   }
 `;
 
@@ -290,7 +295,7 @@ export const ButtonNext = styled.button`
 export const CloseModalButton = styled.button`
   cursor: pointer;
   position: absolute;
-  top: 100px;
+  top: 10px;
   left: 230px;
   width: 34px;
   height: 34px;
@@ -311,7 +316,7 @@ export const CloseModalButton = styled.button`
 export const GenderWrapper = styled.div`
   display: flex;
   position: absolute;
-  top: 150px;
+  top: 70px;
   margin-left: 100px;
 
   @media (min-width: ${({ theme }) => theme.breakpoints.tablet[0]}) {
@@ -321,7 +326,7 @@ export const GenderWrapper = styled.div`
 `;
 export const GenderTitle = styled.p`
   position: absolute;
-  top: 120px;
+  top: 40px;
   left: 20px;
   font-family: 'Manrope';
   font-style: normal;
@@ -413,6 +418,7 @@ export const Comments = styled.textarea`
   border-radius: 40px;
   margin-bottom: 10px;
   padding: 10px 52px 8px 20px;
+  overflow: visible;
   @media (min-width: 768px) {
     width: 100%;
     height: 48px;

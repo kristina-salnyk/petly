@@ -40,6 +40,7 @@ import { useFormik } from 'formik';
 
 export const ModalAddNotice = ({ showModal, setShowModal }) => {
   const [active, setActive] = useState('FerstWraper');
+  const [categori, setCategory] = useState('sell');
   const [image, setImage] = useState(null);
 
   const formik = useFormik({
@@ -72,7 +73,7 @@ export const ModalAddNotice = ({ showModal, setShowModal }) => {
     return () => document.removeEventListener('keydown', keyPress);
   }, [keyPress]);
 
-  const validate = () => {
+  const validateFerst = () => {
     if (!formik.values.category) {
       return Notify.failure('category is required!');
     }
@@ -85,9 +86,9 @@ export const ModalAddNotice = ({ showModal, setShowModal }) => {
     if (!formik.values.birthday) {
       return Notify.failure('birthday is required!');
     }
-    if (!formik.values.breed) {
-      return Notify.failure('breed is required!');
-    }
+  };
+
+  const validateSecond = () => {
     if (!formik.values.gender) {
       return Notify.failure('gender is required!');
     }
@@ -109,13 +110,15 @@ export const ModalAddNotice = ({ showModal, setShowModal }) => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    validate();
+    validateSecond();
     closeModal();
     dispatch(addNotice({ ...formik.values, image: URL.createObjectURL(formik.values.image) }));
     formik.resetForm();
+
   };
   const handleGender = e => (formik.values.gender = e.target.value);
   const handleCategory = e => (formik.values.category = e.target.value);
+  console.log(formik.values.category)
   const onImageChange = e => {
     const { files } = e.currentTarget;
     if (files) {
@@ -135,7 +138,13 @@ export const ModalAddNotice = ({ showModal, setShowModal }) => {
                 <P>Enter information about your pet. All fields are required</P>
                 <Categories>
                   <label>
-                    <CategoryWrap>lost/found</CategoryWrap>
+                    <CategoryWrap
+                      onClick={() => {
+                        setCategory('lost/found');
+                      }}
+                    >
+                      lost/found
+                    </CategoryWrap>
                     <Category
                       type="radio"
                       name="lost-found"
@@ -144,7 +153,13 @@ export const ModalAddNotice = ({ showModal, setShowModal }) => {
                     ></Category>
                   </label>
                   <label>
-                    <CategoryWrap>in good hands</CategoryWrap>
+                    <CategoryWrap
+                      onClick={() => {
+                        setCategory('in good hands');
+                      }}
+                    >
+                      in good hands
+                    </CategoryWrap>
                     <Category
                       type="radio"
                       name="in-good-hands"
@@ -153,7 +168,13 @@ export const ModalAddNotice = ({ showModal, setShowModal }) => {
                     ></Category>
                   </label>
                   <label>
-                    <CategoryWrap>sell</CategoryWrap>
+                    <CategoryWrap
+                      onClick={() => {
+                        setCategory('sell');
+                      }}
+                    >
+                      sell
+                    </CategoryWrap>
                     <Category
                       type="radio"
                       name="sell"
@@ -212,6 +233,7 @@ export const ModalAddNotice = ({ showModal, setShowModal }) => {
                   <ButtonNext
                     onClick={() => {
                       setActive('SecondWraper');
+                      validateFerst();
                     }}
                   >
                     Next
@@ -269,16 +291,21 @@ export const ModalAddNotice = ({ showModal, setShowModal }) => {
                     autoFocus
                     placeholder="Location"
                   ></Input>
-                  <Label htmlFor="text">Price*:</Label>
-                  <Input
-                    onChange={formik.handleChange}
-                    type="text"
-                    name="price"
-                    value={formik.values.price}
-                    required
-                    autoFocus
-                    placeholder="price"
-                  ></Input>
+                  {categori === 'sell' && (
+                    <>
+                      <Label htmlFor="text">Price*:</Label>
+                      <Input
+                        onChange={formik.handleChange}
+                        type="text"
+                        name="price"
+                        value={formik.values.price}
+                        required
+                        autoFocus
+                        placeholder="price"
+                      ></Input>
+                    </>
+                  )}
+
                   {formik.values.image === '' ? (
                     <FileBox htmlFor="image">
                       <label>
@@ -308,7 +335,6 @@ export const ModalAddNotice = ({ showModal, setShowModal }) => {
                     value={formik.values.comments}
                     autoFocus
                     placeholder="Comments"
-                    required
                   ></Comments>
                 </SecondForm>
                 <SecondButton>

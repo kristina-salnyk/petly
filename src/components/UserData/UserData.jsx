@@ -5,6 +5,8 @@ import { useEffect, useState } from 'react';
 import { updateUser } from '../../redux/auth/operations';
 import { useAuth } from '../../hooks/useAuth';
 
+import { useState } from 'react';
+
 import {
   InformationBackgroundBlock,
   MyInformation,
@@ -26,6 +28,22 @@ export const UserData = () => {
   const { user } = useAuth();
 
   const dispatch = useDispatch();
+
+
+  const onImageChange = e => {
+    const { files } = e.currentTarget;
+    if (files) {
+      setTemporaryImg(URL.createObjectURL(files[0]));
+      setAvatar(files[0]);
+    }
+  };
+  useEffect(() => {
+    if (avatar) {
+      const update = new FormData();
+      update.append('avatarURL', avatar);
+      dispatch(updateUser(update));
+    }
+  }, [avatar, updateUser]);
 
   const onImageChange = e => {
     const { files } = e.currentTarget;
