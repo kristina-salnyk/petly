@@ -239,20 +239,21 @@ export const ModalAddNotice = ({ showModal, setShowModal }) => {
                     value={formik.values.breed}
                     placeholder="Type breed"
                   />
+                  <ButtonWrapper>
+                    <Button margin onClick={() => setShowModal(prev => !prev)}>
+                      Cancel
+                    </Button>
+                    <Button
+                      onClick={() => {
+                        setActive('SecondWraper');
+                        validateFerst();
+                      }}
+                    >
+                      Next
+                    </Button>
+                  </ButtonWrapper>
                 </FerstForm>
-                <ButtonWrapper>
-                  <Button margin onClick={() => setShowModal(prev => !prev)}>
-                    Cancel
-                  </Button>
-                  <Button
-                    onClick={() => {
-                      setActive('SecondWraper');
-                      validateFerst();
-                    }}
-                  >
-                    Next
-                  </Button>
-                </ButtonWrapper>
+
                 <CloseModalButton area-label="Close modal" onClick={closeModal}>
                   <CloseModalIcon color={'black'} />
                 </CloseModalButton>
@@ -357,19 +358,20 @@ export const ModalAddNotice = ({ showModal, setShowModal }) => {
                     autoFocus
                     placeholder="Comments"
                   ></Comments>
-                </SecondForm>
-                <ButtonWrapper btn mobBtn>
-                  <Button
-                    margin
-                    onClick={() => {
-                      setActive('FerstWraper');
-                    }}
-                  >
-                    Back
-                  </Button>
+                  <ButtonWrapper btn mobBtn>
+                    <Button
+                      margin
+                      onClick={() => {
+                        setActive('FerstWraper');
+                      }}
+                    >
+                      Back
+                    </Button>
 
-                  <Button onClick={handleSubmit}>Done</Button>
-                </ButtonWrapper>
+                    <Button onClick={handleSubmit}>Done</Button>
+                  </ButtonWrapper>
+                </SecondForm>
+
                 <CloseModalButton
                   area-label="Close modal"
                   onClick={() => setShowModal(prev => !prev)}

@@ -34,20 +34,20 @@ export const FerstModalWrapper = styled.div`
     overflow: auto;
     -ms-overflow-style: none;
     scrollbar-width: none;
-    scrollbar-height: none;
+    scrollbar-height: auto;
     padding: 40px 80px;
   }
 `;
 
 export const SecondModalWrapper = styled.div`
   width: 280px;
-  height: 813px;
+  height: 100vh;
   padding: 40px 20px;
   box-shadow: 0 5px 16px rgba(0, 0, 0, 0.2);
   background: ${props => props.theme.colors.white};
   display: grid;
   grid-template-columns: 1fr 1fr;
-  position: absolute;
+  position: relative;
   z-index: 10;
   border-radius: 10px;
   overflow: auto;
@@ -56,7 +56,7 @@ export const SecondModalWrapper = styled.div`
   scrollbar-height: none;
   @media (min-width: 768px) {
     width: 608px;
-    height: 1044px;
+    max-height: 1044px;
     overflow: auto;
     -ms-overflow-style: none;
     scrollbar-width: none;
@@ -71,7 +71,7 @@ export const ModalContent = styled.div`
   display: flex;
   flex-direction: column;
   top: 0;
-  margin-bottom: 20px;
+
   @media (min-width: 768px) {
     width: 420px;
   }
@@ -219,15 +219,13 @@ export const Label = styled.label`
 
 export const ButtonWrapper = styled.div`
   position: absolute;
-  left: 40px;
-  top: ${props => (props.mobBtn ? '650px' : '570px')};
 
   align-items: center;
   justify-content: center;
   @media (min-width: ${({ theme }) => theme.breakpoints.tablet[0]}) {
-    left: 100px;
     margin-top: 40px;
-    top: ${props => (props.btn ? '720px' : '670px')};
+    display: flex;
+    left: 20px;
   }
 `;
 
@@ -391,15 +389,13 @@ export const AddedImage = styled.div`
 
 export const Comments = styled.textarea`
   width: 100%;
-  max-height: 191px;
+  resize: vertical;
   background: #fdf7f2;
   border: 1px solid rgba(245, 146, 86, 0.5);
   border-radius: 40px;
-  margin-bottom: 10px;
   padding: 10px 20px 8px 20px;
   overflow: visible;
   @media (min-width: 768px) {
-    margin-bottom: 20px;
   }
   ::placeholder {
     font-family: 'Inter';
