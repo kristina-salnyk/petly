@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {
-  ImageThumb,
-  ImageCard,
-  InfoWrapper,
   CategoryLabel,
   FavoriteLabel,
+  ImageCard,
+  ImageThumb,
+  InfoWrapper,
   LabelText,
 } from './NoticeImage.styled';
 import { FavoriteHeartIcon } from '../../icons/FavoriteHeartIcon';
@@ -18,7 +18,7 @@ export const NoticeImage = ({ icon, addToFavorite, category, image }) => {
         <ImageCard src={image} alt={category} />
         <InfoWrapper>
           <CategoryLabel>
-            <LabelText>{category}</LabelText>
+            <LabelText>{category.replaceAll('-', category === 'lost-found' ? '/' : ' ')}</LabelText>
           </CategoryLabel>
           <FavoriteLabel onClick={addToFavorite}>
             <FavoriteHeartIcon fill={icon ? theme.colors.accent : theme.colors.light} />
