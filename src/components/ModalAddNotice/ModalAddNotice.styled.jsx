@@ -45,8 +45,8 @@ export const SecondModalWrapper = styled.div`
   padding: 40px 20px;
   box-shadow: 0 5px 16px rgba(0, 0, 0, 0.2);
   background: ${props => props.theme.colors.white};
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  /* display: grid;
+  grid-template-columns: 1fr 1fr; */
   position: relative;
   z-index: 10;
   border-radius: 10px;
@@ -56,12 +56,12 @@ export const SecondModalWrapper = styled.div`
   scrollbar-height: none;
   @media (min-width: 768px) {
     width: 608px;
-    max-height: 1044px;
+    max-height: 885px;
     overflow: auto;
     -ms-overflow-style: none;
     scrollbar-width: none;
     scrollbar-height: none;
-    padding: 40px 80px;
+    padding: 20px 40px;
   }
 `;
 
@@ -86,6 +86,7 @@ export const Title = styled.h1`
   @media screen and (min-width: 768px) {
     font-size: 2.25rem;
     line-height: 3rem;
+    margin-bottom: 20px;
   }
 `;
 
@@ -288,17 +289,19 @@ export const CloseModalButton = styled.button`
 `;
 
 export const GenderWrapper = styled.div`
-  display: flex;
   position: absolute;
   top: 70px;
-  margin-top: 40px;
 
   @media (min-width: ${({ theme }) => theme.breakpoints.tablet[0]}) {
     left: 80px;
   }
 `;
+
+export const IconWrapper = styled.div`
+  display: flex;
+`;
 export const GenderTitle = styled.p`
-  margin-top: 20px;
+  margin-bottom: 15px;
   left: 20px;
   font-family: 'Manrope';
   font-style: normal;

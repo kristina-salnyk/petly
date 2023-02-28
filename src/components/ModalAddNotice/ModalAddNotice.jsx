@@ -7,6 +7,7 @@ import { AddPhotoOfPetIcon } from '../icons/AddPhotoOfPetIcon';
 import { FemalePetIcon } from '../icons/FemalePetIcon';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import {
+  IconWrapper,
   Background,
   FerstModalWrapper,
   SecondModalWrapper,
@@ -24,7 +25,6 @@ import {
   GenderWrapper,
   GenderItem,
   GenderInput,
-  GenderTitle,
   GenderP,
   GenderLabel,
   FileBox,
@@ -33,6 +33,7 @@ import {
   ButtonWrapper,
   AddedImage,
   Star,
+  GenderTitle,
 } from './ModalAddNotice.styled';
 import { useDispatch } from 'react-redux';
 import { useFormik } from 'formik';
@@ -133,9 +134,12 @@ export const ModalAddNotice = ({ showModal, setShowModal }) => {
         <Background>
           {active === 'FerstWraper' && (
             <FerstModalWrapper showModal={showModal}>
-              <ModalContent>
+              {' '}
+              <div>
                 <Title> Add Pet</Title>
-                <P>Enter information about your pet. All fields are required</P>
+                <P>Enter information about your pet. All fields are required</P>{' '}
+              </div>
+              <ModalContent>
                 <Categories>
                   <label>
                     <CategoryWrap
@@ -264,38 +268,41 @@ export const ModalAddNotice = ({ showModal, setShowModal }) => {
           )}
           {active === 'SecondWraper' && (
             <SecondModalWrapper>
-              <ModalContent>
+              <div>
                 <Title> Add Pet</Title>
+              </div>
 
-                <GenderTitle>
-                  The Sex<Star>*</Star>:
-                </GenderTitle>
-
+              <ModalContent>
                 <GenderWrapper>
-                  <GenderItem>
-                    <GenderLabel>
-                      <MalePetIcon />
-                      <GenderP>Male</GenderP>
-                      <GenderInput
-                        type="radio"
-                        name="male"
-                        value="male"
-                        onChange={e => handleGender(e)}
-                      />
-                    </GenderLabel>
-                  </GenderItem>
-                  <GenderItem>
-                    <GenderLabel>
-                      <FemalePetIcon />
-                      <GenderP>Female</GenderP>
-                      <GenderInput
-                        type="radio"
-                        name="gender"
-                        value="female"
-                        onChange={e => handleGender(e)}
-                      />
-                    </GenderLabel>
-                  </GenderItem>
+                  <GenderTitle>
+                    The Sex<Star>*</Star>:
+                  </GenderTitle>
+                  <IconWrapper>
+                    <GenderItem>
+                      <GenderLabel>
+                        <MalePetIcon />
+                        <GenderP>Male</GenderP>
+                        <GenderInput
+                          type="radio"
+                          name="male"
+                          value="male"
+                          onChange={e => handleGender(e)}
+                        />
+                      </GenderLabel>
+                    </GenderItem>
+                    <GenderItem>
+                      <GenderLabel>
+                        <FemalePetIcon />
+                        <GenderP>Female</GenderP>
+                        <GenderInput
+                          type="radio"
+                          name="gender"
+                          value="female"
+                          onChange={e => handleGender(e)}
+                        />
+                      </GenderLabel>
+                    </GenderItem>
+                  </IconWrapper>
                 </GenderWrapper>
                 <SecondForm onSubmit={formik.handleSubmit}>
                   <Label top htmlFor="text">
