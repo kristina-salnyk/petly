@@ -34,7 +34,7 @@ export const FerstModalWrapper = styled.div`
     overflow: auto;
     -ms-overflow-style: none;
     scrollbar-width: none;
-    scrollbar-height: auto;
+    scrollbar-height: none;
     padding: 40px 80px;
   }
 `;
@@ -90,36 +90,37 @@ export const Title = styled.h1`
 `;
 
 export const P = styled.p`
-  font-style: normal;
-  width: 240px;
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 1.375;
-  text-align: center;
-  letter-spacing: -0.01em;
-  @media screen and (max-width: 767px) {
-    margin-bottom: 20px;
-  }
-  @media screen and (min-width: 768px) {
-    font-size: 20px;
-    width: 443px;
-  }
+font-style: normal;
+width: 240px;
+font-weight: 500;
+font-size: 16px;
+line-height: 1.375;
+text-align: center;
+letter-spacing: -0.01em;
+@media screen and (max-width: 767px) {
+  margin-bottom: 20px;
+}
+@media screen and (min-width: 768px) {
+  font-size: 20px;
+  width: 443px;
+  
 `;
 
 export const Categories = styled.div`
-  position: absolute;
-  top: 90px;
-  left: 15px;
-  margin-top: 28px;
+position: absolute;
+top: 90px;
+left: 15px;
+margin-top: 28px;
 
-  gap: ${({ theme }) => theme.spacing[3]}px;
-  @media (min-width: ${({ theme }) => theme.breakpoints.tablet[0]}) {
-    position: absolute;
-    top: 130px;
-    left: 90px;
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
+gap: ${({ theme }) => theme.spacing[3]}px;
+@media (min-width: ${({ theme }) => theme.breakpoints.tablet[0]}) {
+  position: absolute;
+  top: 130px;
+  left: 90px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+}
   }
 `;
 
@@ -399,14 +400,16 @@ export const Comments = styled.textarea`
   padding: 10px 20px 8px 20px;
   overflow: visible;
   @media (min-width: 768px) {
-    ::placeholder {
-      font-family: 'Inter';
-      font-weight: 400;
-      font-size: 16px;
-      line-height: 26px;
-      color: #535353;
-      padding-left: 10px;
-    }
+    resize: vertical;
+    overflow: visible;
+  }
+  ::placeholder {
+    font-family: 'Inter';
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 26px;
+    color: #535353;
+    padding-left: 10px;
   }
 `;
 export const Star = styled.span`

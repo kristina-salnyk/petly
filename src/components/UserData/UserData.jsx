@@ -27,6 +27,10 @@ export const UserData = () => {
 
   const dispatch = useDispatch();
 
+  // useEffect(() => {
+  //   dispatch(refreshUser());
+  // }, [dispatch]);
+
   const onImageChange = e => {
     const { files } = e.currentTarget;
     if (files) {
