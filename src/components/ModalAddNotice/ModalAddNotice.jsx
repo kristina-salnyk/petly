@@ -274,53 +274,55 @@ export const ModalAddNotice = ({ showModal, setShowModal }) => {
 
               <ModalContent>
                 <GenderWrapper>
-                  <GenderTitle>
-                    The Sex<Star>*</Star>:
-                  </GenderTitle>
-                  <GenderItem>
-                    <GenderLabel
-                      onClick={() => {
-                        setGender('male');
-                      }}
-                    >
-                      <MalePetIcon />
-                      <GenderP
-                        style={{
-                          color: gender === 'male' && '#F59256',
+                  <IconWrapper>
+                    <GenderTitle>
+                      The Sex<Star>*</Star>:
+                    </GenderTitle>
+                    <GenderItem>
+                      <GenderLabel
+                        onClick={() => {
+                          setGender('male');
                         }}
                       >
-                        Male
-                      </GenderP>
-                      <GenderInput
-                        type="radio"
-                        name="male"
-                        value="male"
-                        onChange={e => handleGender(e)}
-                      />
-                    </GenderLabel>
-                  </GenderItem>
-                  <GenderItem>
-                    <GenderLabel
-                      onClick={() => {
-                        setGender('female');
-                      }}
-                    >
-                      <FemalePetIcon />
-                      <GenderP
-                        style={{
-                          color: gender === 'female' && '#F59256',
+                        <MalePetIcon />
+                        <GenderP
+                          style={{
+                            color: gender === 'male' && '#F59256',
+                          }}
+                        >
+                          Male
+                        </GenderP>
+                        <GenderInput
+                          type="radio"
+                          name="male"
+                          value="male"
+                          onChange={e => handleGender(e)}
+                        />
+                      </GenderLabel>
+                    </GenderItem>
+                    <GenderItem>
+                      <GenderLabel
+                        onClick={() => {
+                          setGender('female');
                         }}
                       >
-                        Female
-                      </GenderP>
-                      <GenderInput
-                        type="radio"
-                        name="gender"
-                        value="female"
-                        onChange={e => handleGender(e)}
-                      />
-                    </GenderLabel>
-                  </GenderItem>
+                        <FemalePetIcon />
+                        <GenderP
+                          style={{
+                            color: gender === 'female' && '#F59256',
+                          }}
+                        >
+                          Female
+                        </GenderP>
+                        <GenderInput
+                          type="radio"
+                          name="gender"
+                          value="female"
+                          onChange={e => handleGender(e)}
+                        />
+                      </GenderLabel>
+                    </GenderItem>
+                  </IconWrapper>
                 </GenderWrapper>
                 <SecondForm onSubmit={formik.handleSubmit}>
                   <Label top htmlFor="text">
