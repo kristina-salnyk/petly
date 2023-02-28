@@ -128,7 +128,7 @@ export const Category = styled.input`
   display: none;
 `;
 export const CategoryWrap = styled.div`
-  padding: 5px 20px;
+  padding: 10px 25px;
   gap: 10px;
   margin-left: 5px;
   margin-top: 10px;
