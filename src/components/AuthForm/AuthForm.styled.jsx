@@ -125,6 +125,7 @@ export const IconStyle = styled.img`
 `;
 
 export const Error = styled(ErrorMessage)`
+  position: absolute;
   color: red;
   text-align: left;
   font-size: 12px;
