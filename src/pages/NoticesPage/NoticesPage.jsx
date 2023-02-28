@@ -49,6 +49,10 @@ const NoticesPage = () => {
     dispatch(fetchNotices({ category }));
   }, [dispatch, category]);
 
+  useEffect(() => {
+    return () => dispatch(changeSearchQuery(''));
+  }, []);
+
   const setSearchQueryParam = () => {
     const query = searchQuery.trim();
     const newParams = query !== '' ? { query } : {};
