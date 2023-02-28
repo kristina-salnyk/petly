@@ -7,6 +7,7 @@ import { AddPhotoOfPetIcon } from '../icons/AddPhotoOfPetIcon';
 import { FemalePetIcon } from '../icons/FemalePetIcon';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import {
+  TitleWrapper,
   Background,
   FerstModalWrapper,
   SecondModalWrapper,
@@ -24,7 +25,6 @@ import {
   GenderWrapper,
   GenderItem,
   GenderInput,
-  GenderTitle,
   GenderP,
   GenderLabel,
   FileBox,
@@ -33,6 +33,7 @@ import {
   ButtonWrapper,
   AddedImage,
   Star,
+  GenderTitle,
 } from './ModalAddNotice.styled';
 import { useDispatch } from 'react-redux';
 import { useFormik } from 'formik';
@@ -124,9 +125,11 @@ export const ModalAddNotice = ({ showModal, setShowModal }) => {
         <Background>
           {active === 'FerstWraper' && (
             <FerstModalWrapper showModal={showModal}>
-              <ModalContent>
+              <TitleWrapper>
                 <Title> Add Pet</Title>
                 <P>Enter information about your pet. All fields are required</P>
+              </TitleWrapper>
+              <ModalContent>
                 <Categories>
                   <label>
                     <CategoryWrap
@@ -264,13 +267,14 @@ export const ModalAddNotice = ({ showModal, setShowModal }) => {
           )}
           {active === 'SecondWraper' && (
             <SecondModalWrapper>
-              <ModalContent>
+              <TitleWrapper>
                 <Title> Add Pet</Title>
+              </TitleWrapper>
 
+              <ModalContent>
                 <GenderTitle>
                   The Sex<Star>*</Star>:
                 </GenderTitle>
-
                 <GenderWrapper>
                   <GenderItem>
                     <GenderLabel
