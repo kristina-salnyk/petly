@@ -150,8 +150,9 @@ export const PetsData = () => {
                     <InputModal
                       onChange={formik.handleChange}
                       value={formik.values.name}
+                      required
                       id="name"
-                      type="string"
+                      type="text"
                       name="name"
                       placeholder="Type name pet"
                     />
@@ -159,6 +160,7 @@ export const PetsData = () => {
                     <InputModal
                       onChange={formik.handleChange}
                       value={formik.values.birthday}
+                      required
                       placeholder="Type date of birth"
                       type="date"
                       name="birthday"
@@ -167,7 +169,8 @@ export const PetsData = () => {
                     <InputModal
                       onChange={formik.handleChange}
                       value={formik.values.breed}
-                      type="string"
+                      required
+                      type="text"
                       name="breed"
                       placeholder="Type breed"
                     />
@@ -228,11 +231,10 @@ export const PetsData = () => {
                   </MainModalSecond>
                   <BoxTextereaModalSecond>
                     <TextModal>Comments</TextModal>
-
                     <TextareaModalSecond
                       onChange={formik.handleChange}
                       value={formik.values.comments}
-                      type="string"
+                      type="text"
                       name="comments"
                       placeholder="Type comments"
                     />
