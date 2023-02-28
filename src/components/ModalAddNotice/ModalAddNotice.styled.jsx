@@ -30,7 +30,7 @@ export const FerstModalWrapper = styled.div`
   scrollbar-height: none;
   @media (min-width: 768px) {
     width: 608px;
-    max-height: 805px;
+    max-height: 100%;
     overflow: auto;
     -ms-overflow-style: none;
     scrollbar-width: none;

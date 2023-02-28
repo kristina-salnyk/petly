@@ -40,7 +40,7 @@ import { noticesSchema } from '../../utils/schemas/notices';
 
 export const ModalAddNotice = ({ showModal, setShowModal }) => {
   const [active, setActive] = useState('FerstWraper');
-  const [categori, setCategory] = useState('sell');
+  const [categori, setCategory] = useState('');
   const [image, setImage] = useState(null);
   const [gender, setGender] = useState('male');
   const formik = useFormik({
@@ -89,6 +89,7 @@ export const ModalAddNotice = ({ showModal, setShowModal }) => {
       formik.setFieldValue('image', files[0]);
     }
   };
+
   const handleNextButtonClick = () => {
     if (!formik.values.category) {
       Notify.failure('Categori is required!');
