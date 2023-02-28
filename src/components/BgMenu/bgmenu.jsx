@@ -3,7 +3,7 @@ import './bgmenu.css';
 import PropTypes from 'prop-types';
 import { selectIsLoggedIn } from '../../redux/auth/selectors';
 import { useSelector } from 'react-redux';
-import { LoginBg, UserLogin, UserRegister } from '../AuthNav/AuthNav.styled';
+import { LinkStyled as AuthLinkStyled, LoginBg } from '../AuthNav/AuthNav.styled';
 import { UserIcon } from '../icons/UserIcon';
 import { LinkStyled, NavItem } from './BgMenu.styled';
 
@@ -23,12 +23,12 @@ const BgMenu = ({ burger_class, menu_class, updateMenu }) => {
         <ul className="auth">
           {!isLoggedIn ? (
             <>
-              <UserLogin to="/login" className="login" onClick={updateMenu}>
-                <li className="linkLogin">Login</li>
-              </UserLogin>
-              <UserRegister to="/register" className="register" onClick={updateMenu}>
-                <li className="linkRegister">Registration</li>
-              </UserRegister>
+              <AuthLinkStyled to="/login" onClick={updateMenu}>
+                Login
+              </AuthLinkStyled>
+              <AuthLinkStyled to="/register" onClick={updateMenu}>
+                Registration
+              </AuthLinkStyled>
             </>
           ) : (
             <li>
