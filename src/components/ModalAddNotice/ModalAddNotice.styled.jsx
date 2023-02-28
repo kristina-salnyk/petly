@@ -116,7 +116,7 @@ gap: ${({ theme }) => theme.spacing[3]}px;
 @media (min-width: ${({ theme }) => theme.breakpoints.tablet[0]}) {
   position: absolute;
   top: 130px;
-  left: 120px;
+  left: 90px;
   display: flex;
   flex-direction: row;
   align-items: flex-start;
@@ -147,6 +147,11 @@ export const CategoryWrap = styled.div`
   }
   @media (min-width: ${({ theme }) => theme.breakpoints.tablet[0]}) {
     padding: 5px 20px;
+    font-size: ${({ theme }) => theme.typography.size.s};
+  }
+  @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    padding: 5px 20px;
+    font-size: ${({ theme }) => theme.typography.size.m};
   }
 `;
 
@@ -219,13 +224,12 @@ export const Label = styled.label`
 
 export const ButtonWrapper = styled.div`
   position: absolute;
-
+  left: 20px;
+  margin-top: 40px;
   align-items: center;
   justify-content: center;
   @media (min-width: ${({ theme }) => theme.breakpoints.tablet[0]}) {
-    margin-top: 40px;
     display: flex;
-    left: 20px;
   }
 `;
 
@@ -287,11 +291,10 @@ export const GenderWrapper = styled.div`
   display: flex;
   position: absolute;
   top: 70px;
-  margin-top: 31px;
+  margin-top: 40px;
 
   @media (min-width: ${({ theme }) => theme.breakpoints.tablet[0]}) {
     left: 80px;
-    margin-top: 31px;
   }
 `;
 export const GenderTitle = styled.p`
