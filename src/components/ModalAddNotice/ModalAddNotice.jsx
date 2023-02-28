@@ -117,16 +117,6 @@ export const ModalAddNotice = ({ showModal, setShowModal }) => {
     dispatch(addNotice({ ...formik.values }));
     formik.resetForm();
   };
-  const handleGender = e => (formik.values.gender = e.target.value);
-  const handleCategory = e => (formik.values.category = e.target.value);
-
-  const onImageChange = e => {
-    const { files } = e.currentTarget;
-    if (files) {
-      setImage(URL.createObjectURL(files[0]));
-      formik.setFieldValue('image', files[0]);
-    }
-  };
 
   return (
     <>
@@ -260,7 +250,7 @@ export const ModalAddNotice = ({ showModal, setShowModal }) => {
                     <Button margin onClick={() => setShowModal(prev => !prev)}>
                       Cancel
                     </Button>
-                    <Button onClick={handleNextButtonClick}>Next</Button>                   
+                    <Button onClick={handleNextButtonClick}>Next</Button>
                   </ButtonWrapper>
                 </FerstForm>
 
