@@ -41,7 +41,7 @@ export const registerSchema = Yup.object({
   name: Yup.string()
     .required('Name field is required')
     .min(2, 'Name is too short')
-    .matches(/^[а-яёіїєА-ЯЁІЇЄA-Za-z-\s]+$/, 'Name field can contain only letters'),
+    .matches(/^[A-Za-z-\s]+$/, 'Name field can contain only latin letters'),
   city: Yup.string().required('City/region field is required'),
   phone: Yup.string()
     .required('Phone field is required')
