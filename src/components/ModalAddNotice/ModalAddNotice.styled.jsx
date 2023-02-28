@@ -24,15 +24,17 @@ export const FerstModalWrapper = styled.div`
   position: absolute;
   z-index: 10;
   border-radius: 10px;
-
+  overflow: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  scrollbar-height: none;
   @media (min-width: 768px) {
     width: 608px;
-    height: 100%;
+    max-height: 805px;
     overflow: auto;
     -ms-overflow-style: none;
     scrollbar-width: none;
     scrollbar-height: none;
-    padding: 40px 80px;
     padding: 40px 80px;
   }
 `;
