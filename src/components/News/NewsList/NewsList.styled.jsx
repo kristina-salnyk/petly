@@ -31,6 +31,7 @@ export const ItemNews = styled.li`
 export const ConteinerNews = styled.div`
   margin-top: 40px;
   margin: 0 auto;
+  padding-bottom: 20px;
 `;
 
 export const ErrorTitle = styled.h3`
