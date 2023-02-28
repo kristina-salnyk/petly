@@ -15,7 +15,7 @@ export const Background = styled.div`
 
 export const FerstModalWrapper = styled.div`
   width: 280px;
-  height: 813px;
+  height: 100vh;
   padding: 40px 20px;
   box-shadow: 0 5px 16px rgba(0, 0, 0, 0.2);
   background: ${props => props.theme.colors.white};
@@ -30,7 +30,7 @@ export const FerstModalWrapper = styled.div`
   scrollbar-height: none;
   @media (min-width: 768px) {
     width: 608px;
-    height: 885px;
+    max-height: 885px;
     overflow: auto;
     -ms-overflow-style: none;
     scrollbar-width: none;
@@ -60,7 +60,7 @@ export const SecondModalWrapper = styled.div`
   scrollbar-height: none;
   @media (min-width: 768px) {
     width: 608px;
-    height: 920px;
+    max-height: 920px;
     overflow: auto;
     -ms-overflow-style: none;
     scrollbar-width: none;
@@ -218,11 +218,12 @@ export const Label = styled.label`
   color: #111111;
   @media (min-width: 768px) {
     height: 27px;
-    margin-bottom: 8px;
-    margin-top: ${props => (props.top ? '40px' : '28px')};
+    margin-bottom: 12px;
+    margin-top: ${props => (props.top ? '60px' : '28px')};
     font-weight: 500;
     font-size: 24px;
     line-height: 26px;
+    padding-top: 10px;
   }
 `;
 
@@ -294,15 +295,13 @@ export const CloseModalButton = styled.button`
 export const GenderWrapper = styled.div`
   display: flex;
   position: absolute;
-  top: 70px;
-  margin-top: 40px;
+  padding: 20px 0;
 
   @media (min-width: ${({ theme }) => theme.breakpoints.tablet[0]}) {
     left: 80px;
   }
 `;
 export const GenderTitle = styled.p`
-  margin-top: 20px;
   left: 20px;
   font-family: 'Manrope';
   font-style: normal;
@@ -313,7 +312,6 @@ export const GenderTitle = styled.p`
   align-items: center;
   color: #000000;
   @media (min-width: ${({ theme }) => theme.breakpoints.tablet[0]}) {
-    margin-top: 0;
     top: 60px;
     left: 70px;
     font-weight: 500;
@@ -398,12 +396,14 @@ export const AddedImage = styled.div`
 export const Comments = styled.textarea`
   width: 100%;
   resize: vertical;
+  min-height: 40px
   background: #fdf7f2;
   border: 1px solid rgba(245, 146, 86, 0.5);
   border-radius: 40px;
   padding: 10px 20px 8px 20px;
   overflow: visible;
   @media (min-width: 768px) {
+    min-height: 113px;
     ::placeholder {
       font-family: 'Inter';
       font-weight: 400;
