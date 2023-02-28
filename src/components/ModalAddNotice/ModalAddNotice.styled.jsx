@@ -11,6 +11,7 @@ export const Background = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-shrink: 0;
 `;
 
 export const FerstModalWrapper = styled.div`
@@ -231,6 +232,7 @@ export const ButtonWrapper = styled.div`
   position: absolute;
   left: 20px;
   margin-top: 20px;
+  padding-bottom: 20px;
   align-items: center;
   justify-content: center;
   @media (min-width: ${({ theme }) => theme.breakpoints.tablet[0]}) {
