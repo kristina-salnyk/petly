@@ -59,7 +59,20 @@ export const ModalAddNotice = ({ showModal, setShowModal }) => {
     },
     validationSchema: noticesSchema,
     onSubmit: values => {
-      console.log('form data', values);
+      const data = new FormData();
+      data.append('name', values.name);
+      data.append('birthday', values.birthday);
+      data.append('breed', values.breed);
+      data.append('image', values.image);
+      data.append('comments', values.comments);
+      data.append('category', values.category);
+      data.append('gender', values.gender);
+      data.append('location', values.location);
+      data.append('price', values.price);
+      data.append('title', values.title);
+
+      handleSubmit();
+      dispatch(addNotice(data));
     },
   });
 
@@ -104,8 +117,7 @@ export const ModalAddNotice = ({ showModal, setShowModal }) => {
     setActive('SecondWraper');
   };
 
-  const handleSubmit = e => {
-    e.preventDefault();
+  const handleSubmit = () => {
     if (!formik.values.gender) {
       Notify.failure('gender is required!');
       return;
@@ -114,9 +126,8 @@ export const ModalAddNotice = ({ showModal, setShowModal }) => {
       Notify.failure('location is required!');
       return;
     }
-    Notify.success('pets criated!!!');
+    Notify.success('pets created!!!');
     closeModal();
-    dispatch(addNotice({ ...formik.values }));
     formik.resetForm();
   };
 
@@ -402,7 +413,9 @@ export const ModalAddNotice = ({ showModal, setShowModal }) => {
                       Back
                     </Button>
 
-                    <Button onClick={handleSubmit}>Done</Button>
+                    <Button type="submit" onSubmit={handleSubmit}>
+                      Done
+                    </Button>
                   </ButtonWrapper>
                 </SecondForm>
 
