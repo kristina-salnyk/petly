@@ -15,6 +15,7 @@ export const Background = styled.div`
 `;
 
 export const FerstModalWrapper = styled.div`
+background-attachment: fixed;
   width: 280px;
   height: 100vh;
   padding: 40px 20px;
@@ -29,7 +30,9 @@ export const FerstModalWrapper = styled.div`
   -ms-overflow-style: none;
   scrollbar-width: none;
   scrollbar-height: none;
+  background-attachment: fixed;
   @media (min-width: 768px) {
+    background-attachment: fixed;
     width: 608px;
     max-height: 885px;
     overflow: auto;
@@ -60,6 +63,7 @@ export const SecondModalWrapper = styled.div`
   scrollbar-width: none;
   scrollbar-height: none;
   @media (min-width: 768px) {
+    background-attachment: fixed;
     width: 608px;
     max-height: 920px;
     overflow: auto;
