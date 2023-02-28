@@ -9,6 +9,15 @@ import NotFound from '../../Loading/NotFound';
 import { ListNews, ItemNews, ConteinerNews, ErrorTitle } from './NewsList.styled';
 
 import { Pagination } from '@mui/material';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#F59256',
+    },
+  },
+});
 
 const handleNewsSearch = (news, filter) => {
   if (filter) {
@@ -39,9 +48,6 @@ const NewsList = () => {
   const count = Math.ceil(20 / 6);
 
   useEffect(() => {
-    // setTimeout(() => {
-    //   dispatch(fetchNews({ page }));
-    // }, 2000);
     dispatch(fetchNews({ page }));
   }, [dispatch, page]);
 
@@ -66,16 +72,18 @@ const NewsList = () => {
         )}
       </ListNews>
       {searchNews.length !== 0 && !isLoading && (
-        <Pagination
-          color="primary"
-          count={count}
-          size="large"
-          defaultPage={page}
-          page={page}
-          variant="outlined"
-          onChange={handleChangePagination}
-          style={{ display: 'flex', justifyContent: 'center' }}
-        />
+        <ThemeProvider theme={theme}>
+          <Pagination
+            color="primary"
+            count={count}
+            size="large"
+            defaultPage={page}
+            page={page}
+            variant="outlined"
+            onChange={handleChangePagination}
+            style={{ display: 'flex', justifyContent: 'center' }}
+          />
+        </ThemeProvider>
       )}
     </ConteinerNews>
   );
