@@ -24,17 +24,15 @@ export const FerstModalWrapper = styled.div`
   position: absolute;
   z-index: 10;
   border-radius: 10px;
-  overflow: auto;
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-  scrollbar-height: none;
+
   @media (min-width: 768px) {
     width: 608px;
-    max-height: 805px;
+    height: 100%;
     overflow: auto;
     -ms-overflow-style: none;
     scrollbar-width: none;
-    scrollbar-height: auto;
+    scrollbar-height: none;
+    padding: 40px 80px;
     padding: 40px 80px;
   }
 `;
@@ -400,6 +398,8 @@ export const Comments = styled.textarea`
   padding: 10px 20px 8px 20px;
   overflow: visible;
   @media (min-width: 768px) {
+    resize: vertical;
+    overflow: visible;
   }
   ::placeholder {
     font-family: 'Inter';

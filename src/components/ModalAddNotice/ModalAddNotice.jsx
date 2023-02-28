@@ -42,7 +42,7 @@ export const ModalAddNotice = ({ showModal, setShowModal }) => {
   const [active, setActive] = useState('FerstWraper');
   const [categori, setCategory] = useState('sell');
   const [image, setImage] = useState(null);
-
+  const [gender, setGender] = useState('male');
   const formik = useFormik({
     initialValues: {
       category: '',
@@ -246,12 +246,13 @@ export const ModalAddNotice = ({ showModal, setShowModal }) => {
                   {formik.touched.breed && formik.errors.breed ? (
                     <div style={{ color: 'red' }}>{formik.errors.breed}</div>
                   ) : null}
-                  <Button margin onClick={() => setShowModal(prev => !prev)}>
-                    Cancel
-                  </Button>
-                  <Button onClick={handleNextButtonClick}>Next</Button>
+                  <ButtonWrapper>
+                    <Button margin onClick={() => setShowModal(prev => !prev)}>
+                      Cancel
+                    </Button>
+                    <Button onClick={handleNextButtonClick}>Next</Button>
+                  </ButtonWrapper>
                 </FerstForm>
-                <ButtonWrapper></ButtonWrapper>
 
                 <CloseModalButton area-label="Close modal" onClick={closeModal}>
                   <CloseModalIcon color={'black'} />
@@ -272,9 +273,19 @@ export const ModalAddNotice = ({ showModal, setShowModal }) => {
 
                 <GenderWrapper>
                   <GenderItem>
-                    <GenderLabel>
+                    <GenderLabel
+                      onClick={() => {
+                        setGender('male');
+                      }}
+                    >
                       <MalePetIcon />
-                      <GenderP>Male</GenderP>
+                      <GenderP
+                        style={{
+                          color: gender === 'male' && '#F59256',
+                        }}
+                      >
+                        Male
+                      </GenderP>
                       <GenderInput
                         type="radio"
                         name="male"
@@ -284,9 +295,19 @@ export const ModalAddNotice = ({ showModal, setShowModal }) => {
                     </GenderLabel>
                   </GenderItem>
                   <GenderItem>
-                    <GenderLabel>
+                    <GenderLabel
+                      onClick={() => {
+                        setGender('female');
+                      }}
+                    >
                       <FemalePetIcon />
-                      <GenderP>Female</GenderP>
+                      <GenderP
+                        style={{
+                          color: gender === 'female' && '#F59256',
+                        }}
+                      >
+                        Female
+                      </GenderP>
                       <GenderInput
                         type="radio"
                         name="gender"
@@ -331,7 +352,7 @@ export const ModalAddNotice = ({ showModal, setShowModal }) => {
                       ></Input>
                     </>
                   )}
-
+                  <GenderTitle>Load the pet’s image</GenderTitle>
                   {formik.values.image === '' ? (
                     <FileBox htmlFor="image">
                       <label>
