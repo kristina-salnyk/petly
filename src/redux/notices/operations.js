@@ -21,31 +21,15 @@ export const fetchNoticeItem = createAsyncThunk('notices/fetchOne', async (notic
   }
 });
 
-export const addNotice = createAsyncThunk(
-  'notices/addNotice',
-  async (
-    { name, category, title, birthday, comments, location, gender, breed, price, image },
-    thunkAPI
-  ) => {
-    try {
-      const response = await api.post('/notices', {
-        name,
-        category,
-        title,
-        birthday,
-        comments,
-        location,
-        gender,
-        breed,
-        price,
-        image,
-      });
-      return response.data;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
-    }
+export const addNotice = createAsyncThunk('notices/addNotice', async (fields, thunkAPI) => {
+  try {
+    console.log('fields', fields);
+    const response = await api.post('/notices', fields);
+    return response.data;
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error.message);
   }
-);
+});
 
 export const deleteNotice = createAsyncThunk('notices/deleteNotice', async (noticeId, thunkAPI) => {
   try {
