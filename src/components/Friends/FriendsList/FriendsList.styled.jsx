@@ -13,7 +13,7 @@ export const TitleFriends = styled.h2`
     margin-bottom: 40px;
   }
   @media (min-width: ${({ theme }) => theme.breakpoints.desktopMin}) {
-    margin-top: 60px;
+    margin-top: 72px;
     margin-bottom: 60px;
   } 
 `;
