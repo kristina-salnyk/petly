@@ -20,8 +20,6 @@ export const FerstModalWrapper = styled.div`
   padding: 40px 20px;
   box-shadow: 0 5px 16px rgba(0, 0, 0, 0.2);
   background: ${props => props.theme.colors.white};
-  display: grid;
-  grid-template-columns: 1fr 1fr;
   position: absolute;
   z-index: 10;
   border-radius: 10px;
