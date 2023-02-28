@@ -15,5 +15,9 @@ export const noticesSchema = Yup.object({
     .max(16)
     .matches(/^[а-яёіїєА-ЯЁІЇЄA-Za-z-\s]+$/, 'Breed field can contain only letters'),
   location: Yup.string().min(2).max(16),
-  comments: Yup.string().min(8).max(120),
+  comments: Yup.string()
+    .min(8)
+    .max(120)
+    .matches(/^[aA-zZ\s]+$/)
+    .required(),
 });

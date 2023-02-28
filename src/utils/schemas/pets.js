@@ -15,5 +15,9 @@ export const petsSchema = Yup.object().shape({
     .max(16)
     .required(),
   petImage: Yup.string().required(),
-  comments: Yup.string().min(8).max(120),
+  comments: Yup.string()
+    .required()
+    .matches(/^[aA-zZ\s]+$/)
+    .min(8)
+    .max(120),
 });
