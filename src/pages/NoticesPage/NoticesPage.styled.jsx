@@ -17,11 +17,12 @@ export const Container = styled.div`
 `;
 
 export const ContentWrap = styled.div`
-  padding: ${({ theme }) => theme.spacing[7]}px 0 100px;
+  padding: ${({ theme }) => theme.spacing[9]}px 0 100px;
   @media (min-width: ${({ theme }) => theme.breakpoints.tablet[0]}) {
-    padding: ${({ theme }) => theme.spacing[9]}px 0 100px;
+    padding: 70px 0 100px;
   }
   @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    padding-top: 60px;
     padding-bottom: 200px;
   }
 `;
