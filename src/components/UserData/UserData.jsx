@@ -2,7 +2,7 @@ import { Logout } from '../../components/Logout/Logout';
 import { UserDataItem } from '../UserDataItem/UserDataItem';
 import { useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
-import { updateUser } from '../../redux/auth/operations';
+import { updateUser, getUserInfo } from '../../redux/auth/operations';
 import { useAuth } from '../../hooks/useAuth';
 
 import {
@@ -26,10 +26,7 @@ export const UserData = () => {
   const { user } = useAuth();
 
   const dispatch = useDispatch();
-
-  // useEffect(() => {
-  //   dispatch(refreshUser());
-  // }, [dispatch]);
+  dispatch(getUserInfo());
 
   const onImageChange = e => {
     const { files } = e.currentTarget;
