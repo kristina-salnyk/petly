@@ -10,18 +10,16 @@ export const NoticeCategoriesList = () => {
   const notices = useSelector(selectSearchedNotices);
   const { category } = useParams();
 
+  const noticesList = notices.filter(
+    item => (category === 'favorites' && item.favorite) || category !== 'favorites'
+  );
+
   return (
     <>
-      {notices.length > 0 ? (
+      {noticesList.length > 0 ? (
         <List>
-          {notices.map(item => {
-            return (
-              <>
-                {((category === 'favorites' && item.favorite) || category !== 'favorites') && (
-                  <NoticeCategoryItem key={item._id} {...item} />
-                )}
-              </>
-            );
+          {noticesList.map(item => {
+            return <NoticeCategoryItem key={item._id} {...item} />;
           })}
         </List>
       ) : (
