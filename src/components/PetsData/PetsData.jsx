@@ -90,8 +90,16 @@ export const PetsData = () => {
     }
   };
 
-  const closeModal = () => setIsOpen(prev => !prev);
+  const closeModal = () => {
+    setIsOpen(prev => !prev);
+  };
   const closeModalSecond = () => setIsOpenSecond(prev => !prev);
+
+  const closeFirstModal = () => {
+    handlOpenModal(false);
+
+    formik.resetForm({ name: '', birthday: '', breed: '' });
+  };
 
   function handlOpenModal(open) {
     setIsOpen(open);
@@ -139,7 +147,7 @@ export const PetsData = () => {
             <AddPetCrossIcon />
           </OpenModalButton>
           {isOpenSecond === false && (
-            <ModalAddPet isOpen={isOpen} handleClose={() => handlOpenModal(false)}>
+            <ModalAddPet isOpen={isOpen} handleClose={() => closeFirstModal()}>
               <Form onSubmit={formik.handleSubmit}>
                 <ModalContent>
                   <HeaderModal>
@@ -177,7 +185,8 @@ export const PetsData = () => {
 
                     <FooterModal>
                       <ButtonModal
-                        onClick={() => handlOpenModal(false)}
+                        onClick={closeFirstModal}
+                        type="submit"
                         whileHover={{ scale: 1.1 }}
                         whileTap={{ scale: 0.9 }}
                       >

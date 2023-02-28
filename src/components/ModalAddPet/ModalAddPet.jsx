@@ -87,13 +87,17 @@ const containerVariant = {
 };
 
 const ModalAddPet = ({ handleClose, children, isOpen }) => {
+  const cancelModalForm = () => {
+    handleClose();
+  };
+
   return (
     <AnimatePresence>
       {isOpen && (
         <Overlay initial={'initial'} animate={'isOpen'} exit={'exit'} variants={modalVariant}>
           <ModalContainer variants={containerVariant}>
             <CloseButton
-              onClick={handleClose}
+              onClick={cancelModalForm}
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 20.39 20.39"
             >
