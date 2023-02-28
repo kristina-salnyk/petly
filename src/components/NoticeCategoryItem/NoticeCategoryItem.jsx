@@ -9,6 +9,7 @@ import { NoticeInfo } from './NoticeInfo/NoticeInfo';
 import { addFavorite, deleteFavorite, fetchNoticeItem } from '../../redux/notices/operations';
 import { ModalNotice } from '../ModalNotice/ModalNotice';
 import { selectIsLoggedIn } from '../../redux/auth/selectors';
+import { clearNoticeItem } from '../../redux/notices/slice';
 
 export const NoticeCategoryItem = ({
   _id,
@@ -41,7 +42,9 @@ export const NoticeCategoryItem = ({
   };
 
   const onShow = () => {
-    if (!modalOpen) {
+    if (modalOpen) {
+      dispatch(clearNoticeItem());
+    } else {
       dispatch(fetchNoticeItem(_id));
     }
     setModalOpen(!modalOpen);
