@@ -30,19 +30,23 @@ export const FerstModalWrapper = styled.div`
   scrollbar-height: none;
   @media (min-width: 768px) {
     width: 608px;
-    max-height: 805px;
+    height: 885px;
     overflow: auto;
     -ms-overflow-style: none;
     scrollbar-width: none;
-    scrollbar-height: none;
+    scrollbar-height: auto;
     padding: 40px 80px;
   }
+`;
+
+export const TitleWrapper = styled.div`
+  margin-bottom: 20px;
 `;
 
 export const SecondModalWrapper = styled.div`
   width: 280px;
   height: 100vh;
-  padding: 40px 20px;
+  padding: 20px 20px;
   box-shadow: 0 5px 16px rgba(0, 0, 0, 0.2);
   background: ${props => props.theme.colors.white};
   /* display: grid;
@@ -56,12 +60,12 @@ export const SecondModalWrapper = styled.div`
   scrollbar-height: none;
   @media (min-width: 768px) {
     width: 608px;
-    max-height: 885px;
+    height: 920px;
     overflow: auto;
     -ms-overflow-style: none;
     scrollbar-width: none;
     scrollbar-height: none;
-    padding: 20px 40px;
+    padding: 40px 80px;
   }
 `;
 
@@ -86,7 +90,6 @@ export const Title = styled.h1`
   @media screen and (min-width: 768px) {
     font-size: 2.25rem;
     line-height: 3rem;
-    margin-bottom: 20px;
   }
 `;
 
@@ -171,7 +174,7 @@ export const FerstForm = styled.form`
 export const SecondForm = styled.form`
   width: 240px;
   left: 20px;
-  top: 210px;
+  top: 220px;
   position: absolute;
 
   @media (min-width: ${({ theme }) => theme.breakpoints.tablet[0]}) {
@@ -191,7 +194,7 @@ export const Input = styled.input`
   @media (min-width: 768px) {
     width: 100%;
     height: 48px;
-    margin-bottom: ${props => (props.bottom ? '20px' : 0)};
+    margin-bottom: ${props => (props.bottom ? '15px' : '15px')};
   }
   ::placeholder {
     font-family: 'Inter';
@@ -215,7 +218,7 @@ export const Label = styled.label`
   color: #111111;
   @media (min-width: 768px) {
     height: 27px;
-    margin-bottom: 12px;
+    margin-bottom: 8px;
     margin-top: ${props => (props.top ? '40px' : '28px')};
     font-weight: 500;
     font-size: 24px;
@@ -226,7 +229,7 @@ export const Label = styled.label`
 export const ButtonWrapper = styled.div`
   position: absolute;
   left: 20px;
-  margin-top: 40px;
+  margin-top: 20px;
   align-items: center;
   justify-content: center;
   @media (min-width: ${({ theme }) => theme.breakpoints.tablet[0]}) {
@@ -289,19 +292,17 @@ export const CloseModalButton = styled.button`
 `;
 
 export const GenderWrapper = styled.div`
+  display: flex;
   position: absolute;
   top: 70px;
+  margin-top: 40px;
 
   @media (min-width: ${({ theme }) => theme.breakpoints.tablet[0]}) {
     left: 80px;
   }
 `;
-
-export const IconWrapper = styled.div`
-  display: flex;
-`;
 export const GenderTitle = styled.p`
-  margin-bottom: 15px;
+  margin-top: 20px;
   left: 20px;
   font-family: 'Manrope';
   font-style: normal;
@@ -312,12 +313,12 @@ export const GenderTitle = styled.p`
   align-items: center;
   color: #000000;
   @media (min-width: ${({ theme }) => theme.breakpoints.tablet[0]}) {
-    top: 75px;
+    margin-top: 0;
+    top: 60px;
     left: 70px;
     font-weight: 500;
     font-size: 24px;
     line-height: 26px;
-    margin-top: 40px;
   }
 `;
 export const GenderItem = styled.div`
@@ -327,7 +328,7 @@ export const GenderItem = styled.div`
   margin-top: 18px;
   @media (min-width: ${({ theme }) => theme.breakpoints.tablet[0]}) {
     margin-right: 60px;
-    margin-top: 31px;
+    margin-top: 20px;
     padding: 20px;
   }
 `;
@@ -365,6 +366,7 @@ export const GenderInput = styled.input`
 `;
 
 export const FileBox = styled.div`
+  margin-top: 10px;
   width: 140px;
   height: 140px;
   background: #fdf7f2;
@@ -402,16 +404,14 @@ export const Comments = styled.textarea`
   padding: 10px 20px 8px 20px;
   overflow: visible;
   @media (min-width: 768px) {
-    resize: vertical;
-    overflow: visible;
-  }
-  ::placeholder {
-    font-family: 'Inter';
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 26px;
-    color: #535353;
-    padding-left: 10px;
+    ::placeholder {
+      font-family: 'Inter';
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 26px;
+      color: #535353;
+      padding-left: 10px;
+    }
   }
 `;
 export const Star = styled.span`

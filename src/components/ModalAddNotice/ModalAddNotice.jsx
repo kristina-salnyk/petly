@@ -7,7 +7,7 @@ import { AddPhotoOfPetIcon } from '../icons/AddPhotoOfPetIcon';
 import { FemalePetIcon } from '../icons/FemalePetIcon';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import {
-  IconWrapper,
+  TitleWrapper,
   Background,
   FerstModalWrapper,
   SecondModalWrapper,
@@ -125,11 +125,10 @@ export const ModalAddNotice = ({ showModal, setShowModal }) => {
         <Background>
           {active === 'FerstWraper' && (
             <FerstModalWrapper showModal={showModal}>
-              {' '}
-              <div>
+              <TitleWrapper>
                 <Title> Add Pet</Title>
-                <P>Enter information about your pet. All fields are required</P>{' '}
-              </div>
+                <P>Enter information about your pet. All fields are required</P>
+              </TitleWrapper>
               <ModalContent>
                 <Categories>
                   <label>
@@ -268,61 +267,59 @@ export const ModalAddNotice = ({ showModal, setShowModal }) => {
           )}
           {active === 'SecondWraper' && (
             <SecondModalWrapper>
-              <div>
+              <TitleWrapper>
                 <Title> Add Pet</Title>
-              </div>
+              </TitleWrapper>
 
               <ModalContent>
+                <GenderTitle>
+                  The Sex<Star>*</Star>:
+                </GenderTitle>
                 <GenderWrapper>
-                  <IconWrapper>
-                    <GenderTitle>
-                      The Sex<Star>*</Star>:
-                    </GenderTitle>
-                    <GenderItem>
-                      <GenderLabel
-                        onClick={() => {
-                          setGender('male');
+                  <GenderItem>
+                    <GenderLabel
+                      onClick={() => {
+                        setGender('male');
+                      }}
+                    >
+                      <MalePetIcon />
+                      <GenderP
+                        style={{
+                          color: gender === 'male' && '#F59256',
                         }}
                       >
-                        <MalePetIcon />
-                        <GenderP
-                          style={{
-                            color: gender === 'male' && '#F59256',
-                          }}
-                        >
-                          Male
-                        </GenderP>
-                        <GenderInput
-                          type="radio"
-                          name="male"
-                          value="male"
-                          onChange={e => handleGender(e)}
-                        />
-                      </GenderLabel>
-                    </GenderItem>
-                    <GenderItem>
-                      <GenderLabel
-                        onClick={() => {
-                          setGender('female');
+                        Male
+                      </GenderP>
+                      <GenderInput
+                        type="radio"
+                        name="male"
+                        value="male"
+                        onChange={e => handleGender(e)}
+                      />
+                    </GenderLabel>
+                  </GenderItem>
+                  <GenderItem>
+                    <GenderLabel
+                      onClick={() => {
+                        setGender('female');
+                      }}
+                    >
+                      <FemalePetIcon />
+                      <GenderP
+                        style={{
+                          color: gender === 'female' && '#F59256',
                         }}
                       >
-                        <FemalePetIcon />
-                        <GenderP
-                          style={{
-                            color: gender === 'female' && '#F59256',
-                          }}
-                        >
-                          Female
-                        </GenderP>
-                        <GenderInput
-                          type="radio"
-                          name="gender"
-                          value="female"
-                          onChange={e => handleGender(e)}
-                        />
-                      </GenderLabel>
-                    </GenderItem>
-                  </IconWrapper>
+                        Female
+                      </GenderP>
+                      <GenderInput
+                        type="radio"
+                        name="gender"
+                        value="female"
+                        onChange={e => handleGender(e)}
+                      />
+                    </GenderLabel>
+                  </GenderItem>
                 </GenderWrapper>
                 <SecondForm onSubmit={formik.handleSubmit}>
                   <Label top htmlFor="text">
