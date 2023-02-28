@@ -13,7 +13,6 @@ export const CardInfoList = styled.ul`
 `;
 
 export const CardInfoTitle = styled.span`
-  font-family: ${props => props.theme.typography.font.primary};
   font-style: normal;
   font-weight: 700;
   font-size: 28px;
