@@ -20,6 +20,10 @@ export const NavItem = styled.li`
 
 export const LinkStyled = styled(NavLink)`
   color: ${({ theme }) => theme.colors.text.nav};
+  
+  &:hover {
+    color: ${({ theme }) => theme.colors.accent};
+  }
 
   &.active {
     color: ${({ theme }) => theme.colors.accent};

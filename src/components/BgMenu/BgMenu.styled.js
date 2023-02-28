@@ -17,6 +17,10 @@ export const LinkStyled = styled(NavLink)`
     font-size: 48px;
   }
 
+  &:hover {
+    color: ${({ theme }) => theme.colors.accent};
+  }
+
   &.active {
     color: ${({ theme }) => theme.colors.accent};
     text-decoration: underline;
