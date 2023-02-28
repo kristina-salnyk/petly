@@ -1,12 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
 import {
+  getUserInfo,
   logIn,
   logOut,
   refreshUser,
   register,
   updateUser,
   verifyUser,
-  getUserInfo,
 } from './operations';
 
 const authSlice = createSlice({
@@ -89,15 +89,13 @@ const authSlice = createSlice({
         state.error = action.payload;
       })
       .addCase(updateUser.pending, state => {
-        state.isRefreshing = true;
+        state.isLoading = true;
       })
       .addCase(updateUser.fulfilled, (state, action) => {
         state.user = action.payload;
         state.isLoggedIn = true;
-        state.isRefreshing = false;
       })
       .addCase(updateUser.rejected, (state, action) => {
-        state.isRefreshing = false;
         state.isLoading = false;
         state.error = action.payload;
       })
