@@ -368,7 +368,7 @@ export const ModalAddNotice = ({ showModal, setShowModal }) => {
                       ></Input>
                     </>
                   )}
-                  <GenderTitle>Load the pet’s image</GenderTitle>
+                  <Label>Load the pet’s image</Label>
                   {formik.values.image === '' ? (
                     <FileBox htmlFor="image">
                       <label>
