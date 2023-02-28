@@ -26,6 +26,8 @@ export const Category = styled(NavLink)`
   }
 
   &:hover {
+    color: ${({ theme }) => theme.colors.white};
+    background-color: ${({ theme }) => theme.colors.hoverAccent};
     border-color: ${({ theme }) => theme.colors.hoverAccent};
   }
 
