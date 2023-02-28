@@ -34,7 +34,7 @@ export const FerstModalWrapper = styled.div`
     overflow: auto;
     -ms-overflow-style: none;
     scrollbar-width: none;
-    scrollbar-height: auto;
+    scrollbar-height: none;
     padding: 40px 80px;
   }
 `;
@@ -402,14 +402,16 @@ export const Comments = styled.textarea`
   padding: 10px 20px 8px 20px;
   overflow: visible;
   @media (min-width: 768px) {
-    ::placeholder {
-      font-family: 'Inter';
-      font-weight: 400;
-      font-size: 16px;
-      line-height: 26px;
-      color: #535353;
-      padding-left: 10px;
-    }
+    resize: vertical;
+    overflow: visible;
+  }
+  ::placeholder {
+    font-family: 'Inter';
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 26px;
+    color: #535353;
+    padding-left: 10px;
   }
 `;
 export const Star = styled.span`

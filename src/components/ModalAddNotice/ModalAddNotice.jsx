@@ -37,13 +37,13 @@ import {
 } from './ModalAddNotice.styled';
 import { useDispatch } from 'react-redux';
 import { useFormik } from 'formik';
-// import { object, string, date } from 'yup';
+import { noticesSchema } from '../../utils/schemas/notices';
 
 export const ModalAddNotice = ({ showModal, setShowModal }) => {
   const [active, setActive] = useState('FerstWraper');
   const [categori, setCategory] = useState('sell');
   const [image, setImage] = useState(null);
-
+  const [gender, setGender] = useState('male');
   const formik = useFormik({
     initialValues: {
       category: '',
@@ -57,9 +57,9 @@ export const ModalAddNotice = ({ showModal, setShowModal }) => {
       image: '',
       comments: '',
     },
-
+    validationSchema: noticesSchema,
     onSubmit: values => {
-      alert(JSON.stringify(values, null, 2));
+      console.log('form data', values);
     },
   });
 
@@ -77,46 +77,9 @@ export const ModalAddNotice = ({ showModal, setShowModal }) => {
     return () => document.removeEventListener('keydown', keyPress);
   }, [keyPress]);
 
-  const validateFerst = () => {
-    if (!formik.values.category) {
-      return Notify.failure('category is required!');
-    }
-    if (!formik.values.title) {
-      return Notify.failure('title is required!');
-    }
-
-    if (!formik.values.birthday) {
-      return Notify.failure('birthday is required!');
-    }
-  };
-
-  const validateSecond = () => {
-    if (!formik.values.gender) {
-      return Notify.failure('gender is required!');
-    }
-    if (!formik.values.location) {
-      return Notify.failure('location is required!');
-    }
-    if (!formik.values.price) {
-      return Notify.failure('price is required!');
-    }
-    if (!formik.values.image) {
-      return Notify.failure('image is required!');
-    }
-    if (!formik.values.comments) {
-      return Notify.failure('comments is required!');
-    }
-  };
   const closeModal = () => setShowModal(prev => !prev);
   const dispatch = useDispatch();
 
-  const handleSubmit = e => {
-    e.preventDefault();
-    validateSecond();
-    closeModal();
-    dispatch(addNotice({ ...formik.values, image: URL.createObjectURL(formik.values.image) }));
-    formik.resetForm();
-  };
   const handleGender = e => (formik.values.gender = e.target.value);
   const handleCategory = e => (formik.values.category = e.target.value);
 
@@ -126,6 +89,34 @@ export const ModalAddNotice = ({ showModal, setShowModal }) => {
       setImage(URL.createObjectURL(files[0]));
       formik.setFieldValue('image', files[0]);
     }
+  };
+  const handleNextButtonClick = () => {
+    if (!formik.values.category) {
+      Notify.failure('Categori is required!');
+      return;
+    }
+    if (!formik.values.title) {
+      Notify.failure('title is required!');
+      return;
+    }
+
+    setActive('SecondWraper');
+  };
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    if (!formik.values.gender) {
+      Notify.failure('gender is required!');
+      return;
+    }
+    if (!formik.values.location) {
+      Notify.failure('location is required!');
+      return;
+    }
+    Notify.success('pets criated!!!');
+    closeModal();
+    dispatch(addNotice({ ...formik.values }));
+    formik.resetForm();
   };
 
   return (
@@ -212,7 +203,11 @@ export const ModalAddNotice = ({ showModal, setShowModal }) => {
                     required
                     autoFocus
                     placeholder="Type title"
+                    onBlur={formik.handleBlur}
                   />
+                  {formik.touched.title && formik.errors.title ? (
+                    <div style={{ color: 'red' }}>{formik.errors.title}</div>
+                  ) : null}
 
                   <Label htmlFor="name ">Name pet</Label>
                   <Input
@@ -223,7 +218,11 @@ export const ModalAddNotice = ({ showModal, setShowModal }) => {
                     required
                     autoFocus
                     placeholder="Type name pet"
+                    onBlur={formik.handleBlur}
                   />
+                  {formik.touched.name && formik.errors.name ? (
+                    <div style={{ color: 'red' }}>{formik.errors.name}</div>
+                  ) : null}
 
                   <Label htmlFor="Date">Date of birth </Label>
                   <Input
@@ -234,7 +233,11 @@ export const ModalAddNotice = ({ showModal, setShowModal }) => {
                     required
                     autoFocus
                     placeholder="Type date of birth "
+                    onBlur={formik.handleBlur}
                   />
+                  {formik.touched.date && formik.errors.date ? (
+                    <div style={{ color: 'red' }}>{formik.errors.date}</div>
+                  ) : null}
                   <Label htmlFor="Breed">Breed</Label>
                   <Input
                     onChange={formik.handleChange}
@@ -242,19 +245,16 @@ export const ModalAddNotice = ({ showModal, setShowModal }) => {
                     name="breed"
                     value={formik.values.breed}
                     placeholder="Type breed"
+                    onBlur={formik.handleBlur}
                   />
+                  {formik.touched.breed && formik.errors.breed ? (
+                    <div style={{ color: 'red' }}>{formik.errors.breed}</div>
+                  ) : null}
                   <ButtonWrapper>
                     <Button margin onClick={() => setShowModal(prev => !prev)}>
                       Cancel
                     </Button>
-                    <Button
-                      onClick={() => {
-                        setActive('SecondWraper');
-                        validateFerst();
-                      }}
-                    >
-                      Next
-                    </Button>
+                    <Button onClick={handleNextButtonClick}>Next</Button>
                   </ButtonWrapper>
                 </FerstForm>
 
@@ -277,32 +277,50 @@ export const ModalAddNotice = ({ showModal, setShowModal }) => {
                   <GenderTitle>
                     The Sex<Star>*</Star>:
                   </GenderTitle>
-                  <IconWrapper>
-                    <GenderItem>
-                      <GenderLabel>
-                        <MalePetIcon />
-                        <GenderP>Male</GenderP>
-                        <GenderInput
-                          type="radio"
-                          name="male"
-                          value="male"
-                          onChange={e => handleGender(e)}
-                        />
-                      </GenderLabel>
-                    </GenderItem>
-                    <GenderItem>
-                      <GenderLabel>
-                        <FemalePetIcon />
-                        <GenderP>Female</GenderP>
-                        <GenderInput
-                          type="radio"
-                          name="gender"
-                          value="female"
-                          onChange={e => handleGender(e)}
-                        />
-                      </GenderLabel>
-                    </GenderItem>
-                  </IconWrapper>
+                  <GenderItem>
+                    <GenderLabel
+                      onClick={() => {
+                        setGender('male');
+                      }}
+                    >
+                      <MalePetIcon />
+                      <GenderP
+                        style={{
+                          color: gender === 'male' && '#F59256',
+                        }}
+                      >
+                        Male
+                      </GenderP>
+                      <GenderInput
+                        type="radio"
+                        name="male"
+                        value="male"
+                        onChange={e => handleGender(e)}
+                      />
+                    </GenderLabel>
+                  </GenderItem>
+                  <GenderItem>
+                    <GenderLabel
+                      onClick={() => {
+                        setGender('female');
+                      }}
+                    >
+                      <FemalePetIcon />
+                      <GenderP
+                        style={{
+                          color: gender === 'female' && '#F59256',
+                        }}
+                      >
+                        Female
+                      </GenderP>
+                      <GenderInput
+                        type="radio"
+                        name="gender"
+                        value="female"
+                        onChange={e => handleGender(e)}
+                      />
+                    </GenderLabel>
+                  </GenderItem>
                 </GenderWrapper>
                 <SecondForm onSubmit={formik.handleSubmit}>
                   <Label top htmlFor="text">
@@ -316,7 +334,11 @@ export const ModalAddNotice = ({ showModal, setShowModal }) => {
                     required
                     autoFocus
                     placeholder="Location"
-                  ></Input>
+                    onBlur={formik.handleBlur}
+                  />
+                  {formik.touched.location && formik.errors.location ? (
+                    <div style={{ color: 'red' }}>{formik.errors.location}</div>
+                  ) : null}
                   {categori === 'sell' && (
                     <>
                       <Label htmlFor="text">
@@ -331,10 +353,11 @@ export const ModalAddNotice = ({ showModal, setShowModal }) => {
                         required
                         autoFocus
                         placeholder="price"
+                        onBlur={formik.handleBlur}
                       ></Input>
                     </>
                   )}
-
+                  <GenderTitle>Load the pet’s image</GenderTitle>
                   {formik.values.image === '' ? (
                     <FileBox htmlFor="image">
                       <label>
@@ -364,7 +387,11 @@ export const ModalAddNotice = ({ showModal, setShowModal }) => {
                     value={formik.values.comments}
                     autoFocus
                     placeholder="Comments"
-                  ></Comments>
+                    onBlur={formik.handleBlur}
+                  />
+                  {formik.touched.comments && formik.errors.comments ? (
+                    <div style={{ color: 'red' }}>{formik.errors.comments}</div>
+                  ) : null}
                   <ButtonWrapper btn mobBtn>
                     <Button
                       margin

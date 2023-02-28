@@ -45,6 +45,7 @@ const NoticesPage = () => {
   }, [queryParam]);
 
   useEffect(() => {
+    if (!category) return;
     dispatch(fetchNotices({ category }));
   }, [dispatch, category]);
 

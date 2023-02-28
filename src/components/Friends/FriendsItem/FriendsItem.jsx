@@ -12,7 +12,7 @@ import {
   TextWrapper,
   List,
   AddresLink,
-  ItemWraper
+  ItemWraper,
 } from './FriendsItem.styled';
 import FriendsTimeTable from './FriendsShedule';
 import defaultImage from '../../../images/defaultImage.png';
@@ -62,12 +62,11 @@ const FriendsItem = ({
                 </>
               ) : (
                 <>
-                  {' '}
-                  {workDays.isOpen ? (
+                  {workDays[0].isOpen ? (
                     <>
                       <Text>Time:</Text>
                       <Time>
-                        {workDays.from}-{workDays.to}
+                        {workDays[0].from}-{workDays[0].to}
                       </Time>
                     </>
                   ) : (
@@ -118,10 +117,10 @@ export default FriendsItem;
 FriendsItem.propTypes = {
   title: PropTypes.string,
   website: PropTypes.string,
-  location:PropTypes.string,
-  imageUrl:PropTypes.string,
+  location: PropTypes.string,
+  imageUrl: PropTypes.string,
   address: PropTypes.string,
   workDays: PropTypes.array,
   phone: PropTypes.number,
-  email: PropTypes.string
-}
+  email: PropTypes.string,
+};

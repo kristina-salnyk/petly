@@ -21,7 +21,6 @@ const authSlice = createSlice({
       avatarURL: null,
       favorites: [],
       _id: null,
-      token: null,
     },
     token: null,
     isLoggedIn: false,
@@ -70,6 +69,7 @@ const authSlice = createSlice({
       })
       .addCase(refreshUser.fulfilled, (state, action) => {
         state.token = action.payload.token;
+        state.user = action.payload.user;
         state.isLoggedIn = true;
         state.isRefreshing = false;
       })
@@ -82,6 +82,7 @@ const authSlice = createSlice({
       })
       .addCase(getUserInfo.fulfilled, (state, action) => {
         state.user = action.payload;
+        state.isLoading = false;
       })
       .addCase(getUserInfo.rejected, (state, action) => {
         state.isLoading = false;

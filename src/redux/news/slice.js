@@ -15,16 +15,17 @@ const newsSlice = createSlice({
   extraReducers: builder =>
     builder
       .addCase(fetchNews.fulfilled, (state, action) => {
+        state.isLoading = false;
         state.items = action.payload;
+        state.isLoading = false;
       })
       .addCase(fetchNews.pending, state => {
-        state.isLoading = true  })
+        state.isLoading = true;
+      })
       .addCase(fetchNews.rejected, (state, action) => {
-        const index = state.items.findIndex(
-          article => article.id === action.payload.id
-        );
-        state.items.splice(index, 1);
-      })})
-     
+        state.error = action.payload;
+        state.isLoading = false;
+      }),
+});
 
 export const newsReducer = newsSlice.reducer;
