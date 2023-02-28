@@ -67,7 +67,10 @@ const noticesSlice = createSlice({
     changeSearchQuery(state, action) {
       state.searchQuery = action.payload;
     },
+    clearNoticeItem(state) {
+      state.noticeItem = {};
+    },
   },
 });
-export const { changeSearchQuery } = noticesSlice.actions;
+export const { changeSearchQuery, clearNoticeItem } = noticesSlice.actions;
 export const noticesReducer = noticesSlice.reducer;
