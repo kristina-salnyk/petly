@@ -10,6 +10,7 @@ export const PetInfoList = styled.ul`
 
   @media screen and (min-width: 1280px) {
     padding-bottom: 40px;
+    min-width: 821px;
   }
 `;
 
@@ -38,7 +39,7 @@ export const PetInfoItem = styled.li`
 
 export const PetInfoDeleteBtn = styled.button`
   position: absolute;
-  top: 265px;
+  top: 262px;
   right: 10px;
   display: flex;
   align-items: center;
@@ -86,14 +87,21 @@ export const PetInfoImg = styled.img`
   margin-left: auto;
   margin-right: auto;
   width: 240px;
-  height: auto;
+  height: 240px;
+  object-fit: cover;
+  // block-size: fit-content;
+  border-radius: 40px;
 
   @media screen and (min-width: 768px) and (max-width: 1279px) {
+    margin-left: 0;
+    margin-right: 0;
     width: 161px;
     height: 161px;
   }
 
   @media screen and (min-width: 1280px) {
+    margin-left: 0;
+    margin-right: 0;
     width: 161px;
     height: 161px;
   }
@@ -134,5 +142,6 @@ export const PetInfo = styled.p`
   @media screen and (min-width: 1280px) {
     font-size: 16px;
     line-height: 22px;
+    min-width: 540px;
   }
 `;

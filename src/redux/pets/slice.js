@@ -21,31 +21,20 @@ const petsSlice = createSlice({
         state.items.push(action.payload);
       })
       .addCase(deletePet.fulfilled, (state, action) => {
-        const index = state.items.findIndex(
-          pet => pet.id === action.payload.id
-        );
+        const index = state.items.findIndex(pet => pet._id === action.payload._id);
         state.items.splice(index, 1);
       })
-      .addMatcher(
-        isAnyOf(...extraActions.map(action => action.pending)),
-        state => {
-          state.isLoading = true;
-        }
-      )
-      .addMatcher(
-        isAnyOf(...extraActions.map(action => action.rejected)),
-        (state, action) => {
-          state.isLoading = false;
-          state.error = action.payload;
-        }
-      )
-      .addMatcher(
-        isAnyOf(...extraActions.map(action => action.fulfilled)),
-        state => {
-          state.isLoading = false;
-          state.error = null;
-        }
-      ),
+      .addMatcher(isAnyOf(...extraActions.map(action => action.pending)), state => {
+        state.isLoading = true;
+      })
+      .addMatcher(isAnyOf(...extraActions.map(action => action.rejected)), (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload;
+      })
+      .addMatcher(isAnyOf(...extraActions.map(action => action.fulfilled)), state => {
+        state.isLoading = false;
+        state.error = null;
+      }),
 });
 
 export const petsReducer = petsSlice.reducer;

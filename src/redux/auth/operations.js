@@ -65,12 +65,23 @@ export const refreshUser = createAsyncThunk('auth/refresh', async (defaultToken,
   }
 });
 
+export const getUserInfo = createAsyncThunk('auth/user', async (_, thunkAPI) => {
+  try {
+    const response = await api.get('/user/current');
+    return response.data;
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error.message);
+  }
+});
+
 export const updateUser = createAsyncThunk('auth/update', async (credentials, thunkAPI) => {
   try {
     const response = await api.patch('/user/update', credentials);
     return response.data;
   } catch (error) {
-    return thunkAPI.rejectWithValue(error.message);
+    return thunkAPI.rejectWithValue(
+      Notify.failure('An error occurred while trying to update the data.')
+    );
   }
 });
 
