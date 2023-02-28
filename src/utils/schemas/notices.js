@@ -3,7 +3,7 @@ import * as Yup from 'yup';
 export const noticesSchema = Yup.object({
   title: Yup.string()
     .min(2)
-    .max(16)
+    .max(48)
     .matches(/^[а-яёіїєА-ЯЁІЇЄA-Za-z-\s]+$/, 'Title field can contain only letters'),
   name: Yup.string()
     .min(2)
