@@ -30,7 +30,7 @@ export const FerstModalWrapper = styled.div`
   scrollbar-height: none;
   @media (min-width: 768px) {
     width: 608px;
-    height: 885px;
+    max-height: 805px;
     overflow: auto;
     -ms-overflow-style: none;
     scrollbar-width: none;
@@ -128,7 +128,7 @@ export const Category = styled.input`
   display: none;
 `;
 export const CategoryWrap = styled.div`
-  padding: 10px 25px;
+  padding: 5px 20px;
   gap: 10px;
   margin-left: 5px;
   margin-top: 10px;
@@ -146,12 +146,13 @@ export const CategoryWrap = styled.div`
     background-color: ${({ theme }) => theme.colors.accent};
   }
   @media (min-width: ${({ theme }) => theme.breakpoints.tablet[0]}) {
-    padding: 5px 20px;
+    padding: 10px 25px;
     font-size: ${({ theme }) => theme.typography.size.s};
   }
   @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
-    padding: 5px 20px;
+    padding: 10px 20px;
     font-size: ${({ theme }) => theme.typography.size.m};
+    margin-left: 0;
   }
 `;
 
