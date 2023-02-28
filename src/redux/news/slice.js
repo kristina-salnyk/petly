@@ -15,6 +15,7 @@ const newsSlice = createSlice({
   extraReducers: builder =>
     builder
       .addCase(fetchNews.fulfilled, (state, action) => {
+        state.isLoading = false;
         state.items = action.payload;
       })
       .addCase(fetchNews.pending, state => {
