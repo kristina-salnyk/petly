@@ -19,6 +19,10 @@ export const NoticeCategoriesList = () => {
     return () => dispatch(clearNotices());
   }, []);
 
+  const noticesList = notices.filter(
+    item => (category === 'favorites' && item.favorite) || category !== 'favorites'
+  );
+
   return (
     <>
       {isLoading && (
@@ -29,14 +33,8 @@ export const NoticeCategoriesList = () => {
 
       {notices.length > 0 && !isLoading && (
         <List>
-          {notices.map(item => {
-            return (
-              <>
-                {((category === 'favorites' && item.favorite) || category !== 'favorites') && (
-                  <NoticeCategoryItem key={item._id} {...item} />
-                )}
-              </>
-            );
+          {noticesList.map(item => {
+            return <NoticeCategoryItem key={item._id} {...item} />;
           })}
         </List>
       )}
