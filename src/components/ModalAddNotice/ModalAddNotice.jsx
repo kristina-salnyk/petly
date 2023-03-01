@@ -7,34 +7,34 @@ import { AddPhotoOfPetIcon } from '../icons/AddPhotoOfPetIcon';
 import { FemalePetIcon } from '../icons/FemalePetIcon';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import {
-  TitleWrapper,
+  AddedImage,
   Background,
-  FerstModalWrapper,
-  SecondModalWrapper,
-  ModalContent,
-  Title,
   Button,
-  FerstForm,
-  SecondForm,
-  Input,
-  Label,
-  P,
-  Error,
+  ButtonWrapper,
   Categories,
   Category,
-  GenderWrapper,
-  GenderItem,
-  GenderInput,
-  GenderP,
-  GenderLabel,
-  FileBox,
-  Comments,
   CategoryWrap,
-  ButtonWrapper,
-  AddedImage,
-  Star,
-  GenderTitle,
   CloseButton,
+  Comments,
+  Error,
+  FerstForm,
+  FerstModalWrapper,
+  FileBox,
+  GenderInput,
+  GenderItem,
+  GenderLabel,
+  GenderP,
+  GenderTitle,
+  GenderWrapper,
+  Input,
+  Label,
+  ModalContent,
+  P,
+  SecondForm,
+  SecondModalWrapper,
+  Star,
+  Title,
+  TitleWrapper,
 } from './ModalAddNotice.styled';
 import { useDispatch } from 'react-redux';
 import { useFormik } from 'formik';
@@ -42,9 +42,10 @@ import { noticesSchema } from '../../utils/schemas/notices';
 
 export const ModalAddNotice = ({ showModal, setShowModal }) => {
   const [active, setActive] = useState('FerstWraper');
-  const [categori, setCategory] = useState('');
+  const [category, setCategory] = useState('');
   const [image, setImage] = useState(null);
   const [gender, setGender] = useState('');
+
   const formik = useFormik({
     initialValues: {
       category: '',
@@ -73,6 +74,7 @@ export const ModalAddNotice = ({ showModal, setShowModal }) => {
       data.append('title', values.title);
 
       handleSubmit();
+
       dispatch(addNotice(data));
     },
   });
@@ -112,7 +114,7 @@ export const ModalAddNotice = ({ showModal, setShowModal }) => {
 
   const handleNextButtonClick = () => {
     if (!formik.values.category) {
-      Notify.failure('Categori is required!');
+      Notify.failure('Category is required!');
       return;
     }
     if (!formik.values.title) {
@@ -167,8 +169,8 @@ export const ModalAddNotice = ({ showModal, setShowModal }) => {
                         setCategory('lost/found');
                       }}
                       style={{
-                        backgroundColor: categori === 'lost/found' && '#F59256',
-                        color: categori === 'lost/found' && '#FFFFFF',
+                        backgroundColor: category === 'lost/found' && '#F59256',
+                        color: category === 'lost/found' && '#FFFFFF',
                       }}
                     >
                       lost/found
@@ -186,8 +188,8 @@ export const ModalAddNotice = ({ showModal, setShowModal }) => {
                         setCategory('in good hands');
                       }}
                       style={{
-                        backgroundColor: categori === 'in good hands' && '#F59256',
-                        color: categori === 'in good hands' && '#FFFFFF',
+                        backgroundColor: category === 'in good hands' && '#F59256',
+                        color: category === 'in good hands' && '#FFFFFF',
                       }}
                     >
                       in good hands
@@ -205,8 +207,8 @@ export const ModalAddNotice = ({ showModal, setShowModal }) => {
                         setCategory('sell');
                       }}
                       style={{
-                        backgroundColor: categori === 'sell' && '#F59256',
-                        color: categori === 'sell' && '#FFFFFF',
+                        backgroundColor: category === 'sell' && '#F59256',
+                        color: category === 'sell' && '#FFFFFF',
                       }}
                     >
                       sell
@@ -368,7 +370,7 @@ export const ModalAddNotice = ({ showModal, setShowModal }) => {
                   {formik.touched.location && formik.errors.location ? (
                     <Error>{formik.errors.location}</Error>
                   ) : null}
-                  {categori === 'sell' && (
+                  {category === 'sell' && (
                     <>
                       <Label htmlFor="text">
                         Price<Star>*</Star>:

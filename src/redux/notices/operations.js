@@ -23,7 +23,6 @@ export const fetchNoticeItem = createAsyncThunk('notices/fetchOne', async (notic
 
 export const addNotice = createAsyncThunk('notices/addNotice', async (fields, thunkAPI) => {
   try {
-    console.log('fields', fields);
     const response = await api.post('/notices', fields);
     return response.data;
   } catch (error) {
