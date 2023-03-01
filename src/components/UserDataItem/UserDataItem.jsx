@@ -20,6 +20,10 @@ export const UserDataItem = ({ user }) => {
   const [isBirthdayDisabled, setIsBirthdayDisabled] = useState(true);
   const [isPhoneDisabled, setIsPhoneDisabled] = useState(true);
   const [isCityDisabled, setIsCityDisabled] = useState(true);
+
+  // const [isButtonDisabled, setIsButtonDisabled] = useState(true);
+  // const [active, setActive] = useState(false);
+
   const [iconColor, setIconColor] = useState(`${theme.colors.accent}`);
 
   const [userName, setUserName] = useState('');
@@ -61,15 +65,53 @@ export const UserDataItem = ({ user }) => {
     }
   };
 
+  // const handleButtonDisable = () => {
+  //   switch (name) {
+  //   case 'name':
+  //     setIsButtonDisabled(false);
+  //     break;
+
+  //   case 'email':
+  //     setIsButtonDisabled(false);
+  //     break;
+
+  //   case 'birthday':
+  //     setIsButtonDisabled(false);
+  //     break;
+
+  //   case 'phone':
+  //     setIsButtonDisabled(false);
+  //     break;
+
+  //   case 'city':
+  //     setIsButtonDisabled(false);
+  //     break;
+
+  //   default:
+  //     return;
+  //   }
+  // };
+
   const handlePencilClick = (e, userValue, isDisabled, setIsDisabled) => {
     const { value } = e.currentTarget.attributes.name;
+
+    // setIsButtonDisabled(true);
+
     if (isDisabled) {
       setIsDisabled(false);
       setIconColor(`${theme.colors.dark}`);
-    } else {
+
+      // setIsButtonDisabled(false);
+      // setActive(true);
+    }
+    // else if (active === false) {
+    //   setIsButtonDisabled(true);
+    // }
+    else {
       dispatch(updateUser({ [value]: userValue }));
       setIsDisabled(true);
       setIconColor(`${theme.colors.accent}`);
+      // setIsButtonDisabled(false);
     }
   };
 
@@ -99,6 +141,7 @@ export const UserDataItem = ({ user }) => {
             <InfoBtn
               type="submit"
               name="name"
+              // disabled={handleButtonDisable(isButtonDisabled)}
               onClick={e => handlePencilClick(e, userName, isNameDisabled, setIsNameDisabled)}
             >
               {isNameDisabled ? (
@@ -126,6 +169,7 @@ export const UserDataItem = ({ user }) => {
             <InfoBtn
               name="email"
               type="submit"
+              // disabled={handleButtonDisable(isButtonDisabled)}
               onClick={e => handlePencilClick(e, userEmail, isEmaillDisabled, setIsEmailDisabled)}
             >
               {isEmaillDisabled ? (
@@ -153,6 +197,7 @@ export const UserDataItem = ({ user }) => {
             <InfoBtn
               type="submit"
               name="birthday"
+              // disabled={handleButtonDisable(isButtonDisabled)}
               onClick={e =>
                 handlePencilClick(e, userBirthday, isBirthdayDisabled, setIsBirthdayDisabled)
               }
@@ -182,6 +227,7 @@ export const UserDataItem = ({ user }) => {
             <InfoBtn
               type="submit"
               name="phone"
+              // disabled={handleButtonDisable(isButtonDisabled)}
               onClick={e => handlePencilClick(e, userPhone, isPhoneDisabled, setIsPhoneDisabled)}
             >
               {isPhoneDisabled ? (
@@ -209,6 +255,7 @@ export const UserDataItem = ({ user }) => {
             <InfoBtn
               type="sumbit"
               name="city"
+              // disabled={handleButtonDisable(isButtonDisabled)}
               onClick={e => handlePencilClick(e, userCity, isCityDisabled, setIsCityDisabled)}
             >
               {isCityDisabled ? (

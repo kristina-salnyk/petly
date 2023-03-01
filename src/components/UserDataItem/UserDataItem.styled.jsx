@@ -146,6 +146,11 @@ export const InfoBtn = styled.button`
   backdrop-filter: blur(2px);
   margin-left: 9px;
   margin-right: 12px;
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  &:hover {
+    transform: scale(1.3);
+  }
 
   @media screen and (min-width: 768px) and (max-width: 1279px) {
     width: 32px;
