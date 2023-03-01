@@ -20,6 +20,7 @@ import {
   Input,
   Label,
   P,
+  Error,
   Categories,
   Category,
   GenderWrapper,
@@ -80,6 +81,7 @@ export const ModalAddNotice = ({ showModal, setShowModal }) => {
     e => {
       if (e.key === 'Escape' && showModal) {
         setShowModal(false);
+        formik.resetForm();
       }
     },
     [setShowModal, showModal]
@@ -90,7 +92,11 @@ export const ModalAddNotice = ({ showModal, setShowModal }) => {
     return () => document.removeEventListener('keydown', keyPress);
   }, [keyPress]);
 
-  const closeModal = () => setShowModal(prev => !prev);
+  const closeModal = () => {
+    setShowModal(prev => !prev);
+    formik.resetForm();
+  };
+
   const dispatch = useDispatch();
 
   const handleGender = e => (formik.values.gender = e.target.value);
@@ -229,7 +235,7 @@ export const ModalAddNotice = ({ showModal, setShowModal }) => {
                     onBlur={formik.handleBlur}
                   />
                   {formik.touched.title && formik.errors.title ? (
-                    <div style={{ color: 'red' }}>{formik.errors.title}</div>
+                    <Error>{formik.errors.title}</Error>
                   ) : null}
 
                   <Label htmlFor="name ">Name pet</Label>
@@ -244,7 +250,7 @@ export const ModalAddNotice = ({ showModal, setShowModal }) => {
                     onBlur={formik.handleBlur}
                   />
                   {formik.touched.name && formik.errors.name ? (
-                    <div style={{ color: 'red' }}>{formik.errors.name}</div>
+                    <Error>{formik.errors.name}</Error>
                   ) : null}
 
                   <Label htmlFor="Date">Date of birth </Label>
@@ -258,8 +264,8 @@ export const ModalAddNotice = ({ showModal, setShowModal }) => {
                     placeholder="Type date of birth "
                     onBlur={formik.handleBlur}
                   />
-                  {formik.touched.date && formik.errors.date ? (
-                    <div style={{ color: 'red' }}>{formik.errors.date}</div>
+                  {formik.touched.birthday && formik.errors.birthday ? (
+                    <Error>{formik.errors.birthday}</Error>
                   ) : null}
                   <Label htmlFor="Breed">Breed</Label>
                   <Input
@@ -271,7 +277,7 @@ export const ModalAddNotice = ({ showModal, setShowModal }) => {
                     onBlur={formik.handleBlur}
                   />
                   {formik.touched.breed && formik.errors.breed ? (
-                    <div style={{ color: 'red' }}>{formik.errors.breed}</div>
+                    <Error>{formik.errors.breed}</Error>
                   ) : null}
                   <ButtonWrapper>
                     <Button margin onClick={() => setShowModal(prev => !prev)}>
@@ -362,7 +368,7 @@ export const ModalAddNotice = ({ showModal, setShowModal }) => {
                     onBlur={formik.handleBlur}
                   />
                   {formik.touched.location && formik.errors.location ? (
-                    <div style={{ color: 'red' }}>{formik.errors.location}</div>
+                    <Error>{formik.errors.location}</Error>
                   ) : null}
                   {categori === 'sell' && (
                     <>
@@ -415,7 +421,7 @@ export const ModalAddNotice = ({ showModal, setShowModal }) => {
                     onBlur={formik.handleBlur}
                   />
                   {formik.touched.comments && formik.errors.comments ? (
-                    <div style={{ color: 'red' }}>{formik.errors.comments}</div>
+                    <Error>{formik.errors.comments}</Error>
                   ) : null}
                   <ButtonWrapper btn mobBtn>
                     <Button

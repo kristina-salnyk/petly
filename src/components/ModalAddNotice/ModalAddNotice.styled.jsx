@@ -15,7 +15,7 @@ export const Background = styled.div`
 `;
 
 export const FerstModalWrapper = styled.div`
-background-attachment: fixed;
+  background-attachment: fixed;
   width: 280px;
   height: 100vh;
   padding: 40px 20px;
@@ -420,6 +420,12 @@ export const Comments = styled.textarea`
 `;
 export const Star = styled.span`
   color: ${({ theme }) => theme.colors.accent};
+`;
+
+export const Error = styled.div`
+  position: absolute;
+  color: red;
+  font-size: 12px;
 `;
 export const GlobalStyle = createGlobalStyle`
 box-sizing: border-box;

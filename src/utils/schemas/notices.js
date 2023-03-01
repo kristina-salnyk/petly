@@ -9,7 +9,7 @@ export const noticesSchema = Yup.object({
     .min(2)
     .max(16)
     .matches(/^[а-яёіїєА-ЯЁІЇЄA-Za-z-\s]+$/, 'Name field can contain only letters'),
-  birthday: Yup.date('enter corect date').default(() => new Date()),
+  birthday: Yup.date('enter corect date').max(new Date(), 'Please, select the correct date'),
   breed: Yup.string()
     .min(2)
     .max(16)
