@@ -210,7 +210,7 @@ export const Input = styled.input`
 `;
 export const Label = styled.label`
   height: 27px;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
   font-family: 'Manrope';
   font-style: normal;
   font-weight: 500;
@@ -222,6 +222,7 @@ export const Label = styled.label`
   @media (min-width: 768px) {
     height: 27px;
     margin-bottom: 12px;
+
     margin-top: ${props => (props.top ? '60px' : '28px')};
     font-weight: 500;
     font-size: 24px;
@@ -424,6 +425,7 @@ export const Star = styled.span`
 
 export const Error = styled.div`
   position: absolute;
+  margin-top: -9px;
   color: red;
   font-size: 12px;
 `;
