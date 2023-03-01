@@ -44,7 +44,7 @@ export const ModalAddNotice = ({ showModal, setShowModal }) => {
   const [active, setActive] = useState('FerstWraper');
   const [categori, setCategory] = useState('');
   const [image, setImage] = useState(null);
-  const [gender, setGender] = useState('male');
+  const [gender, setGender] = useState('');
   const formik = useFormik({
     initialValues: {
       category: '',
@@ -157,7 +157,7 @@ export const ModalAddNotice = ({ showModal, setShowModal }) => {
             <FerstModalWrapper showModal={showModal}>
               <TitleWrapper>
                 <Title> Add Pet</Title>
-                <P>Enter information about your pet. All fields are required</P>
+                <P>Enter information about your pet</P>
               </TitleWrapper>
               <ModalContent>
                 <Categories>
@@ -378,7 +378,7 @@ export const ModalAddNotice = ({ showModal, setShowModal }) => {
                       <Input
                         bottom
                         onChange={formik.handleChange}
-                        type="text"
+                        type="number"
                         name="price"
                         value={formik.values.price}
                         required
