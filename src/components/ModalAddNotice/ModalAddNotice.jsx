@@ -44,7 +44,7 @@ export const ModalAddNotice = ({ showModal, setShowModal }) => {
   const [active, setActive] = useState('FerstWraper');
   const [categori, setCategory] = useState('');
   const [image, setImage] = useState(null);
-  const [gender, setGender] = useState('male');
+  const [gender, setGender] = useState('');
   const formik = useFormik({
     initialValues: {
       category: '',
