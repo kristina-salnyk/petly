@@ -70,7 +70,10 @@ const noticesSlice = createSlice({
     clearNoticeItem(state) {
       state.noticeItem = {};
     },
+    clearNotices(state) {
+      state.items = [];
+    },
   },
 });
-export const { changeSearchQuery, clearNoticeItem } = noticesSlice.actions;
+export const { changeSearchQuery, clearNoticeItem, clearNotices } = noticesSlice.actions;
 export const noticesReducer = noticesSlice.reducer;
