@@ -81,6 +81,7 @@ export const ModalAddNotice = ({ showModal, setShowModal }) => {
     e => {
       if (e.key === 'Escape' && showModal) {
         setShowModal(false);
+        formik.resetForm();
       }
     },
     [setShowModal, showModal]
@@ -91,7 +92,11 @@ export const ModalAddNotice = ({ showModal, setShowModal }) => {
     return () => document.removeEventListener('keydown', keyPress);
   }, [keyPress]);
 
-  const closeModal = () => setShowModal(prev => !prev);
+  const closeModal = () => {
+    setShowModal(prev => !prev);
+    formik.resetForm();
+  };
+
   const dispatch = useDispatch();
 
   const handleGender = e => (formik.values.gender = e.target.value);
