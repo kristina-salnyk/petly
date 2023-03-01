@@ -8,14 +8,7 @@ import {
   fetchNotices,
 } from './operations';
 
-const extraActions = [
-  fetchNotices,
-  addNotice,
-  deleteNotice,
-  deleteFavorite,
-  addFavorite,
-  fetchNoticeItem,
-];
+const extraActions = [fetchNotices, addNotice, deleteNotice, deleteFavorite, addFavorite];
 
 const noticesInitialState = {
   items: [],

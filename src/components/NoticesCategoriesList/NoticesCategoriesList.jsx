@@ -1,4 +1,3 @@
-import { NoticeCategoryItem } from '../NoticeCategoryItem';
 import { List } from './NoticesCategoriesList.styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectIsLoading, selectSearchedNotices } from '../../redux/notices/selectors';
@@ -8,6 +7,7 @@ import { useParams } from 'react-router-dom';
 import { useEffect } from 'react';
 import { clearNotices } from '../../redux/notices/slice';
 import BlockLoader from '../Loader/BlockLoader';
+import { NoticeCategoryItem } from '../NoticeCategoryItem/NoticeCategoryItem';
 
 export const NoticeCategoriesList = () => {
   const notices = useSelector(selectSearchedNotices);
@@ -31,7 +31,7 @@ export const NoticeCategoriesList = () => {
         </div>
       )}
 
-      {notices.length > 0 && !isLoading && (
+      {noticesList.length > 0 && !isLoading && (
         <List>
           {noticesList.map(item => {
             return <NoticeCategoryItem key={item._id} {...item} />;
@@ -39,7 +39,7 @@ export const NoticeCategoriesList = () => {
         </List>
       )}
 
-      {notices.length === 0 && !isLoading && (
+      {noticesList.length === 0 && !isLoading && (
         <InformationBlock
           title="No notices were found"
           img={noResultsImg}
