@@ -130,6 +130,18 @@ export const ModalAddNotice = ({ showModal, setShowModal }) => {
     closeModal();
     formik.resetForm();
   };
+  const pageIsValid = () => {
+    if (!formik.touched.title && !formik.touched.title && !formik.touched.title) {
+      return false;
+    } else {
+      return (
+        !(formik.errors.title && formik.touched.title) &&
+        !(formik.errors.category && formik.touched.category) &&
+        !(formik.errors.breed && formik.touched.breed) &&
+        !(formik.errors.birthday && formik.touched.birthday)
+      );
+    }
+  };
 
   return (
     <>
@@ -265,7 +277,9 @@ export const ModalAddNotice = ({ showModal, setShowModal }) => {
                     <Button margin onClick={() => setShowModal(prev => !prev)}>
                       Cancel
                     </Button>
-                    <Button onClick={handleNextButtonClick}>Next</Button>
+                    <Button disabled={!pageIsValid()} onClick={handleNextButtonClick}>
+                      Next
+                    </Button>
                   </ButtonWrapper>
                 </FerstForm>
 
@@ -368,7 +382,7 @@ export const ModalAddNotice = ({ showModal, setShowModal }) => {
                       ></Input>
                     </>
                   )}
-                  <Label>Load the pet’s image</Label>
+                  <GenderTitle>Load the pet’s image</GenderTitle>
                   {formik.values.image === '' ? (
                     <FileBox htmlFor="image">
                       <label>
