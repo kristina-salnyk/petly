@@ -46,7 +46,7 @@ const NewsList = () => {
     setPage(page);
   };
   console.log(searchQuery.filter);
-  const count = Math.ceil(news.length / 6);
+  const count = Math.ceil(20 / 6);
 
   useEffect(() => {
     dispatch(fetchNews({ page, search: searchQuery.filter }));
