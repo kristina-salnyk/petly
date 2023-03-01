@@ -42,7 +42,7 @@ const noticesSlice = createSlice({
         state.items[index].favorite = action.payload.notice.favorite;
       })
       .addCase(deleteNotice.fulfilled, (state, action) => {
-        const index = state.items.findIndex(notice => notice._id === action.payload.id);
+        const index = state.items.findIndex(notice => notice._id === action.payload._id);
         state.items.splice(index, 1);
       })
       .addMatcher(isAnyOf(...extraActions.map(action => action.pending)), state => {
