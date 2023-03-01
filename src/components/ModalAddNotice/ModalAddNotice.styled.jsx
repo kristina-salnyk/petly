@@ -225,6 +225,7 @@ export const Input = styled.input`
 `;
 export const Label = styled.label`
   height: 27px;
+  margin-top: 10px;
   margin-bottom: 8px;
   font-family: 'Manrope';
   font-style: normal;
@@ -302,6 +303,7 @@ export const GenderWrapper = styled.div`
 `;
 export const GenderTitle = styled.p`
   left: 20px;
+  margin-top: 10px;
   font-family: 'Manrope';
   font-style: normal;
   font-weight: 500;
@@ -419,7 +421,6 @@ export const Star = styled.span`
 
 export const Error = styled.div`
   position: absolute;
-  margin-top: -9px;
   color: red;
   font-size: 12px;
 `;
