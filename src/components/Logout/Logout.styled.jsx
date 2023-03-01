@@ -15,6 +15,14 @@ export const LogoutBtn = styled.button`
   margin-left: auto;
   margin-right: 12px;
 
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  &:hover {
+    transform: scale(1.05);
+    color: red;
+    fill: red;
+  }
+
   @media screen and (min-width: 768px) and (max-width: 1279px) {
     position: absolute;
     bottom: 20px;
@@ -35,4 +43,8 @@ export const LogoutSpan = styled.span`
   letter-spacing: 0.04em;
   color: rgba(17, 17, 17, 0.6);
   margin-left: 4px;
+
+  &:hover {
+    color: inherit;
+  }
 `;
