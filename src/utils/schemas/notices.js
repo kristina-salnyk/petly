@@ -19,5 +19,4 @@ export const noticesSchema = Yup.object({
     .min(8)
     .max(120)
     .matches(/^[aA-zZ\s]+$/)
-    .required(),
 });

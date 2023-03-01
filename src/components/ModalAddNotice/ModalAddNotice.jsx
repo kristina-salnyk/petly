@@ -157,7 +157,7 @@ export const ModalAddNotice = ({ showModal, setShowModal }) => {
             <FerstModalWrapper showModal={showModal}>
               <TitleWrapper>
                 <Title> Add Pet</Title>
-                <P>Enter information about your pet. All fields are required</P>
+                <P>Enter information about your pet</P>
               </TitleWrapper>
               <ModalContent>
                 <Categories>
