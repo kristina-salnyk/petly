@@ -16,7 +16,7 @@ import { DeleteNoticeIcon } from '../../icons/DeleteNoticeIcon';
 export const NoticeButtons = ({ id, owner, onShow }) => {
   const user = useSelector(selectUser);
   const dispatch = useDispatch();
-
+ 
   const deleteMyNotice = () => {
     dispatch(deleteNotice(id));
   };
@@ -28,7 +28,7 @@ export const NoticeButtons = ({ id, owner, onShow }) => {
           <ButtonText>Learn More</ButtonText>
         </ButtonLearnMore>
 
-        {user.id === owner && (
+        {user._id === owner && (
           <ButtonDelete onClick={deleteMyNotice}>
             <ButtonTextDelete>Delete</ButtonTextDelete>
             <DeleteNoticeIcon />
