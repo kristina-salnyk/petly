@@ -31,7 +31,7 @@ const noticesSlice = createSlice({
         state.noticeItem = action.payload;
       })
       .addCase(addNotice.fulfilled, (state, action) => {
-        state.items.push(action.payload);
+        state.items.splice(0, 0, action.payload);
       })
       .addCase(addFavorite.fulfilled, (state, action) => {
         const index = state.items.findIndex(notice => notice._id === action.payload.notice.id);
