@@ -33,13 +33,11 @@ const NewsPage = () => {
     setSearchParams(newParams);
   };
 
-  console.log(searchQuery.filter);
-
   return (
     <Container>
       <TitleNews>News</TitleNews>
       <NewsSearchForm onSubmit={setSearchQueryParam} />
-      <NewsList />
+      <NewsList search={queryParam} />
     </Container>
   );
 };
