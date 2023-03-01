@@ -188,6 +188,7 @@ export const SecondForm = styled.form`
 
 export const Input = styled.input`
   width: 100%;
+  -webkit- width : width;
   height: 40px;
   background: #fdf7f2;
   border: 1px solid rgba(245, 146, 86, 0.5);
