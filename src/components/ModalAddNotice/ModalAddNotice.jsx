@@ -378,7 +378,7 @@ export const ModalAddNotice = ({ showModal, setShowModal }) => {
                       <Input
                         bottom
                         onChange={formik.handleChange}
-                        type="text"
+                        type="number"
                         name="price"
                         value={formik.values.price}
                         required
