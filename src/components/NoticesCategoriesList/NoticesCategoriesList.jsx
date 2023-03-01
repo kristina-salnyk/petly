@@ -20,7 +20,9 @@ export const NoticeCategoriesList = () => {
   }, []);
 
   const noticesList = notices.filter(
-    item => (category === 'favorites' && item.favorite) || category !== 'favorites'
+    item =>
+      ((category === 'favorites' && item.favorite) || category !== 'favorites') &&
+      item.category === category
   );
 
   return (
