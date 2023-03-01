@@ -12,7 +12,6 @@ import {
   FerstModalWrapper,
   SecondModalWrapper,
   ModalContent,
-  CloseModalButton,
   Title,
   Button,
   FerstForm,
@@ -35,6 +34,7 @@ import {
   AddedImage,
   Star,
   GenderTitle,
+  CloseButton,
 } from './ModalAddNotice.styled';
 import { useDispatch } from 'react-redux';
 import { useFormik } from 'formik';
@@ -289,11 +289,9 @@ export const ModalAddNotice = ({ showModal, setShowModal }) => {
                   </ButtonWrapper>
                 </FerstForm>
 
-                <CloseModalButton area-label="Close modal" onClick={closeModal}>
+                <CloseButton area-label="Close modal" onClick={closeModal}>
                   <CloseModalIcon color={'black'} />
-                </CloseModalButton>
-
-                <CloseModalIcon />
+                </CloseButton>
               </ModalContent>
             </FerstModalWrapper>
           )}
@@ -439,12 +437,9 @@ export const ModalAddNotice = ({ showModal, setShowModal }) => {
                   </ButtonWrapper>
                 </SecondForm>
 
-                <CloseModalButton
-                  area-label="Close modal"
-                  onClick={() => setShowModal(prev => !prev)}
-                >
+                <CloseButton area-label="Close modal" onClick={() => setShowModal(prev => !prev)}>
                   <CloseModalIcon color={'black'} />
-                </CloseModalButton>
+                </CloseButton>
               </ModalContent>
             </SecondModalWrapper>
           )}

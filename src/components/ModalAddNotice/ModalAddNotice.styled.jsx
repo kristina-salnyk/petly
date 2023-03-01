@@ -14,6 +14,20 @@ export const Background = styled.div`
   flex-shrink: 0;
 `;
 
+export const CloseButton = styled.div`
+  width: 44px;
+  height: 44px;
+  position: absolute;
+  right: 18px;
+  top: 18px;
+  cursor: pointer;
+  background-color: ${({ theme }) => theme.colors.background.primary};
+  border-radius: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
 export const FerstModalWrapper = styled.div`
   background-attachment: fixed;
   width: 280px;
@@ -274,27 +288,6 @@ export const Button = styled.button`
     top: 590px;
     margin-right: ${props => (props.margin ? '10px' : 0)};
     margin-bottom: 0;
-  }
-`;
-
-export const CloseModalButton = styled.button`
-  cursor: pointer;
-  position: absolute;
-  top: 10px;
-  left: 230px;
-  width: 34px;
-  height: 34px;
-  display: flex;
-  justify-content: center;
-  padding: 0;
-  z-index: 10;
-  border-radius: 50%;
-  background: ${props => props.theme.colors.white};
-  @media (min-width: ${({ theme }) => theme.breakpoints.tablet[0]}) {
-    top: 10px;
-    left: 540px;
-    width: 38px;
-    height: 38px;
   }
 `;
 
