@@ -122,6 +122,7 @@ export const PetsData = () => {
   }
 
   const handleSubmit = () => {
+    Notify.success('pets created!!!');
     formik.resetForm();
     closeModal();
     closeModalSecond();
