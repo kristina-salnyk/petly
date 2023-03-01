@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {
-  ImageThumb,
   ImageModal,
+  ImageThumb,
+  LabelText,
   LabelWrapper as LabelWrapper,
   ModalLabel,
-  LabelText,
 } from './ModalImage.styled';
 
 export const ModalImage = ({ category, image }) => {
@@ -15,7 +15,9 @@ export const ModalImage = ({ category, image }) => {
         <ImageModal src={image} alt={category} />
         <LabelWrapper>
           <ModalLabel>
-            <LabelText>{category}</LabelText>
+            <LabelText>
+              {category?.replaceAll('-', category === 'lost-found' ? '/' : ' ')}
+            </LabelText>
           </ModalLabel>
         </LabelWrapper>
       </ImageThumb>
