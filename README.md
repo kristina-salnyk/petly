@@ -1,7 +1,7 @@
 
 # Petly
 
-This is an comprehensive web application designed with a heartfelt purpose – caring for our beloved pets. This platform is crafted to provide a seamless and engaging experience for pet enthusiasts. Whether you're looking to stay informed about the latest news, manage notices related to pets, or create a personalized user profile to celebrate your furry friends, this application is tailored just for you.
+This is a comprehensive web application designed with a heartfelt purpose – caring for our beloved pets. This platform is crafted to provide a seamless and engaging experience for pet enthusiasts. Whether you're looking to stay informed about the latest news, manage notices related to pets, or create a personalized user profile to celebrate your furry friends, this application is tailored just for you.
 ## Features
 
 - **User Authentication:** Users can easily create accounts by registering with the required information. Existing users can log in securely.
